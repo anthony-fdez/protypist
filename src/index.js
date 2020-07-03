@@ -3,18 +3,26 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-import SideMenu from "./components/SideMenu/SideMenu";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
+import allReducers from "./reducers/rootReducer";
+
+//store
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+//action
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <div style={{ display: "flex" }}>
-        <SideMenu />
+    <Provider store={store}>
+      <Router>
         <App />
-      </div>
-    </Router>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
