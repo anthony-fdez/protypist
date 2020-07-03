@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import SideMenu from "./components/SideMenu/SideMenu";
 import { BrowserRouter as Router } from "react-router-dom";
 import allReducers from "./reducers/rootReducer";
+import changeMode from "./action/changeTheme";
 
 //store
 const store = createStore(
