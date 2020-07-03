@@ -17,9 +17,11 @@ function TypingTest() {
 
     let infoAboutCharacterObject = [];
     splitedText.map((character, index) => {
-      let object = { status: "none" };
+      let object = "null";
       infoAboutCharacterObject.push(object);
     });
+
+    setTextArrayCharacters(splitedText);
     setInfoAboutCharacter(infoAboutCharacterObject);
   }, []);
 
@@ -42,6 +44,22 @@ function TypingTest() {
         e.target.value[e.target.value.length - 1] ===
         textArrayCharacters[e.target.value.length - 1]
       ) {
+        let array = [...infoAboutCharacter];
+        let arrayItem = array[e.target.value.length - 1];
+        arrayItem = true;
+        array[e.target.value.length - 1] = arrayItem;
+        setInfoAboutCharacter(array);
+        console.log(array);
+      } else if (
+        e.target.value[e.target.value.length - 1] !==
+        textArrayCharacters[e.target.value.length - 1]
+      ) {
+        let array = [...infoAboutCharacter];
+        let arrayItem = array[e.target.value.length - 1];
+        arrayItem = false;
+        array[e.target.value.length - 1] = arrayItem;
+        setInfoAboutCharacter(array);
+        console.log(array);
       }
     }
   };
