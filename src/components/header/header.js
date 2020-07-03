@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 function Header(props) {
   const theme = useSelector((state) => state.darkModeReducer);
-  console.log(theme);
   return (
     <div className={theme ? "Header-dark" : "Header-light"}>
       <h1>{props.text}</h1>
