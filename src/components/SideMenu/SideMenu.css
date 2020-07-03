@@ -18,6 +18,7 @@ a {
   height: 100vh;
   position: fixed;
   transition: 0.3s;
+  z-index: 3;
 }
 .SideMenu-light {
   background-color: rgb(231, 231, 231);
@@ -27,6 +28,7 @@ a {
   height: 100vh;
   position: fixed;
   transition: 0.3s;
+  z-index: 3;
 }
 .navigation-buttons {
   margin-top: 2rem;

@@ -8,6 +8,7 @@ import TypingTest from "./components/TypingTest/TypingTest";
 import Quotes from "./components/quotes/quotes";
 import Typing10second from "./components/10second/10second";
 import Home from "./components/Home/Home";
+import { useSpring, animated } from "react-spring";
 
 function App() {
   return (
