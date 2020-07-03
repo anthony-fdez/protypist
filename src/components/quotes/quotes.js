@@ -1,10 +1,13 @@
 import React from "react";
 import "./quotes.css";
+import Header from "../header/header";
 
 function Quotes() {
   return (
-    <div style={{ marginLeft: "170px" }} className="Quotes">
-      <h1>Quotes</h1>
+    <div className="Quotes-page">
+      <div className="Quotes">
+        <Header text="Type a Random Quote" />
+      </div>
     </div>
   );
 }

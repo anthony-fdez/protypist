@@ -1,7 +1,13 @@
+.home-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(31, 30, 30);
+  color: white;
+}
 .Home {
-  width: 80vw;
+  padding: 1rem;
   text-align: center;
-  padding-left: 170px;
+  margin-left: 170px;
 }
 h1 {
   margin: 0;
