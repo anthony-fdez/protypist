@@ -1,8 +1,16 @@
-.home-page {
+.home-page-dark {
   width: 100vw;
   height: 100vh;
   background-color: rgb(31, 30, 30);
   color: white;
+  transition: 0.3s;
+}
+.home-page-light {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
 }
 .Home {
   padding: 1rem;

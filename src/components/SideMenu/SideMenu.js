@@ -12,58 +12,46 @@ function SideMenu() {
   let location = useLocation();
   location = location.pathname;
 
+  const checkButtonClass = (path) => {
+    if (theme) {
+      if (location === path) {
+        return "navigation-button-active-dark";
+      } else return "navigation-button-dark";
+    } else if (theme === false) {
+      if (location === path) {
+        return "navigation-button-active-light";
+      } else return "navigation-button-light";
+    }
+  };
+
   return (
-    <div className="SideMenu">
+    <div className={theme ? "SideMenu-dark" : "SideMenu-light"}>
       <h2>TypingGame</h2>
       <div className="navigation-buttons">
         <Link to="/">
-          <div
-            className={
-              location === "/"
-                ? "navigation-button-active"
-                : "navigation-button"
-            }
-          >
+          <div className={checkButtonClass("/")}>
             <h3>Home</h3>
           </div>
         </Link>
         <Link to="/10second">
-          <div
-            className={
-              location === "/10second"
-                ? "navigation-button-active"
-                : "navigation-button"
-            }
-          >
+          <div className={checkButtonClass("/10second")}>
             <h3>10second</h3>
           </div>
         </Link>
         <Link to="/typingtest">
-          <div
-            className={
-              location === "/typingtest"
-                ? "navigation-button-active"
-                : "navigation-button"
-            }
-          >
+          <div className={checkButtonClass("/typingtest")}>
             <h3>TypingTest</h3>
           </div>
         </Link>
         <Link to="/quotes">
-          <div
-            className={
-              location === "/quotes"
-                ? "navigation-button-active"
-                : "navigation-button"
-            }
-          >
+          <div className={checkButtonClass("/quotes")}>
             <h3>Quotes</h3>
           </div>
         </Link>
       </div>
       <div
         onClick={() => dispatch(changeMode())}
-        className="navigation-button"
+        className={theme ? "navigation-button-dark" : "navigation-button-light"}
         style={{ position: "fixed", width: "145px", bottom: "2rem" }}
       >
         <h3>Theme</h3>

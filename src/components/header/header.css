@@ -1,5 +1,14 @@
-.Header {
+.Header-dark {
   background-color: rgb(70, 70, 70);
   padding: 1rem;
   border-radius: 10px;
+  color: white;
+  transition: 0.3s;
+}
+.Header-light {
+  color: black;
+  background-color: rgb(231, 231, 231);
+  padding: 1rem;
+  border-radius: 10px;
+  transition: 0.3s;
 }

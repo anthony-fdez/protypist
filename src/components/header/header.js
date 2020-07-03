@@ -1,10 +1,12 @@
 import React from "react";
 import "./header.css";
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function Header(props) {
+  const theme = useSelector((state) => state.darkModeReducer);
+  console.log(theme);
   return (
-    <div className="Header">
+    <div className={theme ? "Header-dark" : "Header-light"}>
       <h1>{props.text}</h1>
     </div>
   );
