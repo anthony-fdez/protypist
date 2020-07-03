@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import SideMenu from "./components/SideMenu/SideMenu";
 import { BrowserRouter as Router } from "react-router-dom";
 import allReducers from "./reducers/rootReducer";
 
@@ -20,7 +21,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <App />
+        <div style={{ display: "flex" }}>
+          <SideMenu />
+          <App />
+        </div>
       </Router>
     </Provider>
   </React.StrictMode>,

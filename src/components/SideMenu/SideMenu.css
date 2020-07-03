@@ -1,5 +1,6 @@
 h2 {
   padding-top: 1rem;
+  text-align: center;
 }
 h2,
 h3 {
@@ -21,6 +22,8 @@ a {
   margin-top: 2rem;
 }
 .navigation-button {
+  display: flex;
+  justify-content: center;
   margin: 0.5rem;
   margin-top: 1rem;
   padding: 5px;
@@ -28,6 +31,16 @@ a {
   background-color: rgb(70, 70, 70);
   cursor: pointer;
   transition: 0.1s;
+}
+.navigation-button-active {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 5px;
+  background-color: rgb(0, 110, 255);
+  cursor: pointer;
+  transition: 0.3s;
 }
 .navigation-button:hover {
   background-color: rgb(88, 88, 88);
