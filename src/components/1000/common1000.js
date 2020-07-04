@@ -28,11 +28,11 @@ function Common1000() {
   //========= Convert the plain text into arrays //
 
   useEffect(() => {
-    let json = require("../data/200words.json");
+    let json = require("../data/1000words.json");
     let wordsArray = [];
     let infoAboutCharacterObject = [];
-    for (let i = 0; i < 50; i++) {
-      let random = Math.floor(Math.random() * 50);
+    for (let i = 0; i < 40; i++) {
+      let random = Math.floor(Math.random() * 1000);
       let randomWord = json.words[random];
 
       for (let i = 0; i < randomWord.length; i++) {
@@ -49,18 +49,6 @@ function Common1000() {
     setTextArrayCharacters(wordsArray);
     setInfoAboutCharacter(infoAboutCharacterObject);
   }, [newGame]);
-
-  // useEffect(() => {
-  //   const splitedText = text.split("");
-  //   let infoAboutCharacterObject = [];
-  //   splitedText.map((character, index) => {
-  //     let object = null;
-  //     infoAboutCharacterObject.push(object);
-  //   });
-  //   setBlankInfoArray(infoAboutCharacterObject);
-  //   setTextArrayCharacters(splitedText);
-  //   setInfoAboutCharacter(infoAboutCharacterObject);
-  // }, []);
 
   //========= Create a blank array of spans that has all its classes set to none //
 
@@ -235,7 +223,7 @@ function Common1000() {
       className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
     >
       <div className="TypingTest">
-        <Header text="Type the 200 most common words in English" />
+        <Header text="Type the 1000 most common words in English (advanced)" />
         <div className="statistics">
           <h3>WPM:{wpm}</h3>
           <h3>Characters per minute:{cpm}</h3>
