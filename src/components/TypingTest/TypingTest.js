@@ -49,16 +49,16 @@ function TypingTest() {
     if (textArrayCharacters !== undefined) {
       let spanArray = [];
       for (let i = 0; i < textArrayCharacters.length; i++) {
-        if (infoAboutCharacter[i] === true) {
+        if (i === charactersTyped) {
           spanArray.push(
-            <span className="green">{textArrayCharacters[i]}</span>
+            <div className="blinking">{textArrayCharacters[i]}</div>
           );
+        } else if (infoAboutCharacter[i] === true) {
+          spanArray.push(<div className="green">{textArrayCharacters[i]}</div>);
         } else if (infoAboutCharacter[i] === false) {
-          spanArray.push(<span className="red">{textArrayCharacters[i]}</span>);
+          spanArray.push(<div className="red">{textArrayCharacters[i]}</div>);
         } else {
-          spanArray.push(
-            <span className="none">{textArrayCharacters[i]}</span>
-          );
+          spanArray.push(<div className="none">{textArrayCharacters[i]}</div>);
         }
       }
       return spanArray;
@@ -111,9 +111,7 @@ function TypingTest() {
     <div className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}>
       <div className="TypingTest">
         <Header text="Improve your typing skills" />
-        <div className="text-to-type">
-          <h2>{spanArray}</h2>
-        </div>
+        <div className="text-to-type">{spanArray}</div>
         <div className="input-zone">
           <h2>Type the text above </h2>
           <input
