@@ -48,6 +48,20 @@ function SideMenu() {
             <h4>Quotes</h4>
           </div>
         </Link>
+        <hr
+          style={{ marginTop: "2rem" }}
+          className={theme ? "white-hr" : "dark-hr"}
+        ></hr>
+        <Link to="/200">
+          <div className={checkButtonClass("/200")}>
+            <h4>200</h4>
+          </div>
+        </Link>
+        <Link to="/1000">
+          <div className={checkButtonClass("/1000")}>
+            <h4>1000</h4>
+          </div>
+        </Link>
       </div>
       <div
         onClick={() => dispatch(changeMode())}
