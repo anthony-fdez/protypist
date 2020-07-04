@@ -9,9 +9,6 @@ import { useSpring, animated } from "react-spring";
 function Common200() {
   const theme = useSelector((state) => state.darkModeReducer);
   //state
-  const [text, setText] = useState(
-    "This is just a text that I am typing just to test if my game is working, this is some more text to make sure the algorithem is working properly"
-  );
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
   const [charactersTyped, setCharactersTyped] = useState(0);
