@@ -31,29 +31,37 @@ function TypingTest() {
     setSpanArray(displayTheArray());
   }, [charactersTyped, textArrayCharacters]);
 
+  // const displayTheArray = () => {
+  //   if (textArrayCharacters !== undefined) {
+  //     let spanArray = [];
+  //     const newArray = textArrayCharacters.map((character, index) => {
+  //       spanArray.push(
+  //         <span className="none" key={index}>
+  //           {character}
+  //         </span>
+  //       );
+  //     });
+  //     return spanArray;
+  //   }
+  // };
+
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
-      const newArray = textArrayCharacters.map((character, index) => {
-        if (textArrayCharacters[charactersTyped] === true) {
-          return (
-            <span className="green" key={index}>
-              {character}
-            </span>
+      let spanArray = [];
+      for (let i = 0; i < textArrayCharacters.length; i++) {
+        if (infoAboutCharacter[i] === true) {
+          spanArray.push(
+            <span className="green">{textArrayCharacters[i]}</span>
           );
-        } else if (textArrayCharacters[charactersTyped] === false) {
-          return (
-            <span className="red" key={index}>
-              {character}
-            </span>
+        } else if (infoAboutCharacter[i] === false) {
+          spanArray.push(<span className="red">{textArrayCharacters[i]}</span>);
+        } else {
+          spanArray.push(
+            <span className="none">{textArrayCharacters[i]}</span>
           );
-        } else
-          return (
-            <span className="none" key={index}>
-              {character}
-            </span>
-          );
-      });
-      return newArray;
+        }
+      }
+      return spanArray;
     }
   };
 
