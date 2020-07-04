@@ -186,6 +186,7 @@ function TypingTest() {
   const animation = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
+    config: { duration: 200 },
   });
 
   const changeTextToTypeClassname = () => {
