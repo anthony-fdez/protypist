@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./TypingTest.css";
 import Header from "../header/header";
 import { useSelector } from "react-redux";
+import { useSpring, animated } from "react-spring";
 
 function TypingTest() {
   const theme = useSelector((state) => state.darkModeReducer);
@@ -30,20 +31,6 @@ function TypingTest() {
   useEffect(() => {
     setSpanArray(displayTheArray());
   }, [charactersTyped, textArrayCharacters]);
-
-  // const displayTheArray = () => {
-  //   if (textArrayCharacters !== undefined) {
-  //     let spanArray = [];
-  //     const newArray = textArrayCharacters.map((character, index) => {
-  //       spanArray.push(
-  //         <span className="none" key={index}>
-  //           {character}
-  //         </span>
-  //       );
-  //     });
-  //     return spanArray;
-  //   }
-  // };
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
@@ -99,31 +86,35 @@ function TypingTest() {
     }
   };
 
-  const checkForTheClass = () => {
-    if (infoAboutCharacter[charactersTyped - 1] === true) {
-      return "green";
-    } else if (infoAboutCharacter[charactersTyped - 1] === false) {
-      return "red";
-    } else return "standard";
-  };
+  const animation = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
 
   return (
-    <div className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}>
+    <animated.div
+      style={animation}
+      className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
+    >
       <div className="TypingTest">
         <Header text="Improve your typing skills" />
         <div className="text-to-type">{spanArray}</div>
+        <p className="alert-primary alert">
+          <strong>Type the text above</strong>, start typing whenever you are
+          ready :)
+        </p>
         <div className="input-zone">
-          <h2>Type the text above </h2>
           <input
+            autoFocus
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}
             placeholder="The test will bigin when you start typing!"
-            className="input-box"
+            className="input-box form-control"
           ></input>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }
 

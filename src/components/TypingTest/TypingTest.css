@@ -18,10 +18,12 @@
   margin-left: 170px;
 }
 .input-zone {
-  margin-top: 20rem;
+  margin-top: 10rem;
+  display: flex;
+  justify-content: center;
 }
 .input-box {
-  width: 50vw;
+  width: 60vw;
 }
 .text-to-type {
   margin-top: 1rem;
@@ -104,4 +106,11 @@
   100% {
     border-bottom: solid 3px rgba(0, 132, 255, 0.199);
   }
+}
+.alert {
+  padding: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 60vw;
 }

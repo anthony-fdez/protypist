@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
-const darkModeReducer = (state = true, action) => {
+const darkModeReducer = (state = false, action) => {
   switch (action.type) {
     case "CHANGE_THEME":
       return !state;
     default:
-      return true;
+      return false;
   }
 };
 

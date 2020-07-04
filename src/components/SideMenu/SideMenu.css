@@ -1,15 +1,20 @@
-h2 {
+h3 {
   padding-top: 1rem;
   text-align: center;
 }
 h2,
-h3 {
+h4 {
   margin: 0;
 }
 a {
   text-decoration: none;
   color: white;
 }
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .SideMenu-dark {
   background-color: rgb(50, 50, 50);
   color: white;
@@ -78,5 +83,9 @@ a {
   transition: 0.3s;
 }
 .navigation-button-dark:hover {
+  color: white;
   background-color: rgb(88, 88, 88);
+}
+.navigation-button-light:hover {
+  background-color: rgba(0, 132, 255, 0.096);
 }
