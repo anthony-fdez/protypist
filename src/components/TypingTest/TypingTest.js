@@ -28,19 +28,21 @@ function TypingTest() {
   const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
 
+  //========= Convert the plain text into arrays //
+
   useEffect(() => {
     const splitedText = text.split("");
-
     let infoAboutCharacterObject = [];
     splitedText.map((character, index) => {
       let object = null;
       infoAboutCharacterObject.push(object);
     });
-
     setBlankInfoArray(infoAboutCharacterObject);
     setTextArrayCharacters(splitedText);
     setInfoAboutCharacter(infoAboutCharacterObject);
   }, []);
+
+  //========= Create a blank array of spans that has all its classes set to none //
 
   useEffect(() => {
     if (newGame === true) {
@@ -57,6 +59,9 @@ function TypingTest() {
       setInfoAboutCharacter(spanArray);
     }
   }, [newGame]);
+
+  //========= Display all the characters to the screen //
+  //========= This returns an array of spans //
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
@@ -78,7 +83,8 @@ function TypingTest() {
     }
   };
 
-  //This is to check for errors
+  //========= Display the errors the user makes //
+
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {
       let errors = 0;
@@ -96,7 +102,7 @@ function TypingTest() {
     setNewGame(false);
   }, [newGame]);
 
-  //========== words per minute ================
+  //========= Calculate words per minute //
 
   const calculateWordsPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
@@ -109,6 +115,8 @@ function TypingTest() {
     setCPM(charactersPerMinute);
     setWPM(wordsPerMinute);
   };
+
+  //========= Check input //
 
   const getAndCheckTheInput = (e) => {
     if (

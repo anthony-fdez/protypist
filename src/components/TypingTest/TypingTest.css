@@ -36,7 +36,7 @@
   flex-wrap: wrap;
   margin: 4rem;
   margin-top: 2rem;
-  transition: 0.2s;
+  transition: 0.3s;
   padding: 1rem;
 }
 .text-to-type-light {
@@ -47,7 +47,7 @@
   margin: 4rem;
   margin-top: 2rem;
   opacity: 0.4;
-  transition: 0.2s;
+  transition: 0.3s;
   color: black;
   background-color: rgb(197, 197, 197);
   border-radius: 10px;
