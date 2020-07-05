@@ -23,11 +23,19 @@ const lengthReducer = (state = 20, action) => {
   }
 };
 
-const realTimeWPMReducer = () => {};
+const realTimeWPMReducer = (state = false, action) => {
+  switch (action.type) {
+    case "REAL_TIME_WPM":
+      return !state;
+    default:
+      return state;
+  }
+};
 
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
+  realTimeWPMReducer: realTimeWPMReducer,
 });
 
 export default allReducers;

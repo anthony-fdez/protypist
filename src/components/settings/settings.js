@@ -8,6 +8,7 @@ import { useSpring, animated } from "react-spring";
 function Settings() {
   const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducer);
+  const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const dispatch = useDispatch();
 
   const animation = useSpring({
@@ -52,7 +53,9 @@ function Settings() {
             <h1 className="text">{theme ? "ON" : "OFF"}</h1>
           </div>
         </div>
+
         <div className="container mt-5">
+          <h3>Typing Settings</h3>
           <div
             className={
               theme ? "settings-card-dark-words" : "settings-card-ligth-words"
@@ -92,6 +95,24 @@ function Settings() {
               </button>
             </div>
             <h1 className="text">{selectTheText()}</h1>
+          </div>
+        </div>
+        <div style={{ cursor: "pointer" }} className="container">
+          <div
+            onClick={() => {
+              dispatch({ type: "REAL_TIME_WPM" });
+            }}
+            className={
+              theme ? "settings-card-dark-words" : "settings-card-ligth-words"
+            }
+          >
+            <div style={{ textAlign: "left" }}>
+              <h2>Real Time WPM</h2>
+              <p>
+                Choose whether you want to see your speed as you type or not.
+              </p>
+            </div>
+            <h1 className="text">{realTimeWPM ? "ON" : "OFF"}</h1>
           </div>
         </div>
       </div>
