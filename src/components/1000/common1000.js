@@ -8,6 +8,8 @@ import { useSpring, animated } from "react-spring";
 
 function Common1000() {
   const theme = useSelector((state) => state.darkModeReducer);
+  const length = useSelector((state) => state.lengthReducer);
+  const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -31,7 +33,7 @@ function Common1000() {
     let json = require("../data/1000words.json");
     let wordsArray = [];
     let infoAboutCharacterObject = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < length; i++) {
       let random = Math.floor(Math.random() * 1000);
       let randomWord = json.words[random];
 
@@ -127,6 +129,9 @@ function Common1000() {
   //========= Check input //
 
   const getAndCheckTheInput = (e) => {
+    if (realTimeWPM) {
+      calculateWordsPerMinute();
+    }
     if (
       e.target.value.length === textArrayCharacters.length &&
       mistakes === 0

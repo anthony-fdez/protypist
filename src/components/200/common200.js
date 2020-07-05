@@ -3,12 +3,17 @@ import "./common200.css";
 
 import Header from "../header/header";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 function Common200() {
+  const dispatch = useDispatch();
+
   const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducer);
+  const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
+  const latestWPM = useSelector((state) => state.latestWPMReducer);
+  const latestCPM = useSelector((state) => state.latestCPMReducer);
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -117,18 +122,29 @@ function Common200() {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
     let charactersPerMinute = charactersPerSecond * 60;
-
     wordsPerMinute = Math.round(wordsPerMinute);
     charactersPerMinute = Math.round(charactersPerMinute);
-
     setCPM(charactersPerMinute);
     setWPM(wordsPerMinute);
+
+    return wordsPerMinute;
+  };
+
+  const calculateCharactersPerMinute = () => {
+    let charactersPerSecond = charactersTyped / timeSeconds;
+    let charactersPerMinute = charactersPerSecond * 60;
+    charactersPerMinute = Math.round(charactersPerMinute);
+
+    return charactersPerMinute;
   };
 
   //========= Check input //
 
   const getAndCheckTheInput = (e) => {
-    calculateWordsPerMinute();
+    if (realTimeWPM) {
+      calculateWordsPerMinute();
+    }
+
     if (
       e.target.value.length === textArrayCharacters.length &&
       mistakes === 0
@@ -140,6 +156,12 @@ function Common200() {
       setNewGame(true);
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
+      dispatch({ type: "SET_LATEST_WPM", payload: calculateWordsPerMinute() });
+
+      dispatch({
+        type: "SET_LATEST_CPM",
+        payload: calculateCharactersPerMinute(),
+      });
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
     }
@@ -219,6 +241,22 @@ function Common200() {
     }
   };
 
+  const displayWPM = () => {
+    if (realTimeWPM) {
+      if (isRunning) {
+        return wpm;
+      } else return latestWPM;
+    } else return latestWPM;
+  };
+
+  const displayCPM = () => {
+    if (realTimeWPM) {
+      if (isRunning) {
+        return cpm;
+      } else return latestCPM;
+    } else return latestCPM;
+  };
+
   return (
     <animated.div
       style={animation}
@@ -227,8 +265,8 @@ function Common200() {
       <div className="TypingTest">
         <Header text="Type the 200 most common words in English (beginer)" />
         <div className="statistics">
-          <h3>WPM:{wpm}</h3>
-          <h3>Characters per minute:{cpm}</h3>
+          <h3>WPM:{displayWPM()}</h3>
+          <h3>Characters per minute:{displayCPM()}</h3>
           <h3>Errors:{mistakes}</h3>
         </div>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>

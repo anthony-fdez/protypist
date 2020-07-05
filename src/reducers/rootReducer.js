@@ -32,10 +32,30 @@ const realTimeWPMReducer = (state = false, action) => {
   }
 };
 
+const latestWPMReducer = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_LATEST_WPM":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const latestCPMReducer = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_LATEST_CPM":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
   realTimeWPMReducer: realTimeWPMReducer,
+  latestWPMReducer: latestWPMReducer,
+  latestCPMReducer: latestCPMReducer,
 });
 
 export default allReducers;

@@ -45,7 +45,7 @@ function Settings() {
               dispatch({ type: "CHANGE_THEME" });
             }}
             className={theme ? "settings-card-dark" : "settings-card-ligth"}
-          >
+          
             <div style={{ textAlign: "left" }}>
               <h2>Dark Mode</h2>
               <p>Change between dark and light mode.</p>
@@ -110,6 +110,10 @@ function Settings() {
               <h2>Real Time WPM</h2>
               <p>
                 Choose whether you want to see your speed as you type or not.
+              </p>
+              <p>
+                <strong>Note:</strong> if its on and it says infinite, you are
+                not a god, its a bug.
               </p>
             </div>
             <h1 className="text">{realTimeWPM ? "ON" : "OFF"}</h1>
