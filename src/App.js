@@ -10,6 +10,7 @@ import Typing10second from "./components/10second/10second";
 import Home from "./components/Home/Home";
 import Common200 from "./components/200/common200";
 import Common1000 from "./components/1000/common1000";
+import Settings from "./components/settings/settings";
 
 import { useSpring, animated } from "react-spring";
 import { useSelector } from "react-redux";
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path="/1000">
           <Common1000 />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
       </Switch>
     </div>

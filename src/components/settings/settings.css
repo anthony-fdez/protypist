@@ -1,0 +1,50 @@
+.settings-alert {
+  margin-top: 2rem;
+  border-radius: 5px;
+}
+p {
+  margin: 0;
+}
+h2 {
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  display: flex;
+}
+.settings-card-ligth {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  margin-top: 1rem;
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.settings-card-dark {
+  background-color: rgb(0, 140, 255);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  margin-top: 1rem;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+
+  overflow: hidden;
+  transition: 0.3s;
+}
+.text {
+  position: absolute;
+  right: 16rem;
+  opacity: 0.3;
+  font-style: italic;
+  font-size: 200px;
+}

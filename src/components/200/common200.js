@@ -127,6 +127,7 @@ function Common200() {
   //========= Check input //
 
   const getAndCheckTheInput = (e) => {
+    calculateWordsPerMinute();
     if (
       e.target.value.length === textArrayCharacters.length &&
       mistakes === 0

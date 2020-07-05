@@ -30,22 +30,38 @@ function SideMenu() {
       <div className="navigation-buttons">
         <Link to="/">
           <div className={checkButtonClass("/")}>
-            <h4>Home</h4>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              class="fas fa-home"
+            ></i>
+            <h5>Home</h5>
           </div>
         </Link>
         <Link to="/10second">
           <div className={checkButtonClass("/10second")}>
-            <h4>10second</h4>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              class="fas fa-clock"
+            ></i>
+            <h5>10second</h5>
           </div>
         </Link>
         <Link to="/typingtest">
           <div className={checkButtonClass("/typingtest")}>
-            <h4>TypingTest</h4>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              class="fas fa-keyboard"
+            ></i>
+            <h5>TypingTest</h5>
           </div>
         </Link>
         <Link to="/quotes">
           <div className={checkButtonClass("/quotes")}>
-            <h4>Quotes</h4>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              class="fas fa-quote-left"
+            ></i>
+            <h5>Quotes</h5>
           </div>
         </Link>
         <hr
@@ -54,21 +70,34 @@ function SideMenu() {
         ></hr>
         <Link to="/200">
           <div className={checkButtonClass("/200")}>
-            <h4>200</h4>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              class="fas fa-biking"
+            ></i>
+            <h5>Top 200</h5>
           </div>
         </Link>
         <Link to="/1000">
           <div className={checkButtonClass("/1000")}>
-            <h4>1000</h4>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              class="fas fa-car-side"
+            ></i>
+            <h5>Top 1000</h5>
           </div>
         </Link>
-      </div>
-      <div
-        onClick={() => dispatch(changeMode())}
-        className={theme ? "navigation-button-dark" : "navigation-button-light"}
-        style={{ position: "fixed", width: "145px", bottom: "2rem" }}
-      >
-        <h4>Theme</h4>
+        <Link
+          to="/settings"
+          style={{ position: "absolute", width: "200px", bottom: "2rem" }}
+        >
+          <div className={checkButtonClass("/settings")}>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              class="fas fa-tools"
+            ></i>
+            <h5>Settings</h5>
+          </div>
+        </Link>
       </div>
     </div>
   );
