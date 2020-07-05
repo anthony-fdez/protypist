@@ -45,7 +45,7 @@ function Settings() {
               dispatch({ type: "CHANGE_THEME" });
             }}
             className={theme ? "settings-card-dark" : "settings-card-ligth"}
-          
+          >
             <div style={{ textAlign: "left" }}>
               <h2>Dark Mode</h2>
               <p>Change between dark and light mode.</p>
