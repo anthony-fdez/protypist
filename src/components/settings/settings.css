@@ -12,7 +12,8 @@ h2 {
   align-items: center;
   display: flex;
 }
-.settings-card-ligth {
+.settings-card-ligth,
+.settings-card-ligth-words {
   background-color: rgb(255, 255, 255);
   color: black;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
@@ -25,6 +26,9 @@ h2 {
   align-items: center;
   overflow: hidden;
   transition: 0.3s;
+}
+.settings-card-ligth,
+.settings-card-dark {
   cursor: pointer;
 }
 .settings-card-dark {
@@ -37,15 +41,33 @@ h2 {
   margin-top: 1rem;
   position: relative;
   align-items: center;
-  cursor: pointer;
-
   overflow: hidden;
   transition: 0.3s;
 }
+.settings-card-dark-words {
+  background-color: rgb(80, 78, 78);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  margin-top: 1rem;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
 .text {
   position: absolute;
-  right: 16rem;
+  z-index: 0;
+  right: 12rem;
   opacity: 0.3;
   font-style: italic;
   font-size: 200px;
+  pointer-events: none;
+}
+.btn {
+  z-index: 3;
 }

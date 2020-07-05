@@ -8,6 +8,7 @@ import { useSpring, animated } from "react-spring";
 
 function Common200() {
   const theme = useSelector((state) => state.darkModeReducer);
+  const length = useSelector((state) => state.lengthReducer);
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -31,7 +32,7 @@ function Common200() {
     let json = require("../data/200words.json");
     let wordsArray = [];
     let infoAboutCharacterObject = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < length; i++) {
       let random = Math.floor(Math.random() * 200);
       let randomWord = json.words[random];
 
