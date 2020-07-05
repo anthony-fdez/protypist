@@ -1,6 +1,7 @@
 .settings-alert {
   margin-top: 2rem;
   border-radius: 5px;
+  border: none;
 }
 p {
   margin: 0;
