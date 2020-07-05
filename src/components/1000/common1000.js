@@ -3,13 +3,17 @@ import "./common1000.css";
 
 import Header from "../header/header";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 function Common1000() {
+  const dispatch = useDispatch();
+
   const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducer);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
+  const latestWPM1000 = useSelector((state) => state.latestWPMReducer1000);
+  const latestCPM1000 = useSelector((state) => state.latestCPMReducer1000);
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -118,12 +122,20 @@ function Common1000() {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
     let charactersPerMinute = charactersPerSecond * 60;
-
     wordsPerMinute = Math.round(wordsPerMinute);
     charactersPerMinute = Math.round(charactersPerMinute);
-
     setCPM(charactersPerMinute);
     setWPM(wordsPerMinute);
+
+    return wordsPerMinute;
+  };
+
+  const calculateCharactersPerMinute = () => {
+    let charactersPerSecond = charactersTyped / timeSeconds;
+    let charactersPerMinute = charactersPerSecond * 60;
+    charactersPerMinute = Math.round(charactersPerMinute);
+
+    return charactersPerMinute;
   };
 
   //========= Check input //
@@ -143,6 +155,14 @@ function Common1000() {
       setNewGame(true);
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
+      dispatch({
+        type: "SET_LATEST_WPM_1000",
+        payload: calculateWordsPerMinute(),
+      });
+      dispatch({
+        type: "SET_LATEST_CPM_1000",
+        payload: calculateCharactersPerMinute(),
+      });
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
     }
@@ -222,6 +242,22 @@ function Common1000() {
     }
   };
 
+  const displayWPM = () => {
+    if (realTimeWPM) {
+      if (isRunning) {
+        return wpm;
+      } else return latestWPM1000;
+    } else return latestWPM1000;
+  };
+
+  const displayCPM = () => {
+    if (realTimeWPM) {
+      if (isRunning) {
+        return cpm;
+      } else return latestCPM1000;
+    } else return latestCPM1000;
+  };
+
   return (
     <animated.div
       style={animation}
@@ -230,8 +266,8 @@ function Common1000() {
       <div className="TypingTest">
         <Header text="Type the 1000 most common words in English (advanced)" />
         <div className="statistics">
-          <h3>WPM:{wpm}</h3>
-          <h3>Characters per minute:{cpm}</h3>
+          <h3>WPM:{displayWPM()}</h3>
+          <h3>Characters per minute:{displayCPM()}</h3>
           <h3>Errors:{mistakes}</h3>
         </div>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>

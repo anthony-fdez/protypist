@@ -32,18 +32,36 @@ const realTimeWPMReducer = (state = false, action) => {
   }
 };
 
-const latestWPMReducer = (state = 0, action) => {
+const latestWPMReducer200 = (state = 0, action) => {
   switch (action.type) {
-    case "SET_LATEST_WPM":
+    case "SET_LATEST_WPM_200":
       return action.payload;
     default:
       return state;
   }
 };
 
-const latestCPMReducer = (state = 0, action) => {
+const latestCPMReducer200 = (state = 0, action) => {
   switch (action.type) {
-    case "SET_LATEST_CPM":
+    case "SET_LATEST_CPM_200":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const latestWPMReducer1000 = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_LATEST_WPM_1000":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const latestCPMReducer1000 = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_LATEST_CPM_1000":
       return action.payload;
     default:
       return state;
@@ -54,8 +72,10 @@ const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
   realTimeWPMReducer: realTimeWPMReducer,
-  latestWPMReducer: latestWPMReducer,
-  latestCPMReducer: latestCPMReducer,
+  latestWPMReducer200: latestWPMReducer200,
+  latestCPMReducer200: latestCPMReducer200,
+  latestWPMReducer1000: latestWPMReducer1000,
+  latestCPMReducer1000: latestCPMReducer1000,
 });
 
 export default allReducers;

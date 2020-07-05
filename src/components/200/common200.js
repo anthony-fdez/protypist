@@ -12,8 +12,8 @@ function Common200() {
   const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducer);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
-  const latestWPM = useSelector((state) => state.latestWPMReducer);
-  const latestCPM = useSelector((state) => state.latestCPMReducer);
+  const latestWPM200 = useSelector((state) => state.latestWPMReducer200);
+  const latestCPM200 = useSelector((state) => state.latestCPMReducer200);
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -156,10 +156,12 @@ function Common200() {
       setNewGame(true);
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
-      dispatch({ type: "SET_LATEST_WPM", payload: calculateWordsPerMinute() });
-
       dispatch({
-        type: "SET_LATEST_CPM",
+        type: "SET_LATEST_WPM_200",
+        payload: calculateWordsPerMinute(),
+      });
+      dispatch({
+        type: "SET_LATEST_CPM_200",
         payload: calculateCharactersPerMinute(),
       });
     } else if (charactersTyped >= 1) {
@@ -245,16 +247,16 @@ function Common200() {
     if (realTimeWPM) {
       if (isRunning) {
         return wpm;
-      } else return latestWPM;
-    } else return latestWPM;
+      } else return latestWPM200;
+    } else return latestWPM200;
   };
 
   const displayCPM = () => {
     if (realTimeWPM) {
       if (isRunning) {
         return cpm;
-      } else return latestCPM;
-    } else return latestCPM;
+      } else return latestCPM200;
+    } else return latestCPM200;
   };
 
   return (

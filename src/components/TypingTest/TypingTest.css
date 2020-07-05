@@ -183,3 +183,75 @@
 .dark-hr {
   background-color: rgb(196, 196, 196);
 }
+.hamburger-menu {
+  position: absolute;
+  top: 2.2rem;
+  right: 3rem;
+  transition: 0.2s;
+}
+.hamburger-menu:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.whole-page-background-open {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  z-index: 5;
+}
+.whole-page-background-closed {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  transition: 0.3s;
+}
+.side-menu-open {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 2rem;
+  height: 94vh;
+  width: 350px;
+  background-color: rgb(78, 78, 78);
+  transition: 0.2s;
+  z-index: 10;
+}
+.side-menu-closed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 2rem;
+  height: 94vh;
+  width: 350px;
+  background-color: rgb(78, 78, 78);
+  transition: 0.2s;
+  transform: translateX(400px);
+  -webkit-transform: translateX(400px);
+  -moz-transform: translateX(400px);
+}
+.side-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.side-menu-close-icon {
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+.side-menu-close-icon:hover {
+  background-color: rgb(100, 100, 100);
+}

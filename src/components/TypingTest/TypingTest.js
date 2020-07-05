@@ -17,6 +17,7 @@ function TypingTest() {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
@@ -209,13 +210,48 @@ function TypingTest() {
     }
   };
 
+  const sideMenu = () => {
+    return (
+      <div
+        className={
+          isSideMenuOpen
+            ? "whole-page-background-open"
+            : "whole-page-background-closed"
+        }
+      >
+        <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
+          <div className="side-menu-header">
+            <h1>Side Menu</h1>
+            <div
+              onClick={() => {
+                setIsSideMenuOpen(false);
+              }}
+              className="side-menu-close-icon"
+            >
+              <i class="fas fa-times fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <animated.div
       style={animation}
       className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
     >
+      {sideMenu()}
       <div className="TypingTest">
         <Header text="Improve your typing skills" />
+        <div
+          onClick={() => {
+            setIsSideMenuOpen(true);
+          }}
+          className="hamburger-menu"
+        >
+          <i class="fas fa-bars fa-2x"></i>
+        </div>
         <div className="statistics">
           <h3>WPM:{wpm}</h3>
           <h3>Characters per minute:{cpm}</h3>
