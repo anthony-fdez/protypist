@@ -1,174 +1,351 @@
-.fifth-row {
-  display: flex;
-  justify-content: space-between;
-}
-.forth-row {
-  display: flex;
-  justify-content: space-between;
-}
-.third-row {
-  display: flex;
-  justify-content: space-between;
-}
-.second-row {
-  display: flex;
-  justify-content: space-between;
-}
-.first-row {
-  display: flex;
-  justify-content: space-between;
-}
-.keyboard-key {
-  background-color: rgb(240, 240, 240);
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
+@media only screen and(min-width: 1500px) {
+  .fifth-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .forth-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .third-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .second-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .first-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .keyboard-key {
+    background-color: rgb(240, 240, 240);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
 
-  justify-content: center;
-  margin: 2px;
-}
-.keyboard-key-pressed {
-  background-color: rgb(170, 170, 170);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.322);
-  width: 50px;
-  height: 50px;
-  display: flex;
-  border-radius: 5px;
+    justify-content: center;
+    margin: 2px;
+  }
+  .keyboard-key-pressed {
+    background-color: rgb(170, 170, 170);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.322);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 5px;
 
-  align-items: center;
-  justify-content: center;
-  margin: 2px;
-}
-.keyboard {
-  border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+  }
+  .keyboard {
+    border-radius: 10px;
 
-  position: absolute;
-  bottom: 4rem;
-  padding: 1rem;
-  width: 870px;
-  left: 200px;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgb(201, 201, 201);
-}
-.keyboard-tab {
-  background-color: rgb(240, 240, 240);
-  width: 80px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-}
-.keyboard-caps {
-  background-color: rgb(240, 240, 240);
-  width: 100px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
+    position: absolute;
+    bottom: 4rem;
+    padding: 1rem;
+    width: 870px;
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(201, 201, 201);
+  }
+  .keyboard-tab {
+    background-color: rgb(240, 240, 240);
+    width: 80px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+  .keyboard-caps {
+    background-color: rgb(240, 240, 240);
+    width: 100px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
 
-  justify-content: center;
-}
-.keyboard-shift {
-  background-color: rgb(240, 240, 240);
-  width: 120px;
-  height: 50px;
-  margin: 2px;
-  border-radius: 5px;
+    justify-content: center;
+  }
+  .keyboard-shift {
+    background-color: rgb(240, 240, 240);
+    width: 120px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 5px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.keyboard-ctrl {
-  margin: 3px;
-  width: 80px;
-  height: 50px;
-  background-color: rgb(240, 240, 240);
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-ctrl {
+    margin: 3px;
+    width: 80px;
+    height: 40px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
 
-  justify-content: center;
-}
-.keyboard-backspace {
-  background-color: rgb(240, 240, 240);
-  width: 100px;
-  height: 50px;
-  margin: 2px;
-  border-radius: 5px;
+    justify-content: center;
+  }
+  .keyboard-backspace {
+    background-color: rgb(240, 240, 240);
+    width: 100px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 5px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.keyboard-backspace-pressed {
-  background-color: rgb(150, 150, 150);
-  width: 100px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-backspace-pressed {
+    background-color: rgb(150, 150, 150);
+    width: 100px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    border-radius: 5px;
 
-  align-items: center;
-  justify-content: center;
-}
-.keyboard-enter {
-  background-color: rgb(240, 240, 240);
-  width: 120px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-enter {
+    background-color: rgb(240, 240, 240);
+    width: 120px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    border-radius: 5px;
 
-  align-items: center;
-  justify-content: center;
-}
-.keyboard-big-shift {
-  background-color: rgb(240, 240, 240);
-  width: 140px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-}
-.keyboard-space {
-  background-color: rgb(240, 240, 240);
-  width: 480px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-}
-.keyboard-space-pressed {
-  background-color: rgb(151, 151, 151);
-  width: 480px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-big-shift {
+    background-color: rgb(240, 240, 240);
+    width: 140px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+  .keyboard-space {
+    background-color: rgb(240, 240, 240);
+    width: 480px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+  .keyboard-space-pressed {
+    background-color: rgb(151, 151, 151);
+    width: 480px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    border-radius: 5px;
 
-  align-items: center;
-  justify-content: center;
-}
-.keyboard-alt {
-  width: 80px;
-  height: 50px;
-  border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-alt {
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
 
-  background-color: rgb(240, 240, 240);
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: rgb(240, 240, 240);
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .fifth-row {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    transform: translateX(8000px);
+  }
+  .forth-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .third-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .second-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .first-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .keyboard-key {
+    background-color: rgb(240, 240, 240);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
+    margin: 2px;
+  }
+  .keyboard-key-pressed {
+    background-color: rgb(170, 170, 170);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.322);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+  }
+  .keyboard {
+    border-radius: 10px;
+    position: absolute;
+    bottom: 1rem;
+    padding: 1rem;
+    width: 670px;
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(201, 201, 201);
+  }
+  .keyboard-tab {
+    background-color: rgb(240, 240, 240);
+    width: 60px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+  .keyboard-caps {
+    background-color: rgb(240, 240, 240);
+    width: 100px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+
+    justify-content: center;
+  }
+  .keyboard-shift {
+    background-color: rgb(240, 240, 240);
+    width: 100px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-ctrl {
+    margin: 3px;
+    width: 60px;
+    height: 40px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+
+    justify-content: center;
+  }
+  .keyboard-backspace {
+    background-color: rgb(240, 240, 240);
+    width: 80px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-backspace-pressed {
+    background-color: rgb(150, 150, 150);
+    width: 80px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    border-radius: 5px;
+
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-enter {
+    background-color: rgb(240, 240, 240);
+    width: 100px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    border-radius: 5px;
+
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-big-shift {
+    background-color: rgb(240, 240, 240);
+    width: 120px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+  .keyboard-space {
+    background-color: rgb(240, 240, 240);
+    width: 400px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+  .keyboard-space-pressed {
+    background-color: rgb(151, 151, 151);
+    width: 400px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    border-radius: 5px;
+
+    align-items: center;
+    justify-content: center;
+  }
+  .keyboard-alt {
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+
+    background-color: rgb(240, 240, 240);
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

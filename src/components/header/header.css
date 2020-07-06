@@ -1,18 +1,38 @@
-.Header-dark {
-  background-color: rgb(70, 70, 70);
-  padding: 1rem;
-  border-radius: 10px;
-  color: white;
-  transition: 0.3s;
-  display: flex;
-  justify-content: center;
+@media only screen and (min-width: 1501px) {
+  .Header-dark {
+    background-color: rgb(70, 70, 70);
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+  }
+  .Header-light {
+    color: black;
+    background-color: rgb(231, 231, 231);
+    padding: 1rem;
+    border-radius: 10px;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+  }
 }
-.Header-light {
-  color: black;
-  background-color: rgb(231, 231, 231);
-  padding: 1rem;
-  border-radius: 10px;
-  transition: 0.3s;
-  display: flex;
-  justify-content: center;
+@media only screen and (max-width: 1500px) {
+  .Header-dark {
+    background-color: rgb(70, 70, 70);
+    padding: 0.5rem;
+    color: white;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+  }
+  .Header-light {
+    color: black;
+    background-color: rgb(231, 231, 231);
+    padding: 0.5rem;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+  }
 }

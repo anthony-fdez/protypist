@@ -256,9 +256,9 @@ function TypingTest() {
           <i class="fas fa-bars fa-2x"></i>
         </div>
         <div className="statistics">
-          <h3>WPM:{wpm}</h3>
-          <h3>Characters per minute:{cpm}</h3>
-          <h3>Errors:{mistakes}</h3>
+          <h5>WPM:{wpm}</h5>
+          <h5>Characters per minute:{cpm}</h5>
+          <h5>Errors:{mistakes}</h5>
         </div>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>
         <p
