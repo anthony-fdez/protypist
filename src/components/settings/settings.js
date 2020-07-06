@@ -32,7 +32,7 @@ function Settings() {
       style={animation}
       className={theme ? "home-page-dark" : "home-page-light"}
     >
-      <div className="Home">
+      <div className={theme ? "Home-dark" : "Home-light"}>
         <Header text="Settings" />
         <div className="container">
           <p className="alert-primary settings-alert">
@@ -95,6 +95,22 @@ function Settings() {
               </button>
             </div>
             <h1 className="text">{selectTheText()}</h1>
+          </div>
+        </div>
+        <div style={{ cursor: "pointer" }} className="container">
+          <div
+            onClick={() => {
+              dispatch({ type: "REAL_TIME_WPM" });
+            }}
+            className={
+              theme ? "settings-card-dark-words" : "settings-card-ligth-words"
+            }
+          >
+            <div style={{ textAlign: "left" }}>
+              <h2>On Screen Keyboard</h2>
+              <p>Hide or show the Keyboard on the screen.</p>
+            </div>
+            <h1 className="text">{realTimeWPM ? "ON" : "OFF"}</h1>
           </div>
         </div>
         <div style={{ cursor: "pointer" }} className="container">
