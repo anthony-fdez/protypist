@@ -18,33 +18,31 @@
   display: flex;
   justify-content: space-between;
 }
-.keyboard-key {
-  background-color: rgb(240, 240, 240);
+.KeyboardDark-key {
+  background-color: rgb(100, 100, 100);
   width: 50px;
   height: 50px;
   display: flex;
   align-items: center;
-  border-radius: 5px;
-
   justify-content: center;
   margin: 2px;
+  border-radius: 5px;
 }
-.keyboard-key-pressed {
-  background-color: rgb(170, 170, 170);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.322);
+.KeyboardDark-key-pressed {
+  background-color: rgb(202, 202, 202);
+  color: black;
+  border-radius: 5px;
+
   width: 50px;
   height: 50px;
   display: flex;
-  border-radius: 5px;
-
   align-items: center;
   justify-content: center;
   margin: 2px;
 }
-.keyboard {
-  border-radius: 10px;
-
+.KeyboardDark {
   position: absolute;
+  border-radius: 10px;
   bottom: 4rem;
   padding: 1rem;
   width: 870px;
@@ -52,31 +50,32 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(201, 201, 201);
+  background-color: rgb(61, 61, 61);
 }
-.keyboard-tab {
-  background-color: rgb(240, 240, 240);
+.KeyboardDark-tab {
+  background-color: rgb(100, 100, 100);
   width: 80px;
+  border-radius: 5px;
+
   height: 50px;
   margin: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
 }
-.keyboard-caps {
-  background-color: rgb(240, 240, 240);
+.KeyboardDark-caps {
+  background-color: rgb(100, 100, 100);
   width: 100px;
   height: 50px;
   margin: 2px;
-  display: flex;
-  align-items: center;
   border-radius: 5px;
 
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
-.keyboard-shift {
-  background-color: rgb(240, 240, 240);
+.KeyboardDark-shift {
+  background-color: rgb(100, 100, 100);
   width: 120px;
   height: 50px;
   margin: 2px;
@@ -86,30 +85,19 @@
   align-items: center;
   justify-content: center;
 }
-.keyboard-ctrl {
+.KeyboardDark-ctrl {
   margin: 3px;
   width: 80px;
-  height: 50px;
-  background-color: rgb(240, 240, 240);
-  display: flex;
-  align-items: center;
   border-radius: 5px;
 
-  justify-content: center;
-}
-.keyboard-backspace {
-  background-color: rgb(240, 240, 240);
-  width: 100px;
   height: 50px;
-  margin: 2px;
-  border-radius: 5px;
-
+  background-color: rgb(100, 100, 100);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.keyboard-backspace-pressed {
-  background-color: rgb(150, 150, 150);
+.KeyboardDark-backspace {
+  background-color: rgb(100, 100, 100);
   width: 100px;
   height: 50px;
   margin: 2px;
@@ -119,39 +107,30 @@
   align-items: center;
   justify-content: center;
 }
-.keyboard-enter {
-  background-color: rgb(240, 240, 240);
+.KeyboardDark-enter {
+  background-color: rgb(100, 100, 100);
   width: 120px;
   height: 50px;
   margin: 2px;
   display: flex;
+  align-items: center;
   border-radius: 5px;
 
-  align-items: center;
   justify-content: center;
 }
-.keyboard-big-shift {
-  background-color: rgb(240, 240, 240);
+.KeyboardDark-big-shift {
+  background-color: rgb(100, 100, 100);
   width: 140px;
   height: 50px;
   margin: 2px;
   display: flex;
+  border-radius: 5px;
+
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
 }
-.keyboard-space {
-  background-color: rgb(240, 240, 240);
-  width: 480px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-}
-.keyboard-space-pressed {
-  background-color: rgb(151, 151, 151);
+.KeyboardDark-space {
+  background-color: rgb(100, 100, 100);
   width: 480px;
   height: 50px;
   margin: 2px;
@@ -161,12 +140,23 @@
   align-items: center;
   justify-content: center;
 }
-.keyboard-alt {
+.KeyboardDark-space-pressed {
+  background-color: rgb(201, 201, 201);
+  width: 480px;
+  height: 50px;
+  margin: 2px;
+  display: flex;
+  border-radius: 5px;
+
+  align-items: center;
+  justify-content: center;
+}
+.KeyboardDark-alt {
   width: 80px;
   height: 50px;
   border-radius: 5px;
 
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(100, 100, 100);
   margin: 2px;
   display: flex;
   align-items: center;

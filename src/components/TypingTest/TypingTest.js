@@ -4,6 +4,7 @@ import "./TypingTest.css";
 //components
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
+import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -272,7 +273,7 @@ function TypingTest() {
             : "Click on the text to start typing."}
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        <Keyboard />
+        {theme ? <KeyboardDark /> : <Keyboard />}
         <div className="input-zone">
           <input
             autoFocus
