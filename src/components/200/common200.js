@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./common200.css";
 
 import Header from "../header/header";
+import Keyboard from "../inScreenKeyboard/keyboard";
+import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -14,6 +16,9 @@ function Common200() {
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM200 = useSelector((state) => state.latestWPMReducer200);
   const latestCPM200 = useSelector((state) => state.latestCPMReducer200);
+  const keyboardOnScreen = useSelector(
+    (state) => state.keyboardOnScreenReducer
+  );
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -259,6 +264,14 @@ function Common200() {
     } else return latestCPM200;
   };
 
+  const displayKeyboard = () => {
+    if (keyboardOnScreen) {
+      if (theme) {
+        return <KeyboardDark />;
+      } else return <Keyboard />;
+    } else return null;
+  };
+
   return (
     <animated.div
       style={animation}
@@ -284,7 +297,7 @@ function Common200() {
             : "Click on the text to start typing."}
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-
+        {displayKeyboard()}
         <div className="input-zone">
           <input
             autoFocus

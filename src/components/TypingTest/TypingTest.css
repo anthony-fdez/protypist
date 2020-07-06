@@ -36,7 +36,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 4rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     transition: 0.3s;
     padding: 1rem;
   }
@@ -46,7 +46,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 4rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     opacity: 0.4;
     transition: 0.3s;
     color: black;
@@ -60,7 +60,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 4rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     opacity: 0.5;
     transition: 0.2s;
     background-color: rgb(100, 100, 100);
