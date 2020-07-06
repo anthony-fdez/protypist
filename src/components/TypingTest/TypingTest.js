@@ -1,42 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./TypingTest.css";
 
+//components
 import Header from "../header/header";
+import Keyboard from "../inScreenKeyboard/keyboard";
 
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
-
-function useKeyPress(targetKey) {
-  // State for keeping track of whether key is pressed
-  const [keyPressed, setKeyPressed] = useState(false);
-
-  // If pressed key is our target key then set to true
-  function downHandler({ key }) {
-    if (key === targetKey) {
-      setKeyPressed(true);
-    }
-  }
-
-  // If released key is our target key then set to false
-  const upHandler = ({ key }) => {
-    if (key === targetKey) {
-      setKeyPressed(false);
-    }
-  };
-
-  // Add event listeners
-  useEffect(() => {
-    window.addEventListener("keydown", downHandler);
-    window.addEventListener("keyup", upHandler);
-    // Remove event listeners on cleanup
-    return () => {
-      window.removeEventListener("keydown", downHandler);
-      window.removeEventListener("keyup", upHandler);
-    };
-  }, []); // Empty array ensures that effect is only run on mount and unmount
-
-  return keyPressed;
-}
 
 function TypingTest() {
   const theme = useSelector((state) => state.darkModeReducer);
@@ -60,36 +30,6 @@ function TypingTest() {
   const [wpm, setWPM] = useState(0);
   const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
-
-  const pressedA = useKeyPress("a");
-  const pressedB = useKeyPress("b");
-  const pressedC = useKeyPress("c");
-  const pressedD = useKeyPress("d");
-  const pressedE = useKeyPress("e");
-  const pressedF = useKeyPress("f");
-  const pressedG = useKeyPress("g");
-  const pressedH = useKeyPress("h");
-  const pressedI = useKeyPress("i");
-  const pressedJ = useKeyPress("j");
-  const pressedK = useKeyPress("k");
-  const pressedL = useKeyPress("l");
-  const pressedM = useKeyPress("m");
-  const pressedN = useKeyPress("n");
-  const pressedO = useKeyPress("o");
-  const pressedP = useKeyPress("p");
-  const pressedQ = useKeyPress("q");
-  const pressedR = useKeyPress("r");
-  const pressedS = useKeyPress("s");
-  const pressedT = useKeyPress("t");
-  const pressedU = useKeyPress("u");
-  const pressedV = useKeyPress("v");
-  const pressedW = useKeyPress("w");
-  const pressedX = useKeyPress("x");
-  const pressedY = useKeyPress("y");
-  const pressedZ = useKeyPress("z");
-  const pressedSpace = useKeyPress(" ");
-
-  useEffect(() => {});
 
   //========= Convert the plain text into arrays //
 
@@ -332,84 +272,7 @@ function TypingTest() {
             : "Click on the text to start typing."}
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        <div className="keyboard container">
-          <div className="fifth-row">
-            <div className="keyboard-key">`~</div>
-            <div className="keyboard-key">1 !</div>
-            <div className="keyboard-key">2 @</div>
-            <div className="keyboard-key">3 #</div>
-            <div className="keyboard-key">4 $</div>
-            <div className="keyboard-key">5 %</div>
-            <div className="keyboard-key">6 ^</div>
-            <div className="keyboard-key">7 &</div>
-            <div className="keyboard-key">8 *</div>
-            <div className="keyboard-key">9 (</div>
-            <div className="keyboard-key">0 )</div>
-            <div className="keyboard-key">- _</div>
-            <div className="keyboard-key">= +</div>
-            <div className="keyboard-backspace">Backspace</div>
-          </div>
-          <div className="forth-row">
-            <div className="keyboard-tab">TAB</div>
-            <div className={pressedQ ? "keyboard-key-pressed" : "keyboard-key"}>
-              Q
-            </div>
-            <div className="keyboard-key">W</div>
-            <div className="keyboard-key">E</div>
-            <div className="keyboard-key">R</div>
-            <div className="keyboard-key">T</div>
-            <div className="keyboard-key">Y</div>
-            <div className="keyboard-key">U</div>
-            <div className="keyboard-key">I</div>
-            <div className="keyboard-key">O</div>
-            <div className="keyboard-key">P</div>
-            <div className="keyboard-key">[{" {"}</div>
-            <div className="keyboard-key">]{" }"}</div>
-            <div className="keyboard-key">\ |</div>
-          </div>
-          <div className="third-row">
-            <div className="keyboard-caps">CAPS</div>
-            <div className="keyboard-key">A</div>
-            <div className="keyboard-key">S</div>
-            <div className="keyboard-key">D</div>
-            <div className="keyboard-key">F</div>
-            <div className="keyboard-key">G</div>
-            <div className="keyboard-key">H</div>
-            <div className="keyboard-key">J</div>
-            <div className="keyboard-key">K</div>
-            <div className="keyboard-key">L</div>
-            <div className="keyboard-key">; :</div>
-            <div className="keyboard-key">' "</div>
-            <div className="keyboard-enter">ENTER</div>
-          </div>
-          <div className="second-row">
-            <div className="keyboard-shift">SHIFT</div>
-            <div className="keyboard-key">Z</div>
-            <div className="keyboard-key">X</div>
-            <div className="keyboard-key">C</div>
-            <div className="keyboard-key">V</div>
-            <div className="keyboard-key">B</div>
-            <div className="keyboard-key">N</div>
-            <div className="keyboard-key">M</div>
-            <div className="keyboard-key">,</div>
-            <div className="keyboard-key">. {" <"}</div>
-            <div className="keyboard-key">/ {" >"}</div>
-            <div className="keyboard-big-shift">SHIFT</div>
-          </div>
-          <div className="first-row">
-            <div className="keyboard-ctrl">CTRL</div>
-            <div className="keyboard-alt">ALT</div>
-            <div
-              className={
-                pressedSpace ? "keyboard-space-pressed" : "keyboard-space"
-              }
-            >
-              SPACE
-            </div>
-            <div className="keyboard-alt">ALT</div>
-            <div className="keyboard-ctrl">CTRL</div>
-          </div>
-        </div>
+        <Keyboard />
         <div className="input-zone">
           <input
             autoFocus
