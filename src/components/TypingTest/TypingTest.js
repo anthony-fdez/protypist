@@ -11,6 +11,9 @@ import { useSpring, animated } from "react-spring";
 
 function TypingTest() {
   const theme = useSelector((state) => state.darkModeReducer);
+  const keyboardOnScreen = useSelector(
+    (state) => state.keyboardOnScreenReducer
+  );
   //state
   const [text, setText] = useState(
     "This is just a text that I am typing just to test if my game is working, this is some more text to make sure the algorithem is working properly"
@@ -239,6 +242,14 @@ function TypingTest() {
     );
   };
 
+  const displayKeyboard = () => {
+    if (keyboardOnScreen) {
+      if (theme) {
+        return <KeyboardDark />;
+      } else return <Keyboard />;
+    } else return null;
+  };
+
   return (
     <animated.div
       style={animation}
@@ -273,7 +284,7 @@ function TypingTest() {
             : "Click on the text to start typing."}
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        {theme ? <KeyboardDark /> : <Keyboard />}
+        {displayKeyboard()}
         <div className="input-zone">
           <input
             autoFocus

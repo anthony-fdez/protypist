@@ -9,6 +9,9 @@ function Settings() {
   const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducer);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
+  const keyboardOnScreen = useSelector(
+    (state) => state.keyboardOnScreenReducer
+  );
   const dispatch = useDispatch();
 
   const animation = useSpring({
@@ -100,7 +103,7 @@ function Settings() {
         <div style={{ cursor: "pointer" }} className="container">
           <div
             onClick={() => {
-              dispatch({ type: "REAL_TIME_WPM" });
+              dispatch({ type: "SET_KEYBOARD_ON_SCREEN" });
             }}
             className={
               theme ? "settings-card-dark-words" : "settings-card-ligth-words"
@@ -110,7 +113,7 @@ function Settings() {
               <h2>On Screen Keyboard</h2>
               <p>Hide or show the Keyboard on the screen.</p>
             </div>
-            <h1 className="text">{realTimeWPM ? "ON" : "OFF"}</h1>
+            <h1 className="text">{keyboardOnScreen ? "ON" : "OFF"}</h1>
           </div>
         </div>
         <div style={{ cursor: "pointer" }} className="container">

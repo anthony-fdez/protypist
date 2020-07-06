@@ -68,6 +68,15 @@ const latestCPMReducer1000 = (state = 0, action) => {
   }
 };
 
+const keyboardOnScreenReducer = (state = true, action) => {
+  switch (action.type) {
+    case "SET_KEYBOARD_ON_SCREEN":
+      return !state;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
@@ -76,6 +85,7 @@ const allReducers = combineReducers({
   latestCPMReducer200: latestCPMReducer200,
   latestWPMReducer1000: latestWPMReducer1000,
   latestCPMReducer1000: latestCPMReducer1000,
+  keyboardOnScreenReducer: keyboardOnScreenReducer,
 });
 
 export default allReducers;
