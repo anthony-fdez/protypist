@@ -31,7 +31,7 @@ function useKeyPress(targetKey) {
       if (keyPressed === true) {
         setKeyPressed(false);
       }
-    }, 100);
+    }, 300);
     // Remove event listeners on cleanup
     return () => {
       window.removeEventListener("keydown", downHandler);

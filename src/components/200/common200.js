@@ -56,6 +56,8 @@ function Common200() {
       infoAboutCharacterObject.push(object);
     });
 
+    wordsArray.pop();
+
     setBlankInfoArray(infoAboutCharacterObject);
     setTextArrayCharacters(wordsArray);
     setInfoAboutCharacter(infoAboutCharacterObject);
@@ -88,7 +90,9 @@ function Common200() {
       for (let i = 0; i < textArrayCharacters.length; i++) {
         if (i === charactersTyped) {
           spanArray.push(
-            <div className="blinking">{textArrayCharacters[i]}</div>
+            <div className={theme ? "blinking-dark" : "blinking-light"}>
+              {textArrayCharacters[i]}
+            </div>
           );
         } else if (infoAboutCharacter[i] === true) {
           spanArray.push(<div className="green">{textArrayCharacters[i]}</div>);
@@ -175,7 +179,7 @@ function Common200() {
 
     let inputArray = e.target.value.split(" ");
     for (let i = 0; i < inputArray.length; i++) {
-      if (inputArray[i] === "//restart") {
+      if (inputArray[i].search("//r") !== -1) {
         e.target.value = "";
         setIsRunning(false);
         setNewGame(true);
@@ -314,8 +318,8 @@ function Common200() {
             className="input-box form-control"
           ></input>
           <p className="alert-warning alert-tip">
-            <strong>Tip:</strong> you can type "//restart" any time you want to
-            restart the test.
+            <strong>Tip:</strong> you can type " //r" any time you want to
+            restart the test. Or press F5, that will do too.
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./TypingTest.css";
-import soundFile from "../audio/keyboard-sound-2.mp3";
+import soundFile from "../audio/keyboard-sound-1.mp3";
 
 //components
 import Header from "../header/header";
@@ -81,7 +81,9 @@ function TypingTest() {
       for (let i = 0; i < textArrayCharacters.length; i++) {
         if (i === charactersTyped) {
           spanArray.push(
-            <div className="blinking">{textArrayCharacters[i]}</div>
+            <div className={theme ? "blinking-dark" : "blinking-light"}>
+              {textArrayCharacters[i]}
+            </div>
           );
         } else if (infoAboutCharacter[i] === true) {
           spanArray.push(<div className="green">{textArrayCharacters[i]}</div>);
@@ -135,9 +137,17 @@ function TypingTest() {
     return charactersPerMinute;
   };
 
+  const playAudio = () => {
+    const audio = document.getElementsByClassName("audio")[0];
+    audio.preload = "auto";
+    audio.load();
+    audio.play();
+  };
+
   //========= Check input //
 
   const getAndCheckTheInput = (e) => {
+    // playAudio();
     if (
       e.target.value.length === textArrayCharacters.length &&
       mistakes === 0
@@ -163,7 +173,7 @@ function TypingTest() {
 
     let inputArray = e.target.value.split(" ");
     for (let i = 0; i < inputArray.length; i++) {
-      if (inputArray[i] === "//restart") {
+      if (inputArray[i].search("//r") !== -1) {
         e.target.value = "";
         setIsRunning(false);
         setNewGame(true);
@@ -270,17 +280,6 @@ function TypingTest() {
     } else return null;
   };
 
-  useEffect(() => {
-    const audio = document.getElementsByClassName("audio")[0];
-    audio.preload = "auto";
-    audio.load();
-
-    const playAudio = () => {
-      audio.play();
-    };
-    playAudio();
-  }, [charactersTyped]);
-
   return (
     <animated.div
       style={animation}
@@ -335,8 +334,8 @@ function TypingTest() {
             className="input-box form-control"
           ></input>
           <p className="alert-warning alert-tip">
-            <strong>Tip:</strong> you can type "//restart" any time you want to
-            restart the test.
+            <strong>Tip:</strong> you can type " //r " any time you want to
+            restart the test. Or press F5, that will do too.
           </p>
         </div>
       </div>
