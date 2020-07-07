@@ -77,6 +77,24 @@ const keyboardOnScreenReducer = (state = true, action) => {
   }
 };
 
+const latestWPMReducerTypingGame = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_LATEST_WPM_TYPING_GAME":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const latestCPMReducerTypingGame = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_LATEST_CPM_TYPING_GAME":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
@@ -86,6 +104,8 @@ const allReducers = combineReducers({
   latestWPMReducer1000: latestWPMReducer1000,
   latestCPMReducer1000: latestCPMReducer1000,
   keyboardOnScreenReducer: keyboardOnScreenReducer,
+  latestCPMReducerTypingGame: latestCPMReducerTypingGame,
+  latestWPMReducerTypingGame: latestWPMReducerTypingGame,
 });
 
 export default allReducers;

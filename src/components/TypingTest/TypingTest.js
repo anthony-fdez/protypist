@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "./TypingTest.css";
+import soundFile from "../audio/keyboard-sound-2.mp3";
 
 //components
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 function TypingTest() {
+  const dispatch = useDispatch();
+
   const theme = useSelector((state) => state.darkModeReducer);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
+  const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
+  const latestCPM = useSelector((state) => state.latestCPMReducerTypingGame);
   //state
   const [text, setText] = useState(
     "This is just a text that I am typing just to test if my game is working, this is some more text to make sure the algorithem is working properly"
@@ -115,12 +120,19 @@ function TypingTest() {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
     let charactersPerMinute = charactersPerSecond * 60;
-
     wordsPerMinute = Math.round(wordsPerMinute);
     charactersPerMinute = Math.round(charactersPerMinute);
-
     setCPM(charactersPerMinute);
     setWPM(wordsPerMinute);
+
+    return wordsPerMinute;
+  };
+  const calculateCharactersPerMinute = () => {
+    let charactersPerSecond = charactersTyped / timeSeconds;
+    let charactersPerMinute = charactersPerSecond * 60;
+    charactersPerMinute = Math.round(charactersPerMinute);
+
+    return charactersPerMinute;
   };
 
   //========= Check input //
@@ -139,6 +151,14 @@ function TypingTest() {
       setInfoAboutCharacter(blankInfoArray);
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
+      dispatch({
+        type: "SET_LATEST_WPM_TYPING_GAME",
+        payload: calculateWordsPerMinute(),
+      });
+      dispatch({
+        type: "SET_LATEST_CPM_TYPING_GAME",
+        payload: calculateCharactersPerMinute(),
+      });
     }
 
     let inputArray = e.target.value.split(" ");
@@ -250,6 +270,17 @@ function TypingTest() {
     } else return null;
   };
 
+  useEffect(() => {
+    const audio = document.getElementsByClassName("audio")[0];
+    audio.preload = "auto";
+    audio.load();
+
+    const playAudio = () => {
+      audio.play();
+    };
+    playAudio();
+  }, [charactersTyped]);
+
   return (
     <animated.div
       style={animation}
@@ -267,8 +298,8 @@ function TypingTest() {
           <i class="fas fa-bars fa-2x"></i>
         </div>
         <div className="statistics">
-          <h5>WPM:{wpm}</h5>
-          <h5>Characters per minute:{cpm}</h5>
+          <h5>WPM:{latestWPM}</h5>
+          <h5>Characters per minute:{latestCPM}</h5>
           <h5>Errors:{mistakes}</h5>
         </div>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>
@@ -285,6 +316,9 @@ function TypingTest() {
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
         {displayKeyboard()}
+        <audio className="audio">
+          <source src={soundFile}></source>
+        </audio>
         <div className="input-zone">
           <input
             autoFocus

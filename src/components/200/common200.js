@@ -280,9 +280,9 @@ function Common200() {
       <div className="TypingTest">
         <Header text="Type the 200 most common words in English (beginer)" />
         <div className="statistics">
-          <h3>WPM:{displayWPM()}</h3>
-          <h3>Characters per minute:{displayCPM()}</h3>
-          <h3>Errors:{mistakes}</h3>
+          <h5>WPM:{displayWPM()}</h5>
+          <h5>Characters per minute:{displayCPM()}</h5>
+          <h5>Errors:{mistakes}</h5>
         </div>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>
         <p
