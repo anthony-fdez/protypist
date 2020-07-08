@@ -30,7 +30,6 @@
     height: 20rem;
     opacity: 0;
     cursor: pointer;
-    z-index: -3;
   }
   .text-to-type {
     margin-top: 1rem;
