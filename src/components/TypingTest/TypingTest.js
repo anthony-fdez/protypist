@@ -21,7 +21,7 @@ function TypingTest() {
   const latestCPM = useSelector((state) => state.latestCPMReducerTypingGame);
   //state
   const [text, setText] = useState(
-    "This is just a text that I am typing just to test if my game is working, this is some more text to make sure the algorithem is working properly"
+    "This is just a text that I am typing just to test if my game is working, this is some more text to make sure that the problem is workign fine."
   );
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -29,6 +29,7 @@ function TypingTest() {
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [finished, setFinished] = useState(false);
 
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
@@ -107,7 +108,6 @@ function TypingTest() {
           errors++;
         }
       }
-
       setMistakes(errors);
     }
   }, [charactersTyped]);
@@ -148,17 +148,18 @@ function TypingTest() {
 
   const getAndCheckTheInput = (e) => {
     // playAudio();
+    if (newGame === true) {
+      e.target.value = "";
+    }
     if (
       e.target.value.length === textArrayCharacters.length &&
       mistakes === 0
     ) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
-      e.target.value = "";
       setIsRunning(false);
-      setNewGame(true);
-      setSpanArray(blankSpanArray);
-      setInfoAboutCharacter(blankInfoArray);
+      // setSpanArray(blankSpanArray);
+      // setInfoAboutCharacter(blankInfoArray);
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
       dispatch({
@@ -314,12 +315,13 @@ function TypingTest() {
             : "Click on the text to start typing."}
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        {displayKeyboard()}
+        <div className="keyboard-div">{displayKeyboard()}</div>
         <audio className="audio">
           <source src={soundFile}></source>
         </audio>
         <div className="input-zone">
           <input
+            maxLength={textArrayCharacters && textArrayCharacters.length}
             autoFocus
             onFocus={(e) => {
               setIsUserTyping(true);

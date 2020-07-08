@@ -169,7 +169,7 @@ function Keyboard() {
 
   return (
     <div>
-      <div className="keyboard container">
+      <div className="keyboard">
         <div className="fifth-row">
           <div
             className={

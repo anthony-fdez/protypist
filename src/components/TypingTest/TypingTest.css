@@ -19,16 +19,14 @@
     margin-left: 200px;
   }
   .input-zone {
-    margin-top: 10rem;
     display: flex;
     justify-content: center;
   }
   .input-box {
-    position: fixed;
-    width: 90vw;
-    top: 9rem;
-    height: 20rem;
-    opacity: 0;
+    position: absolute;
+    width: 870px;
+    bottom: 380px;
+    opacity: 1;
     cursor: pointer;
   }
   .text-to-type {
@@ -291,6 +289,29 @@
   .side-menu-close-icon:hover {
     background-color: rgb(100, 100, 100);
   }
+  .bottom-keyboard-and-info {
+    display: flex;
+    bottom: 0;
+    position: absolute;
+    bottom: 4rem;
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .words-wrong-div {
+    background-color: rgb(61, 61, 61);
+    width: 250px;
+    height: 304px;
+    text-align: center;
+    overflow-y: scroll;
+  }
+  .words-wrong-list {
+    text-align: left;
+  }
+  .words-wrong-header {
+    padding: 0.5rem;
+  }
 }
 @media only screen and (max-width: 1500px) {
   .TypingTest-page-dark {
@@ -317,11 +338,9 @@
     justify-content: center;
   }
   .input-box {
-    position: fixed;
-    width: 90vw;
-    top: 7rem;
-    height: 15rem;
-    opacity: 0;
+    position: absolute;
+    bottom: 240px;
+    width: 670px;
     cursor: pointer;
   }
   .text-to-type {
