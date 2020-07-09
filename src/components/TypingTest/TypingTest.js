@@ -359,6 +359,18 @@ function TypingTest() {
     } else return null;
   };
 
+  const handleThemInTheFinishedPage = () => {
+    if (theme === false) {
+      if (finished) {
+        return "about-the-text-shown-light";
+      } else return "about-the-text-hidden-light";
+    } else {
+      if (finished) {
+        return "about-the-text-shown-dark";
+      } else return "about-the-text-hidden-dark";
+    }
+  };
+
   return (
     <animated.div
       style={animation}
@@ -394,11 +406,7 @@ function TypingTest() {
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
         <div className="keyboard-div">{displayKeyboard()}</div>
-        <div
-          className={
-            finished ? "about-the-text-shown" : "about-the-text-hidden"
-          }
-        >
+        <div className={handleThemInTheFinishedPage()}>
           <div className="about-text-header">
             <h4>What you just typed:</h4>
             <div>

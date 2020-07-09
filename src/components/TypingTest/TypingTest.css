@@ -309,7 +309,39 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .about-the-text-hidden {
+  .about-the-text-hidden-light {
+    border-radius: 10px;
+    position: fixed;
+    bottom: 4rem;
+    padding: 1rem;
+    width: 870px;
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(220, 220, 220);
+    height: 303px;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 2;
+    transform: translateY(400px);
+  }
+  .about-the-text-shown-light {
+    transition: 0.3s;
+    height: 303px;
+    background-color: rgb(220, 220, 220);
+    border-radius: 10px;
+    position: fixed;
+    bottom: 4rem;
+    padding: 1rem;
+    width: 870px;
+    left: 200px;
+    right: 0;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about-the-text-hidden-dark {
     border-radius: 10px;
     position: fixed;
     bottom: 4rem;
@@ -326,7 +358,7 @@
     z-index: 2;
     transform: translateY(400px);
   }
-  .about-the-text-shown {
+  .about-the-text-shown-dark {
     transition: 0.3s;
     height: 303px;
     background-color: rgb(100, 100, 100);
