@@ -32,7 +32,7 @@ function SideMenu() {
           <div className={checkButtonClass("/")}>
             <i
               style={{ position: "absolute", left: "20px" }}
-              class="fas fa-home"
+              className="fas fa-home"
             ></i>
             <h5>Home</h5>
           </div>
@@ -41,7 +41,7 @@ function SideMenu() {
           <div className={checkButtonClass("/10second")}>
             <i
               style={{ position: "absolute", left: "20px" }}
-              class="fas fa-clock"
+              className="fas fa-clock"
             ></i>
             <h5>10second</h5>
           </div>
@@ -50,7 +50,7 @@ function SideMenu() {
           <div className={checkButtonClass("/typingtest")}>
             <i
               style={{ position: "absolute", left: "20px" }}
-              class="fas fa-keyboard"
+              className="fas fa-keyboard"
             ></i>
             <h5>TypingTest</h5>
           </div>
@@ -59,7 +59,7 @@ function SideMenu() {
           <div className={checkButtonClass("/quotes")}>
             <i
               style={{ position: "absolute", left: "20px" }}
-              class="fas fa-quote-left"
+              className="fas fa-quote-left"
             ></i>
             <h5>Quotes</h5>
           </div>
@@ -72,7 +72,7 @@ function SideMenu() {
           <div className={checkButtonClass("/200")}>
             <i
               style={{ position: "absolute", left: "20px" }}
-              class="fas fa-biking"
+              className="fas fa-biking"
             ></i>
             <h5>Top 200</h5>
           </div>
@@ -81,7 +81,7 @@ function SideMenu() {
           <div className={checkButtonClass("/1000")}>
             <i
               style={{ position: "absolute", left: "20px" }}
-              class="fas fa-car-side"
+              className="fas fa-car-side"
             ></i>
             <h5>Top 1000</h5>
           </div>
@@ -93,7 +93,7 @@ function SideMenu() {
           <div className={checkButtonClass("/settings")}>
             <i
               style={{ position: "absolute", left: "20px" }}
-              class="fas fa-tools"
+              className="fas fa-tools"
             ></i>
             <h5>Settings</h5>
           </div>
