@@ -322,12 +322,12 @@
     background-color: rgb(220, 220, 220);
     height: 303px;
     pointer-events: none;
-    transition: 0.3s;
+    transition: 0.6s;
     z-index: 2;
     transform: translateY(400px);
   }
   .about-the-text-shown-light {
-    transition: 0.3s;
+    transition: 0.6s;
     height: 303px;
     background-color: rgb(220, 220, 220);
     border-radius: 10px;
@@ -354,12 +354,12 @@
     background-color: rgb(100, 100, 100);
     height: 303px;
     pointer-events: none;
-    transition: 0.3s;
+    transition: 0.6s;
     z-index: 2;
     transform: translateY(400px);
   }
   .about-the-text-shown-dark {
-    transition: 0.3s;
+    transition: 0.6s;
     height: 303px;
     background-color: rgb(100, 100, 100);
     border-radius: 10px;
@@ -667,7 +667,7 @@
   }
   .side-menu-close-icon {
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.2 s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -678,7 +678,7 @@
   .side-menu-close-icon:hover {
     background-color: rgb(100, 100, 100);
   }
-  .about-the-text-hidden {
+  .about-the-text-hidden-dark {
     border-radius: 10px;
     position: fixed;
     bottom: 1rem;
@@ -693,14 +693,48 @@
     height: 303px;
     opacity: 1;
     pointer-events: none;
-    transition: 0.3s;
+    transition: 0.6s;
     transform: translateY(500px);
     z-index: 4;
   }
-  .about-the-text-shown {
-    transition: 0.3s;
+  .about-the-text-shown-dark {
+    transition: 0.6s;
     height: 273px;
     background-color: rgb(100, 100, 100);
+    border-radius: 10px;
+    position: fixed;
+    bottom: 1rem;
+    padding: 1rem;
+    width: 870px;
+    left: 200px;
+    right: 0;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about-the-text-hidden-light {
+    border-radius: 10px;
+    position: fixed;
+    bottom: 1rem;
+    padding: 1rem;
+    width: 870px;
+    height: 273px;
+    right: 0;
+    left: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(220, 220, 220);
+    height: 303px;
+    opacity: 1;
+    pointer-events: none;
+    transition: 0.6s;
+    transform: translateY(500px);
+    z-index: 4;
+  }
+  .about-the-text-shown-light {
+    transition: 0.6s;
+    height: 273px;
+    background-color: rgb(220, 220, 220);
     border-radius: 10px;
     position: fixed;
     bottom: 1rem;
