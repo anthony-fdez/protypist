@@ -35,12 +35,14 @@ function Common200() {
   const [wpm, setWPM] = useState(0);
   const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
+  const [mistakesAlert, setMistakesAlert] = useState(false);
 
   //========= Convert the plain text into arrays //
 
   useEffect(() => {
     let json = require("../data/200words.json");
     let wordsArray = [];
+    let characterArray = [];
     let infoAboutCharacterObject = [];
     for (let i = 0; i < length; i++) {
       let random = Math.floor(Math.random() * 200);
@@ -49,8 +51,10 @@ function Common200() {
       for (let i = 0; i < randomWord.length; i++) {
         wordsArray.push(randomWord[i]);
       }
+
       wordsArray.push(" ");
     }
+
     wordsArray.map((character, index) => {
       let object = null;
       infoAboutCharacterObject.push(object);
@@ -169,15 +173,11 @@ function Common200() {
     if (realTimeWPM) {
       calculateWordsPerMinute();
     }
-    if (mistakes > 15) {
-      alert("Too many errors boy");
-      e.target.value = "";
-      setIsRunning(false);
-      setTimeSeconds(0);
-      setSpanArray(blankSpanArray);
-      setInfoAboutCharacter(blankInfoArray);
-      setMistakes(0);
-      setNewGame(true);
+
+    if (mistakes > 10) {
+      setMistakesAlert(true);
+    } else if (mistakes < 10) {
+      setMistakesAlert(false);
     }
 
     if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
@@ -322,6 +322,16 @@ function Common200() {
           {isUserTyping
             ? "Start typing... Start to type the text below whenever you are ready :)"
             : "Click on the text to start typing."}
+        </p>
+        <p
+          className={
+            mistakesAlert
+              ? "alert-danger alert-warning-shown"
+              : "alert-danger alert-warning-hidden"
+          }
+        >
+          <strong>Slow Down Boy</strong>
+          the test won't stop unless you have less than 5 mistakes
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
         {displayKeyboard()}

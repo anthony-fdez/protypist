@@ -35,6 +35,7 @@ function Common1000() {
   const [wpm, setWPM] = useState(0);
   const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
+  const [mistakesAlert, setMistakesAlert] = useState(false);
 
   //========= Convert the plain text into arrays //
 
@@ -166,6 +167,11 @@ function Common1000() {
   const getAndCheckTheInput = (e) => {
     if (realTimeWPM) {
       calculateWordsPerMinute();
+    }
+    if (mistakes > 10) {
+      setMistakesAlert(true);
+    } else if (mistakes < 10) {
+      setMistakesAlert(false);
     }
     if (
       e.target.value.length === textArrayCharacters.length &&
@@ -313,6 +319,16 @@ function Common1000() {
             ? "Start typing... Start to type the text below whenever you are ready :)"
             : "Click on the text to start typing."}
         </p>
+        <p
+          className={
+            mistakesAlert
+              ? "alert-danger alert-warning-shown"
+              : "alert-danger alert-warning-hidden"
+          }
+        >
+          <strong>Slow Down Boy</strong>
+          the test won't stop unless you have less than 5 mistakes
+        </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
         {displayKeyboard()}
         <div className="input-zone">
@@ -328,7 +344,7 @@ function Common1000() {
               getAndCheckTheInput(e);
             }}
             placeholder="The test will bigin when you start typing!"
-            className="input-box form-control"
+            className="input-box-shown form-control"
           ></input>
           <p className="alert-warning alert-tip">
             <strong>Tip:</strong> you can type " //r " any time you want to

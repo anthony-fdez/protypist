@@ -28,7 +28,7 @@ function TypingTest() {
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-  const [finished, setFinished] = useState(true);
+  const [finished, setFinished] = useState(false);
 
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
@@ -41,6 +41,7 @@ function TypingTest() {
   const [wpm, setWPM] = useState(0);
   const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
+  const [mistakesAlert, setMistakesAlert] = useState(false);
 
   //========= Convert the plain text into arrays //
 
@@ -185,16 +186,10 @@ function TypingTest() {
     if (finished) {
       e.target.value = "";
     }
-    if (mistakes > 15) {
-      alert("Too many errors boy");
-      e.target.value = "";
-      setIsRunning(false);
-      setTimeSeconds(0);
-      setSpanArray(blankSpanArray);
-      setInfoAboutCharacter(blankInfoArray);
-      setMistakes(0);
-      setNewGame(true);
-      setIsRunning(false);
+    if (mistakes > 10) {
+      setMistakesAlert(true);
+    } else if (mistakes < 10) {
+      setMistakesAlert(false);
     }
     if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
       calculateWordsPerMinute();
@@ -404,8 +399,22 @@ function TypingTest() {
             ? "Start typing... Start to type the text below whenever you are ready :)"
             : "Click on the input box to start typing."}
         </p>
+        <p
+          className={
+            mistakesAlert
+              ? "alert-danger alert-warning-shown"
+              : "alert-danger alert-warning-hidden"
+          }
+        >
+          <strong>Slow Down Boy</strong>
+          the test won't stop unless you have less than 5 mistakes
+        </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        <div className="keyboard-div">{displayKeyboard()}</div>
+        <div
+          className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
+        >
+          {displayKeyboard()}
+        </div>
         <div className={handleThemInTheFinishedPage()}>
           <div className="about-text-header">
             <h4>What you just typed:</h4>

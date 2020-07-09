@@ -204,6 +204,36 @@
     width: 60vw;
     transition: 0.5s;
   }
+  .alert-warning-shown {
+    position: fixed;
+    padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    transition: 0.5s;
+    border-radius: 5px;
+    transform: translateY(-20px);
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .alert-warning-hidden {
+    transform: translateY(-50px);
+    position: fixed;
+    opacity: 0;
+    padding: 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.5s;
+  }
   .alert-tip {
     position: fixed;
     bottom: 1rem;
@@ -398,6 +428,14 @@
   .info-about-text-text {
     text-align: left;
   }
+  .keyboard-div-shown {
+    opacity: 1;
+    transition: 0.2s;
+  }
+  .keyboard-div-hidden {
+    opacity: 0;
+    transition: 0.2s;
+  }
 }
 @media only screen and (max-width: 1500px) {
   .TypingTest-page-dark {
@@ -591,6 +629,18 @@
     opacity: 0;
     pointer-events: none;
   }
+  .alert-warning-shown {
+    padding: 0;
+    transition: 0.5s;
+    opacity: 1;
+  }
+  .alert-warning-hidden {
+    padding: 0;
+    opacity: 0;
+    transition: 0.5s;
+    transform: translateY(-20px);
+    z-index: 1;
+  }
 
   .statistics {
     display: flex;
@@ -769,5 +819,13 @@
   }
   .info-about-text-text {
     text-align: left;
+  }
+  .keyboard-div-shown {
+    opacity: 1;
+    transition: 0.2s;
+  }
+  .keyboard-div-hidden {
+    opacity: 0;
+    transition: 0.2s;
   }
 }
