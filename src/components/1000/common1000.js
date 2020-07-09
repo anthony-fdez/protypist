@@ -88,16 +88,31 @@ function Common1000() {
       for (let i = 0; i < textArrayCharacters.length; i++) {
         if (i === charactersTyped) {
           spanArray.push(
-            <div className={theme ? "blinking-dark" : "blinking-light"}>
+            <div
+              key={"key" + i}
+              className={theme ? "blinking-dark" : "blinking-light"}
+            >
               {textArrayCharacters[i]}
             </div>
           );
         } else if (infoAboutCharacter[i] === true) {
-          spanArray.push(<div className="green">{textArrayCharacters[i]}</div>);
+          spanArray.push(
+            <div key={"key" + i} className="green">
+              {textArrayCharacters[i]}
+            </div>
+          );
         } else if (infoAboutCharacter[i] === false) {
-          spanArray.push(<div className="red">{textArrayCharacters[i]}</div>);
+          spanArray.push(
+            <div key={"key" + i} className="red">
+              {textArrayCharacters[i]}
+            </div>
+          );
         } else {
-          spanArray.push(<div className="none">{textArrayCharacters[i]}</div>);
+          spanArray.push(
+            <div key={"key" + i} className="none">
+              {textArrayCharacters[i]}
+            </div>
+          );
         }
       }
       return spanArray;
