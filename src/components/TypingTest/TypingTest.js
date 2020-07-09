@@ -92,6 +92,8 @@ function TypingTest() {
 
   //========= Display all the characters to the screen //
   //========= This returns an array of spans //
+    
+    //this is a comment
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
