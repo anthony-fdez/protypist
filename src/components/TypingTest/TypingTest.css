@@ -22,12 +22,22 @@
     display: flex;
     justify-content: center;
   }
-  .input-box {
+  .input-box-shown {
     position: absolute;
     width: 870px;
     bottom: 380px;
     opacity: 1;
-    cursor: pointer;
+    transition: 0.3s;
+    z-index: 0;
+  }
+  .input-box-hidden {
+    position: absolute;
+    width: 870px;
+    bottom: 300px;
+    pointer-events: none;
+    transition: 0.3s;
+    opacity: 0;
+    z-index: 0;
   }
   .text-to-type {
     margin-top: 1rem;
@@ -311,6 +321,62 @@
   }
   .words-wrong-header {
     padding: 0.5rem;
+  }
+  .about-the-text-hidden {
+    border-radius: 10px;
+    position: absolute;
+    bottom: 4rem;
+    padding: 1rem;
+    width: 870px;
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(100, 100, 100);
+    height: 303px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 2;
+  }
+  .about-the-text-shown {
+    transition: 0.3s;
+    height: 303px;
+    background-color: rgb(100, 100, 100);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 4rem;
+    padding: 1rem;
+    width: 870px;
+    left: 200px;
+    right: 0;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about-text-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    padding-left: 0;
+  }
+  .picture-div {
+    background-color: rgb(175, 175, 175);
+    border-radius: 10px;
+    margin-right: 1rem;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
+  .picture-image {
+    width: 200px;
+    height: auto;
+  }
+  .info-about-text-bottom {
+    display: flex;
+  }
+  .info-about-text-text {
+    text-align: left;
   }
 }
 @media only screen and (max-width: 1500px) {

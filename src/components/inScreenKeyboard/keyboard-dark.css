@@ -51,6 +51,7 @@
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(61, 61, 61);
+  z-index: 1;
 }
 .KeyboardDark-tab {
   background-color: rgb(100, 100, 100);

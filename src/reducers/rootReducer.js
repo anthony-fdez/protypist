@@ -79,7 +79,7 @@ const keyboardOnScreenReducer = (state = true, action) => {
 
 const latestWPMReducerTypingGame = (state = 0, action) => {
   switch (action.type) {
-    case "SET_LATEST_WPM_TYPING_GAME":
+    case "SET_LATEST_WPM":
       return action.payload;
     default:
       return state;
@@ -88,7 +88,7 @@ const latestWPMReducerTypingGame = (state = 0, action) => {
 
 const latestCPMReducerTypingGame = (state = 0, action) => {
   switch (action.type) {
-    case "SET_LATEST_CPM_TYPING_GAME":
+    case "SET_LATEST_CPM":
       return action.payload;
     default:
       return state;

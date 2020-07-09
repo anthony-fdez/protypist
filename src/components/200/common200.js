@@ -153,11 +153,18 @@ function Common200() {
     if (realTimeWPM) {
       calculateWordsPerMinute();
     }
+    if (mistakes > 15) {
+      alert("Too many errors boy");
+      e.target.value = "";
+      setIsRunning(false);
+      setTimeSeconds(0);
+      setSpanArray(blankSpanArray);
+      setInfoAboutCharacter(blankInfoArray);
+      setMistakes(0);
+      setNewGame(true);
+    }
 
-    if (
-      e.target.value.length === textArrayCharacters.length &&
-      mistakes === 0
-    ) {
+    if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
       e.target.value = "";
@@ -304,6 +311,7 @@ function Common200() {
         {displayKeyboard()}
         <div className="input-zone">
           <input
+            maxLength={textArrayCharacters && textArrayCharacters.length}
             autoFocus
             onFocus={(e) => {
               setIsUserTyping(true);
@@ -315,7 +323,7 @@ function Common200() {
               getAndCheckTheInput(e);
             }}
             placeholder="The test will bigin when you start typing!"
-            className="input-box form-control"
+            className="input-box-shown form-control"
           ></input>
           <p className="alert-warning alert-tip">
             <strong>Tip:</strong> you can type " //r" any time you want to

@@ -17,12 +17,11 @@ function TypingTest() {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
+  const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestCPM = useSelector((state) => state.latestCPMReducerTypingGame);
   //state
-  const [text, setText] = useState(
-    "This is just a text that I am typing just to test if my game is working, this is some more text to make sure that the problem is workign fine."
-  );
+  const [text, setText] = useState();
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
   const [charactersTyped, setCharactersTyped] = useState(0);
@@ -34,6 +33,8 @@ function TypingTest() {
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
   const [newGame, setNewGame] = useState(false);
   const [blankSpanArray, setBlankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
@@ -44,16 +45,24 @@ function TypingTest() {
   //========= Convert the plain text into arrays //
 
   useEffect(() => {
-    const splitedText = text.split("");
-    let infoAboutCharacterObject = [];
-    splitedText.map((character, index) => {
-      let object = null;
-      infoAboutCharacterObject.push(object);
-    });
-    setBlankInfoArray(infoAboutCharacterObject);
-    setTextArrayCharacters(splitedText);
-    setInfoAboutCharacter(infoAboutCharacterObject);
-  }, []);
+    let json = require("../data/texts.json");
+    let random = Math.floor(Math.random() * json.text.length);
+    setText(json.text[random]);
+  }, [newGame]);
+
+  useEffect(() => {
+    if (text !== undefined) {
+      const splitedText = text.text.split("");
+      let infoAboutCharacterObject = [];
+      splitedText.map((character, index) => {
+        let object = null;
+        infoAboutCharacterObject.push(object);
+      });
+      setBlankInfoArray(infoAboutCharacterObject);
+      setTextArrayCharacters(splitedText);
+      setInfoAboutCharacter(infoAboutCharacterObject);
+    }
+  }, [text]);
 
   //========= Create a blank array of spans that has all its classes set to none //
 
@@ -71,7 +80,13 @@ function TypingTest() {
       }
       setInfoAboutCharacter(spanArray);
     }
-  }, [newGame]);
+  }, [newGame, finished]);
+
+  useEffect(() => {
+    if (finished === true) {
+      setSpanArray(blankSpanArray);
+    } else setSpanArray(displayTheArray());
+  }, [charactersTyped, textArrayCharacters, finished]);
 
   //========= Display all the characters to the screen //
   //========= This returns an array of spans //
@@ -148,38 +163,53 @@ function TypingTest() {
 
   const getAndCheckTheInput = (e) => {
     // playAudio();
-    if (newGame === true) {
+    if (realTimeWPM) {
+      calculateWordsPerMinute();
+    }
+    if (finished) {
       e.target.value = "";
     }
-    if (
-      e.target.value.length === textArrayCharacters.length &&
-      mistakes === 0
-    ) {
+    if (mistakes > 15) {
+      alert("Too many errors boy");
+      e.target.value = "";
+      setIsRunning(false);
+      setTimeSeconds(0);
+      setSpanArray(blankSpanArray);
+      setInfoAboutCharacter(blankInfoArray);
+      setMistakes(0);
+      setNewGame(true);
+      setIsRunning(false);
+    }
+    if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
+      e.target.value = "";
       setIsRunning(false);
-      // setSpanArray(blankSpanArray);
-      // setInfoAboutCharacter(blankInfoArray);
-    } else if (charactersTyped >= 1) {
-      setIsRunning(true);
+      setFinished(true);
       dispatch({
-        type: "SET_LATEST_WPM_TYPING_GAME",
+        type: "SET_LATEST_WPM",
         payload: calculateWordsPerMinute(),
       });
       dispatch({
-        type: "SET_LATEST_CPM_TYPING_GAME",
+        type: "SET_LATEST_CPM",
         payload: calculateCharactersPerMinute(),
       });
+    } else if (charactersTyped >= 1) {
+      setIsRunning(true);
     }
 
     let inputArray = e.target.value.split(" ");
     for (let i = 0; i < inputArray.length; i++) {
-      if (inputArray[i].search("//r") !== -1) {
+      if (inputArray[i].search("//f") !== -1) {
         e.target.value = "";
-        setIsRunning(false);
-        setNewGame(true);
         setSpanArray(blankSpanArray);
         setInfoAboutCharacter(blankInfoArray);
+        setFinished(true);
+        setSeconds(0);
+        setMinutes(0);
+        setTimeSeconds(0);
+        setCharactersTyped(0);
+        setIsRunning(false);
         setMistakes(0);
       }
     }
@@ -229,11 +259,43 @@ function TypingTest() {
     }
   }, [isRunning]);
 
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setSeconds((seconds) => seconds + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (seconds === 60) {
+      setMinutes((minutes) => minutes + 1);
+      setSeconds(0);
+    }
+  }, [seconds]);
+
   const animation = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
     config: { duration: 200 },
   });
+
+  const displayWPM = () => {
+    if (realTimeWPM) {
+      if (isRunning) {
+        return wpm;
+      } else return latestWPM;
+    } else return latestWPM;
+  };
+
+  const displayCPM = () => {
+    if (realTimeWPM) {
+      if (isRunning) {
+        return cpm;
+      } else return latestCPM;
+    } else return latestCPM;
+  };
 
   const changeTextToTypeClassname = () => {
     if (theme) {
@@ -298,8 +360,8 @@ function TypingTest() {
           <i class="fas fa-bars fa-2x"></i>
         </div>
         <div className="statistics">
-          <h5>WPM:{latestWPM}</h5>
-          <h5>Characters per minute:{latestCPM}</h5>
+          <h5>WPM:{displayWPM()}</h5>
+          <h5>Characters per minute:{displayCPM()}</h5>
           <h5>Errors:{mistakes}</h5>
         </div>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>
@@ -312,10 +374,69 @@ function TypingTest() {
         >
           {isUserTyping
             ? "Start typing... Start to type the text below whenever you are ready :)"
-            : "Click on the text to start typing."}
+            : "Click on the input box to start typing."}
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
         <div className="keyboard-div">{displayKeyboard()}</div>
+        <div
+          className={
+            finished ? "about-the-text-shown" : "about-the-text-hidden"
+          }
+        >
+          <div className="about-text-header">
+            <h4>What you just typed:</h4>
+            <div>
+              <button
+                onClick={() => {
+                  setSpanArray(blankSpanArray);
+                  setInfoAboutCharacter(blankInfoArray);
+                  setFinished(false);
+                  setSeconds(0);
+                  setMinutes(0);
+                  setTimeSeconds(0);
+                  setCharactersTyped(0);
+                  setIsRunning(false);
+                  setMistakes(0);
+                }}
+                className="btn btn-light mr-3"
+              >
+                Type Again
+              </button>
+              <button
+                onClick={() => {
+                  setSpanArray(blankSpanArray);
+                  setInfoAboutCharacter(blankInfoArray);
+                  setFinished(false);
+                  setNewGame(true);
+                }}
+                className="btn btn-light"
+              >
+                New Text
+              </button>
+            </div>
+          </div>
+          <div className="info-about-text-bottom">
+            <div className="picture-div">
+              <img className="picture-image" src={text && text.URL}></img>
+            </div>
+            <div className="info-about-text-text">
+              <hr
+                style={{ width: "620px" }}
+                className={theme ? "white-hr" : "dark-hr"}
+              ></hr>
+              <h5>{text && text.from}</h5>
+              <br></br>
+              <h5>By: {text && text.by}</h5>
+              <br></br>
+              <h5>
+                Your time:{" "}
+                {seconds < 10
+                  ? `${minutes}:0${seconds}`
+                  : `${minutes}:${seconds}`}
+              </h5>
+            </div>
+          </div>
+        </div>
         <audio className="audio">
           <source src={soundFile}></source>
         </audio>
@@ -333,11 +454,14 @@ function TypingTest() {
               getAndCheckTheInput(e);
             }}
             placeholder="The test will bigin when you start typing!"
-            className="input-box form-control"
+            className={
+              finished
+                ? "input-box-hidden form-control"
+                : "input-box-shown form-control"
+            }
           ></input>
           <p className="alert-warning alert-tip">
-            <strong>Tip:</strong> you can type " //r " any time you want to
-            restart the test. Or press F5, that will do too.
+            <strong>Tip:</strong> you can type //f to finish the current game.
           </p>
         </div>
       </div>
