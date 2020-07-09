@@ -436,10 +436,7 @@ function TypingTest() {
               <img className="picture-image" src={text && text.URL}></img>
             </div>
             <div className="info-about-text-text">
-              <hr
-                style={{ width: "620px" }}
-                className={theme ? "white-hr" : "dark-hr"}
-              ></hr>
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
               <h5>{text && text.from}</h5>
               <br></br>
               <h5>By: {text && text.by}</h5>
