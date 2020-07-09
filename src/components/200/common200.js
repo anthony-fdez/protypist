@@ -30,7 +30,7 @@ function Common200() {
   const [isRunning, setIsRunning] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
   const [newGame, setNewGame] = useState(false);
-  const [blankSpanArray, setBlankSpanArray] = useState([]);
+  const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
   const [cpm, setCPM] = useState(0);
@@ -54,6 +54,7 @@ function Common200() {
     wordsArray.map((character, index) => {
       let object = null;
       infoAboutCharacterObject.push(object);
+      return null;
     });
 
     wordsArray.pop();
@@ -61,7 +62,7 @@ function Common200() {
     setBlankInfoArray(infoAboutCharacterObject);
     setTextArrayCharacters(wordsArray);
     setInfoAboutCharacter(infoAboutCharacterObject);
-  }, [newGame]);
+  }, [newGame, length]);
 
   //========= Create a blank array of spans that has all its classes set to none //
 

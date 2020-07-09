@@ -1,9 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 //components
-import SideMenu from "./components/SideMenu/SideMenu";
 import TypingTest from "./components/TypingTest/TypingTest";
 import Quotes from "./components/quotes/quotes";
 import Typing10second from "./components/10second/10second";
@@ -12,7 +11,6 @@ import Common200 from "./components/200/common200";
 import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
 
-import { useSpring, animated } from "react-spring";
 import { useSelector } from "react-redux";
 
 function App() {

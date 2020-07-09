@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./SideMenu.css";
 import { useSelector, useDispatch } from "react-redux";
-import changeMode from "../../action/changeTheme";
+
 import { useLocation } from "react-router-dom";
 
 function SideMenu() {

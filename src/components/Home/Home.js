@@ -1,8 +1,7 @@
 import React from "react";
 import "./Home.css";
-import { useState, useEffect } from "react";
 import Header from "../header/header";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 function Home() {

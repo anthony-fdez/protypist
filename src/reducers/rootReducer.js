@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { act } from "react-dom/test-utils";
 
 const darkModeReducer = (state = false, action) => {
   switch (action.type) {

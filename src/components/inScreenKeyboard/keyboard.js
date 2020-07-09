@@ -1,13 +1,11 @@
 import React from "react";
 import "./keyboard.css";
 
-import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
 function useKeyPress(targetKey) {
   // State for keeping track of whether key is pressed
   const [keyPressed, setKeyPressed] = useState(false);
-  const [clock, setClock] = useState(0);
 
   // If pressed key is our target key then set to true
   function downHandler({ key }) {
@@ -43,8 +41,6 @@ function useKeyPress(targetKey) {
 }
 
 function Keyboard() {
-  const theme = useSelector((state) => state.darkModeReducer);
-
   const pressedA = useKeyPress("a");
   const pressedCapitalA = useKeyPress("A");
 

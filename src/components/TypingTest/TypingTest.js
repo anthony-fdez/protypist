@@ -36,7 +36,7 @@ function TypingTest() {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [newGame, setNewGame] = useState(false);
-  const [blankSpanArray, setBlankSpanArray] = useState([]);
+  const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
   const [cpm, setCPM] = useState(0);
@@ -57,6 +57,7 @@ function TypingTest() {
       splitedText.map((character, index) => {
         let object = null;
         infoAboutCharacterObject.push(object);
+        return null;
       });
       setBlankInfoArray(infoAboutCharacterObject);
       setTextArrayCharacters(splitedText);
