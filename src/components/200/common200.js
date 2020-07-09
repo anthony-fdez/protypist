@@ -321,7 +321,7 @@ function Common200() {
         >
           {isUserTyping
             ? "Start typing... Start to type the text below whenever you are ready :)"
-            : "Click on the text to start typing."}
+            : "Click on the input box to start typing."}
         </p>
         <p
           className={
