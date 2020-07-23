@@ -161,12 +161,23 @@ function Input(props) {
 
   /*================== Show the +1 second  ==================*/
 
+  const selectTheAmountOfSecconds = () => {
+    if (props.dificulty === "EZZY") {
+      return 2;
+    } else if (props.dificulty === "NORMAL") {
+      return 1;
+    } else if (props.dificulty === "HARD") {
+      return 0.5;
+    } else if (props.dificulty === "HARDER") {
+      return 0.2;
+    }
+  };
+
   const displayAddingSeconds = () => {
     if (addSecond) {
       return (
         <h5 className="add-second text-success">
-          {`+${props.dificulty}`}
-          {props.language ? " second" : " segundo"}
+          {`+${selectTheAmountOfSecconds()}`} second
         </h5>
       );
     }
@@ -194,10 +205,12 @@ function Input(props) {
       if (e.target.value === randomWord) {
         e.target.value = "";
         setScore((score) => score + 1);
-        if (props.dificulty === 1 || props.dificulty === 2) {
-          setSeconds((seconds) => seconds + props.dificulty);
-        } else if (props.dificulty === 0.5) {
+        if (props.dificulty === "NORMAL" || props.dificulty === "EZZY") {
+          setSeconds((seconds) => seconds + selectTheAmountOfSecconds());
+        } else if (props.dificulty === "HARD") {
           setMiliseconds((miliseconds) => miliseconds + 5);
+        } else if (props.dificulty === "HARDER") {
+          setMiliseconds((miliseconds) => miliseconds + 2);
         }
       }
     } else if (isRunning === false) {

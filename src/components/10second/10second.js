@@ -12,10 +12,12 @@ import Input from "./input";
 
 function Typing10Second() {
   const theme = useSelector((state) => state.darkModeReducer);
+  const keyboardOnScreen = useSelector(
+    (state) => state.keyboardOnScreenReducer
+  );
 
   const [isMenuInScreen, setIsMenuInScreen] = useState(false);
-  const [dificulty, setDificulty] = useState(1); // easy: 2seconds, normal: 1second, harn 0.4seconds
-  const [keyboardOnScreen, setKeyboardOnScreen] = useState(true);
+  const [dificulty, setDificulty] = useState("NORMAL");
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -24,11 +26,9 @@ function Typing10Second() {
   });
 
   const displayKeyboard = () => {
-    if (keyboardOnScreen) {
-      if (theme) {
-        return <KeyboardDark />;
-      } else return <Keyboard />;
-    } else return null;
+    if (theme) {
+      return <KeyboardDark />;
+    } else return <Keyboard />;
   };
 
   return (
@@ -43,18 +43,9 @@ function Typing10Second() {
       </div>
       <div>
         <div className={isMenuInScreen ? "dark-mode-open" : "dark-mode-closed"}>
-          {/* <div className={darkMode ? "dark-mode" : "light-mode"}></div> */}
-
           <div>
             <div>
-              <div
-                className={"App transition  p-3 container"}
-                // className={
-                //   darkMode
-                //     ? "transition App p-3 container bg-dark "
-                //     : "transition App p-3 container bg-primary text-white"
-                // }
-              ></div>
+              <div className={"App transition  p-3 container"}></div>
               <div
                 onClick={() => {
                   setIsMenuInScreen(false);
@@ -67,7 +58,73 @@ function Typing10Second() {
             </div>
           </div>
         </div>
-        {displayKeyboard()}
+        <div
+          className={
+            keyboardOnScreen
+              ? "keyboard-div-shown-10seconds"
+              : "keyboard-div-hidden-10seconds"
+          }
+        >
+          {displayKeyboard()}
+        </div>
+
+        <div
+          className={
+            theme ? "settings-10second-dark" : "settings-10second-light"
+          }
+        >
+          <div className="d-flex">
+            <h4 className="mr-2">Difficulty: </h4>
+            <button
+              onClick={() => {
+                setDificulty("EZZY");
+              }}
+              className={
+                dificulty === "EZZY"
+                  ? "difficulty-btn btn btn-primary mr-2"
+                  : "difficulty-btn btn btn-light mr-2"
+              }
+            >
+              Ezzy
+            </button>
+            <button
+              onClick={() => {
+                setDificulty("NORMAL");
+              }}
+              className={
+                dificulty === "NORMAL"
+                  ? "difficulty-btn btn btn-primary mr-2"
+                  : "difficulty-btn btn btn-light mr-2"
+              }
+            >
+              Normal
+            </button>
+            <button
+              onClick={() => {
+                setDificulty("HARD");
+              }}
+              className={
+                dificulty === "HARD"
+                  ? "difficulty-btn btn btn-primary mr-2"
+                  : "difficulty-btn btn btn-light mr-2"
+              }
+            >
+              Hard
+            </button>
+            <button
+              onClick={() => {
+                setDificulty("HARDER");
+              }}
+              className={
+                dificulty === "HARDER"
+                  ? "difficulty-btn btn btn-primary mr-2"
+                  : "difficulty-btn btn btn-light mr-2"
+              }
+            >
+              Harder ;)
+            </button>
+          </div>
+        </div>
       </div>
     </animated.div>
   );

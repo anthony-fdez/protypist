@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./SideMenu.css";
 import { useSelector, useDispatch } from "react-redux";
+import Typical from "react-typical";
 
 import { useLocation } from "react-router-dom";
 
 function SideMenu() {
-  const dispatch = useDispatch();
   const theme = useSelector((state) => state.darkModeReducer);
 
   let location = useLocation();
@@ -26,7 +26,13 @@ function SideMenu() {
 
   return (
     <div className={theme ? "SideMenu-dark" : "SideMenu-light"}>
-      <h3>TypingGame</h3>
+      <div className="d-flex justify-content-center">
+        <h3 className="text-primary">Pro</h3>
+        <h3>
+          <Typical steps={["Typist"]} />
+        </h3>
+      </div>
+
       <div className="navigation-buttons">
         <Link to="/">
           <div className={checkButtonClass("/")}>
