@@ -253,21 +253,31 @@
   }
   .white-hr {
     background-color: white;
+    margin-bottom: 0;
+    transition: 0.5s;
   }
   .dark-hr {
     background-color: rgb(196, 196, 196);
+    margin-bottom: 0;
+    transition: 0.5s;
   }
-  .hamburger-menu {
-    position: absolute;
-    top: 2.2rem;
-    right: 3rem;
-    transition: 0.2s;
+  .white-hr-progress {
+    background-color: rgb(0, 140, 255);
+    margin-top: 0;
+    z-index: 3;
+    height: 4px;
+    transition: 0.5s;
+    border-radius: 5px;
   }
-  .hamburger-menu:hover {
-    cursor: pointer;
-    transform: translateY(-3px);
+  .dark-hr-progress {
+    background-color: rgb(0, 140, 255);
+    color: rgb(0, 140, 255);
+    margin-top: 0;
+    z-index: 3;
+    height: 4px;
+    transition: 0.5s;
+    border-radius: 5px;
   }
-
   .whole-page-background-open {
     position: fixed;
     width: 100vw;
@@ -651,11 +661,30 @@
   }
   .white-hr {
     background-color: white;
+    transition: 0.5s;
     margin-bottom: 0;
   }
   .dark-hr {
     background-color: rgb(196, 196, 196);
+    transition: 0.5s;
     margin-bottom: 0;
+  }
+  .white-hr-progress {
+    background-color: white;
+    background-color: rgb(0, 140, 255);
+    margin-top: 0;
+    z-index: 3;
+    height: 4px;
+    transition: 0.5s;
+    border-radius: 5px;
+  }
+  .dark-hr-progress {
+    background-color: rgb(0, 140, 255);
+    margin-top: 0;
+    z-index: 3;
+    height: 4px;
+    transition: 0.5s;
+    border-radius: 5px;
   }
   .hamburger-menu {
     position: absolute;
@@ -682,52 +711,6 @@
     pointer-events: none;
     transition: 0.3s;
   }
-  .side-menu-open {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 2rem;
-    border-radius: 10px;
-    margin: 1rem;
-    height: 95vh;
-    width: 350px;
-    background-color: rgb(78, 78, 78);
-    transition: 0.2s;
-    z-index: 10;
-  }
-  .side-menu-closed {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 2rem;
-    border-radius: 10px;
-    margin: 1rem;
-    height: 95vh;
-    width: 350px;
-    background-color: rgb(78, 78, 78);
-    transition: 0.2s;
-    transform: translateX(400px);
-    -webkit-transform: translateX(400px);
-    -moz-transform: translateX(400px);
-  }
-  .side-menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .side-menu-close-icon {
-    cursor: pointer;
-    transition: 0.2 s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-  }
-  .side-menu-close-icon:hover {
-    background-color: rgb(100, 100, 100);
-  }
   .about-the-text-hidden-dark {
     border-radius: 10px;
     position: fixed;
@@ -739,7 +722,7 @@
     left: 200px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(50, 50, 50);
     height: 303px;
     opacity: 1;
     pointer-events: none;
@@ -750,7 +733,7 @@
   .about-the-text-shown-dark {
     transition: 0.6s;
     height: 273px;
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(50, 50, 50);
     border-radius: 10px;
     position: fixed;
     bottom: 1rem;

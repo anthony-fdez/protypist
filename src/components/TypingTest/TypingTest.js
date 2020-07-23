@@ -92,8 +92,8 @@ function TypingTest() {
 
   //========= Display all the characters to the screen //
   //========= This returns an array of spans //
-    
-    //this is a comment
+
+  //this is a comment
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
@@ -322,32 +322,6 @@ function TypingTest() {
     }
   };
 
-  const sideMenu = () => {
-    return (
-      <div
-        className={
-          isSideMenuOpen
-            ? "whole-page-background-open"
-            : "whole-page-background-closed"
-        }
-      >
-        <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
-          <div className="side-menu-header">
-            <h1>Side Menu</h1>
-            <div
-              onClick={() => {
-                setIsSideMenuOpen(false);
-              }}
-              className="side-menu-close-icon"
-            >
-              <i className="fas fa-times fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   const displayKeyboard = () => {
     if (keyboardOnScreen) {
       if (theme) {
@@ -368,28 +342,38 @@ function TypingTest() {
     }
   };
 
+  const calculateWithOfProgressBar = () => {
+    if (textArrayCharacters !== undefined) {
+      let percent = (charactersTyped / textArrayCharacters.length) * 100;
+      return percent;
+    }
+  };
+
   return (
     <animated.div
       style={animation}
       className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
     >
-      {sideMenu()}
       <div className="TypingTest">
         <Header text="Improve your typing skills" />
-        <div
-          onClick={() => {
-            setIsSideMenuOpen(true);
-          }}
-          className="hamburger-menu"
-        >
-          <i className="fas fa-bars fa-2x"></i>
-        </div>
+
         <div className="statistics">
           <h5>WPM:{displayWPM()}</h5>
           <h5>Characters per minute:{displayCPM()}</h5>
           <h5>Errors:{mistakes}</h5>
         </div>
-        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        <hr
+          style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
+          className={theme ? "white-hr" : "dark-hr"}
+        ></hr>
+        <hr
+          style={
+            finished
+              ? { width: "100%" }
+              : { width: calculateWithOfProgressBar() + "%" }
+          }
+          className={theme ? "white-hr-progress" : "dark-hr-progress"}
+        ></hr>
         <p
           className={
             isRunning
