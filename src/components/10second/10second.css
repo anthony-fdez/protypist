@@ -1,5 +1,4 @@
 .Typing10Second-page-dark {
-<<<<<<< HEAD
   height: 100vh;
   width: 100vw;
   background-color: rgb(31, 30, 30);
@@ -55,21 +54,4 @@ h4 {
 
 .difficulty-btn {
   width: 100px;
-=======
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(31, 30, 30);
-  color: white;
-}
-.Typing10Second-page-light {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-}
-.Typing10Second {
-  padding: 1rem;
-  text-align: center;
-  margin-left: 200px;
->>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
 }
