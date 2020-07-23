@@ -1,0 +1,58 @@
+.typing-10-second {
+  margin-left: 200px;
+  width: 100%;
+  background-color: black;
+}
+:root {
+  --red-color: rgb(231, 60, 60);
+}
+
+.form-running-out-of-time {
+  background-color: var(--red-color);
+  color: black;
+}
+.form-running-out-of-time:focus {
+  background-color: var(--red-color);
+  color: black;
+}
+.form-running-out-of-time::placeholder,
+.form-input,
+.form-input:focus,
+.form-input::placeholder {
+  color: black;
+}
+.form-control {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  border: none;
+}
+.word-to-type,
+.time-left {
+  margin: 0;
+  padding: 0;
+}
+.word-to-type {
+  font-size: 1rem;
+}
+.time-and-word-to-type {
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.transition {
+  transition: 0.4s;
+}
+.fast-transition {
+  transition: 0.1s;
+}
+
+@media only screen and (min-width: 1001px) {
+  .word-to-type {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .word-to-type {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+}
