@@ -12,7 +12,7 @@ import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
 
 import { useSelector } from "react-redux";
-//comment
+
 function App() {
   const theme = useSelector((state) => state.darkModeReducer);
 

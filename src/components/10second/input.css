@@ -1,16 +1,12 @@
 .typing-10-second {
   margin-left: 200px;
 }
-:root {
-  --red-color: rgb(231, 60, 60);
-}
-
 .form-running-out-of-time {
-  background-color: var(--red-color);
+  background-color: rgb(231, 60, 60);
   color: black;
 }
 .form-running-out-of-time:focus {
-  background-color: var(--red-color);
+  background-color: rgb(231, 60, 60);
   color: black;
 }
 .form-running-out-of-time::placeholder,
@@ -43,28 +39,18 @@
   transition: 0.1s;
 }
 
-@media only screen and (min-width: 1001px) {
-  .word-to-type {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
+.word-to-type {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
-@media only screen and (max-width: 1000px) {
-  .word-to-type {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-  }
-}
-.highest-score-dark {
-  color: rgb(129, 129, 129);
-  font-style: italic;
-  padding-left: 2rem;
-}
+
+.highest-score-dark,
 .highest-score-light {
   color: rgb(129, 129, 129);
   font-style: italic;
   padding-left: 2rem;
 }
+
 h3 {
   padding: 0;
   margin: 0;
