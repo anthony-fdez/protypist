@@ -41,14 +41,7 @@ function Typing10Second() {
                 //     ? "transition App p-3 container bg-dark "
                 //     : "transition App p-3 container bg-primary text-white"
                 // }
-              >
-                <div className="title ">
-                  <h1>10 Second Challenge</h1>
-                  <h5 style={{ color: "rgb(0, 118, 253)" }}>
-                    Type fast, you only have 10 seconds
-                  </h5>
-                </div>
-              </div>
+              ></div>
               <div
                 onClick={() => {
                   setIsMenuInScreen(false);

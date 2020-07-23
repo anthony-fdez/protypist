@@ -262,8 +262,7 @@ function Input(props) {
             props.darkMode ? "transition text-light" : "transition text-dark"
           }
         >
-          {props.language ? "Score: " : "Puntuacion: "}{" "}
-          {addSecond ? "+1" : score}
+          Score: {addSecond ? "+1" : score}
         </h4>
         <div>{displayAddingSeconds()}</div>
       </div>
@@ -273,16 +272,14 @@ function Input(props) {
             props.darkMode ? "highest-score-dark" : "highest-score-light"
           }
         >
-          {props.language ? "Highest Score: " : "Puntuacion ma's alta: "}
-          {highestScore}
+          Highest Score: {highestScore}
         </h5>
         <h5 //this is the words per minute h5, it says highest score but it doesn't matter
           className={
             props.darkMode ? "highest-score-dark" : "highest-score-light"
           }
         >
-          {props.language ? "WPM: " : "Palabras por minuto: "}
-          {wpm === NaN ? "0" : wpm.toFixed(1)}
+          WPM: {wpm === NaN ? "0" : wpm.toFixed(1)}
         </h5>
       </div>
     </div>
