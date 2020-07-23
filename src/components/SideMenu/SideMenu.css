@@ -1,0 +1,100 @@
+h3 {
+  padding-top: 1rem;
+  text-align: center;
+}
+h2,
+h5 {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.SideMenu-dark {
+  background-color: rgb(50, 50, 50);
+  color: white;
+  width: 200px;
+  margin: 0;
+  height: 100vh;
+  position: fixed;
+  transition: 0.3s;
+  z-index: 3;
+}
+.SideMenu-light {
+  background-color: rgb(231, 231, 231);
+  color: rgb(0, 0, 0);
+  width: 200px;
+  margin: 0;
+  height: 100vh;
+  position: fixed;
+  transition: 0.3s;
+  z-index: 3;
+}
+.navigation-buttons {
+  margin-top: 2rem;
+}
+.navigation-button-dark {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+  margin-top: 1rem;
+  padding: 5px;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgb(70, 70, 70);
+  cursor: pointer;
+  height: 2.5rem;
+  transition: 0.3s;
+}
+.navigation-button-light {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  margin-top: 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  color: rgb(75, 75, 75);
+  cursor: pointer;
+  height: 2.5rem;
+  transition: 0.3s;
+}
+.navigation-button-active-dark {
+  align-items: center;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 5px;
+  background-color: rgb(0, 110, 255);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.navigation-button-active-light {
+  align-items: center;
+  height: 2.5rem;
+
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 5px;
+  background-color: rgb(0, 110, 255);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.navigation-button-dark:hover {
+  color: white;
+  background-color: rgb(88, 88, 88);
+}
+.navigation-button-light:hover {
+  background-color: rgba(0, 132, 255, 0.096);
+}
