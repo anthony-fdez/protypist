@@ -253,6 +253,7 @@
   }
   .white-hr {
     background-color: white;
+<<<<<<< HEAD
     margin-bottom: 0;
     transition: 0.5s;
   }
@@ -278,6 +279,23 @@
     transition: 0.5s;
     border-radius: 5px;
   }
+=======
+  }
+  .dark-hr {
+    background-color: rgb(196, 196, 196);
+  }
+  .hamburger-menu {
+    position: absolute;
+    top: 2.2rem;
+    right: 3rem;
+    transition: 0.2s;
+  }
+  .hamburger-menu:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+  }
+
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   .whole-page-background-open {
     position: fixed;
     width: 100vw;
@@ -293,6 +311,55 @@
     pointer-events: none;
     transition: 0.3s;
   }
+<<<<<<< HEAD
+=======
+  .side-menu-open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem;
+    height: 95vh;
+    width: 350px;
+    background-color: rgb(78, 78, 78);
+    transition: 0.2s;
+    z-index: 10;
+  }
+  .side-menu-closed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem;
+    height: 95vh;
+    width: 350px;
+    background-color: rgb(78, 78, 78);
+    transition: 0.2s;
+    transform: translateX(400px);
+    -webkit-transform: translateX(400px);
+    -moz-transform: translateX(400px);
+  }
+  .side-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .side-menu-close-icon {
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  .side-menu-close-icon:hover {
+    background-color: rgb(100, 100, 100);
+  }
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   .bottom-keyboard-and-info {
     display: flex;
     bottom: 0;
@@ -345,7 +412,11 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
+<<<<<<< HEAD
     background-color: rgb(50, 50, 50);
+=======
+    background-color: rgb(100, 100, 100);
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
     height: 303px;
     pointer-events: none;
     transition: 0.6s;
@@ -355,7 +426,11 @@
   .about-the-text-shown-dark {
     transition: 0.6s;
     height: 303px;
+<<<<<<< HEAD
     background-color: rgb(50, 50, 50);
+=======
+    background-color: rgb(100, 100, 100);
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
     border-radius: 10px;
     position: fixed;
     bottom: 4rem;
@@ -615,11 +690,15 @@
   }
   .white-hr {
     background-color: white;
+<<<<<<< HEAD
     transition: 0.5s;
+=======
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
     margin-bottom: 0;
   }
   .dark-hr {
     background-color: rgb(196, 196, 196);
+<<<<<<< HEAD
     transition: 0.5s;
     margin-bottom: 0;
   }
@@ -640,6 +719,10 @@
     transition: 0.5s;
     border-radius: 5px;
   }
+=======
+    margin-bottom: 0;
+  }
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   .hamburger-menu {
     position: absolute;
     top: 0.8rem;
@@ -665,6 +748,55 @@
     pointer-events: none;
     transition: 0.3s;
   }
+<<<<<<< HEAD
+=======
+  .side-menu-open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem;
+    height: 95vh;
+    width: 350px;
+    background-color: rgb(78, 78, 78);
+    transition: 0.2s;
+    z-index: 10;
+  }
+  .side-menu-closed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem;
+    height: 95vh;
+    width: 350px;
+    background-color: rgb(78, 78, 78);
+    transition: 0.2s;
+    transform: translateX(400px);
+    -webkit-transform: translateX(400px);
+    -moz-transform: translateX(400px);
+  }
+  .side-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .side-menu-close-icon {
+    cursor: pointer;
+    transition: 0.2 s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  .side-menu-close-icon:hover {
+    background-color: rgb(100, 100, 100);
+  }
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   .about-the-text-hidden-dark {
     border-radius: 10px;
     position: fixed;
@@ -676,7 +808,11 @@
     left: 200px;
     margin-left: auto;
     margin-right: auto;
+<<<<<<< HEAD
     background-color: rgb(50, 50, 50);
+=======
+    background-color: rgb(100, 100, 100);
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
     height: 303px;
     opacity: 1;
     pointer-events: none;
@@ -687,7 +823,11 @@
   .about-the-text-shown-dark {
     transition: 0.6s;
     height: 273px;
+<<<<<<< HEAD
     background-color: rgb(50, 50, 50);
+=======
+    background-color: rgb(100, 100, 100);
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
     border-radius: 10px;
     position: fixed;
     bottom: 1rem;

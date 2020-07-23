@@ -92,8 +92,13 @@ function TypingTest() {
 
   //========= Display all the characters to the screen //
   //========= This returns an array of spans //
+<<<<<<< HEAD
 
   //this is a comment
+=======
+    
+    //this is a comment
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
@@ -322,6 +327,35 @@ function TypingTest() {
     }
   };
 
+<<<<<<< HEAD
+=======
+  const sideMenu = () => {
+    return (
+      <div
+        className={
+          isSideMenuOpen
+            ? "whole-page-background-open"
+            : "whole-page-background-closed"
+        }
+      >
+        <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
+          <div className="side-menu-header">
+            <h1>Side Menu</h1>
+            <div
+              onClick={() => {
+                setIsSideMenuOpen(false);
+              }}
+              className="side-menu-close-icon"
+            >
+              <i className="fas fa-times fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   const displayKeyboard = () => {
     if (keyboardOnScreen) {
       if (theme) {
@@ -342,6 +376,7 @@ function TypingTest() {
     }
   };
 
+<<<<<<< HEAD
   const calculateWithOfProgressBar = () => {
     if (textArrayCharacters !== undefined) {
       let percent = (charactersTyped / textArrayCharacters.length) * 100;
@@ -349,19 +384,36 @@ function TypingTest() {
     }
   };
 
+=======
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   return (
     <animated.div
       style={animation}
       className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
     >
+<<<<<<< HEAD
       <div className="TypingTest">
         <Header text="Improve your typing skills" />
 
+=======
+      {sideMenu()}
+      <div className="TypingTest">
+        <Header text="Improve your typing skills" />
+        <div
+          onClick={() => {
+            setIsSideMenuOpen(true);
+          }}
+          className="hamburger-menu"
+        >
+          <i className="fas fa-bars fa-2x"></i>
+        </div>
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
         <div className="statistics">
           <h5>WPM:{displayWPM()}</h5>
           <h5>Characters per minute:{displayCPM()}</h5>
           <h5>Errors:{mistakes}</h5>
         </div>
+<<<<<<< HEAD
         <hr
           style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
           className={theme ? "white-hr" : "dark-hr"}
@@ -377,6 +429,12 @@ function TypingTest() {
         <p
           className={
             isRunning || finished
+=======
+        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        <p
+          className={
+            isRunning
+>>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
               ? "alert-primary alert-hidden"
               : "alert-primary alert-shown"
           }
