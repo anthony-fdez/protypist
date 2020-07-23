@@ -376,7 +376,7 @@ function TypingTest() {
         ></hr>
         <p
           className={
-            isRunning
+            isRunning || finished
               ? "alert-primary alert-hidden"
               : "alert-primary alert-shown"
           }
