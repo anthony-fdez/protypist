@@ -299,7 +299,6 @@ function Common200() {
     } else return null;
   };
 
-<<<<<<< HEAD
   const calculateWithOfProgressBar = () => {
     if (textArrayCharacters !== undefined) {
       let percent = (charactersTyped / textArrayCharacters.length) * 100;
@@ -307,8 +306,6 @@ function Common200() {
     }
   };
 
-=======
->>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   return (
     <animated.div
       style={animation}
@@ -321,7 +318,6 @@ function Common200() {
           <h5>Characters per minute:{displayCPM()}</h5>
           <h5>Errors:{mistakes}</h5>
         </div>
-<<<<<<< HEAD
         <hr
           style={isRunning ? { opacity: 0 } : { opacity: 1 }}
           className={theme ? "white-hr" : "dark-hr"}
@@ -330,9 +326,6 @@ function Common200() {
           style={{ width: calculateWithOfProgressBar() + "%" }}
           className={theme ? "white-hr-progress" : "dark-hr-progress"}
         ></hr>
-=======
-        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
->>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
         <p
           className={
             isRunning
