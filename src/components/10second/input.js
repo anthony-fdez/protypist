@@ -176,14 +176,10 @@ function Input(props) {
 
   const placeholderChange = () => {
     let placeholder = "";
-    if (isRunning && props.language) {
+    if (isRunning) {
       placeholder = `Type: "${randomWord}"`;
-    } else if (isRunning && props.language === false) {
-      placeholder = `Escribe "${randomWord}"`;
-    } else if (!isRunning && props.language) {
+    } else if (!isRunning) {
       placeholder = 'Type "start" to begin';
-    } else if (!isRunning && !props.language) {
-      placeholder = 'Escribe "vamo a darle" para empezar a jugar!';
     }
     return placeholder;
   };

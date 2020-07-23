@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+
 import "./10second.css";
 import Header from "../header/header";
+import Keyboard from "../inScreenKeyboard/keyboard";
+import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
+
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
@@ -11,12 +15,21 @@ function Typing10Second() {
 
   const [isMenuInScreen, setIsMenuInScreen] = useState(false);
   const [dificulty, setDificulty] = useState(1); // easy: 2seconds, normal: 1second, harn 0.4seconds
+  const [keyboardOnScreen, setKeyboardOnScreen] = useState(true);
 
   const animation = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
     config: { duration: 300 },
   });
+
+  const displayKeyboard = () => {
+    if (keyboardOnScreen) {
+      if (theme) {
+        return <KeyboardDark />;
+      } else return <Keyboard />;
+    } else return null;
+  };
 
   return (
     <animated.div
@@ -54,6 +67,7 @@ function Typing10Second() {
             </div>
           </div>
         </div>
+        {displayKeyboard()}
       </div>
     </animated.div>
   );

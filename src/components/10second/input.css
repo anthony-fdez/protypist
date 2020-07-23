@@ -30,6 +30,7 @@
 }
 .word-to-type {
   font-size: 1rem;
+  margin: 0;
 }
 .time-and-word-to-type {
   align-items: center;
@@ -53,4 +54,18 @@
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
   }
+}
+.highest-score-dark {
+  color: rgb(129, 129, 129);
+  font-style: italic;
+  padding-left: 2rem;
+}
+.highest-score-light {
+  color: rgb(129, 129, 129);
+  font-style: italic;
+  padding-left: 2rem;
+}
+h3 {
+  padding: 0;
+  margin: 0;
 }
