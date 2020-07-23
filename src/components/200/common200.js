@@ -42,7 +42,6 @@ function Common200() {
   useEffect(() => {
     let json = require("../data/200words.json");
     let wordsArray = [];
-    let characterArray = [];
     let infoAboutCharacterObject = [];
     for (let i = 0; i < length; i++) {
       let random = Math.floor(Math.random() * 200);

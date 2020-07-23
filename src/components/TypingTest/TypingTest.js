@@ -27,7 +27,6 @@ function TypingTest() {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [finished, setFinished] = useState(false);
 
   //-----------------------------------------------
