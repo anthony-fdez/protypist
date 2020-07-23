@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 
 import "./10second.css";
@@ -19,16 +18,6 @@ function Typing10Second() {
 
   const [isMenuInScreen, setIsMenuInScreen] = useState(false);
   const [dificulty, setDificulty] = useState("NORMAL");
-=======
-import React from "react";
-import "./10second.css";
-import Header from "../header/header";
-import { useSelector } from "react-redux";
-import { useSpring, animated } from "react-spring";
-
-function Typing10Second() {
-  const theme = useSelector((state) => state.darkModeReducer);
->>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -36,15 +25,12 @@ function Typing10Second() {
     config: { duration: 300 },
   });
 
-<<<<<<< HEAD
   const displayKeyboard = () => {
     if (theme) {
       return <KeyboardDark />;
     } else return <Keyboard />;
   };
 
-=======
->>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
   return (
     <animated.div
       style={animation}
@@ -55,7 +41,6 @@ function Typing10Second() {
       <div className={"Typing10Second"}>
         <Header text="10second Game" />
       </div>
-<<<<<<< HEAD
       <div>
         <div className={isMenuInScreen ? "dark-mode-open" : "dark-mode-closed"}>
           <div>
@@ -141,8 +126,6 @@ function Typing10Second() {
           </div>
         </div>
       </div>
-=======
->>>>>>> 83e7c7443c91422330283a253147a2a09b684afb
     </animated.div>
   );
 }
