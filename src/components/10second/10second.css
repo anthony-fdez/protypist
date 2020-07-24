@@ -55,3 +55,13 @@ h4 {
 .difficulty-btn {
   width: 100px;
 }
+@media only screen and (max-width: 1500px) {
+  .check-for-small-display {
+    transition: 0.3s;
+    position: absolute;
+    bottom: 5rem;
+    margin: auto;
+    left: 0;
+    right: 0;
+  }
+}

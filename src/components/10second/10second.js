@@ -67,7 +67,7 @@ function Typing10Second() {
               : "keyboard-div-hidden-10seconds"
           }
         >
-          {displayKeyboard()}
+          <div className="check-for-small-display">{displayKeyboard()}</div>
         </div>
 
         <div
