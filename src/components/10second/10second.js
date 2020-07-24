@@ -26,9 +26,11 @@ function Typing10Second() {
   });
 
   const displayKeyboard = () => {
-    if (theme) {
-      return <KeyboardDark />;
-    } else return <Keyboard />;
+    if (keyboardOnScreen) {
+      if (theme) {
+        return <KeyboardDark />;
+      } else return <Keyboard />;
+    }
   };
 
   return (
