@@ -27,16 +27,20 @@
   border-radius: 5px;
   justify-content: center;
   margin: 2px;
+  transition: 0.05s;
 }
 .keyboard-key-pressed {
-  background-color: rgb(170, 170, 170);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.322);
+  transition: 0.05s;
+  background-color: rgb(100, 100, 100);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
   width: 50px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 2px;
+  transform: scale(0.9);
 }
 .keyboard {
   border-radius: 10px;
@@ -91,7 +95,6 @@
   display: flex;
   align-items: center;
   border-radius: 5px;
-
   justify-content: center;
 }
 .keyboard-backspace {
@@ -100,19 +103,7 @@
   height: 50px;
   margin: 2px;
   border-radius: 5px;
-
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.keyboard-backspace-pressed {
-  background-color: rgb(150, 150, 150);
-  width: 100px;
-  height: 50px;
-  margin: 2px;
-  display: flex;
-  border-radius: 5px;
-
   align-items: center;
   justify-content: center;
 }
@@ -148,13 +139,13 @@
   border-radius: 5px;
 }
 .keyboard-space-pressed {
-  background-color: rgb(151, 151, 151);
+  background-color: rgb(99, 99, 99);
+  color: white;
   width: 480px;
   height: 50px;
   margin: 2px;
   display: flex;
   border-radius: 5px;
-
   align-items: center;
   justify-content: center;
 }
