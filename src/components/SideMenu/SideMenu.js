@@ -61,15 +61,6 @@ function SideMenu() {
             <h5>TypingTest</h5>
           </div>
         </Link>
-        <Link to="/quotes">
-          <div className={checkButtonClass("/quotes")}>
-            <i
-              style={{ position: "absolute", left: "20px" }}
-              className="fas fa-quote-left"
-            ></i>
-            <h5>Quotes</h5>
-          </div>
-        </Link>
         <hr
           style={{ marginTop: "2rem" }}
           className={theme ? "white-hr" : "dark-hr"}
@@ -90,6 +81,19 @@ function SideMenu() {
               className="fas fa-car-side"
             ></i>
             <h5>Top 1000</h5>
+          </div>
+        </Link>
+        <hr
+          style={{ marginTop: "2rem" }}
+          className={theme ? "white-hr" : "dark-hr"}
+        ></hr>
+        <Link to="/WPMcalculator">
+          <div className={checkButtonClass("/WPMcalculator")}>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              className="fas fa-quote-left"
+            ></i>
+            <h5>WPM calc</h5>
           </div>
         </Link>
         <Link

@@ -4,7 +4,7 @@ import "./App.css";
 
 //components
 import TypingTest from "./components/TypingTest/TypingTest";
-import Quotes from "./components/quotes/quotes";
+import WPMcalculator from "./components/WPM_calculator/WPMcalculator";
 import Typing10second from "./components/10second/10second";
 import Home from "./components/Home/Home";
 import Common200 from "./components/200/common200";
@@ -34,8 +34,8 @@ function App() {
         <Route path="/typingtest">
           <TypingTest />
         </Route>
-        <Route path="/quotes">
-          <Quotes />
+        <Route path="/WPMcalculator">
+          <WPMcalculator />
         </Route>
         <Route path="/200">
           <Common200 />
