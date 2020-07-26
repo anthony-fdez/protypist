@@ -59,6 +59,15 @@ const latestCPMReducer200 = (state = 0, action) => {
   }
 };
 
+const previousCPMReducer200 = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_LATEST_CPM_200":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const latestWPMReducer1000 = (state = 0, action) => {
   switch (action.type) {
     case "SET_LATEST_WPM_1000":
@@ -68,9 +77,27 @@ const latestWPMReducer1000 = (state = 0, action) => {
   }
 };
 
+const previousWPMReducer1000 = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_PREVIOUS_CPM_1000":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const latestCPMReducer1000 = (state = 0, action) => {
   switch (action.type) {
     case "SET_LATEST_CPM_1000":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const previousCPMReducer1000 = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_PREVIOUS_CPM_100":
       return action.payload;
     default:
       return state;
@@ -113,6 +140,15 @@ const latestCPMReducerTypingGame = (state = 0, action) => {
   }
 };
 
+const previousCPMReducerTypingGame = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_PREVIOUS_CPM":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
@@ -124,8 +160,12 @@ const allReducers = combineReducers({
   keyboardOnScreenReducer: keyboardOnScreenReducer,
   latestCPMReducerTypingGame: latestCPMReducerTypingGame,
   latestWPMReducerTypingGame: latestWPMReducerTypingGame,
-  previousWPMReducer200: previousWPMReducer200,
   previousWPMReducerTypingGame: previousWPMReducerTypingGame,
+  previousCPMReducerTypingGame: previousCPMReducerTypingGame,
+  previousCPMReducer1000: previousCPMReducer1000,
+  previousWPMReducer1000: previousWPMReducer1000,
+  previousCPMReducer200: previousCPMReducer200,
+  previousWPMReducer200: previousWPMReducer200,
 });
 
 export default allReducers;

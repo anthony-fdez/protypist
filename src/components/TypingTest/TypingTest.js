@@ -21,10 +21,13 @@ function TypingTest() {
   const previousWPM = useSelector(
     (state) => state.previousWPMReducerTypingGame
   );
-
+  const previousCPM = useSelector(
+    (state) => state.previousCPMReducerTypingGame
+  );
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestCPM = useSelector((state) => state.latestCPMReducerTypingGame);
+
   //state
   const [text, setText] = useState();
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -47,6 +50,7 @@ function TypingTest() {
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
+  const [differenceInCPM, setDIfferenceInCPM] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -101,10 +105,19 @@ function TypingTest() {
         type: "SET_PREVIOUS_WPM",
         payload: latestWPM,
       });
+      dispatch({
+        type: "SET_PREVIOUS_CPM",
+        payload: latestCPM,
+      });
     }
 
-    const difference = latestWPM - previousWPM;
-    setDifferenceInWPM(difference);
+    const differenceWPM = latestWPM - previousWPM;
+    const differenceCPM = latestCPM - previousCPM;
+
+    console.log(previousCPM);
+
+    setDIfferenceInCPM(differenceCPM);
+    setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
 
   const displayTheArray = () => {
@@ -382,8 +395,19 @@ function TypingTest() {
               {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
             </h5>
           </div>
+          <div className="d-flex">
+            <h5 className="mr-3">Characters per minute:{displayCPM()}</h5>
+            <h5
+              style={
+                differenceInWPM > 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
+            </h5>
+          </div>
 
-          <h5>Characters per minute:{displayCPM()}</h5>
           <h5>Errors:{mistakes}</h5>
         </div>
         <hr
