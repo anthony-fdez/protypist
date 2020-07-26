@@ -149,6 +149,60 @@ const previousCPMReducerTypingGame = (state = 0, action) => {
   }
 };
 
+const latestErrorsReducerTypingGame = (state = 0, action) => {
+  switch (action.type) {
+    case "":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const previousErrorsReducerTypingGame = (state = 0, action) => {
+  switch (action.type) {
+    case "":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const latestErrorsReducer200 = (state = 0, action) => {
+  switch (action.type) {
+    case "":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const previousErrorsReducer200 = (state = 0, action) => {
+  switch (action.type) {
+    case "":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const latestErrorsReducer1000 = (state = 0, action) => {
+  switch (action.type) {
+    case "":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const previousErrorsReducer1000 = (state = 0, action) => {
+  switch (action.type) {
+    case "":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,

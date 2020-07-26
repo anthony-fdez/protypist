@@ -51,6 +51,8 @@ function TypingTest() {
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
   const [differenceInCPM, setDIfferenceInCPM] = useState(0);
+  const [progress, setProgress] = useState(1);
+  const [realMistakes, setRealMistakes] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -173,6 +175,23 @@ function TypingTest() {
     setNewGame(false);
   }, [newGame]);
 
+  //real errors
+  useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
+      if (progress <= charactersTyped) {
+        setProgress((progress) => progress + 1);
+      }
+
+      for (let i = 0; i < progress; i++) {
+        if (charactersTyped === progress) {
+          if (infoAboutCharacter[i] === false) {
+            setRealMistakes((mistake) => (mistake = realMistakes + 1));
+          }
+        }
+      }
+    }
+  }, [charactersTyped]);
+
   //========= Calculate words per minute //
 
   const calculateWordsPerMinute = () => {
@@ -247,6 +266,8 @@ function TypingTest() {
         setCharactersTyped(0);
         setIsRunning(false);
         setMistakes(0);
+        setRealMistakes(0);
+        setProgress(1);
       }
     }
 
@@ -406,7 +427,7 @@ function TypingTest() {
             </h5>
           </div>
 
-          <h5>Errors:{mistakes}</h5>
+          <h5>Errors:{realMistakes}</h5>
         </div>
         <hr
           style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
@@ -462,6 +483,8 @@ function TypingTest() {
                   setCharactersTyped(0);
                   setIsRunning(false);
                   setMistakes(0);
+                  setRealMistakes(0);
+                  setProgress(1);
                 }}
                 className="btn btn-light mr-3"
               >
