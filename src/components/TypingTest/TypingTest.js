@@ -114,8 +114,6 @@ function TypingTest() {
     const differenceWPM = latestWPM - previousWPM;
     const differenceCPM = latestCPM - previousCPM;
 
-    console.log(previousCPM);
-
     setDIfferenceInCPM(differenceCPM);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);

@@ -61,7 +61,7 @@ const latestCPMReducer200 = (state = 0, action) => {
 
 const previousCPMReducer200 = (state = 0, action) => {
   switch (action.type) {
-    case "SET_LATEST_CPM_200":
+    case "SET_PREVIOUS_CPM_200":
       return action.payload;
     default:
       return state;
