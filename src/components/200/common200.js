@@ -373,7 +373,7 @@ function Common200() {
         <Header text="Type the 200 most common words in English (beginer)" />
         <div className="statistics">
           <div className="d-flex">
-            <h5 className="mr-3">WPM:{displayWPM()}</h5>
+            <h5 className="mr-1">WPM: {displayWPM()} |</h5>
             <h5
               style={
                 differenceInWPM > 0
@@ -385,7 +385,7 @@ function Common200() {
             </h5>
           </div>
           <div className="d-flex">
-            <h5 className="mr-3">Characters per minute:{displayCPM()}</h5>
+            <h5 className="mr-1">Characters per minute: {displayCPM()} |</h5>
             <h5
               style={
                 differenceInWPM > 0
@@ -397,7 +397,7 @@ function Common200() {
             </h5>
           </div>
           <div className="d-flex">
-            <h5 className="mr-3">Errors:{latestErrors}</h5>
+            <h5 className="mr-1">Errors: {latestErrors} |</h5>
             <h5
               style={
                 differenceInErrors < 0
