@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { act } from "react-dom/test-utils";
 
-const darkModeReducer = (state = false, action) => {
+const darkModeReducer = (state = true, action) => {
   switch (action.type) {
     case "CHANGE_THEME":
       return !state;
