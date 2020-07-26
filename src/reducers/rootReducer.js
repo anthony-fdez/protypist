@@ -79,7 +79,7 @@ const latestWPMReducer1000 = (state = 0, action) => {
 
 const previousWPMReducer1000 = (state = 0, action) => {
   switch (action.type) {
-    case "SET_PREVIOUS_CPM_1000":
+    case "SET_PREVIOUS_WPM_1000":
       return action.payload;
     default:
       return state;

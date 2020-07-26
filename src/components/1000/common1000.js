@@ -19,6 +19,9 @@ function Common1000() {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
+  const previousWPM = useSelector((state) => state.previousWPMReducer1000);
+  const previousCPM = useSelector((state) => state.previousCPMReducer1000);
+
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -36,6 +39,8 @@ function Common1000() {
   const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
+  const [differenceInWPM, setDifferenceInWPM] = useState(0);
+  const [differenceInCPM, setDIfferenceInCPM] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -83,6 +88,25 @@ function Common1000() {
 
   //========= Display all the characters to the screen //
   //========= This returns an array of spans //
+
+  useEffect(() => {
+    if (isRunning === true) {
+      dispatch({
+        type: "SET_PREVIOUS_WPM_1000",
+        payload: latestWPM1000,
+      });
+      dispatch({
+        type: "SET_PREVIOUS_CPM_100",
+        payload: latestCPM1000,
+      });
+    }
+
+    const differenceWPM = latestWPM1000 - previousWPM;
+    const differenceCPM = latestCPM1000 - previousCPM;
+
+    setDIfferenceInCPM(differenceCPM);
+    setDifferenceInWPM(differenceWPM);
+  }, [isRunning]);
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
@@ -310,8 +334,30 @@ function Common1000() {
       <div className="TypingTest">
         <Header text="Type the 1000 most common words in English (advanced)" />
         <div className="statistics">
-          <h5>WPM:{displayWPM()}</h5>
-          <h5>Characters per minute:{displayCPM()}</h5>
+          <div className="d-flex">
+            <h5 className="mr-3">WPM:{displayWPM()}</h5>
+            <h5
+              style={
+                differenceInWPM > 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
+            </h5>
+          </div>
+          <div className="d-flex">
+            <h5 className="mr-3">Characters per minute:{displayCPM()}</h5>
+            <h5
+              style={
+                differenceInWPM > 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
+            </h5>
+          </div>
           <h5>Errors:{mistakes}</h5>
         </div>
         <hr
