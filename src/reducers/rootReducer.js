@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { act } from "react-dom/test-utils";
 
 const darkModeReducer = (state = false, action) => {
   switch (action.type) {
@@ -34,6 +35,15 @@ const realTimeWPMReducer = (state = false, action) => {
 const latestWPMReducer200 = (state = 0, action) => {
   switch (action.type) {
     case "SET_LATEST_WPM_200":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const previousWPMReducer200 = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_PREVIOUS_WPM_200":
       return action.payload;
     default:
       return state;
@@ -85,6 +95,15 @@ const latestWPMReducerTypingGame = (state = 0, action) => {
   }
 };
 
+const previousWPMReducerTypingGame = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_PREVIOUS_WPM":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const latestCPMReducerTypingGame = (state = 0, action) => {
   switch (action.type) {
     case "SET_LATEST_CPM":
@@ -105,6 +124,8 @@ const allReducers = combineReducers({
   keyboardOnScreenReducer: keyboardOnScreenReducer,
   latestCPMReducerTypingGame: latestCPMReducerTypingGame,
   latestWPMReducerTypingGame: latestWPMReducerTypingGame,
+  previousWPMReducer200: previousWPMReducer200,
+  previousWPMReducerTypingGame: previousWPMReducerTypingGame,
 });
 
 export default allReducers;

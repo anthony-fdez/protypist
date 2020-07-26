@@ -13,10 +13,15 @@ import { useSpring, animated } from "react-spring";
 function TypingTest() {
   const dispatch = useDispatch();
 
+  //redux reducers
   const theme = useSelector((state) => state.darkModeReducer);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
+  const previousWPM = useSelector(
+    (state) => state.previousWPMReducerTypingGame
+  );
+
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestCPM = useSelector((state) => state.latestCPMReducerTypingGame);
@@ -41,6 +46,7 @@ function TypingTest() {
   const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
+  const [differenceInWPM, setDifferenceInWPM] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -89,10 +95,17 @@ function TypingTest() {
     } else setSpanArray(displayTheArray());
   }, [charactersTyped, textArrayCharacters, finished]);
 
-  //========= Display all the characters to the screen //
-  //========= This returns an array of spans //
+  useEffect(() => {
+    if (isRunning === true) {
+      dispatch({
+        type: "SET_PREVIOUS_WPM",
+        payload: latestWPM,
+      });
+    }
 
-  //this is a comment
+    const difference = latestWPM - previousWPM;
+    setDifferenceInWPM(difference);
+  }, [isRunning]);
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
@@ -357,7 +370,19 @@ function TypingTest() {
         <Header text="Improve your typing skills" />
 
         <div className="statistics">
-          <h5>WPM:{displayWPM()}</h5>
+          <div className="d-flex">
+            <h5 className="mr-3">WPM:{displayWPM()}</h5>
+            <h5
+              style={
+                differenceInWPM > 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
+            </h5>
+          </div>
+
           <h5>Characters per minute:{displayCPM()}</h5>
           <h5>Errors:{mistakes}</h5>
         </div>
