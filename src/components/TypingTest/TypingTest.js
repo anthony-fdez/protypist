@@ -27,6 +27,12 @@ function TypingTest() {
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestCPM = useSelector((state) => state.latestCPMReducerTypingGame);
+  const latestErrors = useSelector(
+    (state) => state.latestErrorsReducerTypingGame
+  );
+  const previousErrors = useSelector(
+    (state) => state.previousErrorsReducerTypingGame
+  );
 
   //state
   const [text, setText] = useState();
@@ -51,6 +57,7 @@ function TypingTest() {
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
   const [differenceInCPM, setDIfferenceInCPM] = useState(0);
+  const [differenceInErrors, setDIfferenceInErrors] = useState(0);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
 
@@ -111,11 +118,17 @@ function TypingTest() {
         type: "SET_PREVIOUS_CPM",
         payload: latestCPM,
       });
+      dispatch({
+        type: "SET_PREVIOUS_ERRORS_TYPING_GAME",
+        payload: latestErrors,
+      });
     }
 
     const differenceWPM = latestWPM - previousWPM;
     const differenceCPM = latestCPM - previousCPM;
+    const differenceErrors = latestErrors - previousErrors;
 
+    setDIfferenceInErrors(differenceErrors);
     setDIfferenceInCPM(differenceCPM);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
@@ -248,6 +261,10 @@ function TypingTest() {
       dispatch({
         type: "SET_LATEST_CPM",
         payload: calculateCharactersPerMinute(),
+      });
+      dispatch({
+        type: "SET_LATEST_ERRORS_TYPING_GAME",
+        payload: realMistakes,
       });
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
@@ -426,8 +443,20 @@ function TypingTest() {
               {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
             </h5>
           </div>
-
-          <h5>Errors:{realMistakes}</h5>
+          <div className="d-flex">
+            <h5 className="mr-3">Errors:{latestErrors}</h5>
+            <h5
+              style={
+                differenceInErrors < 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInErrors > 0
+                ? `+${differenceInErrors}`
+                : differenceInErrors}
+            </h5>
+          </div>
         </div>
         <hr
           style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
@@ -496,6 +525,7 @@ function TypingTest() {
                   setInfoAboutCharacter(blankInfoArray);
                   setFinished(false);
                   setNewGame(true);
+                  setRealMistakes(0);
                 }}
                 className="btn btn-light"
               >
