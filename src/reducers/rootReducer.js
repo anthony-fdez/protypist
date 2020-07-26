@@ -151,7 +151,7 @@ const previousCPMReducerTypingGame = (state = 0, action) => {
 
 const latestErrorsReducerTypingGame = (state = 0, action) => {
   switch (action.type) {
-    case "":
+    case "SET_LATEST_ERRORS_TYPING_GAME":
       return action.payload;
     default:
       return state;
@@ -160,7 +160,7 @@ const latestErrorsReducerTypingGame = (state = 0, action) => {
 
 const previousErrorsReducerTypingGame = (state = 0, action) => {
   switch (action.type) {
-    case "":
+    case "SET_PREVIOUS_ERRORS_TYPING_GAME":
       return action.payload;
     default:
       return state;
@@ -169,7 +169,7 @@ const previousErrorsReducerTypingGame = (state = 0, action) => {
 
 const latestErrorsReducer200 = (state = 0, action) => {
   switch (action.type) {
-    case "":
+    case "SET_LATEST_ERRORS_200":
       return action.payload;
     default:
       return state;
@@ -178,7 +178,7 @@ const latestErrorsReducer200 = (state = 0, action) => {
 
 const previousErrorsReducer200 = (state = 0, action) => {
   switch (action.type) {
-    case "":
+    case "SET_PREVIOUS_ERRORS_200":
       return action.payload;
     default:
       return state;
@@ -187,7 +187,7 @@ const previousErrorsReducer200 = (state = 0, action) => {
 
 const latestErrorsReducer1000 = (state = 0, action) => {
   switch (action.type) {
-    case "":
+    case "SET_LATEST_ERRORS_1000":
       return action.payload;
     default:
       return state;
@@ -196,7 +196,7 @@ const latestErrorsReducer1000 = (state = 0, action) => {
 
 const previousErrorsReducer1000 = (state = 0, action) => {
   switch (action.type) {
-    case "":
+    case "SET_PREVIOUS_ERRORS_1000":
       return action.payload;
     default:
       return state;
@@ -220,6 +220,12 @@ const allReducers = combineReducers({
   previousWPMReducer1000: previousWPMReducer1000,
   previousCPMReducer200: previousCPMReducer200,
   previousWPMReducer200: previousWPMReducer200,
+  latestErrorsReducerTypingGame: latestErrorsReducerTypingGame,
+  previousErrorsReducerTypingGame: previousErrorsReducerTypingGame,
+  latestErrorsReducer200: latestErrorsReducer200,
+  previousErrorsReducer200: previousErrorsReducer200,
+  latestErrorsReducer1000: latestErrorsReducer1000,
+  previousErrorsReducer1000: previousErrorsReducer1000,
 });
 
 export default allReducers;
