@@ -203,6 +203,15 @@ const previousErrorsReducer1000 = (state = 0, action) => {
   }
 };
 
+const openSideMenuReducer = (state = false, action) => {
+  switch (action.type) {
+    case "TOGGLE_OPENING_SIDE_MENU":
+      return !state;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
@@ -226,6 +235,7 @@ const allReducers = combineReducers({
   previousErrorsReducer200: previousErrorsReducer200,
   latestErrorsReducer1000: latestErrorsReducer1000,
   previousErrorsReducer1000: previousErrorsReducer1000,
+  openSideMenuReducer: openSideMenuReducer,
 });
 
 export default allReducers;

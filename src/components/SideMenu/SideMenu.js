@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./SideMenu.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Typical from "react-typical";
 
 import { useLocation } from "react-router-dom";
 
 function SideMenu() {
+  const dispatch = useDispatch();
+
   const theme = useSelector((state) => state.darkModeReducer);
 
   let location = useLocation();
@@ -20,6 +22,18 @@ function SideMenu() {
     } else if (theme === false) {
       if (location === path) {
         return "navigation-button-active-light";
+      } else return "navigation-button-light";
+    }
+  };
+
+  const checkTypingGameClass = (path) => {
+    if (theme) {
+      if (location === path) {
+        return "typing-game-active-dark";
+      } else return "typing-game-button-dark";
+    } else if (!theme) {
+      if (location === path) {
+        return "typing-game-active-light";
       } else return "navigation-button-light";
     }
   };
@@ -53,12 +67,28 @@ function SideMenu() {
           </div>
         </Link>
         <Link to="/typingtest">
-          <div className={checkButtonClass("/typingtest")}>
-            <i
-              style={{ position: "absolute", left: "20px" }}
-              className="fas fa-keyboard"
-            ></i>
-            <h5>TypingTest</h5>
+          <div className={checkTypingGameClass("/typingtest")}>
+            <div className="typing-test-top-button">
+              <i
+                style={{ position: "absolute", left: "20px" }}
+                className="fas fa-keyboard"
+              ></i>
+              <h5>TypingTest</h5>
+            </div>
+            <div
+              onClick={() => {
+                dispatch({
+                  type: "TOGGLE_OPENING_SIDE_MENU",
+                });
+              }}
+              className="typing-test-bottom-button"
+            >
+              <i
+                style={{ position: "absolute", left: "20px" }}
+                className="fas fa-keyboard"
+              ></i>
+              <h5>TypingTest</h5>
+            </div>
           </div>
         </Link>
         <hr

@@ -410,6 +410,51 @@ function TypingTest() {
     }
   };
 
+  const displayTheStatistics = () => {
+    return (
+      <div className="statistics">
+        <div className="d-flex">
+          <h5 className="mr-1">WPM: {displayWPM()} |</h5>
+          <h5
+            style={
+              differenceInWPM > 0
+                ? { color: "rgb(41, 230, 50)" }
+                : { color: "rgba(230, 41, 41)" }
+            }
+          >
+            {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
+          </h5>
+        </div>
+        <div className="d-flex">
+          <h5 className="mr-1">Characters per minute: {displayCPM()} |</h5>
+          <h5
+            style={
+              differenceInWPM > 0
+                ? { color: "rgb(41, 230, 50)" }
+                : { color: "rgba(230, 41, 41)" }
+            }
+          >
+            {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
+          </h5>
+        </div>
+        <div className="d-flex">
+          <h5 className="mr-1">Errors: {latestErrors} |</h5>
+          <h5
+            style={
+              differenceInErrors < 0
+                ? { color: "rgb(41, 230, 50)" }
+                : { color: "rgba(230, 41, 41)" }
+            }
+          >
+            {differenceInErrors > 0
+              ? `+${differenceInErrors}`
+              : differenceInErrors}
+          </h5>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <animated.div
       style={animation}
@@ -417,47 +462,7 @@ function TypingTest() {
     >
       <div className="TypingTest">
         <Header text="Improve your typing skills" />
-
-        <div className="statistics">
-          <div className="d-flex">
-            <h5 className="mr-1">WPM: {displayWPM()} |</h5>
-            <h5
-              style={
-                differenceInWPM > 0
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(230, 41, 41)" }
-              }
-            >
-              {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
-            </h5>
-          </div>
-          <div className="d-flex">
-            <h5 className="mr-1">Characters per minute: {displayCPM()} |</h5>
-            <h5
-              style={
-                differenceInWPM > 0
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(230, 41, 41)" }
-              }
-            >
-              {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
-            </h5>
-          </div>
-          <div className="d-flex">
-            <h5 className="mr-1">Errors: {latestErrors} |</h5>
-            <h5
-              style={
-                differenceInErrors < 0
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(230, 41, 41)" }
-              }
-            >
-              {differenceInErrors > 0
-                ? `+${differenceInErrors}`
-                : differenceInErrors}
-            </h5>
-          </div>
-        </div>
+        {displayTheStatistics()}
         <hr
           style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
           className={theme ? "white-hr" : "dark-hr"}

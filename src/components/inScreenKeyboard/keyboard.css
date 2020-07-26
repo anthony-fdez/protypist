@@ -129,7 +129,7 @@
   border-radius: 5px;
 }
 .keyboard-space {
-  transition: 0.1s;
+  transition: 0.03s;
   background-color: rgb(240, 240, 240);
   width: 480px;
   height: 50px;
@@ -140,7 +140,7 @@
   border-radius: 5px;
 }
 .keyboard-space-pressed {
-  transition: 0.1s;
+  transition: 0.03s;
 
   background-color: rgb(99, 99, 99);
   color: white;
@@ -197,7 +197,7 @@
     border-radius: 5px;
     justify-content: center;
     margin: 2px;
-    transition: 0.1s;
+    transition: 0.03s;
   }
   .keyboard-key-pressed {
     background-color: rgb(100, 100, 100);
@@ -210,7 +210,7 @@
     justify-content: center;
     margin: 2px;
     transform: scale(0.9);
-    transition: 0.1s;
+    transition: 0.03s;
   }
   .keyboard {
     border-radius: 10px;
@@ -308,7 +308,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    transition: 0.1s;
+    transition: 0.03s;
   }
   .keyboard-space-pressed {
     background-color: rgb(100, 100, 100);
@@ -318,7 +318,7 @@
     margin: 2px;
     display: flex;
     border-radius: 5px;
-    transition: 0.1s;
+    transition: 0.03s;
     transform: scale(0.97);
     align-items: center;
     justify-content: center;
