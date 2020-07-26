@@ -21,6 +21,10 @@ function Common1000() {
   );
   const previousWPM = useSelector((state) => state.previousWPMReducer1000);
   const previousCPM = useSelector((state) => state.previousCPMReducer1000);
+  const latestErrors = useSelector((state) => state.latestErrorsReducer1000);
+  const previousErrors = useSelector(
+    (state) => state.previousErrorsReducer1000
+  );
 
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -41,6 +45,9 @@ function Common1000() {
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
   const [differenceInCPM, setDIfferenceInCPM] = useState(0);
+  const [differenceInErrors, setDIfferenceInErrors] = useState(0);
+  const [progress, setProgress] = useState(1);
+  const [realMistakes, setRealMistakes] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -99,11 +106,17 @@ function Common1000() {
         type: "SET_PREVIOUS_CPM_100",
         payload: latestCPM1000,
       });
+      dispatch({
+        type: "SET_PREVIOUS_ERRORS_1000",
+        payload: latestErrors,
+      });
     }
 
     const differenceWPM = latestWPM1000 - previousWPM;
     const differenceCPM = latestCPM1000 - previousCPM;
+    const differenceErrors = latestErrors - previousErrors;
 
+    setDIfferenceInErrors(differenceErrors);
     setDIfferenceInCPM(differenceCPM);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
@@ -164,6 +177,22 @@ function Common1000() {
     setNewGame(false);
   }, [newGame]);
 
+  useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
+      if (progress <= charactersTyped) {
+        setProgress((progress) => progress + 1);
+      }
+
+      for (let i = 0; i < progress; i++) {
+        if (charactersTyped === progress) {
+          if (infoAboutCharacter[i] === false) {
+            setRealMistakes((mistake) => (mistake = realMistakes + 1));
+          }
+        }
+      }
+    }
+  }, [charactersTyped]);
+
   //========= Calculate words per minute //
 
   const calculateWordsPerMinute = () => {
@@ -197,10 +226,7 @@ function Common1000() {
     } else if (mistakes < 10) {
       setMistakesAlert(false);
     }
-    if (
-      e.target.value.length === textArrayCharacters.length &&
-      mistakes === 0
-    ) {
+    if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
       e.target.value = "";
@@ -208,6 +234,9 @@ function Common1000() {
       setNewGame(true);
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
+      setRealMistakes(0);
+      setProgress(1);
+      setCharactersTyped(0);
       dispatch({
         type: "SET_LATEST_WPM_1000",
         payload: calculateWordsPerMinute(),
@@ -215,6 +244,10 @@ function Common1000() {
       dispatch({
         type: "SET_LATEST_CPM_1000",
         payload: calculateCharactersPerMinute(),
+      });
+      dispatch({
+        type: "SET_LATEST_ERRORS_1000",
+        payload: realMistakes,
       });
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
@@ -228,7 +261,10 @@ function Common1000() {
         setNewGame(true);
         setSpanArray(blankSpanArray);
         setInfoAboutCharacter(blankInfoArray);
+        setCharactersTyped(0);
         setMistakes(0);
+        setRealMistakes(0);
+        setProgress(1);
       }
     }
 
@@ -335,7 +371,7 @@ function Common1000() {
         <Header text="Type the 1000 most common words in English (advanced)" />
         <div className="statistics">
           <div className="d-flex">
-            <h5 className="mr-3">WPM:{displayWPM()}</h5>
+            <h5 className="mr-1">WPM: {displayWPM()} |</h5>
             <h5
               style={
                 differenceInWPM > 0
@@ -347,7 +383,7 @@ function Common1000() {
             </h5>
           </div>
           <div className="d-flex">
-            <h5 className="mr-3">Characters per minute:{displayCPM()}</h5>
+            <h5 className="mr-1">Characters per minute: {displayCPM()} |</h5>
             <h5
               style={
                 differenceInWPM > 0
@@ -358,7 +394,20 @@ function Common1000() {
               {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
             </h5>
           </div>
-          <h5>Errors:{mistakes}</h5>
+          <div className="d-flex">
+            <h5 className="mr-1">Errors: {latestErrors} |</h5>
+            <h5
+              style={
+                differenceInErrors < 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInErrors > 0
+                ? `+${differenceInErrors}`
+                : differenceInErrors}
+            </h5>
+          </div>
         </div>
         <hr
           style={isRunning ? { opacity: 0 } : { opacity: 1 }}

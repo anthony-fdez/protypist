@@ -22,6 +22,8 @@ function Common200() {
   );
   const previousWPM = useSelector((state) => state.previousWPMReducer200);
   const previousCPM = useSelector((state) => state.previousCPMReducer200);
+  const latestErrors = useSelector((state) => state.latestErrorsReducer200);
+  const previousErrors = useSelector((state) => state.previousErrorsReducer200);
 
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -42,6 +44,9 @@ function Common200() {
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
   const [differenceInCPM, setDIfferenceInCPM] = useState(0);
+  const [differenceInErrors, setDIfferenceInErrors] = useState(0);
+  const [progress, setProgress] = useState(1);
+  const [realMistakes, setRealMistakes] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -101,11 +106,17 @@ function Common200() {
         type: "SET_PREVIOUS_CPM_200",
         payload: latestCPM200,
       });
+      dispatch({
+        type: "SET_PREVIOUS_ERRORS_200",
+        payload: latestErrors,
+      });
     }
 
     const differenceWPM = latestWPM200 - previousWPM;
     const differenceCPM = latestCPM200 - previousCPM;
+    const differenceErrors = latestErrors - previousErrors;
 
+    setDIfferenceInErrors(differenceErrors);
     setDIfferenceInCPM(differenceCPM);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
@@ -163,6 +174,22 @@ function Common200() {
   }, [charactersTyped]);
 
   useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
+      if (progress <= charactersTyped) {
+        setProgress((progress) => progress + 1);
+      }
+
+      for (let i = 0; i < progress; i++) {
+        if (charactersTyped === progress) {
+          if (infoAboutCharacter[i] === false) {
+            setRealMistakes((mistake) => (mistake = realMistakes + 1));
+          }
+        }
+      }
+    }
+  }, [charactersTyped]);
+
+  useEffect(() => {
     setNewGame(false);
   }, [newGame]);
 
@@ -209,6 +236,9 @@ function Common200() {
       setNewGame(true);
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
+      setRealMistakes(0);
+      setProgress(1);
+      setCharactersTyped(0);
       dispatch({
         type: "SET_LATEST_WPM_200",
         payload: calculateWordsPerMinute(),
@@ -217,19 +247,26 @@ function Common200() {
         type: "SET_LATEST_CPM_200",
         payload: calculateCharactersPerMinute(),
       });
+      dispatch({
+        type: "SET_LATEST_ERRORS_200",
+        payload: realMistakes,
+      });
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
     }
 
     let inputArray = e.target.value.split(" ");
     for (let i = 0; i < inputArray.length; i++) {
-      if (inputArray[i].search("//r") !== -1) {
+      if (inputArray[i].search("//f") !== -1) {
         e.target.value = "";
         setIsRunning(false);
         setNewGame(true);
         setSpanArray(blankSpanArray);
         setInfoAboutCharacter(blankInfoArray);
+        setCharactersTyped(0);
         setMistakes(0);
+        setRealMistakes(0);
+        setProgress(1);
       }
     }
 
@@ -359,7 +396,20 @@ function Common200() {
               {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
             </h5>
           </div>
-          <h5>Errors:{mistakes}</h5>
+          <div className="d-flex">
+            <h5 className="mr-3">Errors:{latestErrors}</h5>
+            <h5
+              style={
+                differenceInErrors < 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInErrors > 0
+                ? `+${differenceInErrors}`
+                : differenceInErrors}
+            </h5>
+          </div>
         </div>
         <hr
           style={isRunning ? { opacity: 0 } : { opacity: 1 }}
