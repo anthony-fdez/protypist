@@ -47,6 +47,7 @@ function Common200() {
   const [differenceInErrors, setDIfferenceInErrors] = useState(0);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -238,6 +239,7 @@ function Common200() {
       setInfoAboutCharacter(blankInfoArray);
       setRealMistakes(0);
       setProgress(1);
+      calculateAccuracy();
       setCharactersTyped(0);
       dispatch({
         type: "SET_LATEST_WPM_200",
@@ -267,6 +269,7 @@ function Common200() {
         setMistakes(0);
         setRealMistakes(0);
         setProgress(1);
+        calculateAccuracy();
       }
     }
 
@@ -364,6 +367,17 @@ function Common200() {
     }
   };
 
+  const calculateAccuracy = () => {
+    if (textArrayCharacters !== undefined) {
+      const caractersRight = textArrayCharacters.length - realMistakes;
+      const accuracy = Math.floor(
+        (caractersRight / textArrayCharacters.length) * 100
+      );
+
+      setAccuracy(accuracy);
+    }
+  };
+
   return (
     <animated.div
       style={animation}
@@ -397,18 +411,32 @@ function Common200() {
             </h5>
           </div>
           <div className="d-flex">
-            <h5 className="mr-1">Errors: {latestErrors} |</h5>
-            <h5
-              style={
-                differenceInErrors < 0
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(230, 41, 41)" }
-              }
-            >
-              {differenceInErrors > 0
-                ? `+${differenceInErrors}`
-                : differenceInErrors}
-            </h5>
+            <div className="d-flex mr-5">
+              <h5 className="mr-1">Errors: {latestErrors} |</h5>
+              <h5
+                style={
+                  differenceInErrors < 0
+                    ? { color: "rgb(41, 230, 50)" }
+                    : { color: "rgba(230, 41, 41)" }
+                }
+              >
+                {differenceInErrors > 0
+                  ? `+${differenceInErrors}`
+                  : differenceInErrors}
+              </h5>
+            </div>
+            <div className="d-flex">
+              <h5 className="mr-2">Acuracy: </h5>
+              <h5
+                style={
+                  accuracy > 96
+                    ? { color: "rgb(41, 230, 50)" }
+                    : { color: "rgba(255, 255, 255)" }
+                }
+              >
+                {accuracy === 0 ? "..." : `${accuracy}%`}
+              </h5>
+            </div>
           </div>
         </div>
         <hr
@@ -459,7 +487,7 @@ function Common200() {
             className="input-box-shown form-control"
           ></input>
           <p className="alert-warning alert-tip">
-            <strong>Tip:</strong> you can type " //r" any time you want to
+            <strong>Tip:</strong> you can type " //f" any time you want to
             restart the test. Or press F5, that will do too.
           </p>
         </div>

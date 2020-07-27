@@ -61,6 +61,7 @@ function TypingTest() {
   const [differenceInErrors, setDIfferenceInErrors] = useState(0);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
 
   //========= Convert the plain text into arrays //
 
@@ -255,6 +256,7 @@ function TypingTest() {
       e.target.value = "";
       setIsRunning(false);
       setFinished(true);
+      calculateAccuracy();
       dispatch({
         type: "SET_LATEST_WPM",
         payload: calculateWordsPerMinute(),
@@ -286,6 +288,7 @@ function TypingTest() {
         setMistakes(0);
         setRealMistakes(0);
         setProgress(1);
+        calculateAccuracy();
       }
     }
 
@@ -411,6 +414,17 @@ function TypingTest() {
     }
   };
 
+  const calculateAccuracy = () => {
+    if (textArrayCharacters !== undefined) {
+      const caractersRight = textArrayCharacters.length - realMistakes;
+      const accuracy = Math.floor(
+        (caractersRight / textArrayCharacters.length) * 100
+      );
+
+      setAccuracy(accuracy);
+    }
+  };
+
   const sideMenu = () => {
     let wordIsNotNumber = false;
     const getTheDataFromWords = (e) => {
@@ -498,18 +512,32 @@ function TypingTest() {
           </h5>
         </div>
         <div className="d-flex">
-          <h5 className="mr-1">Errors: {latestErrors} |</h5>
-          <h5
-            style={
-              differenceInErrors < 0
-                ? { color: "rgb(41, 230, 50)" }
-                : { color: "rgba(230, 41, 41)" }
-            }
-          >
-            {differenceInErrors > 0
-              ? `+${differenceInErrors}`
-              : differenceInErrors}
-          </h5>
+          <div className="d-flex mr-5">
+            <h5 className="mr-1">Errors: {latestErrors} |</h5>
+            <h5
+              style={
+                differenceInErrors < 0
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(230, 41, 41)" }
+              }
+            >
+              {differenceInErrors > 0
+                ? `+${differenceInErrors}`
+                : differenceInErrors}
+            </h5>
+          </div>
+          <div className="d-flex">
+            <h5 className="mr-2">Acuracy: </h5>
+            <h5
+              style={
+                accuracy > 96
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: "rgba(255, 255, 255)" }
+              }
+            >
+              {accuracy === 0 ? "..." : `${accuracy}%`}
+            </h5>
+          </div>
         </div>
       </div>
     );
@@ -590,6 +618,7 @@ function TypingTest() {
                   setMistakes(0);
                   setRealMistakes(0);
                   setProgress(1);
+                  calculateAccuracy();
                 }}
                 className="btn btn-light mr-3"
               >
@@ -602,6 +631,7 @@ function TypingTest() {
                   setFinished(false);
                   setNewGame(true);
                   setRealMistakes(0);
+                  calculateAccuracy();
                 }}
                 className="btn btn-light"
               >
