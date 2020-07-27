@@ -400,6 +400,60 @@
     opacity: 0;
     transition: 0.2s;
   }
+  .side-menu-open {
+    z-index: 40;
+    background-color: rgb(51, 51, 51);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    transition: 0.3s;
+    overflow-y: scroll;
+  }
+  .side-menu-closed {
+    transform: translateX(400px);
+    z-index: 40;
+    background-color: rgb(51, 51, 51);
+    position: fixed;
+    transition: 0.3s;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    overflow-y: scroll;
+  }
+  .darkened-background-on {
+    z-index: 30;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: 0.3s;
+  }
+  .darkened-background-off {
+    pointer-events: none;
+    width: 100%;
+    z-index: 30;
+    position: fixed;
+    height: 100%;
+    transition: 0.3s;
+    background-color: rgba(129, 37, 37, 0);
+  }
+
+  .side-menu-list-item {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgb(102, 102, 102);
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .side-menu-list-item:hover {
+    transition: 0.3s;
+    transform: translateY(-3px);
+    background-color: rgb(121, 121, 121);
+  }
 }
 @media only screen and (max-width: 1500px) {
   .TypingTest-page-dark {
@@ -765,4 +819,71 @@
     opacity: 0;
     transition: 0.2s;
   }
+}
+.WPMcalculator {
+  padding: 1rem;
+  text-align: center;
+  margin: 0;
+}
+.wpm-calculator {
+  margin-top: 2rem;
+}
+.input-item {
+  margin-bottom: 1rem;
+  text-align: left;
+  width: 320px;
+  height: 50px;
+  position: relative;
+}
+.input-item input {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  border: none;
+  outline: none;
+  background-color: rgb(51, 51, 51);
+  color: white;
+}
+.input-item label {
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid white;
+  z-index: 0;
+  overflow: hidden;
+}
+.input-item label::after {
+  content: "";
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  z-index: 3;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid rgb(0, 119, 255);
+  transform: translateX(-100%);
+  transition: 0.3s;
+}
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  transition: 0.3s;
+}
+.input-item input:focus + .label-name .content-name,
+.input-item input:valid + .label-name .content-name {
+  transform: translateY(-1.4rem) translateX(1rem);
+  color: rgb(0, 119, 255);
+  font-size: 14px;
+}
+.input-item input:focus + .label-name::after,
+.input-item input:valid + .label-name::after {
+  transform: translateX(0%);
+  transition: 0.3s;
 }

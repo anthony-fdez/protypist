@@ -31,10 +31,10 @@ function SideMenu() {
       if (location === path) {
         return "typing-game-active-dark";
       } else return "typing-game-button-dark";
-    } else if (!theme) {
+    } else if (theme === false) {
       if (location === path) {
         return "typing-game-active-light";
-      } else return "navigation-button-light";
+      } else return "typing-game-button-light";
     }
   };
 
@@ -85,9 +85,9 @@ function SideMenu() {
             >
               <i
                 style={{ position: "absolute", left: "20px" }}
-                className="fas fa-keyboard"
+                className="fas fa-quote-left"
               ></i>
-              <h5>TypingTest</h5>
+              <h5>WPM calc</h5>
             </div>
           </div>
         </Link>
@@ -117,15 +117,7 @@ function SideMenu() {
           style={{ marginTop: "2rem" }}
           className={theme ? "white-hr" : "dark-hr"}
         ></hr>
-        <Link to="/WPMcalculator">
-          <div className={checkButtonClass("/WPMcalculator")}>
-            <i
-              style={{ position: "absolute", left: "20px" }}
-              className="fas fa-quote-left"
-            ></i>
-            <h5>WPM calc</h5>
-          </div>
-        </Link>
+
         <Link
           to="/settings"
           style={{ position: "absolute", width: "200px", bottom: "2rem" }}

@@ -33,6 +33,7 @@ function TypingTest() {
   const previousErrors = useSelector(
     (state) => state.previousErrorsReducerTypingGame
   );
+  const isSideMenuOpen = useSelector((state) => state.openSideMenuReducer);
 
   //state
   const [text, setText] = useState();
@@ -410,6 +411,50 @@ function TypingTest() {
     }
   };
 
+  const sideMenu = () => {
+    return (
+      <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
+        <div>
+          <h3>WPM calculator</h3>
+          <hr
+            style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
+            className={theme ? "white-hr" : "dark-hr"}
+          ></hr>
+          <div className="WPMcalculator">
+            <div className="wpm-calculator container">
+              <div className="input-item">
+                <input
+                  required
+                  type="text"
+                  name="words"
+                  autoComplete="off"
+                ></input>
+                <label htmlFor="words" className="label-name">
+                  <span className="content-name">Number of Words</span>
+                </label>
+              </div>
+              <div className="input-item">
+                <input
+                  required
+                  type="text"
+                  name="words"
+                  autoComplete="off"
+                ></input>
+                <label htmlFor="words" className="label-name">
+                  <span className="content-name">Seconds</span>
+                </label>
+              </div>
+            </div>
+            <div className="container mt-5">
+              <h2>WPM: 0</h2>
+              <h2>CPM : 0</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const displayTheStatistics = () => {
     return (
       <div className="statistics">
@@ -460,6 +505,17 @@ function TypingTest() {
       style={animation}
       className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
     >
+      <div
+        onClick={() =>
+          dispatch({
+            type: "TOGGLE_OPENING_SIDE_MENU",
+          })
+        }
+        className={
+          isSideMenuOpen ? "darkened-background-on" : "darkened-background-off"
+        }
+      ></div>
+      {sideMenu()}
       <div className="TypingTest">
         <Header text="Improve your typing skills" />
         {displayTheStatistics()}

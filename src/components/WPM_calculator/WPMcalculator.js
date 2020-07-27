@@ -19,7 +19,6 @@ function WPMcalculator() {
       className={theme ? "WPMcalculator-page-dark" : "WPMcalculator-page-light"}
     >
       <div className="WPMcalculator">
-        <Header text="Words Per Minute Calculator" />
         <div className="wpm-calculator container d-flex justify-content-between">
           <div className="input-item">
             <input required type="text" name="words" autoComplete="off"></input>

@@ -37,10 +37,10 @@ function App() {
         <Route path="/WPMcalculator">
           <WPMcalculator />
         </Route>
-        <Route path="/200">
+        <Route path="/typingtest/200">
           <Common200 />
         </Route>
-        <Route path="/1000">
+        <Route path="/typingtest/1000">
           <Common1000 />
         </Route>
         <Route path="/settings">

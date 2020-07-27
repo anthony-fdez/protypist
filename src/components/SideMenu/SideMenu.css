@@ -51,6 +51,7 @@ a:hover {
   height: 2.5rem;
   transition: 0.3s;
 }
+
 .navigation-button-light {
   display: flex;
   justify-content: center;
@@ -93,9 +94,37 @@ a:hover {
   height: 2.5rem;
   transition: 0.3s;
 }
+.typing-game-button-light {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+  margin-top: 1rem;
+  padding: 5px;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  cursor: pointer;
+  height: 2.5rem;
+  transition: 0.3s;
+}
 .typing-game-active-dark {
   align-items: center;
-  height: 7rem;
+  height: 8rem;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 5px;
+  background-color: rgb(0, 110, 255);
+  cursor: pointer;
+  transition: 0.2s;
+  overflow: hidden;
+  position: relative;
+}
+.typing-game-active-light {
+  align-items: center;
+  height: 8rem;
   margin: 0;
   margin-top: 1rem;
   padding: 5px;
@@ -122,7 +151,7 @@ a:hover {
   align-items: center;
   padding: 1rem;
   background-color: rgb(35, 216, 147);
-  top: 3rem;
+  top: 3.5rem;
   border-radius: 10px;
   transition: 0.3s;
 }
