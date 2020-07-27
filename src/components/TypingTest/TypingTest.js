@@ -412,6 +412,16 @@ function TypingTest() {
   };
 
   const sideMenu = () => {
+    let wordIsNotNumber = false;
+    const getTheDataFromWords = (e) => {
+      if (isNaN(e.target.value)) {
+        wordIsNotNumber = true;
+        console.log("Not a number");
+      } else {
+        wordIsNotNumber = false;
+        console.log("Is a number");
+      }
+    };
     return (
       <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
         <div>
@@ -428,9 +438,14 @@ function TypingTest() {
                   type="text"
                   name="words"
                   autoComplete="off"
+                  onChange={getTheDataFromWords}
                 ></input>
                 <label htmlFor="words" className="label-name">
-                  <span className="content-name">Number of Words</span>
+                  <span className="content-name">
+                    {wordIsNotNumber
+                      ? "It has to be a number"
+                      : "Number of words"}
+                  </span>
                 </label>
               </div>
               <div className="input-item">
