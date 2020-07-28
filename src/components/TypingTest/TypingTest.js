@@ -444,7 +444,18 @@ function TypingTest() {
         }
       >
         <div>
-          <h3>Info About Text</h3>
+          <div className="side-menu-header">
+            <h3>Info About Text</h3>
+            <i
+              onClick={() => {
+                dispatch({
+                  type: "TOGGLE_OPENING_SIDE_MENU",
+                });
+              }}
+              className="fas fa-times fa-2x close-icon"
+            ></i>
+          </div>
+
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
         </div>
         <div className="side-menu-container">
