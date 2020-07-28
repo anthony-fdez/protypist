@@ -62,12 +62,15 @@ function TypingTest() {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+  //this is the random number rorresponding to the selected text
+  const [selectedRandomTextIndex, setSelectedRandomTextIndex] = useState(0);
 
   //========= Convert the plain text into arrays //
 
   useEffect(() => {
     let json = require("../data/texts.json");
     let random = Math.floor(Math.random() * json.text.length);
+    setSelectedRandomTextIndex(random);
     setText(json.text[random]);
   }, [newGame]);
 
@@ -426,59 +429,52 @@ function TypingTest() {
   };
 
   const sideMenu = () => {
-    let wordIsNotNumber = false;
-    const getTheDataFromWords = (e) => {
-      if (isNaN(e.target.value)) {
-        wordIsNotNumber = true;
-        console.log("Not a number");
-      } else {
-        wordIsNotNumber = false;
-        console.log("Is a number");
-      }
-    };
+    const data = require("../data/texts.json");
+    console.log(data);
     return (
-      <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
+      <div
+        className={
+          isSideMenuOpen
+            ? theme
+              ? "side-menu-open-dark"
+              : "side-menu-open-light"
+            : theme
+            ? "side-menu-closed-dark"
+            : "side-menu-closed-light"
+        }
+      >
         <div>
-          <h3>WPM calculator</h3>
+          <h3>Info About Text</h3>
+          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        </div>
+        <div className="side-menu-container">
+          <div className="side-menu-picture-div">
+            <img
+              className="side-menu-picture"
+              src={data.text[selectedRandomTextIndex].URL}
+            ></img>
+          </div>
           <hr
-            style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
+            style={{ width: "85%" }}
             className={theme ? "white-hr" : "dark-hr"}
           ></hr>
-          <div className="WPMcalculator">
-            <div className="wpm-calculator container">
-              <div className="input-item">
-                <input
-                  required
-                  type="text"
-                  name="words"
-                  autoComplete="off"
-                  onChange={getTheDataFromWords}
-                ></input>
-                <label htmlFor="words" className="label-name">
-                  <span className="content-name">
-                    {wordIsNotNumber
-                      ? "It has to be a number"
-                      : "Number of words"}
-                  </span>
-                </label>
-              </div>
-              <div className="input-item">
-                <input
-                  required
-                  type="text"
-                  name="words"
-                  autoComplete="off"
-                ></input>
-                <label htmlFor="words" className="label-name">
-                  <span className="content-name">Seconds</span>
-                </label>
-              </div>
-            </div>
-            <div className="container mt-5">
-              <h2>WPM: 0</h2>
-              <h2>CPM : 0</h2>
-            </div>
-          </div>
+        </div>
+        <div className="side-menu-info-container">
+          <h5 className="mb-2">
+            This quote is from the {data.text[selectedRandomTextIndex].type}:
+          </h5>
+          <a
+            className="link"
+            target="blank"
+            href={data.text[selectedRandomTextIndex].linkURL}
+          >
+            <h5 className="link-h5">
+              "{data.text[selectedRandomTextIndex].from}"
+            </h5>
+          </a>
+
+          <h5 className="mt-2">By: {data.text[selectedRandomTextIndex].by}</h5>
+          <div className="d-flex justify-content-center"></div>
         </div>
       </div>
     );
@@ -528,13 +524,7 @@ function TypingTest() {
           </div>
           <div className="d-flex">
             <h5 className="mr-2">Acuracy: </h5>
-            <h5
-              style={
-                accuracy > 96
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(255, 255, 255)" }
-              }
-            >
+            <h5 style={accuracy > 96 ? { color: "rgb(41, 230, 50)" } : {}}>
               {accuracy === 0 ? "..." : `${accuracy}%`}
             </h5>
           </div>
@@ -620,7 +610,7 @@ function TypingTest() {
                   setProgress(1);
                   calculateAccuracy();
                 }}
-                className="btn btn-light mr-3"
+                className="btn btn-primary mr-3"
               >
                 Type Again
               </button>
@@ -633,7 +623,7 @@ function TypingTest() {
                   setRealMistakes(0);
                   calculateAccuracy();
                 }}
-                className="btn btn-light"
+                className="btn btn-primary"
               >
                 New Text
               </button>
@@ -644,8 +634,20 @@ function TypingTest() {
               <img className="picture-image" src={text && text.URL}></img>
             </div>
             <div className="info-about-text-text">
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-              <h5>{text && text.from}</h5>
+              <hr
+                style={{ marginBottom: "1rem" }}
+                className={theme ? "white-hr" : "dark-hr"}
+              ></hr>
+              <h5>
+                This quote is from the {text && text.type}:{" "}
+                <a
+                  className={theme ? "linkURL" : "linkURLlight"}
+                  target="blank"
+                  href={text && text.linkURL}
+                >
+                  {text && text.from}
+                </a>
+              </h5>
               <br></br>
               <h5>By: {text && text.by}</h5>
               <br></br>

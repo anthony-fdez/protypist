@@ -48,7 +48,7 @@ function SideMenu() {
       </div>
 
       <div className="navigation-buttons">
-        <Link to="/">
+        <Link className="left-menu-link" to="/">
           <div className={checkButtonClass("/")}>
             <i
               style={{ position: "absolute", left: "20px" }}
@@ -57,7 +57,7 @@ function SideMenu() {
             <h5>Home</h5>
           </div>
         </Link>
-        <Link to="/10second">
+        <Link className="left-menu-link" to="/10second">
           <div className={checkButtonClass("/10second")}>
             <i
               style={{ position: "absolute", left: "20px" }}
@@ -66,7 +66,7 @@ function SideMenu() {
             <h5>10second</h5>
           </div>
         </Link>
-        <Link to="/typingtest">
+        <Link className="left-menu-link" to="/typingtest">
           <div className={checkTypingGameClass("/typingtest")}>
             <div className="typing-test-top-button">
               <i
@@ -87,7 +87,7 @@ function SideMenu() {
                 style={{ position: "absolute", left: "20px" }}
                 className="fas fa-quote-left"
               ></i>
-              <h5>WPM calc</h5>
+              <h5>Info</h5>
             </div>
           </div>
         </Link>
@@ -95,7 +95,7 @@ function SideMenu() {
           style={{ marginTop: "2rem" }}
           className={theme ? "white-hr" : "dark-hr"}
         ></hr>
-        <Link to="/200">
+        <Link className="left-menu-link" to="/200">
           <div className={checkButtonClass("/200")}>
             <i
               style={{ position: "absolute", left: "20px" }}
@@ -104,7 +104,7 @@ function SideMenu() {
             <h5>Top 200</h5>
           </div>
         </Link>
-        <Link to="/1000">
+        <Link className="left-menu-link" to="/1000">
           <div className={checkButtonClass("/1000")}>
             <i
               style={{ position: "absolute", left: "20px" }}
@@ -119,6 +119,7 @@ function SideMenu() {
         ></hr>
 
         <Link
+          className="left-menu-link"
           to="/settings"
           style={{ position: "absolute", width: "200px", bottom: "2rem" }}
         >

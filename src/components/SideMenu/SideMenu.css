@@ -6,15 +6,14 @@ h2,
 h5 {
   margin: 0;
 }
-a {
+.left-menu-link {
   text-decoration: none;
   color: white;
 }
-a:hover {
+.left-menu-link:hover {
   color: white;
   text-decoration: none;
 }
-
 .SideMenu-dark {
   background-color: rgb(50, 50, 50);
   color: white;
