@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -19,6 +19,15 @@ function Header(props) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmationPassword, setConfirmationPassword] = useState(null);
+
+  useEffect(() => {
+    if (jwt === null) {
+      dispatch({
+        type: "LOG_IN_OUT",
+        payload: false,
+      });
+    }
+  }, [jwt]);
 
   const getTheEmail = (e) => {
     setEmail(e.target.value);
@@ -47,6 +56,10 @@ function Header(props) {
             type: "LOG_IN_OUT",
             payload: true,
           });
+          dispatch({
+            type: "SET_JWT",
+            payload: response.data.token,
+          });
           setIsSignUpMenuOpen(false);
           setIsLoginMenuOpen(false);
         }
@@ -66,12 +79,53 @@ function Header(props) {
     axios
       .post("http://localhost:5000/users", user)
       .then((response) => {
-        console.log(response);
+        if (response.status === 201) {
+          dispatch({
+            type: "LOG_IN_OUT",
+            payload: true,
+          });
+          dispatch({
+            type: "SET_JWT",
+            payload: response.data.token,
+          });
+          setIsSignUpMenuOpen(false);
+          setIsLoginMenuOpen(false);
+        }
       })
       .catch((e) => {
         console.log(e.response);
       });
   };
+
+  const logOut = () => {
+    const headers = { Authorization: jwt };
+    const bodyParameters = { key: "value" };
+
+    axios
+      .post("http://localhost:5000/users/logout", bodyParameters, {
+        headers: headers,
+      })
+      .then(() => {
+        setIsSignUpMenuOpen(false);
+        setIsLoginMenuOpen(false);
+        setIsLogOutMenuOpen(false);
+
+        dispatch({
+          type: "LOG_IN_OUT",
+          payload: false,
+        });
+
+        dispatch({
+          type: "SET_JWT",
+          payload: null,
+        });
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  };
+
+  const logOutAll = () => {};
 
   const logInMenu = () => {
     return (
@@ -225,8 +279,18 @@ function Header(props) {
         ></hr>
         <h5 className="text-left mt-3 ml-3">Are you sure?</h5>
         <div className="d-flex justify-content-between">
-          <button className="log-out-buttons btn btn-light">No</button>
-          <button className="log-out-buttons btn btn-danger">Yes</button>
+          <button
+            onClick={() => setIsLogOutMenuOpen(false)}
+            className="log-out-buttons btn btn-light"
+          >
+            No
+          </button>
+          <button
+            onClick={() => logOut()}
+            className="log-out-buttons btn btn-danger"
+          >
+            Yes
+          </button>
         </div>
         <hr
           style={{ marginTop: "2rem" }}
@@ -234,6 +298,7 @@ function Header(props) {
         ></hr>
         <h5 className="text-left mt-3 ml-3">Log out in all devices</h5>
         <input
+          type="password"
           className="login-input mt-2"
           placeholder="Your current password"
         ></input>
