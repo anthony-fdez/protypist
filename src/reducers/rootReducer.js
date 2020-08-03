@@ -215,7 +215,16 @@ const openSideMenuReducer = (state = false, action) => {
 const isLoggedInReducer = (state = false, action) => {
   switch (action.type) {
     case "LOG_IN_OUT":
-      return !state;
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const JWTreducer = (state = null, action) => {
+  switch (action.type) {
+    case "SET_JWT":
+      return action.payload;
     default:
       return state;
   }
@@ -246,6 +255,7 @@ const allReducers = combineReducers({
   previousErrorsReducer1000: previousErrorsReducer1000,
   openSideMenuReducer: openSideMenuReducer,
   isLoggedInReducer: isLoggedInReducer,
+  JWTreducer: JWTreducer,
 });
 
 export default allReducers;
