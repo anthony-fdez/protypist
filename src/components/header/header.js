@@ -65,6 +65,7 @@ function Header(props) {
         }
       })
       .catch((e) => {
+        alert("Wrong Email or Password");
         console.log(e.response);
       });
   };
