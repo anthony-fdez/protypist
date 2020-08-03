@@ -430,7 +430,6 @@ function TypingTest() {
 
   const sideMenu = () => {
     const data = require("../data/texts.json");
-    console.log(data);
     return (
       <div
         className={

@@ -10,6 +10,27 @@ function Header(props) {
   const [isLogInMenuOpen, setIsLoginMenuOpen] = useState(false);
   const [isSignUpMenuOpen, setIsSignUpMenuOpen] = useState(false);
 
+  //==================================================================
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [confirmationPassword, setConfirmationPassword] = useState(null);
+
+  const getTheEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const getTheName = (e) => {
+    setName(e.target.value);
+  };
+  const getThePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const getTheConfirmationPassword = (e) => {
+    setConfirmationPassword(e.target.value);
+  };
+
+  const logIn = () => {};
+
   const logInMenu = () => {
     return (
       <div
@@ -19,7 +40,7 @@ function Header(props) {
           <h2>Log in</h2>
           <i
             onClick={() => setIsLoginMenuOpen(!isLogInMenuOpen)}
-            className="fas fa-times fa-2x"
+            className="close-icon-login fas fa-times fa-2x"
           ></i>
         </div>
         <hr
@@ -29,11 +50,23 @@ function Header(props) {
         <div>
           <div>
             <h5 className="login-labels">Email:</h5>
-            <input className="login-input" for="email"></input>
+            <input
+              onChange={(e) => {
+                getTheEmail(e);
+              }}
+              className="login-input"
+              for="email"
+            ></input>
           </div>
           <div>
             <h5 className="login-labels">Password:</h5>
-            <input type="password" className="login-input"></input>
+            <input
+              onChange={(e) => {
+                getThePassword(e);
+              }}
+              type="password"
+              className="login-input"
+            ></input>
           </div>
           <div className="log-in-button-menu">
             <h5>Log In</h5>
@@ -41,7 +74,14 @@ function Header(props) {
           <div style={{ marginTop: "5rem" }}>
             <p>Don't have an account?</p>
             <div className="sign-up-login-button-menu">
-              <h5>Create Account</h5>
+              <h5
+                onClick={() => {
+                  setIsLoginMenuOpen(false);
+                  setIsSignUpMenuOpen(true);
+                }}
+              >
+                Create Account
+              </h5>
             </div>
           </div>
         </div>
@@ -57,8 +97,8 @@ function Header(props) {
         <div className="signUp-header">
           <h2>Sign Up</h2>
           <i
-            onClick={() => setIsLoginMenuOpen(!isLogInMenuOpen)}
-            className="fas fa-times fa-2x"
+            onClick={() => setIsSignUpMenuOpen(false)}
+            className="close-icon-login fas fa-times fa-2x"
           ></i>
         </div>
         <hr
@@ -67,21 +107,47 @@ function Header(props) {
         ></hr>
         <div>
           <div>
+            <h5 className="login-labels">Name:</h5>
+            <input
+              onChange={(e) => {
+                getTheName(e);
+              }}
+              className="login-input"
+              for="name"
+            ></input>
+          </div>
+          <div>
             <h5 className="login-labels">Email:</h5>
-            <input className="login-input" for="email"></input>
+            <input
+              onChange={(e) => {
+                getTheEmail(e);
+              }}
+              className="login-input"
+              for="email"
+            ></input>
           </div>
           <div>
             <h5 className="login-labels">Password:</h5>
-            <input type="password" className="login-input"></input>
+            <input
+              onChange={(e) => {
+                getThePassword(e);
+              }}
+              type="password"
+              className="login-input"
+            ></input>
+          </div>
+          <div>
+            <h5 className="login-labels">Reenter password:</h5>
+            <input
+              onChange={(e) => {
+                getTheConfirmationPassword(e);
+              }}
+              type="password"
+              className="login-input"
+            ></input>
           </div>
           <div className="log-in-button-menu">
-            <h5>Log In</h5>
-          </div>
-          <div style={{ marginTop: "5rem" }}>
-            <p>Don't have an account?</p>
-            <div className="sign-up-login-button-menu">
-              <h5>Create Account</h5>
-            </div>
+            <h5>Create Account</h5>
           </div>
         </div>
       </div>
@@ -102,10 +168,11 @@ function Header(props) {
         </div>
 
         {logInMenu()}
+        {signUpMenu()}
       </div>
       <div
         className={
-          isLogInMenuOpen
+          isLogInMenuOpen || isSignUpMenuOpen
             ? "darkned-background-active"
             : "darkned-background-off"
         }
