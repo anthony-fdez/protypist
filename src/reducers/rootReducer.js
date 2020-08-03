@@ -212,6 +212,15 @@ const openSideMenuReducer = (state = false, action) => {
   }
 };
 
+const isLoggedInReducer = (state = false, action) => {
+  switch (action.type) {
+    case "LOG_IN_OUT":
+      return !state;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   darkModeReducer: darkModeReducer,
   lengthReducer: lengthReducer,
@@ -236,6 +245,7 @@ const allReducers = combineReducers({
   latestErrorsReducer1000: latestErrorsReducer1000,
   previousErrorsReducer1000: previousErrorsReducer1000,
   openSideMenuReducer: openSideMenuReducer,
+  isLoggedInReducer: isLoggedInReducer,
 });
 
 export default allReducers;
