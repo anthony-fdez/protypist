@@ -101,19 +101,19 @@ function Header(props) {
       .catch((e) => {
         setUserName("Guest");
       });
-  }, [isLoggedIn]);
+  }, [jwt]);
 
   //hide the warning after 3 seconds
   useEffect(() => {
     let myTimeout;
-    if (isErrorWarningShown) {
+    if (isErrorWarningShown || isSuccessWarningShown) {
       myTimeout = setTimeout(() => {
         setIsErrorWarningShown(false);
         setIsSuccssWarningShown(false);
       }, 3000);
     }
     return () => clearTimeout(myTimeout);
-  }, [isErrorWarningShown]);
+  }, [isErrorWarningShown, isSuccessWarningShown]);
 
   const logIn = () => {
     const user = {
@@ -163,25 +163,48 @@ function Header(props) {
       email: emailSignUp,
     };
 
-    axios
-      .post("http://localhost:5000/users", user)
-      .then((response) => {
-        if (response.status === 201) {
-          dispatch({
-            type: "LOG_IN_OUT",
-            payload: true,
-          });
-          dispatch({
-            type: "SET_JWT",
-            payload: response.data.token,
-          });
-          setIsSignUpMenuOpen(false);
-          setIsLoginMenuOpen(false);
-        }
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+    if (emailSignUp === "" && name === "" && passwordSignUp === "") {
+      setMessage("Enter your information before submiting.");
+      setIsErrorWarningShown(true);
+    } else if (emailSignUp === "") {
+      setMessage("You need to provide a valid email.");
+      setIsErrorWarningShown(true);
+    } else if (name === "") {
+      setMessage("You need to provide a name.");
+      setIsErrorWarningShown(true);
+    } else if (passwordSignUp === "") {
+      setMessage("You need to provide a password, that's pretty important.");
+      setIsErrorWarningShown(true);
+    } else {
+      axios
+        .post("http://localhost:5000/users", user)
+        .then((response) => {
+          if (response.status === 201) {
+            dispatch({
+              type: "LOG_IN_OUT",
+              payload: true,
+            });
+            dispatch({
+              type: "SET_JWT",
+              payload: response.data.token,
+            });
+            setIsSignUpMenuOpen(false);
+            setIsLoginMenuOpen(false);
+          }
+          setMessage("Your account has been successfuly created.");
+          setIsSuccssWarningShown(true);
+        })
+        .catch((e) => {
+          if (e.response.data.errors.email) {
+            setMessage("You need to provide a valid email.");
+            setIsErrorWarningShown(true);
+          } else if (e.response.data.errors.password) {
+            setMessage("Your password is too easy to guess. Try again.");
+            setIsErrorWarningShown(true);
+          }
+          console.log(e.response);
+        });
+    }
   };
 
   const logOut = () => {
@@ -206,8 +229,14 @@ function Header(props) {
           type: "SET_JWT",
           payload: null,
         });
+        setMessage("Logged out successfully.");
+        setIsSuccssWarningShown(true);
       })
       .catch((e) => {
+        setMessage(
+          "Failed to log out, something bad happened in the server probably."
+        );
+        setIsErrorWarningShown(true);
         console.log(e.response);
       });
   };
@@ -234,9 +263,12 @@ function Header(props) {
           type: "SET_JWT",
           payload: null,
         });
+        setMessage("Logged out successfuly");
+        setIsSuccssWarningShown(true);
       })
       .catch((e) => {
-        alert("Wrong Password");
+        setMessage("Wrong password, Try again.");
+        setIsErrorWarningShown(true);
       });
   };
 
@@ -470,32 +502,31 @@ function Header(props) {
     );
   };
 
-  const errorWarning = () => {
+  const successWarning = () => {
     return (
       <div
         className={
-          isErrorWarningShown
-            ? "success-warning-shown"
-            : "success-warning-hidden"
+          isSuccessWarningShown
+            ? "success-warning-shown bg-primary"
+            : "success-warning-hidden bg-primary"
         }
       >
-        <h4 style={{ marginRight: "10px" }}>
-          <strong>Error: </strong>
-        </h4>
         <h5>{message}</h5>
       </div>
     );
   };
 
-  const successWarning = () => {
+  const errorWarning = () => {
     return (
       <div
         className={
-          isErrorWarningShown ? "error-warning-shown" : "error-warning-hidden"
+          isErrorWarningShown
+            ? "error-warning-shown bg-danger"
+            : "error-warning-hidden bg-danger"
         }
       >
         <h4 style={{ marginRight: "10px" }}>
-          <strong>Hey: </strong>
+          <strong>Error: </strong>
         </h4>
         <h5>{message}</h5>
       </div>
