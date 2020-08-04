@@ -1,0 +1,61 @@
+.stats-page-dark {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(31, 30, 30);
+  color: white;
+  transition: 0.3s;
+}
+.stats-page-light {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+}
+.Stats-dark {
+  background-color: rgb(31, 30, 30);
+  text-align: center;
+  margin-left: 200px;
+  transition: 0.3s;
+  color: white;
+  padding: 1rem;
+}
+.Stats-light {
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  margin-left: 200px;
+  transition: 0.3s;
+  color: black;
+  padding: 1rem;
+}
+h1 {
+  margin: 0;
+}
+.log-in-message {
+  width: 50%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: rgb(51, 50, 50);
+  margin-top: 2rem;
+}
+.all-time-div {
+  background-color: rgb(51, 50, 50);
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.stats-box {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 2rem;
+  width: 20%;
+  margin: 10px;
+}
+.all-time-div-stats {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}

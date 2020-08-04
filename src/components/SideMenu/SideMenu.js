@@ -117,7 +117,18 @@ function SideMenu() {
           style={{ marginTop: "2rem" }}
           className={theme ? "white-hr" : "dark-hr"}
         ></hr>
-
+        <Link className="left-menu-link" to="/stats">
+          <div className={checkButtonClass("/stats")}>
+            <i
+              style={{
+                position: "absolute",
+                left: "20px",
+              }}
+              className="far fa-chart-bar"
+            ></i>
+            <h5>Stats</h5>
+          </div>
+        </Link>
         <Link
           className="left-menu-link"
           to="/settings"
