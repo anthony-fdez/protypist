@@ -172,7 +172,7 @@ function Header(props) {
       .post("http://localhost:5000/users/logoutall", data, {
         headers: headers,
       })
-      .then((response) => {
+      .then(() => {
         setIsSignUpMenuOpen(false);
         setIsLoginMenuOpen(false);
         setIsLogOutMenuOpen(false);
