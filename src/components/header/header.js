@@ -23,6 +23,18 @@ function Header(props) {
   const [passwordLogOut, setPasswordLogOut] = useState(null);
   const [clear, setClear] = useState(false);
 
+  const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
+  const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
+
+  const [wrongPasswordError, setWrongPasswordError] = useState(false);
+  const [emailTakenError, setEmailTakenError] = useState(false);
+
+  const [accountCreatedMessage, setAccountCreatedMessage] = useState(false);
+  const [loggedInMessage, setLoggedInMessage] = useState(false);
+
+  //user Info
+  const [userName, setUserName] = useState("Guest");
+
   useEffect(() => {
     if (jwt === null) {
       dispatch({
@@ -80,6 +92,32 @@ function Header(props) {
       });
   }, []);
 
+  useEffect(() => {
+    const headers = { Authorization: jwt };
+
+    axios
+      .get("http://localhost:5000/users/me/name", {
+        headers: headers,
+      })
+      .then((response) => {
+        setUserName(response.data);
+      })
+      .catch((e) => {
+        setUserName("Guest");
+      });
+  }, [isLoggedIn]);
+
+  //hide the warning after 3 seconds
+  useEffect(() => {
+    let myTimeout;
+    if (isErrorWarningShown) {
+      myTimeout = setTimeout(() => {
+        setIsErrorWarningShown(false);
+      }, 3000);
+    }
+    return () => clearTimeout(myTimeout);
+  }, [isErrorWarningShown]);
+
   const logIn = () => {
     const user = {
       email: emailLogIn,
@@ -103,7 +141,8 @@ function Header(props) {
         }
       })
       .catch((e) => {
-        alert("Wrong Email or Password");
+        setWrongPasswordError(true);
+        setIsErrorWarningShown(true);
         console.log(e.response);
       });
   };
@@ -422,10 +461,62 @@ function Header(props) {
     );
   };
 
+  const selectTheError = () => {
+    if (emailTakenError) {
+      return "This email is already taken, try loggin in!";
+    } else if (wrongPasswordError) {
+      return "Wrong Email or Password, try again";
+    }
+  };
+
+  const selectTheMessage = () => {
+    if (accountCreatedMessage) {
+      return "Your account has been successculy created!";
+    } else if (loggedInMessage) {
+      return "You are logged in, have fun typing!";
+    }
+  };
+
+  const errorWarning = () => {
+    return (
+      <div
+        className={
+          isErrorWarningShown
+            ? "success-warning-shown"
+            : "success-warning-hidden"
+        }
+      >
+        <h4 style={{ marginRight: "10px" }}>
+          <strong>Error: </strong>
+        </h4>
+        <h5>{selectTheError()}</h5>
+      </div>
+    );
+  };
+
+  const successWarning = () => {
+    return (
+      <div
+        className={
+          isErrorWarningShown ? "error-warning-shown" : "error-warning-hidden"
+        }
+      >
+        <h4 style={{ marginRight: "10px" }}>
+          <strong>Hey: </strong>
+        </h4>
+        <h5>{selectTheMessage()}</h5>
+      </div>
+    );
+  };
+
   return (
     <div>
+      {errorWarning()}
+      {successWarning()}
       <div className={theme ? "Header-dark" : "Header-light"}>
+        <h2 className="user-name">{userName}</h2>
         <h2>{props.text}</h2>
+        <h2></h2>
         {isLoggedIn ? logOutButton() : logInButton()}
         {logInMenu()}
         {signUpMenu()}
