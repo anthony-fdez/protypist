@@ -19,6 +19,7 @@ function Header(props) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmationPassword, setConfirmationPassword] = useState(null);
+  const [clear, setClear] = useState(false);
 
   useEffect(() => {
     if (jwt === null) {
@@ -38,9 +39,35 @@ function Header(props) {
   const getThePassword = (e) => {
     setPassword(e.target.value);
   };
-  const getTheConfirmationPassword = (e) => {
-    setConfirmationPassword(e.target.value);
+
+  const clearInput = (e) => {
+    e.target.value = "";
   };
+
+  //check if the token is still valid
+
+  useEffect(() => {
+    const headers = { Authorization: jwt };
+    const bodyParameters = { key: "value" };
+
+    axios
+      .post("http://localhost:5000/checkIfLoggedIn", bodyParameters, {
+        headers: headers,
+      })
+      .then((response) => {
+        //nothing happens. All good
+      })
+      .catch((e) => {
+        dispatch({
+          type: "LOG_IN_OUT",
+          payload: false,
+        });
+        dispatch({
+          type: "SET_JWT",
+          payload: null,
+        });
+      });
+  }, []);
 
   const logIn = () => {
     const user = {
@@ -126,8 +153,6 @@ function Header(props) {
       });
   };
 
-  const logOutAll = () => {};
-
   const logInMenu = () => {
     return (
       <div
@@ -145,29 +170,41 @@ function Header(props) {
           className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
         ></hr>
         <div>
-          <div>
-            <h5 className="login-labels">Email:</h5>
-            <input
-              onChange={(e) => {
-                getTheEmail(e);
-              }}
-              className="login-input"
-              for="email"
-            ></input>
-          </div>
-          <div>
-            <h5 className="login-labels">Password:</h5>
-            <input
-              onChange={(e) => {
-                getThePassword(e);
-              }}
-              type="password"
-              className="login-input"
-            ></input>
-          </div>
+          <form>
+            <div>
+              <h5 className="login-labels">Email:</h5>
+              <input
+                autocomplete="off"
+                onChange={(e) => {
+                  getTheEmail(e);
+                }}
+                className="login-input"
+              ></input>
+            </div>
+            <div>
+              <h5 className="login-labels">Password:</h5>
+              <input
+                autocomplete="off"
+                onChange={(e) => {
+                  if (clear) {
+                    clearInput(e);
+                  } else getThePassword(e);
+                }}
+                type="password"
+                className="login-input"
+              ></input>
+            </div>
+          </form>
+
           <div
             onClick={() => {
               logIn();
+            }}
+            onMouseDown={() => {
+              setClear(true);
+            }}
+            onMouseUp={() => {
+              setClear(false);
             }}
             className="log-in-button-menu"
           >
@@ -207,53 +244,61 @@ function Header(props) {
           className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
         ></hr>
         <div>
-          <div>
-            <h5 className="login-labels">Name:</h5>
-            <input
-              onChange={(e) => {
-                getTheName(e);
-              }}
-              className="login-input"
-              for="name"
-            ></input>
-          </div>
-          <div>
-            <h5 className="login-labels">Email:</h5>
-            <input
-              onChange={(e) => {
-                getTheEmail(e);
-              }}
-              className="login-input"
-              for="email"
-            ></input>
-          </div>
-          <div>
-            <h5 className="login-labels">Password:</h5>
-            <input
-              onChange={(e) => {
-                getThePassword(e);
-              }}
-              type="password"
-              className="login-input"
-            ></input>
-          </div>
-          <div>
-            <h5 className="login-labels">Reenter password:</h5>
-            <input
-              onChange={(e) => {
-                getTheConfirmationPassword(e);
-              }}
-              type="password"
-              className="login-input"
-            ></input>
-          </div>
+          <form>
+            <div>
+              <h5 className="login-labels">Name:</h5>
+              <input
+                autocomplete="off"
+                onChange={(e) => {
+                  getTheName(e);
+                }}
+                className="login-input"
+              ></input>
+            </div>
+            <div>
+              <h5 className="login-labels">Email:</h5>
+              <input
+                autocomplete="off"
+                onChange={(e) => {
+                  getTheEmail(e);
+                }}
+                className="login-input"
+              ></input>
+            </div>
+            <div>
+              <h5 className="login-labels">Password:</h5>
+              <input
+                autocomplete="off"
+                onChange={(e) => {
+                  getThePassword(e);
+                }}
+                type="password"
+                className="login-input"
+              ></input>
+            </div>
+          </form>
           <div
             onClick={() => {
               signUp();
             }}
-            className="log-in-button-menu"
+            className="log-in-button-menu mt-5"
           >
             <h5>Create Account</h5>
+          </div>
+          <div
+            style={{ cursor: "pointer" }}
+            className="d-flex justify-content-center"
+          >
+            <h5
+              onClick={() => {
+                setIsSignUpMenuOpen(false);
+                setIsLoginMenuOpen(true);
+              }}
+              style={{ width: "6rem", marginTop: "10px" }}
+              className={theme ? "linkURL" : "linkURLlight"}
+            >
+              Log In
+            </h5>
           </div>
         </div>
       </div>
@@ -299,6 +344,7 @@ function Header(props) {
         ></hr>
         <h5 className="text-left mt-3 ml-3">Log out in all devices</h5>
         <input
+          autocomplete="off"
           type="password"
           className="login-input mt-2"
           placeholder="Your current password"
