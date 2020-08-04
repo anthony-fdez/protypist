@@ -16,9 +16,11 @@ function Header(props) {
 
   //==================================================================
   const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [confirmationPassword, setConfirmationPassword] = useState(null);
+  const [emailLogIn, setEmailLogIn] = useState(null);
+  const [emailSignUp, setEmailSignUp] = useState(null);
+  const [passwordLogIn, setPasswordLogIn] = useState(null);
+  const [passwordSignUp, setPasswordSignUp] = useState(null);
+  const [passwordLogOut, setPasswordLogOut] = useState(null);
   const [clear, setClear] = useState(false);
 
   useEffect(() => {
@@ -30,14 +32,23 @@ function Header(props) {
     }
   }, [jwt]);
 
-  const getTheEmail = (e) => {
-    setEmail(e.target.value);
+  const getTheEmailLogin = (e) => {
+    setEmailLogIn(e.target.value);
+  };
+  const getTheEmailSignup = (e) => {
+    setEmailSignUp(e.target.value);
   };
   const getTheName = (e) => {
     setName(e.target.value);
   };
-  const getThePassword = (e) => {
-    setPassword(e.target.value);
+  const getThePasswordLogin = (e) => {
+    setPasswordLogIn(e.target.value);
+  };
+  const getThePasswordSignup = (e) => {
+    setPasswordSignUp(e.target.value);
+  };
+  const getThePasswordLogout = (e) => {
+    setPasswordLogOut(e.target.value);
   };
 
   const clearInput = (e) => {
@@ -71,8 +82,8 @@ function Header(props) {
 
   const logIn = () => {
     const user = {
-      email: email,
-      password: password,
+      email: emailLogIn,
+      password: passwordLogIn,
     };
 
     axios
@@ -100,8 +111,8 @@ function Header(props) {
   const signUp = () => {
     const user = {
       name: name,
-      password: password,
-      email: email,
+      password: passwordSignUp,
+      email: emailSignUp,
     };
 
     axios
@@ -153,6 +164,34 @@ function Header(props) {
       });
   };
 
+  const logOutAll = () => {
+    const headers = { Authorization: jwt };
+    const data = { password: passwordLogOut };
+
+    axios
+      .post("http://localhost:5000/users/logoutall", data, {
+        headers: headers,
+      })
+      .then((response) => {
+        setIsSignUpMenuOpen(false);
+        setIsLoginMenuOpen(false);
+        setIsLogOutMenuOpen(false);
+
+        dispatch({
+          type: "LOG_IN_OUT",
+          payload: false,
+        });
+
+        dispatch({
+          type: "SET_JWT",
+          payload: null,
+        });
+      })
+      .catch((e) => {
+        alert("Wrong Password");
+      });
+  };
+
   const logInMenu = () => {
     return (
       <div
@@ -176,7 +215,7 @@ function Header(props) {
               <input
                 autocomplete="off"
                 onChange={(e) => {
-                  getTheEmail(e);
+                  getTheEmailLogin(e);
                 }}
                 className="login-input"
               ></input>
@@ -188,7 +227,7 @@ function Header(props) {
                 onChange={(e) => {
                   if (clear) {
                     clearInput(e);
-                  } else getThePassword(e);
+                  } else getThePasswordLogin(e);
                 }}
                 type="password"
                 className="login-input"
@@ -199,12 +238,6 @@ function Header(props) {
           <div
             onClick={() => {
               logIn();
-            }}
-            onMouseDown={() => {
-              setClear(true);
-            }}
-            onMouseUp={() => {
-              setClear(false);
             }}
             className="log-in-button-menu"
           >
@@ -248,6 +281,7 @@ function Header(props) {
             <div>
               <h5 className="login-labels">Name:</h5>
               <input
+                type="text"
                 autocomplete="off"
                 onChange={(e) => {
                   getTheName(e);
@@ -258,9 +292,8 @@ function Header(props) {
             <div>
               <h5 className="login-labels">Email:</h5>
               <input
-                autocomplete="off"
                 onChange={(e) => {
-                  getTheEmail(e);
+                  getTheEmailSignup(e);
                 }}
                 className="login-input"
               ></input>
@@ -268,9 +301,8 @@ function Header(props) {
             <div>
               <h5 className="login-labels">Password:</h5>
               <input
-                autocomplete="off"
                 onChange={(e) => {
-                  getThePassword(e);
+                  getThePasswordSignup(e);
                 }}
                 type="password"
                 className="login-input"
@@ -348,10 +380,13 @@ function Header(props) {
           type="password"
           className="login-input mt-2"
           placeholder="Your current password"
+          onChange={(e) => {
+            getThePasswordLogout(e);
+          }}
         ></input>
         <div
           onClick={() => {
-            signUp();
+            logOutAll();
           }}
           className="log-out-all-button-menu bg-danger"
         >
