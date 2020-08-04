@@ -15,22 +15,18 @@ function Header(props) {
   const [isLogOutMenuOpen, setIsLogOutMenuOpen] = useState(false);
 
   //==================================================================
-  const [name, setName] = useState(null);
-  const [emailLogIn, setEmailLogIn] = useState(null);
-  const [emailSignUp, setEmailSignUp] = useState(null);
-  const [passwordLogIn, setPasswordLogIn] = useState(null);
-  const [passwordSignUp, setPasswordSignUp] = useState(null);
-  const [passwordLogOut, setPasswordLogOut] = useState(null);
+  const [name, setName] = useState("");
+  const [emailLogIn, setEmailLogIn] = useState("");
+  const [emailSignUp, setEmailSignUp] = useState("");
+  const [passwordLogIn, setPasswordLogIn] = useState("");
+  const [passwordSignUp, setPasswordSignUp] = useState("");
+  const [passwordLogOut, setPasswordLogOut] = useState("");
   const [clear, setClear] = useState(false);
 
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
 
-  const [wrongPasswordError, setWrongPasswordError] = useState(false);
-  const [emailTakenError, setEmailTakenError] = useState(false);
-
-  const [accountCreatedMessage, setAccountCreatedMessage] = useState(false);
-  const [loggedInMessage, setLoggedInMessage] = useState(false);
+  const [message, setMessage] = useState("");
 
   //user Info
   const [userName, setUserName] = useState("Guest");
@@ -113,6 +109,7 @@ function Header(props) {
     if (isErrorWarningShown) {
       myTimeout = setTimeout(() => {
         setIsErrorWarningShown(false);
+        setIsSuccssWarningShown(false);
       }, 3000);
     }
     return () => clearTimeout(myTimeout);
@@ -124,27 +121,39 @@ function Header(props) {
       password: passwordLogIn,
     };
 
-    axios
-      .post("http://localhost:5000/users/login", user)
-      .then((response) => {
-        if (response.status === 200) {
-          dispatch({
-            type: "LOG_IN_OUT",
-            payload: true,
-          });
-          dispatch({
-            type: "SET_JWT",
-            payload: response.data.token,
-          });
-          setIsSignUpMenuOpen(false);
-          setIsLoginMenuOpen(false);
-        }
-      })
-      .catch((e) => {
-        setWrongPasswordError(true);
-        setIsErrorWarningShown(true);
-        console.log(e.response);
-      });
+    if (passwordLogIn === "" || emailLogIn === "") {
+      setMessage("You need to provide an Email and a Password");
+      setIsErrorWarningShown(true);
+    } else {
+      axios
+        .post("http://localhost:5000/users/login", user)
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch({
+              type: "LOG_IN_OUT",
+              payload: true,
+            });
+            dispatch({
+              type: "SET_JWT",
+              payload: response.data.token,
+            });
+            setIsSignUpMenuOpen(false);
+            setIsLoginMenuOpen(false);
+
+            setMessage("You are logged in! Have fun.");
+            setIsSuccssWarningShown(true);
+          }
+        })
+        .catch((e) => {
+          if ((e.response.status = 400)) {
+            setMessage("Wrong Email or Password");
+            setIsErrorWarningShown(true);
+          } else {
+            setMessage("There is an error in the server, try again later.");
+            setIsErrorWarningShown(true);
+          }
+        });
+    }
   };
 
   const signUp = () => {
@@ -461,22 +470,6 @@ function Header(props) {
     );
   };
 
-  const selectTheError = () => {
-    if (emailTakenError) {
-      return "This email is already taken, try loggin in!";
-    } else if (wrongPasswordError) {
-      return "Wrong Email or Password, try again";
-    }
-  };
-
-  const selectTheMessage = () => {
-    if (accountCreatedMessage) {
-      return "Your account has been successculy created!";
-    } else if (loggedInMessage) {
-      return "You are logged in, have fun typing!";
-    }
-  };
-
   const errorWarning = () => {
     return (
       <div
@@ -489,7 +482,7 @@ function Header(props) {
         <h4 style={{ marginRight: "10px" }}>
           <strong>Error: </strong>
         </h4>
-        <h5>{selectTheError()}</h5>
+        <h5>{message}</h5>
       </div>
     );
   };
@@ -504,7 +497,7 @@ function Header(props) {
         <h4 style={{ marginRight: "10px" }}>
           <strong>Hey: </strong>
         </h4>
-        <h5>{selectTheMessage()}</h5>
+        <h5>{message}</h5>
       </div>
     );
   };
