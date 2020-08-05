@@ -195,14 +195,18 @@ function Header(props) {
           setIsSuccssWarningShown(true);
         })
         .catch((e) => {
-          if (e.response.data.errors.email) {
+          if (e.response.data.code === 11000) {
+            setMessage(
+              "The Email you just entered is already rejistered, try loging in."
+            );
+            setIsErrorWarningShown(true);
+          } else if (e.response.data.errors.email) {
             setMessage("You need to provide a valid email.");
             setIsErrorWarningShown(true);
           } else if (e.response.data.errors.password) {
             setMessage("Your password is too easy to guess. Try again.");
             setIsErrorWarningShown(true);
           }
-          console.log(e.response);
         });
     }
   };

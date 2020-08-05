@@ -16,6 +16,9 @@ function Stats() {
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState(0);
   const [racesCompleted, setRacesCompleted] = useState(0);
   const [averageMistakes, setAverageMistakes] = useState(0);
+  const [highestSpeedOfAllTime, setHighestSpeedOfAllTime] = useState(0);
+
+  const [timeIsUp, setTimeIsUp] = useState(false);
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -37,11 +40,29 @@ function Stats() {
         setWpmAverage10races(response.data.wpmAverageLast10Races);
         setWpmAverageAllTime(response.data.wpmAverageAllTime);
         setAverageMistakes(response.data.averageMistakes);
+        setHighestSpeedOfAllTime(response.data.highestSpeedAllTime);
       })
       .catch((e) => {
         console.log(e.response);
       });
   }, []);
+
+  useEffect(() => {
+    const myTimeOut = setTimeout(() => {
+      setTimeIsUp(true);
+    }, 1000);
+    return () => clearTimeout(myTimeOut);
+  }, []);
+
+  const alert = () => {
+    return (
+      <p className={"alert-warning mt-3"}>
+        <strong>Info: </strong>
+        The average Mistakes, and the Average speed for the last 10 races won't
+        show untill you have completed 10 races.
+      </p>
+    );
+  };
 
   const statistics = () => {
     return (
@@ -63,7 +84,7 @@ function Stats() {
             <div className="stats-box">
               <h5>Highest WPM:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-              <h5 style={{ marginTop: "1rem" }}>In Progress</h5>
+              <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime}</h5>
             </div>
             <div className="stats-box">
               <h5>Average WPM:</h5>{" "}
@@ -81,6 +102,7 @@ function Stats() {
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes}</h5>
             </div>
           </div>
+          {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );

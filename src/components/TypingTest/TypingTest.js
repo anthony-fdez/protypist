@@ -9,6 +9,7 @@ import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
+import axios from "axios";
 
 function TypingTest() {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ function TypingTest() {
     (state) => state.previousErrorsReducerTypingGame
   );
   const isSideMenuOpen = useSelector((state) => state.openSideMenuReducer);
+  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const jwt = useSelector((state) => state.JWTreducer);
 
   //state
   const [text, setText] = useState();
@@ -66,6 +69,29 @@ function TypingTest() {
   const [selectedRandomTextIndex, setSelectedRandomTextIndex] = useState(0);
 
   //========= Convert the plain text into arrays //
+
+  const postTheDateToTheServer = () => {
+    const data = {
+      wpm: latestWPM,
+      time: seconds,
+      mistakes: realMistakes,
+    };
+    const headers = {
+      Authorization: jwt,
+    };
+
+    axios
+      .post("http://localhost:5000/users/statistics", data, {
+        headers: headers,
+      })
+      .then(() => {
+        console.log(data);
+        console.log("All good");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   useEffect(() => {
     let json = require("../data/texts.json");
@@ -255,6 +281,10 @@ function TypingTest() {
     }
     if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
       calculateWordsPerMinute();
+      if (isLoggedIn) {
+        postTheDateToTheServer();
+      }
+
       setTimeSeconds(0);
       e.target.value = "";
       setIsRunning(false);
