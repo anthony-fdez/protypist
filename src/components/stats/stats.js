@@ -1,18 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./stats.css";
 import Header from "../header/header";
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
+import axios from "axios";
 
 function Stats() {
   const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const jwt = useSelector((state) => state.JWTreducer);
+
+  //state
+  const [wpmAverage10races, setWpmAverage10races] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
+  const [wpmAverageAllTime, setWpmAverageAllTime] = useState(0);
+  const [racesCompleted, setRacesCompleted] = useState(0);
+  const [averageMistakes, setAverageMistakes] = useState(0);
 
   const animation = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
     config: { duration: 300 },
   });
+
+  useEffect(() => {
+    const headers = { Authorization: jwt };
+
+    axios
+      .get("http://localhost:5000/users/statistics", {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log(response);
+        setRacesCompleted(response.data.racesCompleted);
+        setTotalTime(response.data.totalTime);
+        setWpmAverage10races(response.data.wpmAverageLast10Races);
+        setWpmAverageAllTime(response.data.wpmAverageAllTime);
+        setAverageMistakes(response.data.averageMistakes);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  }, []);
 
   const statistics = () => {
     return (
@@ -24,26 +53,32 @@ function Stats() {
             <div className="stats-box">
               <h5>Total time:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{totalTime}</h5>
             </div>
             <div className="stats-box">
-              <h5>Total races:</h5>
+              <h5>Races Completed:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{racesCompleted}</h5>
             </div>
             <div className="stats-box">
               <h5>Highest WPM:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>In Progress</h5>
             </div>
             <div className="stats-box">
               <h5>Average WPM:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{wpmAverageAllTime}</h5>
             </div>
             <div className="stats-box">
               <h5>WPM last 10 races:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races}</h5>
             </div>
             <div className="stats-box">
               <h5>Average Mistakes:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{averageMistakes}</h5>
             </div>
           </div>
         </div>
