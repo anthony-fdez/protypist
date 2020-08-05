@@ -45,7 +45,7 @@ function Stats() {
       .catch((e) => {
         console.log(e.response);
       });
-  }, []);
+  }, [jwt]);
 
   useEffect(() => {
     const myTimeOut = setTimeout(() => {
@@ -53,6 +53,29 @@ function Stats() {
     }, 1000);
     return () => clearTimeout(myTimeOut);
   }, []);
+
+  const formatTheTime = () => {
+    let hours;
+    let minutes;
+    let seconds;
+
+    if (totalTime !== undefined) {
+      let time = totalTime;
+
+      hours = Math.floor(time / 3600);
+      time = time % 3600;
+      minutes = Math.floor(time / 60);
+      seconds = time % 60;
+    }
+
+    const formtatedTimeString = `${
+      hours === 0 ? "00" : hours < 10 ? "0" + hours : hours
+    }:${minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes}:${
+      seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds
+    }`;
+
+    return formtatedTimeString;
+  };
 
   const alert = () => {
     return (
@@ -74,7 +97,7 @@ function Stats() {
             <div className="stats-box">
               <h5>Total time:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{totalTime}</h5>
+              <h5 style={{ marginTop: "1rem" }}>{formatTheTime()}</h5>
             </div>
             <div className="stats-box">
               <h5>Races Completed:</h5>
@@ -89,7 +112,9 @@ function Stats() {
             <div className="stats-box">
               <h5>Average WPM:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{wpmAverageAllTime}</h5>
+              <h5 style={{ marginTop: "1rem" }}>
+                {Math.round(wpmAverageAllTime * 10) / 10}
+              </h5>
             </div>
             <div className="stats-box">
               <h5>WPM last 10 races:</h5>{" "}

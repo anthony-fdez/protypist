@@ -74,16 +74,15 @@ function Header(props) {
         headers: headers,
       })
       .then((response) => {
-        //nothing happens. All good
+        dispatch({
+          type: "LOG_IN_OUT",
+          payload: true,
+        });
       })
       .catch((e) => {
         dispatch({
           type: "LOG_IN_OUT",
           payload: false,
-        });
-        dispatch({
-          type: "SET_JWT",
-          payload: null,
         });
       });
   }, []);
