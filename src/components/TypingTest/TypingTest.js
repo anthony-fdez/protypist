@@ -65,16 +65,22 @@ function TypingTest() {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+
+  const [textTypedId, setTextTypedId] = useState();
+  const [textTypedHistory, setTextTypedHistory] = useState([]);
+
   //this is the random number rorresponding to the selected text
   const [selectedRandomTextIndex, setSelectedRandomTextIndex] = useState(0);
 
-  //========= Convert the plain text into arrays //
+  //========================================================
 
-  const postTheDateToTheServer = () => {
+  const postTheDataToTheServer = () => {
     const data = {
-      wpm: latestWPM,
+      wpm: calculateWordsPerMinute(),
       time: seconds,
       mistakes: realMistakes,
+      textTypedId: textTypedId,
+      date: getTheDate(),
     };
     const headers = {
       Authorization: jwt,
@@ -84,21 +90,71 @@ function TypingTest() {
       .post("http://localhost:5000/users/statistics", data, {
         headers: headers,
       })
-      .then(() => {
-        console.log(data);
-        console.log("All good");
-      })
+      .then(() => {})
       .catch((e) => {
         console.log(e);
       });
   };
 
   useEffect(() => {
-    let json = require("../data/texts.json");
-    let random = Math.floor(Math.random() * json.text.length);
-    setSelectedRandomTextIndex(random);
-    setText(json.text[random]);
+    const headers = {
+      Authorization: jwt,
+    };
+
+    axios
+      .get("http://localhost:5000/texts/getRandom", { headers: headers })
+      .then((res) => {
+        setText(res.data[0]);
+        if (isLoggedIn) {
+          setTextTypedId(res.data[0]._id);
+          getTheHistoryForTheRace(res.data[0]._id);
+        }
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
   }, [newGame]);
+
+  const getTheHistoryForTheRace = (id) => {
+    const headers = {
+      Authorization: jwt,
+    };
+    const data = {
+      textTypedId: id,
+    };
+
+    axios
+      .post("http://localhost:5000/users/getRaceScores", data, {
+        headers: headers,
+      })
+      .then((res) => {
+        setTextTypedHistory(res.data);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  };
+
+  const getTheDate = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDay();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    const formatedTime = `${
+      hour === 0 ? "00" : hour < 10 ? "0" + hour : hour
+    }:${minute === 0 ? "00" : minute < 10 ? "0" + minute : minute} - ${
+      month === 0 ? "00" : month < 10 ? "0" + month : month
+    }/${day === 0 ? "00" : day < 10 ? "0" + day : day}/${year}`;
+
+    return formatedTime;
+  };
+
+  //========================================================
+
+  //========= Create a blank array of spans that has all its classes set to none //
 
   useEffect(() => {
     if (text !== undefined) {
@@ -114,8 +170,6 @@ function TypingTest() {
       setInfoAboutCharacter(infoAboutCharacterObject);
     }
   }, [text]);
-
-  //========= Create a blank array of spans that has all its classes set to none //
 
   useEffect(() => {
     if (newGame === true) {
@@ -249,6 +303,7 @@ function TypingTest() {
 
     return wordsPerMinute;
   };
+
   const calculateCharactersPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let charactersPerMinute = charactersPerSecond * 60;
@@ -257,17 +312,7 @@ function TypingTest() {
     return charactersPerMinute;
   };
 
-  const playAudio = () => {
-    const audio = document.getElementsByClassName("audio")[0];
-    audio.preload = "auto";
-    audio.load();
-    audio.play();
-  };
-
-  //========= Check input //
-
   const getAndCheckTheInput = (e) => {
-    // playAudio();
     if (realTimeWPM) {
       calculateWordsPerMinute();
     }
@@ -281,9 +326,6 @@ function TypingTest() {
     }
     if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
       calculateWordsPerMinute();
-      if (isLoggedIn) {
-        postTheDateToTheServer();
-      }
 
       setTimeSeconds(0);
       e.target.value = "";
@@ -302,6 +344,10 @@ function TypingTest() {
         type: "SET_LATEST_ERRORS_TYPING_GAME",
         payload: realMistakes,
       });
+
+      if (isLoggedIn) {
+        postTheDataToTheServer();
+      }
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
     }
@@ -458,8 +504,42 @@ function TypingTest() {
     }
   };
 
+  const displayTheHistory = () => {
+    if (textTypedHistory !== undefined) {
+      const data = textTypedHistory;
+      return (
+        <div
+          className={
+            theme ? "m-4 mt-3 history-div-dark" : "m-4 mt-3 history-div-light"
+          }
+        >
+          {data.map((item, index) => {
+            let isEven = false;
+
+            if (index % 2 === 0) {
+              isEven = true;
+            }
+
+            return (
+              <div
+                key={index}
+                className={
+                  isEven
+                    ? "d-flex justify-content-between mb-1 bg-primary p-2 text-white"
+                    : "d-flex justify-content-between mb-1 p-2"
+                }
+              >
+                <p>{item.wpm} WPM</p>
+                <p>Date: {item.date}</p>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+  };
+
   const sideMenu = () => {
-    const data = require("../data/texts.json");
     return (
       <div
         className={
@@ -491,7 +571,7 @@ function TypingTest() {
           <div className="side-menu-picture-div">
             <img
               className="side-menu-picture"
-              src={data.text[selectedRandomTextIndex].URL}
+              // src={data.text[selectedRandomTextIndex].URL}
             ></img>
           </div>
           <hr
@@ -501,20 +581,28 @@ function TypingTest() {
         </div>
         <div className="side-menu-info-container">
           <h5 className="mb-2">
-            This quote is from the {data.text[selectedRandomTextIndex].type}:
+            {/* This quote is from the {data.text[selectedRandomTextIndex].type}: */}
           </h5>
           <a
             className="link"
             target="blank"
-            href={data.text[selectedRandomTextIndex].linkURL}
+            // href={data.text[selectedRandomTextIndex].linkURL}
           >
             <h5 className="link-h5">
-              "{data.text[selectedRandomTextIndex].from}"
+              {/* "{data.text[selectedRandomTextIndex].from}" */}
             </h5>
           </a>
 
-          <h5 className="mt-2">By: {data.text[selectedRandomTextIndex].by}</h5>
+          {/* <h5 className="mt-2">By: {data.text[selectedRandomTextIndex].by}</h5> */}
           <div className="d-flex justify-content-center"></div>
+        </div>
+        <div>
+          <h4>This text history:</h4>
+          <hr
+            style={{ width: "85%" }}
+            className={theme ? "white-hr" : "dark-hr"}
+          ></hr>
+          {displayTheHistory()}
         </div>
       </div>
     );

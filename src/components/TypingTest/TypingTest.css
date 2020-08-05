@@ -497,6 +497,15 @@
     margin-left: 2rem;
     margin-right: 2rem;
   }
+  .history-div-dark {
+    padding: 1rem;
+    background-color: rgb(30, 30, 30);
+  }
+  .history-div-light {
+    padding: 1rem;
+    background-color: rgb(211, 210, 210);
+    color: rgb(36, 36, 36);
+  }
 }
 @media only screen and (max-width: 1500px) {
   .TypingTest-page-dark {

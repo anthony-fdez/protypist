@@ -34,7 +34,6 @@ function Stats() {
         headers: headers,
       })
       .then((response) => {
-        console.log(response);
         setRacesCompleted(response.data.racesCompleted);
         setTotalTime(response.data.totalTime);
         setWpmAverage10races(response.data.wpmAverageLast10Races);
