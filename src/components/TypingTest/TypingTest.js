@@ -107,7 +107,6 @@ function TypingTest() {
         setText(res.data[0]);
         if (isLoggedIn) {
           setTextTypedId(res.data[0]._id);
-          getTheHistoryForTheRace(res.data[0]._id);
         }
       })
       .catch((e) => {
@@ -115,12 +114,12 @@ function TypingTest() {
       });
   }, [newGame]);
 
-  const getTheHistoryForTheRace = (id) => {
+  useEffect(() => {
     const headers = {
       Authorization: jwt,
     };
     const data = {
-      textTypedId: id,
+      textTypedId: textTypedId,
     };
 
     axios
@@ -133,7 +132,7 @@ function TypingTest() {
       .catch((e) => {
         console.log(e.response);
       });
-  };
+  }, [isSideMenuOpen]);
 
   const getTheDate = () => {
     const date = new Date();
@@ -513,27 +512,30 @@ function TypingTest() {
             theme ? "m-4 mt-3 history-div-dark" : "m-4 mt-3 history-div-light"
           }
         >
-          {data.map((item, index) => {
-            let isEven = false;
+          {data
+            .slice(0)
+            .reverse()
+            .map((item, index) => {
+              let isEven = false;
 
-            if (index % 2 === 0) {
-              isEven = true;
-            }
+              if (index % 2 === 0) {
+                isEven = true;
+              }
 
-            return (
-              <div
-                key={index}
-                className={
-                  isEven
-                    ? "d-flex justify-content-between mb-1 bg-primary p-2 text-white"
-                    : "d-flex justify-content-between mb-1 p-2"
-                }
-              >
-                <p>{item.wpm} WPM</p>
-                <p>Date: {item.date}</p>
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={index}
+                  className={
+                    isEven
+                      ? "d-flex justify-content-between mb-1 p-2 text-white"
+                      : "d-flex justify-content-between mb-1 p-2"
+                  }
+                >
+                  <p>{item.wpm} WPM</p>
+                  <p>Date: {item.date}</p>
+                </div>
+              );
+            })}
         </div>
       );
     }
@@ -597,7 +599,7 @@ function TypingTest() {
           <div className="d-flex justify-content-center"></div>
         </div>
         <div>
-          <h4>This text history:</h4>
+          <h4 style={{ margin: "2rem", marginBottom: 0 }}>This race:</h4>
           <hr
             style={{ width: "85%" }}
             className={theme ? "white-hr" : "dark-hr"}
