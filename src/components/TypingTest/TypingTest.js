@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useDebugValue } from "react";
 import "./TypingTest.css";
 import soundFile from "../audio/keyboard-sound-1.mp3";
 
@@ -69,6 +69,9 @@ function TypingTest() {
   const [textTypedId, setTextTypedId] = useState();
   const [textTypedHistory, setTextTypedHistory] = useState([]);
 
+  const [highestSpeed, setHighestSpeed] = useState();
+  const [highestSpeedDate, setHighestSpeedDate] = useState();
+
   //this is the random number rorresponding to the selected text
   const [selectedRandomTextIndex, setSelectedRandomTextIndex] = useState(0);
 
@@ -128,6 +131,7 @@ function TypingTest() {
       })
       .then((res) => {
         setTextTypedHistory(res.data);
+        getTheHighestSpeedForARace(res.data);
       })
       .catch((e) => {
         console.log(e.response);
@@ -503,13 +507,29 @@ function TypingTest() {
     }
   };
 
+  const getTheHighestSpeedForARace = (data) => {
+    let speed = 0;
+    let date = "";
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].wpm > speed) {
+        speed = data[i].wpm;
+        date = data[i].date;
+      }
+      setHighestSpeed(speed);
+      setHighestSpeedDate(date);
+    }
+  };
+
   const displayTheHistory = () => {
     if (textTypedHistory !== undefined) {
       const data = textTypedHistory;
       return (
         <div
           className={
-            theme ? "m-4 mt-3 history-div-dark" : "m-4 mt-3 history-div-light"
+            theme
+              ? "ml-4 mr-4 mb-4  mt-1 history-div-dark"
+              : "m-4 mt-3 history-div-light"
           }
         >
           {data
@@ -542,72 +562,80 @@ function TypingTest() {
   };
 
   const sideMenu = () => {
-    return (
-      <div
-        className={
-          isSideMenuOpen
-            ? theme
-              ? "side-menu-open-dark"
-              : "side-menu-open-light"
-            : theme
-            ? "side-menu-closed-dark"
-            : "side-menu-closed-light"
-        }
-      >
-        <div>
-          <div className="side-menu-header">
-            <h3>Info About Text</h3>
-            <i
-              onClick={() => {
-                dispatch({
-                  type: "TOGGLE_OPENING_SIDE_MENU",
-                });
-              }}
-              className="fas fa-times fa-2x close-icon"
-            ></i>
-          </div>
+    if (text !== undefined) {
+      console.log(text);
+      return (
+        <div
+          className={
+            isSideMenuOpen
+              ? theme
+                ? "side-menu-open-dark"
+                : "side-menu-open-light"
+              : theme
+              ? "side-menu-closed-dark"
+              : "side-menu-closed-light"
+          }
+        >
+          <div>
+            <div className="side-menu-header">
+              <h3>Info About Text</h3>
+              <i
+                onClick={() => {
+                  dispatch({
+                    type: "TOGGLE_OPENING_SIDE_MENU",
+                  });
+                }}
+                className="fas fa-times fa-2x close-icon"
+              ></i>
+            </div>
 
-          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-        </div>
-        <div className="side-menu-container">
-          <div className="side-menu-picture-div">
-            <img
-              className="side-menu-picture"
-              // src={data.text[selectedRandomTextIndex].URL}
-            ></img>
+            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
           </div>
-          <hr
-            style={{ width: "85%" }}
-            className={theme ? "white-hr" : "dark-hr"}
-          ></hr>
-        </div>
-        <div className="side-menu-info-container">
-          <h5 className="mb-2">
-            {/* This quote is from the {data.text[selectedRandomTextIndex].type}: */}
-          </h5>
-          <a
-            className="link"
-            target="blank"
-            // href={data.text[selectedRandomTextIndex].linkURL}
-          >
-            <h5 className="link-h5">
-              {/* "{data.text[selectedRandomTextIndex].from}" */}
+          <div className="side-menu-container">
+            <div className="side-menu-picture-div">
+              <img className="side-menu-picture" src={text.image}></img>
+            </div>
+            <hr
+              style={{ width: "85%" }}
+              className={theme ? "white-hr" : "dark-hr"}
+            ></hr>
+          </div>
+          <div className="side-menu-info-container">
+            <h5 className="mb-2">
+              {/* This quote is from the {data.text[selectedRandomTextIndex].type}: */}
             </h5>
-          </a>
+            <a className="link" target="blank" href={text.linkURL}>
+              <h5 className="link-h5">"{text.from}"</h5>
+            </a>
 
-          {/* <h5 className="mt-2">By: {data.text[selectedRandomTextIndex].by}</h5> */}
-          <div className="d-flex justify-content-center"></div>
+            <h5 className="mt-2">By: {text.by}</h5>
+            <div className="d-flex justify-content-center"></div>
+          </div>
+          <div>
+            <h4 style={{ margin: "2rem", marginBottom: 0 }}>This Text:</h4>
+            <hr
+              style={{ width: "85%" }}
+              className={theme ? "white-hr" : "dark-hr"}
+            ></hr>
+            <h4 style={{ margin: "2rem", marginBottom: 0 }}>Highest</h4>
+            <div
+              className={
+                theme
+                  ? "ml-4 mr-4 mb-4 mt-1 history-div-dark bg-primary"
+                  : "ml-4 mr-4 mb-4 mt-1 history-div-light"
+              }
+            >
+              <div className={"d-flex justify-content-between  p-2"}>
+                <p>{highestSpeed} WPM</p>
+                <p>Date: {highestSpeedDate}</p>
+              </div>
+            </div>
+            <h4 style={{ margin: "2rem", marginBottom: 0 }}>History</h4>
+            {displayTheHistory()}
+          </div>
         </div>
-        <div>
-          <h4 style={{ margin: "2rem", marginBottom: 0 }}>This race:</h4>
-          <hr
-            style={{ width: "85%" }}
-            className={theme ? "white-hr" : "dark-hr"}
-          ></hr>
-          {displayTheHistory()}
-        </div>
-      </div>
-    );
+      );
+    }
   };
 
   const displayTheStatistics = () => {

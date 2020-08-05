@@ -411,7 +411,7 @@
     height: 100%;
     width: 400px;
     transition: 0.3s;
-    overflow: hidden;
+    overflow-y: scroll;
   }
   .side-menu-open-light {
     z-index: 40;
@@ -423,7 +423,7 @@
     height: 100%;
     width: 400px;
     transition: 0.3s;
-    overflow: hidden;
+    overflow-y: scroll;
   }
   .side-menu-closed-dark {
     transform: translateX(400px);
@@ -485,8 +485,7 @@
     margin-top: 1rem;
     text-align: center;
   }
-  .side-menu-picture-div {
-  }
+
   .side-menu-picture {
     width: 300px;
     max-height: 400px;
@@ -496,7 +495,6 @@
     margin: 1rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    transition: 0.3s;
   }
   .history-div-dark {
     padding: 1rem;
@@ -875,6 +873,111 @@
   .keyboard-div-hidden {
     opacity: 0;
     transition: 0.2s;
+  }
+  .side-menu-open-dark {
+    z-index: 40;
+    background-color: rgb(51, 51, 51);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    transition: 0.3s;
+    overflow-y: scroll;
+  }
+  .side-menu-open-light {
+    z-index: 40;
+    background-color: rgb(231, 231, 231);
+    color: rgb(105, 105, 105);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    transition: 0.3s;
+    overflow-y: scroll;
+  }
+  .side-menu-closed-dark {
+    transform: translateX(400px);
+    z-index: 40;
+    background-color: rgb(51, 51, 51);
+    position: fixed;
+    transition: 0.3s;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    overflow-y: scroll;
+  }
+  .side-menu-closed-light {
+    transform: translateX(400px);
+    z-index: 40;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    transition: 0.3s;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    overflow-y: scroll;
+  }
+  .darkened-background-on {
+    z-index: 30;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: 0.3s;
+  }
+  .darkened-background-off {
+    pointer-events: none;
+    width: 100%;
+    z-index: 30;
+    position: fixed;
+    height: 100%;
+    transition: 0.3s;
+    background-color: rgba(129, 37, 37, 0);
+  }
+
+  .side-menu-list-item {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgb(102, 102, 102);
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .side-menu-list-item:hover {
+    transition: 0.3s;
+    transform: translateY(-3px);
+    background-color: rgb(121, 121, 121);
+  }
+  .side-menu-container {
+    position: relative;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .side-menu-picture {
+    width: 300px;
+    max-height: 400px;
+    border-radius: 10px;
+  }
+  .side-menu-info-container {
+    margin: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .history-div-dark {
+    padding: 1rem;
+    background-color: rgb(30, 30, 30);
+    transition: 0.3s;
+  }
+  .history-div-light {
+    padding: 1rem;
+    background-color: rgb(211, 210, 210);
+    color: rgb(36, 36, 36);
+    transition: 0.3s;
   }
 }
 .link {
