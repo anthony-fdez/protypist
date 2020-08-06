@@ -153,7 +153,7 @@ function Stats() {
 
   const statisticsTypingGameComponent = () => {
     return (
-      <div>
+      <div key="statisticsTypingGame">
         <div
           className={
             isTypingGameStatisticsShown
@@ -205,7 +205,7 @@ function Stats() {
 
   const statistics200Component = () => {
     return (
-      <div>
+      <div key="statistics200">
         <div
           className={
             isTyping200StatisticsShown
@@ -259,52 +259,54 @@ function Stats() {
 
   const statistics1000Component = () => {
     return (
-      <div
-        className={
-          isTyping1000StatisticsShown
-            ? "typing-1000-statistics-div-shown"
-            : "typing-1000-statistics-div-hidden"
-        }
-      >
-        <h4>1000 Most Common Words Statistics:</h4>
-        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-        <div className="all-time-div-stats">
-          <div className="stats-box">
-            <h5>Total time:</h5>
-            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-            <h5 style={{ marginTop: "1rem" }}>
-              {formatTheTime(totalTime1000)}
-            </h5>
+      <div key="statistics100">
+        <div
+          className={
+            isTyping1000StatisticsShown
+              ? "typing-1000-statistics-div-shown"
+              : "typing-1000-statistics-div-hidden"
+          }
+        >
+          <h4>1000 Most Common Words Statistics:</h4>
+          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+          <div className="all-time-div-stats">
+            <div className="stats-box">
+              <h5>Total time:</h5>
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>
+                {formatTheTime(totalTime1000)}
+              </h5>
+            </div>
+            <div className="stats-box">
+              <h5>Races:</h5>
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{racesCompleted1000}</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Highest:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime1000}</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Average:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>
+                {Math.round(wpmAverageAllTime1000 * 10) / 10}
+              </h5>
+            </div>
+            <div className="stats-box">
+              <h5>Recent Avg:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races1000}</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Avg Mistakes:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{averageMistakes1000}</h5>
+            </div>
           </div>
-          <div className="stats-box">
-            <h5>Races:</h5>
-            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-            <h5 style={{ marginTop: "1rem" }}>{racesCompleted1000}</h5>
-          </div>
-          <div className="stats-box">
-            <h5>Highest:</h5>{" "}
-            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-            <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime1000}</h5>
-          </div>
-          <div className="stats-box">
-            <h5>Average:</h5>{" "}
-            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-            <h5 style={{ marginTop: "1rem" }}>
-              {Math.round(wpmAverageAllTime1000 * 10) / 10}
-            </h5>
-          </div>
-          <div className="stats-box">
-            <h5>Recent Avg:</h5>{" "}
-            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-            <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races1000}</h5>
-          </div>
-          <div className="stats-box">
-            <h5>Avg Mistakes:</h5>{" "}
-            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-            <h5 style={{ marginTop: "1rem" }}>{averageMistakes1000}</h5>
-          </div>
+          {racesCompleted1000 < 10 && timeIsUp === true && alert()}
         </div>
-        {racesCompleted1000 < 10 && timeIsUp === true && alert()}
       </div>
     );
   };

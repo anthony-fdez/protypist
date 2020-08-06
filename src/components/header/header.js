@@ -296,7 +296,7 @@ function Header(props) {
             <div>
               <h5 className="login-labels">Email:</h5>
               <input
-                autocomplete="off"
+                autoComplete="off"
                 onChange={(e) => {
                   getTheEmailLogin(e);
                 }}
@@ -306,7 +306,7 @@ function Header(props) {
             <div>
               <h5 className="login-labels">Password:</h5>
               <input
-                autocomplete="off"
+                autoComplete="off"
                 onChange={(e) => {
                   if (clear) {
                     clearInput(e);
@@ -365,7 +365,7 @@ function Header(props) {
               <h5 className="login-labels">Name:</h5>
               <input
                 type="text"
-                autocomplete="off"
+                autoComplete="off"
                 onChange={(e) => {
                   getTheName(e);
                 }}
@@ -459,7 +459,7 @@ function Header(props) {
         ></hr>
         <h5 className="text-left mt-3 ml-3">Log out in all devices</h5>
         <input
-          autocomplete="off"
+          autoComplete="off"
           type="password"
           className="login-input mt-2"
           placeholder="Your current password"
