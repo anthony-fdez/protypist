@@ -128,3 +128,32 @@ h1 {
 .top-1000-inactive:hover {
   background-color: rgb(68, 68, 68);
 }
+.alert-not-enough-races-shown {
+  position: absolute;
+  margin: auto;
+  right: 0;
+  left: 0;
+  top: 300px;
+  z-index: 0;
+  width: 95%;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.alert-not-enough-races-hidden {
+  position: absolute;
+  margin: auto;
+  right: 0;
+  left: 0;
+  top: 0px;
+  z-index: 0;
+  width: 95%;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: 0.3s;
+}
