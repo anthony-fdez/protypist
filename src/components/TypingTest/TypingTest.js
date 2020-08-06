@@ -71,7 +71,7 @@ function TypingTest() {
   const [highestSpeed, setHighestSpeed] = useState();
   const [highestSpeedDate, setHighestSpeedDate] = useState();
 
-  const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(true);
+  const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
 
   //========================================================
 
@@ -642,6 +642,33 @@ function TypingTest() {
     );
   };
 
+  const thisTextInfo = () => {
+    return (
+      <div>
+        <h4 style={{ margin: "2rem", marginBottom: 0 }}>This Text:</h4>
+        <hr
+          style={{ width: "85%" }}
+          className={theme ? "white-hr" : "dark-hr"}
+        ></hr>
+        <h4 style={{ margin: "2rem", marginBottom: 0 }}>Highest</h4>
+        <div
+          className={
+            theme
+              ? "ml-4 mr-4 mb-4 mt-1 history-div-dark bg-primary"
+              : "ml-4 mr-4 mb-4 mt-1 history-div-light"
+          }
+        >
+          <div className={"d-flex justify-content-between  p-2"}>
+            <p>{highestSpeed} WPM</p>
+            <p>Date: {highestSpeedDate}</p>
+          </div>
+        </div>
+        <h4 style={{ margin: "2rem", marginBottom: 0 }}>History</h4>
+        {displayTheHistory()}
+      </div>
+    );
+  };
+
   const sideMenu = () => {
     if (text !== undefined) {
       console.log(text);
@@ -692,39 +719,20 @@ function TypingTest() {
             <h5 className="mt-2">By: {text.by}</h5>
             <div className="d-flex justify-content-center"></div>
           </div>
-          <div>
-            <h4 style={{ margin: "2rem", marginBottom: 0 }}>This Text:</h4>
-            <hr
-              style={{ width: "85%" }}
-              className={theme ? "white-hr" : "dark-hr"}
-            ></hr>
-            <h4 style={{ margin: "2rem", marginBottom: 0 }}>Highest</h4>
+          {isLoggedIn && thisTextInfo()}
+          {isLoggedIn && (
             <div
-              className={
-                theme
-                  ? "ml-4 mr-4 mb-4 mt-1 history-div-dark bg-primary"
-                  : "ml-4 mr-4 mb-4 mt-1 history-div-light"
-              }
+              onClick={() => {
+                setIsSubmitQuoteOpen(!isSubmitQuoteMenuOpen);
+                dispatch({
+                  type: "TOGGLE_OPENING_SIDE_MENU",
+                });
+              }}
+              className="submit-quote-button "
             >
-              <div className={"d-flex justify-content-between  p-2"}>
-                <p>{highestSpeed} WPM</p>
-                <p>Date: {highestSpeedDate}</p>
-              </div>
+              <h5>Submit a Quote</h5>
             </div>
-            <h4 style={{ margin: "2rem", marginBottom: 0 }}>History</h4>
-            {displayTheHistory()}
-          </div>
-          <div
-            onClick={() => {
-              setIsSubmitQuoteOpen(!isSubmitQuoteMenuOpen);
-              dispatch({
-                type: "TOGGLE_OPENING_SIDE_MENU",
-              });
-            }}
-            className="submit-quote-button "
-          >
-            <h5>Submit a Quote</h5>
-          </div>
+          )}
         </div>
       );
     }
