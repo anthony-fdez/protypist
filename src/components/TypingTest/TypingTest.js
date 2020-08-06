@@ -650,7 +650,7 @@ function TypingTest() {
           </h5>
         </div>
         <div className="d-flex">
-          <h5 className="mr-1">Characters per minute: {displayCPM()} |</h5>
+          <h5 className="mr-1">CPM: {displayCPM()} |</h5>
           <h5
             style={
               differenceInWPM > 0
