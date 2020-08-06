@@ -500,12 +500,30 @@
     padding: 1rem;
     background-color: rgb(30, 30, 30);
     transition: 0.3s;
+    margin-bottom: 6rem;
   }
   .history-div-light {
     padding: 1rem;
     background-color: rgb(211, 210, 210);
     color: rgb(36, 36, 36);
     transition: 0.3s;
+  }
+  .submit-quote-button {
+    background-color: rgb(0, 119, 255);
+    position: fixed;
+    height: 70px;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .submit-quote-button:hover {
+    background-color: rgb(35, 216, 147);
+    height: 100px;
+    transition: 0.2s;
   }
 }
 @media only screen and (max-width: 1500px) {
@@ -978,6 +996,23 @@
     background-color: rgb(211, 210, 210);
     color: rgb(36, 36, 36);
     transition: 0.3s;
+  }
+  .submit-quote-button {
+    background-color: rgb(0, 119, 255);
+    position: fixed;
+    height: 70px;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .submit-quote-button:hover {
+    background-color: rgb(35, 216, 147);
+    height: 100px;
+    transition: 0.2s;
   }
 }
 .link {

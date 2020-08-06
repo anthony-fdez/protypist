@@ -71,6 +71,8 @@ function TypingTest() {
   const [highestSpeed, setHighestSpeed] = useState();
   const [highestSpeedDate, setHighestSpeedDate] = useState();
 
+  const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
+
   //========================================================
 
   const postTheDataToTheServer = () => {
@@ -524,7 +526,7 @@ function TypingTest() {
         <div
           className={
             theme
-              ? "ml-4 mr-4 mb-4  mt-1 history-div-dark"
+              ? "ml-4 mr-4  mt-1 history-div-dark"
               : "m-4 mt-3 history-div-light"
           }
         >
@@ -555,6 +557,14 @@ function TypingTest() {
         </div>
       );
     }
+  };
+
+  const submitQuoteMenu = () => {
+    return (
+      <div className="submit-quote-menu">
+        <h3>Submit Quote</h3>
+      </div>
+    );
   };
 
   const sideMenu = () => {
@@ -629,6 +639,9 @@ function TypingTest() {
             <h4 style={{ margin: "2rem", marginBottom: 0 }}>History</h4>
             {displayTheHistory()}
           </div>
+          <div className="submit-quote-button ">
+            <h5>Submit a Quote</h5>
+          </div>
         </div>
       );
     }
@@ -702,6 +715,7 @@ function TypingTest() {
           isSideMenuOpen ? "darkened-background-on" : "darkened-background-off"
         }
       ></div>
+      {submitQuoteMenu()}
       {sideMenu()}
       <div className="TypingTest">
         <Header />
