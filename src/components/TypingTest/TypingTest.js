@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useDebugValue } from "react";
 import "./TypingTest.css";
-import soundFile from "../audio/keyboard-sound-1.mp3";
 
 //components
 import Header from "../header/header";
@@ -71,9 +70,6 @@ function TypingTest() {
 
   const [highestSpeed, setHighestSpeed] = useState();
   const [highestSpeedDate, setHighestSpeedDate] = useState();
-
-  //this is the random number rorresponding to the selected text
-  const [selectedRandomTextIndex, setSelectedRandomTextIndex] = useState(0);
 
   //========================================================
 
@@ -818,9 +814,6 @@ function TypingTest() {
             </div>
           </div>
         </div>
-        <audio className="audio">
-          <source src={soundFile}></source>
-        </audio>
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}

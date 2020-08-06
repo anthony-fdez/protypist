@@ -10,13 +10,40 @@ function Stats() {
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
 
-  //state
+  //state TypingGame
   const [wpmAverage10races, setWpmAverage10races] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState(0);
   const [racesCompleted, setRacesCompleted] = useState(0);
   const [averageMistakes, setAverageMistakes] = useState(0);
   const [highestSpeedOfAllTime, setHighestSpeedOfAllTime] = useState(0);
+
+  //state 200
+  const [wpmAverage10races200, setWpmAverage10races200] = useState(0);
+  const [totalTime200, setTotalTime200] = useState(0);
+  const [wpmAverageAllTime200, setWpmAverageAllTime200] = useState(0);
+  const [racesCompleted200, setRacesCompleted200] = useState(0);
+  const [averageMistakes200, setAverageMistakes200] = useState(0);
+  const [highestSpeedOfAllTime200, setHighestSpeedOfAllTime200] = useState(0);
+
+  const [wpmAverage10races1000, setWpmAverage10races1000] = useState(0);
+  const [totalTime1000, setTotalTime1000] = useState(0);
+  const [wpmAverageAllTime1000, setWpmAverageAllTime1000] = useState(0);
+  const [racesCompleted1000, setRacesCompleted1000] = useState(0);
+  const [averageMistakes1000, setAverageMistakes1000] = useState(0);
+  const [highestSpeedOfAllTime1000, setHighestSpeedOfAllTime1000] = useState(0);
+
+  const [
+    isTypingGameStatisticsShown,
+    setIsTypingGameStatisticsShown,
+  ] = useState(true);
+  const [isTyping200StatisticsShown, setIsTyping200StatisticsShown] = useState(
+    false
+  );
+  const [
+    isTyping1000StatisticsShown,
+    setIsTyping1000StatisticsShown,
+  ] = useState(false);
 
   const [timeIsUp, setTimeIsUp] = useState(false);
 
@@ -47,20 +74,58 @@ function Stats() {
   }, [jwt]);
 
   useEffect(() => {
+    const headers = { Authorization: jwt };
+
+    axios
+      .get("http://localhost:5000/users/statistics200", {
+        headers: headers,
+      })
+      .then((response) => {
+        setRacesCompleted200(response.data.racesCompleted200);
+        setTotalTime200(response.data.totalTime200);
+        setWpmAverage10races200(response.data.wpmAverageLast10Races200);
+        setWpmAverageAllTime200(response.data.wpmAverageAllTime200);
+        setAverageMistakes200(response.data.averageMistakes200);
+        setHighestSpeedOfAllTime200(response.data.highestSpeedAllTime200);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  }, [jwt]);
+
+  useEffect(() => {
+    const headers = { Authorization: jwt };
+
+    axios
+      .get("http://localhost:5000/users/statistics1000", {
+        headers: headers,
+      })
+      .then((response) => {
+        setRacesCompleted1000(response.data.racesCompleted1000);
+        setTotalTime1000(response.data.totalTime1000);
+        setWpmAverage10races1000(response.data.wpmAverageLast10Races1000);
+        setWpmAverageAllTime1000(response.data.wpmAverageAllTime1000);
+        setAverageMistakes1000(response.data.averageMistakes1000);
+        setHighestSpeedOfAllTime1000(response.data.highestSpeedAllTime1000);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  }, [jwt]);
+
+  useEffect(() => {
     const myTimeOut = setTimeout(() => {
       setTimeIsUp(true);
     }, 1000);
     return () => clearTimeout(myTimeOut);
   }, []);
 
-  const formatTheTime = () => {
+  const formatTheTime = (time) => {
     let hours;
     let minutes;
     let seconds;
 
-    if (totalTime !== undefined) {
-      let time = totalTime;
-
+    if (time !== undefined) {
       hours = Math.floor(time / 3600);
       time = time % 3600;
       minutes = Math.floor(time / 60);
@@ -86,48 +151,160 @@ function Stats() {
     );
   };
 
-  const statistics = () => {
+  const statisticsTypingGameComponent = () => {
     return (
       <div>
-        <div className="all-time-div">
-          <h4>All time statistics:</h4>
+        <div
+          className={
+            isTypingGameStatisticsShown
+              ? "typing-game-statistics-div-shown"
+              : "typing-game-statistics-div-hidden"
+          }
+        >
+          <h4>Typing Test Statistics:</h4>
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
           <div className="all-time-div-stats">
             <div className="stats-box">
               <h5>Total time:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{formatTheTime()}</h5>
+              <h5 style={{ marginTop: "1rem" }}>{formatTheTime(totalTime)}</h5>
             </div>
             <div className="stats-box">
-              <h5>Races Completed:</h5>
+              <h5>Races:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
               <h5 style={{ marginTop: "1rem" }}>{racesCompleted}</h5>
             </div>
             <div className="stats-box">
-              <h5>Highest WPM:</h5>{" "}
+              <h5>Highest:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
               <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime}</h5>
             </div>
             <div className="stats-box">
-              <h5>Average WPM:</h5>{" "}
+              <h5>Average:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
               <h5 style={{ marginTop: "1rem" }}>
                 {Math.round(wpmAverageAllTime * 10) / 10}
               </h5>
             </div>
             <div className="stats-box">
-              <h5>WPM last 10 races:</h5>{" "}
+              <h5>Recent Avg:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
               <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races}</h5>
             </div>
             <div className="stats-box">
-              <h5>Average Mistakes:</h5>{" "}
+              <h5>Mistakes Avg:</h5>{" "}
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes}</h5>
             </div>
           </div>
           {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
+      </div>
+    );
+  };
+
+  const statistics200Component = () => {
+    return (
+      <div>
+        <div
+          className={
+            isTyping200StatisticsShown
+              ? "typing-200-statistics-div-shown"
+              : "typing-200-statistics-div-hidden"
+          }
+        >
+          <h4>200 Most Common Words Statistics:</h4>
+          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+          <div className="all-time-div-stats">
+            <div className="stats-box">
+              <h5>Total time:</h5>
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>
+                {formatTheTime(totalTime200)}
+              </h5>
+            </div>
+            <div className="stats-box">
+              <h5>Races:</h5>
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{racesCompleted200}</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Highest:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime200}</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Average:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>
+                {Math.round(wpmAverageAllTime200 * 10) / 10}
+              </h5>
+            </div>
+            <div className="stats-box">
+              <h5>Recent Avg:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races200}</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Avg Mistakes:</h5>{" "}
+              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <h5 style={{ marginTop: "1rem" }}>{averageMistakes200}</h5>
+            </div>
+          </div>
+          {racesCompleted200 < 10 && timeIsUp === true && alert()}
+        </div>
+      </div>
+    );
+  };
+
+  const statistics1000Component = () => {
+    return (
+      <div
+        className={
+          isTyping1000StatisticsShown
+            ? "typing-1000-statistics-div-shown"
+            : "typing-1000-statistics-div-hidden"
+        }
+      >
+        <h4>1000 Most Common Words Statistics:</h4>
+        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        <div className="all-time-div-stats">
+          <div className="stats-box">
+            <h5>Total time:</h5>
+            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+            <h5 style={{ marginTop: "1rem" }}>
+              {formatTheTime(totalTime1000)}
+            </h5>
+          </div>
+          <div className="stats-box">
+            <h5>Races:</h5>
+            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+            <h5 style={{ marginTop: "1rem" }}>{racesCompleted1000}</h5>
+          </div>
+          <div className="stats-box">
+            <h5>Highest:</h5>{" "}
+            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+            <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime1000}</h5>
+          </div>
+          <div className="stats-box">
+            <h5>Average:</h5>{" "}
+            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+            <h5 style={{ marginTop: "1rem" }}>
+              {Math.round(wpmAverageAllTime1000 * 10) / 10}
+            </h5>
+          </div>
+          <div className="stats-box">
+            <h5>Recent Avg:</h5>{" "}
+            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+            <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races1000}</h5>
+          </div>
+          <div className="stats-box">
+            <h5>Avg Mistakes:</h5>{" "}
+            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+            <h5 style={{ marginTop: "1rem" }}>{averageMistakes1000}</h5>
+          </div>
+        </div>
+        {racesCompleted1000 < 10 && timeIsUp === true && alert()}
       </div>
     );
   };
@@ -147,7 +324,60 @@ function Stats() {
     >
       <div className={theme ? "Stats-dark" : "Stats-light"}>
         <Header text="Yous statistics!" />
-        {isLoggedIn ? statistics() : notLoggedIn()}
+        <div className="statistics-select-buttons">
+          <div
+            onClick={() => {
+              setIsTypingGameStatisticsShown(true);
+              setIsTyping200StatisticsShown(false);
+              setIsTyping1000StatisticsShown(false);
+            }}
+            className={
+              isTypingGameStatisticsShown
+                ? "typing-game-button-active bg-primary"
+                : "typing-game-inactive"
+            }
+          >
+            <h4>TypingGame</h4>
+          </div>
+          <div
+            onClick={() => {
+              setIsTypingGameStatisticsShown(false);
+              setIsTyping200StatisticsShown(true);
+              setIsTyping1000StatisticsShown(false);
+            }}
+            className={
+              isTyping200StatisticsShown
+                ? "top-200-button-active bg-primary"
+                : "top-200-inactive"
+            }
+          >
+            <h4>Top 200</h4>
+          </div>
+          <div
+            onClick={() => {
+              setIsTypingGameStatisticsShown(false);
+              setIsTyping200StatisticsShown(false);
+              setIsTyping1000StatisticsShown(true);
+            }}
+            className={
+              isTyping1000StatisticsShown
+                ? "top-1000-button-active bg-primary"
+                : "top-1000-inactive"
+            }
+          >
+            <h4>Top 1000</h4>
+          </div>
+        </div>
+        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        <div className="all-statistics-div">
+          {isLoggedIn
+            ? [
+                statisticsTypingGameComponent(),
+                statistics200Component(),
+                statistics1000Component(),
+              ]
+            : notLoggedIn()}
+        </div>
       </div>
     </animated.div>
   );

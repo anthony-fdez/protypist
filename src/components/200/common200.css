@@ -3,15 +3,18 @@
   height: 100vh;
   background-color: rgb(31, 30, 30);
   color: white;
+  overflow: hidden;
 }
 .common200-page-light {
   width: 100vw;
   height: 100vh;
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  overflow: hidden;
 }
 .Common200 {
   padding: 1rem;
   text-align: center;
   margin-left: 170px;
+  overflow: hidden;
 }

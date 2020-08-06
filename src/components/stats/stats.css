@@ -41,12 +41,44 @@ h1 {
   background-color: rgb(51, 50, 50);
   margin-top: 2rem;
 }
-.all-time-div {
+.all-statistics-div {
+  position: relative;
+  margin-top: 2rem;
+}
+.typing-game-statistics-div-shown,
+.typing-200-statistics-div-shown,
+.typing-1000-statistics-div-shown {
+  position: absolute;
+  width: 90%;
   background-color: rgb(51, 50, 50);
   margin-top: 2rem;
   padding: 2rem;
   border-radius: 10px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: 0.3s;
 }
+
+.typing-game-statistics-div-hidden,
+.typing-1000-statistics-div-hidden,
+.typing-200-statistics-div-hidden {
+  position: absolute;
+  width: 90%;
+  background-color: rgb(51, 50, 50);
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transition: 0.3s;
+  transform: scale(0.8);
+}
+
 .stats-box {
   border: 1px solid gray;
   border-radius: 5px;
@@ -58,4 +90,40 @@ h1 {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+}
+.statistics-select-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.typing-game-button-active,
+.top-200-button-active,
+.top-1000-button-active {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  transform: scale(1.1);
+}
+.typing-game-inactive,
+.top-200-inactive,
+.top-1000-inactive {
+  margin: 1rem;
+  background-color: rgb(51, 50, 50);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.typing-game-inactive:hover,
+.top-200-inactive:hover,
+.top-1000-inactive:hover {
+  background-color: rgb(68, 68, 68);
 }

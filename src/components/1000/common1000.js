@@ -7,6 +7,7 @@ import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
+import axios from "axios";
 
 function Common1000() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function Common1000() {
     (state) => state.previousErrorsReducer1000
   );
 
+  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const jwt = useSelector((state) => state.JWTreducer);
+
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -36,6 +40,7 @@ function Common1000() {
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(0);
   const [newGame, setNewGame] = useState(false);
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
@@ -49,6 +54,53 @@ function Common1000() {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+
+  const postTheDataToTheServer = () => {
+    const data = {
+      wpm: calculateWordsPerMinute(),
+      time: seconds,
+      mistakes: realMistakes,
+      date: getTheDate(),
+    };
+    const headers = {
+      Authorization: jwt,
+    };
+
+    axios
+      .post("http://localhost:5000/users/statistics1000", data, {
+        headers: headers,
+      })
+      .then(() => {})
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const getTheDate = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDay();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    const formatedTime = `${
+      hour === 0 ? "00" : hour < 10 ? "0" + hour : hour
+    }:${minute === 0 ? "00" : minute < 10 ? "0" + minute : minute} - ${
+      month === 0 ? "00" : month < 10 ? "0" + month : month
+    }/${day === 0 ? "00" : day < 10 ? "0" + day : day}/${year}`;
+
+    return formatedTime;
+  };
+
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setSeconds((seconds) => seconds + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
 
   //========= Convert the plain text into arrays //
 
@@ -238,6 +290,7 @@ function Common1000() {
       setRealMistakes(0);
       setProgress(1);
       setCharactersTyped(0);
+      setSeconds(0);
       calculateAccuracy();
       dispatch({
         type: "SET_LATEST_WPM_1000",
@@ -251,6 +304,10 @@ function Common1000() {
         type: "SET_LATEST_ERRORS_1000",
         payload: realMistakes,
       });
+
+      if (isLoggedIn) {
+        postTheDataToTheServer();
+      }
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
     }
@@ -268,6 +325,7 @@ function Common1000() {
         setRealMistakes(0);
         setProgress(1);
         calculateAccuracy();
+        setSeconds(0);
       }
     }
 
@@ -361,6 +419,9 @@ function Common1000() {
   const calculateWithOfProgressBar = () => {
     if (textArrayCharacters !== undefined) {
       let percent = (charactersTyped / textArrayCharacters.length) * 100;
+      if (percent > 100) {
+        return 100;
+      }
       return percent;
     }
   };
