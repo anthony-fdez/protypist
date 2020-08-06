@@ -71,7 +71,7 @@ function TypingTest() {
   const [highestSpeed, setHighestSpeed] = useState();
   const [highestSpeedDate, setHighestSpeedDate] = useState();
 
-  const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
+  const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(true);
 
   //========================================================
 
@@ -561,8 +561,83 @@ function TypingTest() {
 
   const submitQuoteMenu = () => {
     return (
-      <div className="submit-quote-menu">
-        <h3>Submit Quote</h3>
+      <div
+        className={
+          isSubmitQuoteMenuOpen
+            ? "submit-quote-menu-open"
+            : "submit-quote-menu-closed"
+        }
+      >
+        <div className="side-menu-header">
+          <h3>Submit Your Quote</h3>
+          <i
+            onClick={() => {
+              setIsSubmitQuoteOpen(false);
+            }}
+            className="fas fa-times fa-2x close-icon mt-3"
+          ></i>
+        </div>
+        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        <div className="submit-quote-inner-div">
+          <h5 className="ml-3 mt-3">Title:</h5>
+          <input
+            className="form-control"
+            placeholder="Title of your quote"
+          ></input>
+          <h5 className="ml-3 mt-3">Text:</h5>
+          <input className="form-control" placeholder="The Quote"></input>
+          <h5 className="ml-3 mt-3">From:</h5>
+          <input
+            className="form-control"
+            placeholder="Where is this quote from?"
+          ></input>
+          <h5 className="ml-3 mt-3">By:</h5>
+          <input
+            className="form-control"
+            placeholder="Who is the owner of the quote?"
+          ></input>
+          <h5 className="ml-3 mt-3">Image:</h5>
+          <input
+            className="form-control"
+            placeholder="Link of a picture of the quote."
+          ></input>
+          <h5 className="ml-3 mt-3">Link:</h5>
+          <input
+            className="form-control"
+            placeholder="Link to the source of the quote."
+          ></input>
+          <h5 className="ml-3 mt-3">Type:</h5>
+          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+          <div className="d-flex justify-content-between mt-3">
+            <h4>What is this quote from:</h4>
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  Action
+                </a>
+                <a class="dropdown-item" href="#">
+                  Another action
+                </a>
+                <a class="dropdown-item" href="#">
+                  Something else here
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="submit-quote-form-button">
+          <h4>Submit</h4>
+        </div>
       </div>
     );
   };
@@ -639,7 +714,15 @@ function TypingTest() {
             <h4 style={{ margin: "2rem", marginBottom: 0 }}>History</h4>
             {displayTheHistory()}
           </div>
-          <div className="submit-quote-button ">
+          <div
+            onClick={() => {
+              setIsSubmitQuoteOpen(!isSubmitQuoteMenuOpen);
+              dispatch({
+                type: "TOGGLE_OPENING_SIDE_MENU",
+              });
+            }}
+            className="submit-quote-button "
+          >
             <h5>Submit a Quote</h5>
           </div>
         </div>
@@ -712,7 +795,9 @@ function TypingTest() {
           })
         }
         className={
-          isSideMenuOpen ? "darkened-background-on" : "darkened-background-off"
+          isSideMenuOpen || isSubmitQuoteMenuOpen
+            ? "darkened-background-on"
+            : "darkened-background-off"
         }
       ></div>
       {submitQuoteMenu()}
