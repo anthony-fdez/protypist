@@ -445,7 +445,7 @@ function Common200() {
       className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
     >
       <div className="TypingTest">
-        <Header text="Type the 200 most common words in English" />
+        <Header />
         <div className="statistics">
           <div className="d-flex">
             <h5 className="mr-1">WPM: {displayWPM()} |</h5>

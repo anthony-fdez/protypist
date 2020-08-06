@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    height: 4.5rem;
   }
   .Header-light {
     color: black;
@@ -18,6 +19,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    height: 4.5rem;
   }
   .log-in-button {
     position: absolute;
@@ -287,7 +289,7 @@
 @media only screen and (max-width: 1500px) {
   .Header-dark {
     background-color: rgb(50, 50, 50);
-    padding: 0.5rem;
+    padding: 1rem;
     margin: 0;
     color: white;
     transition: 0.3s;
@@ -295,17 +297,20 @@
     justify-content: center;
     border-radius: 10px;
     position: relative;
+    border-radius: 0;
+    height: 4.5rem;
   }
   .Header-light {
     margin: 0;
     color: black;
     background-color: rgb(231, 231, 231);
-    padding: 0.5rem;
+    padding: 1rem;
     transition: 0.3s;
     display: flex;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 0px;
     position: relative;
+    height: 4.5rem;
   }
   .log-in-button {
     position: absolute;

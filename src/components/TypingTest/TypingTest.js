@@ -704,7 +704,7 @@ function TypingTest() {
       ></div>
       {sideMenu()}
       <div className="TypingTest">
-        <Header text="Improve your typing skills" />
+        <Header />
         {displayTheStatistics()}
         <hr
           style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}

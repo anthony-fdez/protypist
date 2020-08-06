@@ -113,6 +113,13 @@ function Stats() {
       });
   }, [jwt]);
 
+  useEffect(() => {
+    const myTimeOut = setTimeout(() => {
+      setTimeIsUp(true);
+    }, 1000);
+    return () => clearTimeout(myTimeOut);
+  }, []);
+
   const formatTheTime = (time) => {
     let hours;
     let minutes;
@@ -134,15 +141,9 @@ function Stats() {
     return formtatedTimeString;
   };
 
-  const alert = (races) => {
+  const alert = () => {
     return (
-      <p
-        className={
-          races < 10
-            ? "alert-warning alert-not-enough-races-shown"
-            : "alert-warning alert-not-enough-races-hidden"
-        }
-      >
+      <p className={"alert-warning alert-not-enough-races"}>
         <strong>Info: </strong>
         The average Mistakes, and the Average speed for the last 10 races won't
         show untill you have completed 10 races.
@@ -196,7 +197,7 @@ function Stats() {
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes}</h5>
             </div>
           </div>
-          {alert(racesCompleted)}
+          {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
@@ -250,7 +251,7 @@ function Stats() {
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes200}</h5>
             </div>
           </div>
-          {alert(racesCompleted200)}
+          {racesCompleted200 < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
@@ -304,7 +305,7 @@ function Stats() {
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes1000}</h5>
             </div>
           </div>
-          {alert(racesCompleted1000)}
+          {racesCompleted1000 < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );

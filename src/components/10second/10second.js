@@ -41,7 +41,7 @@ function Typing10Second() {
       }
     >
       <div className={"Typing10Second"}>
-        <Header text="10second Game" />
+        <Header />
       </div>
       <div>
         <div className={isMenuInScreen ? "dark-mode-open" : "dark-mode-closed"}>

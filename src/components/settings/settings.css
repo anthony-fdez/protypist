@@ -12,6 +12,12 @@ h2 {
   align-items: center;
   display: flex;
 }
+.home-page-dark,
+.home-page-light {
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-bottom: 3rem;
+}
 .settings-card-ligth,
 .settings-card-ligth-words {
   background-color: rgb(255, 255, 255);
@@ -95,7 +101,8 @@ h2 {
   }
   .home-page-dark,
   .home-page-light {
-    overflow-x: hidden;
+    overflow: hidden;
+    overflow-y: scroll;
     padding-bottom: 3rem;
   }
   p {

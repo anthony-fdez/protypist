@@ -19,7 +19,7 @@ function Home() {
       className={theme ? "home-page-dark" : "home-page-light"}
     >
       <div className={theme ? "Home-dark" : "Home-light"}>
-        <Header text="Simple Typing Game" />
+        <Header />
       </div>
     </animated.div>
   );

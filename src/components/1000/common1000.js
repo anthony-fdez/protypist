@@ -443,7 +443,7 @@ function Common1000() {
       className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
     >
       <div className="TypingTest">
-        <Header text="Type the 1000 most common words in English (advanced)" />
+        <Header />
         <div className="statistics">
           <div className="d-flex">
             <h5 className="mr-1">WPM: {displayWPM()} |</h5>
