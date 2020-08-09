@@ -66,7 +66,7 @@ function Common200() {
     };
 
     axios
-      .post("http://localhost:5000/users/statistics200", data, {
+      .post("https://protypist.herokuapp.com/users/statistics200", data, {
         headers: headers,
       })
       .then(() => {})

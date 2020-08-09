@@ -57,7 +57,7 @@ function Stats() {
     const headers = { Authorization: jwt };
 
     axios
-      .get("http://localhost:5000/users/statistics", {
+      .get("https://protypist.herokuapp.com/users/statistics", {
         headers: headers,
       })
       .then((response) => {
@@ -77,7 +77,7 @@ function Stats() {
     const headers = { Authorization: jwt };
 
     axios
-      .get("http://localhost:5000/users/statistics200", {
+      .get("https://protypist.herokuapp.com/users/statistics200", {
         headers: headers,
       })
       .then((response) => {
@@ -97,7 +97,7 @@ function Stats() {
     const headers = { Authorization: jwt };
 
     axios
-      .get("http://localhost:5000/users/statistics1000", {
+      .get("https://protypist.herokuapp.com/users/statistics1000", {
         headers: headers,
       })
       .then((response) => {

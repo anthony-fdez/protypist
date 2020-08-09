@@ -70,7 +70,7 @@ function Header(props) {
     const bodyParameters = { key: "value" };
 
     axios
-      .post("http://localhost:5000/checkIfLoggedIn", bodyParameters, {
+      .post("https://protypist.herokuapp.com/checkIfLoggedIn", bodyParameters, {
         headers: headers,
       })
       .then((response) => {
@@ -91,7 +91,7 @@ function Header(props) {
     const headers = { Authorization: jwt };
 
     axios
-      .get("http://localhost:5000/users/me/name", {
+      .get("https://protypist.herokuapp.com/users/me/name", {
         headers: headers,
       })
       .then((response) => {
@@ -125,7 +125,7 @@ function Header(props) {
       setIsErrorWarningShown(true);
     } else {
       axios
-        .post("http://localhost:5000/users/login", user)
+        .post("https://protypist.herokuapp.com/users/login", user)
         .then((response) => {
           if (response.status === 200) {
             dispatch({
@@ -176,7 +176,7 @@ function Header(props) {
       setIsErrorWarningShown(true);
     } else {
       axios
-        .post("http://localhost:5000/users", user)
+        .post("https://protypist.herokuapp.com/users", user)
         .then((response) => {
           if (response.status === 201) {
             dispatch({
@@ -215,7 +215,7 @@ function Header(props) {
     const bodyParameters = { key: "value" };
 
     axios
-      .post("http://localhost:5000/users/logout", bodyParameters, {
+      .post("https://protypist.herokuapp.com/users/logout", bodyParameters, {
         headers: headers,
       })
       .then(() => {
@@ -249,7 +249,7 @@ function Header(props) {
     const data = { password: passwordLogOut };
 
     axios
-      .post("http://localhost:5000/users/logoutall", data, {
+      .post("https://protypist.herokuapp.com/users/logoutall", data, {
         headers: headers,
       })
       .then(() => {

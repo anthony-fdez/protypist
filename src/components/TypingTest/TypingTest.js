@@ -5,6 +5,7 @@ import "./TypingTest.css";
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
+import validator from "validator";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -72,6 +73,30 @@ function TypingTest() {
   const [highestSpeedDate, setHighestSpeedDate] = useState();
 
   const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
+  const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
+  const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
+  const [message, setMessage] = useState("");
+
+  //submit a quote info
+
+  // const [quoteTitle, setQuoteTitle] = useState();
+  // const [quoteText, setQuoteText] = useState();
+  // const [quoteFrom, setQuoteFrom] = useState();
+  // const [quoteBy, setQuoteBy] = useState();
+  // const [quoteImageUrl, setQuoteImageUrl] = useState();
+  // const [quoteLinkUrl, setQuoteLinkUrl] = useState();
+  // const [quoteType, setQuoteType] = useState("Song");
+
+  useEffect(() => {
+    let myTimeout;
+    if (isErrorWarningShown || isSuccessWarningShown) {
+      myTimeout = setTimeout(() => {
+        setIsErrorWarningShown(false);
+        setIsSuccssWarningShown(false);
+      }, 3000);
+    }
+    return () => clearTimeout(myTimeout);
+  }, [isErrorWarningShown, isSuccessWarningShown]);
 
   //========================================================
 
@@ -88,7 +113,7 @@ function TypingTest() {
     };
 
     axios
-      .post("http://localhost:5000/users/statistics", data, {
+      .post("https://protypist.herokuapp.com/users/statistics", data, {
         headers: headers,
       })
       .then(() => {})
@@ -103,7 +128,9 @@ function TypingTest() {
     };
 
     axios
-      .get("http://localhost:5000/texts/getRandom", { headers: headers })
+      .get("https://protypist.herokuapp.com/texts/getRandom", {
+        headers: headers,
+      })
       .then((res) => {
         setText(res.data[0]);
         if (isLoggedIn) {
@@ -115,6 +142,32 @@ function TypingTest() {
       });
   }, [newGame]);
 
+  // const submitNewQuote = () => {
+  //   const data = {
+  //     title: quoteTitle,
+  //     text: quoteText,
+  //     from: quoteFrom,
+  //     by: quoteBy,
+  //     image: quoteImageUrl,
+  //     linkURL: quoteLinkUrl,
+  //     type: quoteType,
+  //   };
+  //   const headers = {
+  //     Authorization: jwt,
+  //   };
+
+  //   axios
+  //     .post("https://protypist.herokuapp.com/texts", data, {
+  //       headers: headers,
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e.response);
+  //     });
+  // };
+
   useEffect(() => {
     const headers = {
       Authorization: jwt,
@@ -124,7 +177,7 @@ function TypingTest() {
     };
 
     axios
-      .post("http://localhost:5000/users/getRaceScores", data, {
+      .post("https://protypist.herokuapp.com/users/getRaceScores", data, {
         headers: headers,
       })
       .then((res) => {
@@ -519,6 +572,91 @@ function TypingTest() {
     }
   };
 
+  // const checkTheSubmitQuoteInput = () => {
+  //   if (quoteTitle === undefined) {
+  //     setMessage("You have to provide a Title for the quote.");
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   }
+
+  //   if (quoteText === undefined) {
+  //     setMessage("You have to provide a valid Text");
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   } else if (quoteText.length > 250) {
+  //     setMessage("That quote is too long.");
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   }
+
+  //   if (quoteFrom === undefined) {
+  //     setMessage(
+  //       "You need to provide where is this quote from... ie: Star Wars"
+  //     );
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   } else if (quoteFrom > 50) {
+  //     setMessage("Your 'from' field is too long, max of 40 characthers");
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   }
+
+  //   if (quoteBy === undefined) {
+  //     setMessage("You need to say who this quote belongs to... It's author.");
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   }
+
+  //   if (quoteImageUrl === undefined) {
+  //     setMessage(
+  //       "You have to provide an URL of a picture that relates with your quote."
+  //     );
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   }
+
+  //   if (quoteLinkUrl === undefined || validator.isURL(quoteLinkUrl) === false) {
+  //     setMessage("The quote Link is not valid, it has to be a URL");
+  //     setIsErrorWarningShown(true);
+  //     return false;
+  //   }
+
+  //   return true;
+  // };
+
+  const successWarning = () => {
+    return (
+      <div
+        style={{ left: "200px" }}
+        className={
+          isSuccessWarningShown
+            ? "success-warning-shown bg-primary"
+            : "success-warning-hidden bg-primary"
+        }
+      >
+        <h5>{message}</h5>
+      </div>
+    );
+  };
+
+  const errorWarning = () => {
+    return (
+      <div
+        style={{ left: "200px" }}
+        className={
+          isErrorWarningShown
+            ? "error-warning-shown bg-danger"
+            : "error-warning-hidden bg-danger"
+        }
+      >
+        <h4 style={{ marginRight: "10px" }}>
+          <strong>Error: </strong>
+        </h4>
+        <h5>{message}</h5>
+      </div>
+    );
+  };
+
   const displayTheHistory = () => {
     if (textTypedHistory !== undefined) {
       const data = textTypedHistory;
@@ -581,28 +719,55 @@ function TypingTest() {
         <div className="submit-quote-inner-div">
           <h5 className="ml-3 mt-3">Title:</h5>
           <input
+            type="text"
+            onChange={(e) => {
+              setQuoteTitle(e.target.value);
+            }}
             className="form-control"
             placeholder="Title of your quote"
           ></input>
           <h5 className="ml-3 mt-3">Text:</h5>
-          <input className="form-control" placeholder="The Quote"></input>
+          <input
+            type="text"
+            onChange={(e) => {
+              setQuoteText(e.target.value);
+            }}
+            className="form-control"
+            placeholder="The Quote"
+          ></input>
           <h5 className="ml-3 mt-3">From:</h5>
           <input
+            type="text"
+            onChange={(e) => {
+              setQuoteFrom(e.target.value);
+            }}
             className="form-control"
             placeholder="Where is this quote from?"
           ></input>
           <h5 className="ml-3 mt-3">By:</h5>
           <input
+            type="text"
+            onChange={(e) => {
+              setQuoteBy(e.target.value);
+            }}
             className="form-control"
             placeholder="Who is the owner of the quote?"
           ></input>
           <h5 className="ml-3 mt-3">Image:</h5>
           <input
+            type="text"
+            onChange={(e) => {
+              setQuoteImageUrl(e.target.value);
+            }}
             className="form-control"
             placeholder="Link of a picture of the quote."
           ></input>
           <h5 className="ml-3 mt-3">Link:</h5>
           <input
+            type="text"
+            onChange={(e) => {
+              setQuoteLinkUrl(e.target.value);
+            }}
             className="form-control"
             placeholder="Link to the source of the quote."
           ></input>
@@ -610,32 +775,19 @@ function TypingTest() {
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
           <div className="d-flex justify-content-between mt-3">
             <h4>What is this quote from:</h4>
-            <div class="dropdown">
-              <button
-                class="btn btn-primary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown button
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">
-                  Action
-                </a>
-                <a class="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a class="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
-            </div>
+            <select id="cars">
+              <option onClick={() => setQuoteType("Movie")}>Movie</option>
+              <option onClick={() => setQuoteType("Show")}>Show</option>
+              <option onClick={() => setQuoteType("Song")}>Song</option>
+              <option onClick={() => setQuoteType("Book")}>Book</option>
+              <option onClick={() => setQuoteType("Other")}>Other</option>
+            </select>
           </div>
         </div>
-        <div className="submit-quote-form-button">
+        <div
+          // onClick={() => (checkTheSubmitQuoteInput() ? submitNewQuote() : "")}
+          className="submit-quote-form-button"
+        >
           <h4>Submit</h4>
         </div>
       </div>
@@ -671,7 +823,6 @@ function TypingTest() {
 
   const sideMenu = () => {
     if (text !== undefined) {
-      console.log(text);
       return (
         <div
           className={
@@ -808,11 +959,14 @@ function TypingTest() {
             : "darkened-background-off"
         }
       ></div>
+
       {submitQuoteMenu()}
       {sideMenu()}
       <div className="TypingTest">
         <Header />
         {displayTheStatistics()}
+        {errorWarning()}
+        {successWarning()}
         <hr
           style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
           className={theme ? "white-hr" : "dark-hr"}
