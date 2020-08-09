@@ -697,102 +697,102 @@ function TypingTest() {
     }
   };
 
-  const submitQuoteMenu = () => {
-    return (
-      <div
-        className={
-          isSubmitQuoteMenuOpen
-            ? "submit-quote-menu-open"
-            : "submit-quote-menu-closed"
-        }
-      >
-        <div className="side-menu-header">
-          <h3>Submit Your Quote</h3>
-          <i
-            onClick={() => {
-              setIsSubmitQuoteOpen(false);
-            }}
-            className="fas fa-times fa-2x close-icon mt-3"
-          ></i>
-        </div>
-        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-        <div className="submit-quote-inner-div">
-          <h5 className="ml-3 mt-3">Title:</h5>
-          <input
-            type="text"
-            onChange={(e) => {
-              setQuoteTitle(e.target.value);
-            }}
-            className="form-control"
-            placeholder="Title of your quote"
-          ></input>
-          <h5 className="ml-3 mt-3">Text:</h5>
-          <input
-            type="text"
-            onChange={(e) => {
-              setQuoteText(e.target.value);
-            }}
-            className="form-control"
-            placeholder="The Quote"
-          ></input>
-          <h5 className="ml-3 mt-3">From:</h5>
-          <input
-            type="text"
-            onChange={(e) => {
-              setQuoteFrom(e.target.value);
-            }}
-            className="form-control"
-            placeholder="Where is this quote from?"
-          ></input>
-          <h5 className="ml-3 mt-3">By:</h5>
-          <input
-            type="text"
-            onChange={(e) => {
-              setQuoteBy(e.target.value);
-            }}
-            className="form-control"
-            placeholder="Who is the owner of the quote?"
-          ></input>
-          <h5 className="ml-3 mt-3">Image:</h5>
-          <input
-            type="text"
-            onChange={(e) => {
-              setQuoteImageUrl(e.target.value);
-            }}
-            className="form-control"
-            placeholder="Link of a picture of the quote."
-          ></input>
-          <h5 className="ml-3 mt-3">Link:</h5>
-          <input
-            type="text"
-            onChange={(e) => {
-              setQuoteLinkUrl(e.target.value);
-            }}
-            className="form-control"
-            placeholder="Link to the source of the quote."
-          ></input>
-          <h5 className="ml-3 mt-3">Type:</h5>
-          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-          <div className="d-flex justify-content-between mt-3">
-            <h4>What is this quote from:</h4>
-            <select id="cars">
-              <option onClick={() => setQuoteType("Movie")}>Movie</option>
-              <option onClick={() => setQuoteType("Show")}>Show</option>
-              <option onClick={() => setQuoteType("Song")}>Song</option>
-              <option onClick={() => setQuoteType("Book")}>Book</option>
-              <option onClick={() => setQuoteType("Other")}>Other</option>
-            </select>
-          </div>
-        </div>
-        <div
-          // onClick={() => (checkTheSubmitQuoteInput() ? submitNewQuote() : "")}
-          className="submit-quote-form-button"
-        >
-          <h4>Submit</h4>
-        </div>
-      </div>
-    );
-  };
+  // const submitQuoteMenu = () => {
+  //   return (
+  //     <div
+  //       className={
+  //         isSubmitQuoteMenuOpen
+  //           ? "submit-quote-menu-open"
+  //           : "submit-quote-menu-closed"
+  //       }
+  //     >
+  //       <div className="side-menu-header">
+  //         <h3>Submit Your Quote</h3>
+  //         <i
+  //           onClick={() => {
+  //             setIsSubmitQuoteOpen(false);
+  //           }}
+  //           className="fas fa-times fa-2x close-icon mt-3"
+  //         ></i>
+  //       </div>
+  //       <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+  //       <div className="submit-quote-inner-div">
+  //         <h5 className="ml-3 mt-3">Title:</h5>
+  //         <input
+  //           type="text"
+  //           onChange={(e) => {
+  //             setQuoteTitle(e.target.value);
+  //           }}
+  //           className="form-control"
+  //           placeholder="Title of your quote"
+  //         ></input>
+  //         <h5 className="ml-3 mt-3">Text:</h5>
+  //         <input
+  //           type="text"
+  //           onChange={(e) => {
+  //             setQuoteText(e.target.value);
+  //           }}
+  //           className="form-control"
+  //           placeholder="The Quote"
+  //         ></input>
+  //         <h5 className="ml-3 mt-3">From:</h5>
+  //         <input
+  //           type="text"
+  //           onChange={(e) => {
+  //             setQuoteFrom(e.target.value);
+  //           }}
+  //           className="form-control"
+  //           placeholder="Where is this quote from?"
+  //         ></input>
+  //         <h5 className="ml-3 mt-3">By:</h5>
+  //         <input
+  //           type="text"
+  //           onChange={(e) => {
+  //             setQuoteBy(e.target.value);
+  //           }}
+  //           className="form-control"
+  //           placeholder="Who is the owner of the quote?"
+  //         ></input>
+  //         <h5 className="ml-3 mt-3">Image:</h5>
+  //         <input
+  //           type="text"
+  //           onChange={(e) => {
+  //             setQuoteImageUrl(e.target.value);
+  //           }}
+  //           className="form-control"
+  //           placeholder="Link of a picture of the quote."
+  //         ></input>
+  //         <h5 className="ml-3 mt-3">Link:</h5>
+  //         <input
+  //           type="text"
+  //           onChange={(e) => {
+  //             setQuoteLinkUrl(e.target.value);
+  //           }}
+  //           className="form-control"
+  //           placeholder="Link to the source of the quote."
+  //         ></input>
+  //         <h5 className="ml-3 mt-3">Type:</h5>
+  //         <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+  //         <div className="d-flex justify-content-between mt-3">
+  //           <h4>What is this quote from:</h4>
+  //           <select id="cars">
+  //             <option onClick={() => setQuoteType("Movie")}>Movie</option>
+  //             <option onClick={() => setQuoteType("Show")}>Show</option>
+  //             <option onClick={() => setQuoteType("Song")}>Song</option>
+  //             <option onClick={() => setQuoteType("Book")}>Book</option>
+  //             <option onClick={() => setQuoteType("Other")}>Other</option>
+  //           </select>
+  //         </div>
+  //       </div>
+  //       <div
+  //         // onClick={() => (checkTheSubmitQuoteInput() ? submitNewQuote() : "")}
+  //         className="submit-quote-form-button"
+  //       >
+  //         <h4>Submit</h4>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   const thisTextInfo = () => {
     return (
@@ -871,7 +871,7 @@ function TypingTest() {
             <div className="d-flex justify-content-center"></div>
           </div>
           {isLoggedIn && thisTextInfo()}
-          {isLoggedIn && (
+          {/* {isLoggedIn && (
             <div
               onClick={() => {
                 setIsSubmitQuoteOpen(!isSubmitQuoteMenuOpen);
@@ -883,7 +883,7 @@ function TypingTest() {
             >
               <h5>Submit a Quote</h5>
             </div>
-          )}
+          )} */}
         </div>
       );
     }
@@ -954,13 +954,13 @@ function TypingTest() {
           })
         }
         className={
-          isSideMenuOpen || isSubmitQuoteMenuOpen
+          isSideMenuOpen // isSubmitQuoteMenuOpen
             ? "darkened-background-on"
             : "darkened-background-off"
         }
       ></div>
 
-      {submitQuoteMenu()}
+      {/* {submitQuoteMenu()} */}
       {sideMenu()}
       <div className="TypingTest">
         <Header />
