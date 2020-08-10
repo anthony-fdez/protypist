@@ -17,12 +17,10 @@ function Common200() {
   const length = useSelector((state) => state.lengthReducer);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM200 = useSelector((state) => state.latestWPMReducer200);
-  const latestCPM200 = useSelector((state) => state.latestCPMReducer200);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
   const previousWPM = useSelector((state) => state.previousWPMReducer200);
-  const previousCPM = useSelector((state) => state.previousCPMReducer200);
   const latestErrors = useSelector((state) => state.latestErrorsReducer200);
   const previousErrors = useSelector((state) => state.previousErrorsReducer200);
 
@@ -44,11 +42,9 @@ function Common200() {
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
-  const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
-  const [differenceInCPM, setDIfferenceInCPM] = useState(0);
   const [differenceInErrors, setDIfferenceInErrors] = useState(0);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
@@ -155,10 +151,7 @@ function Common200() {
         type: "SET_PREVIOUS_WPM_200",
         payload: latestWPM200,
       });
-      dispatch({
-        type: "SET_PREVIOUS_CPM_200",
-        payload: latestCPM200,
-      });
+
       dispatch({
         type: "SET_PREVIOUS_ERRORS_200",
         payload: latestErrors,
@@ -166,11 +159,9 @@ function Common200() {
     }
 
     const differenceWPM = latestWPM200 - previousWPM;
-    const differenceCPM = latestCPM200 - previousCPM;
     const differenceErrors = latestErrors - previousErrors;
 
     setDIfferenceInErrors(differenceErrors);
-    setDIfferenceInCPM(differenceCPM);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
 
@@ -254,7 +245,6 @@ function Common200() {
     let charactersPerMinute = charactersPerSecond * 60;
     wordsPerMinute = Math.round(wordsPerMinute);
     charactersPerMinute = Math.round(charactersPerMinute);
-    setCPM(charactersPerMinute);
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;
@@ -298,10 +288,7 @@ function Common200() {
         type: "SET_LATEST_WPM_200",
         payload: calculateWordsPerMinute(),
       });
-      dispatch({
-        type: "SET_LATEST_CPM_200",
-        payload: calculateCharactersPerMinute(),
-      });
+
       dispatch({
         type: "SET_LATEST_ERRORS_200",
         payload: realMistakes,
@@ -402,14 +389,6 @@ function Common200() {
     } else return latestWPM200;
   };
 
-  const displayCPM = () => {
-    if (realTimeWPM) {
-      if (isRunning) {
-        return cpm;
-      } else return latestCPM200;
-    } else return latestCPM200;
-  };
-
   const displayKeyboard = () => {
     if (keyboardOnScreen) {
       if (theme) {
@@ -457,18 +436,6 @@ function Common200() {
               }
             >
               {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
-            </h5>
-          </div>
-          <div className="d-flex">
-            <h5 className="mr-1">CPM: {displayCPM()} |</h5>
-            <h5
-              style={
-                differenceInWPM > 0
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(230, 41, 41)" }
-              }
-            >
-              {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
             </h5>
           </div>
           <div className="d-flex">

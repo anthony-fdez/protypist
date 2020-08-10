@@ -16,12 +16,10 @@ function Common1000() {
   const length = useSelector((state) => state.lengthReducer);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM1000 = useSelector((state) => state.latestWPMReducer1000);
-  const latestCPM1000 = useSelector((state) => state.latestCPMReducer1000);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
   const previousWPM = useSelector((state) => state.previousWPMReducer1000);
-  const previousCPM = useSelector((state) => state.previousCPMReducer1000);
   const latestErrors = useSelector((state) => state.latestErrorsReducer1000);
   const previousErrors = useSelector(
     (state) => state.previousErrorsReducer1000
@@ -45,11 +43,9 @@ function Common1000() {
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
-  const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
-  const [differenceInCPM, setDIfferenceInCPM] = useState(0);
   const [differenceInErrors, setDIfferenceInErrors] = useState(0);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
@@ -156,21 +152,15 @@ function Common1000() {
         payload: latestWPM1000,
       });
       dispatch({
-        type: "SET_PREVIOUS_CPM_100",
-        payload: latestCPM1000,
-      });
-      dispatch({
         type: "SET_PREVIOUS_ERRORS_1000",
         payload: latestErrors,
       });
     }
 
     const differenceWPM = latestWPM1000 - previousWPM;
-    const differenceCPM = latestCPM1000 - previousCPM;
     const differenceErrors = latestErrors - previousErrors;
 
     setDIfferenceInErrors(differenceErrors);
-    setDIfferenceInCPM(differenceCPM);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
 
@@ -254,7 +244,6 @@ function Common1000() {
     let charactersPerMinute = charactersPerSecond * 60;
     wordsPerMinute = Math.round(wordsPerMinute);
     charactersPerMinute = Math.round(charactersPerMinute);
-    setCPM(charactersPerMinute);
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;
@@ -295,10 +284,6 @@ function Common1000() {
       dispatch({
         type: "SET_LATEST_WPM_1000",
         payload: calculateWordsPerMinute(),
-      });
-      dispatch({
-        type: "SET_LATEST_CPM_1000",
-        payload: calculateCharactersPerMinute(),
       });
       dispatch({
         type: "SET_LATEST_ERRORS_1000",
@@ -400,14 +385,6 @@ function Common1000() {
     } else return latestWPM1000;
   };
 
-  const displayCPM = () => {
-    if (realTimeWPM) {
-      if (isRunning) {
-        return cpm;
-      } else return latestCPM1000;
-    } else return latestCPM1000;
-  };
-
   const displayKeyboard = () => {
     if (keyboardOnScreen) {
       if (theme) {
@@ -457,18 +434,7 @@ function Common1000() {
               {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
             </h5>
           </div>
-          <div className="d-flex">
-            <h5 className="mr-1">CPM: {displayCPM()} |</h5>
-            <h5
-              style={
-                differenceInWPM > 0
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(230, 41, 41)" }
-              }
-            >
-              {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
-            </h5>
-          </div>
+
           <div className="d-flex">
             <div className="d-flex mr-5">
               <h5 className="mr-1">Errors: {latestErrors} |</h5>

@@ -22,12 +22,9 @@ function TypingTest() {
   const previousWPM = useSelector(
     (state) => state.previousWPMReducerTypingGame
   );
-  const previousCPM = useSelector(
-    (state) => state.previousCPMReducerTypingGame
-  );
+
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
-  const latestCPM = useSelector((state) => state.latestCPMReducerTypingGame);
   const latestErrors = useSelector(
     (state) => state.latestErrorsReducerTypingGame
   );
@@ -56,11 +53,9 @@ function TypingTest() {
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
-  const [cpm, setCPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
-  const [differenceInCPM, setDIfferenceInCPM] = useState(0);
   const [differenceInErrors, setDIfferenceInErrors] = useState(0);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
@@ -253,10 +248,7 @@ function TypingTest() {
         type: "SET_PREVIOUS_WPM",
         payload: latestWPM,
       });
-      dispatch({
-        type: "SET_PREVIOUS_CPM",
-        payload: latestCPM,
-      });
+
       dispatch({
         type: "SET_PREVIOUS_ERRORS_TYPING_GAME",
         payload: latestErrors,
@@ -264,11 +256,9 @@ function TypingTest() {
     }
 
     const differenceWPM = latestWPM - previousWPM;
-    const differenceCPM = latestCPM - previousCPM;
     const differenceErrors = latestErrors - previousErrors;
 
     setDIfferenceInErrors(differenceErrors);
-    setDIfferenceInCPM(differenceCPM);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
 
@@ -352,7 +342,6 @@ function TypingTest() {
     let charactersPerMinute = charactersPerSecond * 60;
     wordsPerMinute = Math.round(wordsPerMinute);
     charactersPerMinute = Math.round(charactersPerMinute);
-    setCPM(charactersPerMinute);
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;
@@ -390,10 +379,7 @@ function TypingTest() {
         type: "SET_LATEST_WPM",
         payload: calculateWordsPerMinute(),
       });
-      dispatch({
-        type: "SET_LATEST_CPM",
-        payload: calculateCharactersPerMinute(),
-      });
+
       dispatch({
         type: "SET_LATEST_ERRORS_TYPING_GAME",
         payload: realMistakes,
@@ -498,14 +484,6 @@ function TypingTest() {
         return wpm;
       } else return latestWPM;
     } else return latestWPM;
-  };
-
-  const displayCPM = () => {
-    if (realTimeWPM) {
-      if (isRunning) {
-        return cpm;
-      } else return latestCPM;
-    } else return latestCPM;
   };
 
   const changeTextToTypeClassname = () => {
@@ -902,18 +880,6 @@ function TypingTest() {
             }
           >
             {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
-          </h5>
-        </div>
-        <div className="d-flex">
-          <h5 className="mr-1">CPM: {displayCPM()} |</h5>
-          <h5
-            style={
-              differenceInWPM > 0
-                ? { color: "rgb(41, 230, 50)" }
-                : { color: "rgba(230, 41, 41)" }
-            }
-          >
-            {differenceInCPM > 0 ? `+${differenceInCPM}` : differenceInCPM}
           </h5>
         </div>
         <div className="d-flex">

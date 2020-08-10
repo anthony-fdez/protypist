@@ -50,24 +50,6 @@ const previousWPMReducer200 = (state = 0, action) => {
   }
 };
 
-const latestCPMReducer200 = (state = 0, action) => {
-  switch (action.type) {
-    case "SET_LATEST_CPM_200":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const previousCPMReducer200 = (state = 0, action) => {
-  switch (action.type) {
-    case "SET_PREVIOUS_CPM_200":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
 const latestWPMReducer1000 = (state = 0, action) => {
   switch (action.type) {
     case "SET_LATEST_WPM_1000":
@@ -80,24 +62,6 @@ const latestWPMReducer1000 = (state = 0, action) => {
 const previousWPMReducer1000 = (state = 0, action) => {
   switch (action.type) {
     case "SET_PREVIOUS_WPM_1000":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const latestCPMReducer1000 = (state = 0, action) => {
-  switch (action.type) {
-    case "SET_LATEST_CPM_1000":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const previousCPMReducer1000 = (state = 0, action) => {
-  switch (action.type) {
-    case "SET_PREVIOUS_CPM_100":
       return action.payload;
     default:
       return state;
@@ -125,24 +89,6 @@ const latestWPMReducerTypingGame = (state = 0, action) => {
 const previousWPMReducerTypingGame = (state = 0, action) => {
   switch (action.type) {
     case "SET_PREVIOUS_WPM":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const latestCPMReducerTypingGame = (state = 0, action) => {
-  switch (action.type) {
-    case "SET_LATEST_CPM":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const previousCPMReducerTypingGame = (state = 0, action) => {
-  switch (action.type) {
-    case "SET_PREVIOUS_CPM":
       return action.payload;
     default:
       return state;
@@ -235,17 +181,11 @@ const allReducers = combineReducers({
   lengthReducer: lengthReducer,
   realTimeWPMReducer: realTimeWPMReducer,
   latestWPMReducer200: latestWPMReducer200,
-  latestCPMReducer200: latestCPMReducer200,
   latestWPMReducer1000: latestWPMReducer1000,
-  latestCPMReducer1000: latestCPMReducer1000,
   keyboardOnScreenReducer: keyboardOnScreenReducer,
-  latestCPMReducerTypingGame: latestCPMReducerTypingGame,
   latestWPMReducerTypingGame: latestWPMReducerTypingGame,
   previousWPMReducerTypingGame: previousWPMReducerTypingGame,
-  previousCPMReducerTypingGame: previousCPMReducerTypingGame,
-  previousCPMReducer1000: previousCPMReducer1000,
   previousWPMReducer1000: previousWPMReducer1000,
-  previousCPMReducer200: previousCPMReducer200,
   previousWPMReducer200: previousWPMReducer200,
   latestErrorsReducerTypingGame: latestErrorsReducerTypingGame,
   previousErrorsReducerTypingGame: previousErrorsReducerTypingGame,
