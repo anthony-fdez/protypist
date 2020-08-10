@@ -377,7 +377,9 @@
     background-color: rgb(175, 175, 175);
     border-radius: 10px;
     margin-right: 1rem;
-    width: 200px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
     height: 200px;
     overflow: hidden;
   }

@@ -1010,7 +1010,7 @@ function TypingTest() {
           </div>
           <div className="info-about-text-bottom">
             <div className="picture-div">
-              <img className="picture-image" src={text && text.URL}></img>
+              <img className="picture-image" src={text && text.image}></img>
             </div>
             <div className="info-about-text-text">
               <hr
