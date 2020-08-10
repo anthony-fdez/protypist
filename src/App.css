@@ -17,3 +17,10 @@ html {
     padding-top: 200px;
   }
 }
+@media only screen and (min-width: 601px) {
+  .mobile-warning {
+    z-index: -1;
+    pointer-events: none;
+    position: absolute;
+  }
+}
