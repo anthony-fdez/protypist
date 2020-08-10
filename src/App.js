@@ -25,6 +25,11 @@ function App() {
           : { backgroundColor: "rgb(255,255,255)" }
       }
     >
+      <div className="mobile-warning">
+        <h1>Sorry :(</h1>
+        <h4>This website was ment for desktop.</h4>
+      </div>
+
       <Switch>
         <Route exact path="/">
           <Home />
