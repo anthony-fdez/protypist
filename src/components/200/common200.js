@@ -51,24 +51,26 @@ function Common200() {
   const [accuracy, setAccuracy] = useState(0);
 
   const postTheDataToTheServer = () => {
-    const data = {
-      wpm: calculateWordsPerMinute(),
-      time: seconds,
-      mistakes: realMistakes,
-      date: getTheDate(),
-    };
-    const headers = {
-      Authorization: jwt,
-    };
+    if (isLoggedIn) {
+      const data = {
+        wpm: calculateWordsPerMinute(),
+        time: seconds,
+        mistakes: realMistakes,
+        date: getTheDate(),
+      };
+      const headers = {
+        Authorization: jwt,
+      };
 
-    axios
-      .post("https://protypist.herokuapp.com/users/statistics200", data, {
-        headers: headers,
-      })
-      .then(() => {})
-      .catch((e) => {
-        console.log(e);
-      });
+      axios
+        .post("https://protypist.herokuapp.com/users/statistics200", data, {
+          headers: headers,
+        })
+        .then(() => {})
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
 
   const getTheDate = () => {

@@ -96,36 +96,32 @@ function TypingTest() {
   //========================================================
 
   const postTheDataToTheServer = () => {
-    const data = {
-      wpm: calculateWordsPerMinute(),
-      time: seconds,
-      mistakes: realMistakes,
-      textTypedId: textTypedId,
-      date: getTheDate(),
-    };
-    const headers = {
-      Authorization: jwt,
-    };
+    if (isLoggedIn) {
+      const data = {
+        wpm: calculateWordsPerMinute(),
+        time: seconds,
+        mistakes: realMistakes,
+        textTypedId: textTypedId,
+        date: getTheDate(),
+      };
+      const headers = {
+        Authorization: jwt,
+      };
 
-    axios
-      .post("https://protypist.herokuapp.com/users/statistics", data, {
-        headers: headers,
-      })
-      .then(() => {})
-      .catch((e) => {
-        console.log(e);
-      });
+      axios
+        .post("https://protypist.herokuapp.com/users/statistics", data, {
+          headers: headers,
+        })
+        .then(() => {})
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
 
   useEffect(() => {
-    const headers = {
-      Authorization: jwt,
-    };
-
     axios
-      .get("https://protypist.herokuapp.com/texts/getRandom", {
-        headers: headers,
-      })
+      .get("https://protypist.herokuapp.com/texts/getRandom")
       .then((res) => {
         setText(res.data[0]);
         if (isLoggedIn) {
@@ -164,24 +160,26 @@ function TypingTest() {
   // };
 
   useEffect(() => {
-    const headers = {
-      Authorization: jwt,
-    };
-    const data = {
-      textTypedId: textTypedId,
-    };
+    if (isLoggedIn) {
+      const headers = {
+        Authorization: jwt,
+      };
+      const data = {
+        textTypedId: textTypedId,
+      };
 
-    axios
-      .post("https://protypist.herokuapp.com/users/getRaceScores", data, {
-        headers: headers,
-      })
-      .then((res) => {
-        setTextTypedHistory(res.data);
-        getTheHighestSpeedForARace(res.data);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+      axios
+        .post("https://protypist.herokuapp.com/users/getRaceScores", data, {
+          headers: headers,
+        })
+        .then((res) => {
+          setTextTypedHistory(res.data);
+          getTheHighestSpeedForARace(res.data);
+        })
+        .catch((e) => {
+          console.log(e.response);
+        });
+    }
   }, [isSideMenuOpen]);
 
   const getTheDate = () => {
