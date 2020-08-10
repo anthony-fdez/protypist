@@ -54,63 +54,69 @@ function Stats() {
   });
 
   useEffect(() => {
-    const headers = { Authorization: jwt };
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
 
-    axios
-      .get("https://protypist.herokuapp.com/users/statistics", {
-        headers: headers,
-      })
-      .then((response) => {
-        setRacesCompleted(response.data.racesCompleted);
-        setTotalTime(response.data.totalTime);
-        setWpmAverage10races(response.data.wpmAverageLast10Races);
-        setWpmAverageAllTime(response.data.wpmAverageAllTime);
-        setAverageMistakes(response.data.averageMistakes);
-        setHighestSpeedOfAllTime(response.data.highestSpeedAllTime);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+      axios
+        .get("https://protypist.herokuapp.com/users/statistics", {
+          headers: headers,
+        })
+        .then((response) => {
+          setRacesCompleted(response.data.racesCompleted);
+          setTotalTime(response.data.totalTime);
+          setWpmAverage10races(response.data.wpmAverageLast10Races);
+          setWpmAverageAllTime(response.data.wpmAverageAllTime);
+          setAverageMistakes(response.data.averageMistakes);
+          setHighestSpeedOfAllTime(response.data.highestSpeedAllTime);
+        })
+        .catch((e) => {
+          console.log(e.response);
+        });
+    }
   }, [jwt]);
 
   useEffect(() => {
-    const headers = { Authorization: jwt };
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
 
-    axios
-      .get("https://protypist.herokuapp.com/users/statistics200", {
-        headers: headers,
-      })
-      .then((response) => {
-        setRacesCompleted200(response.data.racesCompleted200);
-        setTotalTime200(response.data.totalTime200);
-        setWpmAverage10races200(response.data.wpmAverageLast10Races200);
-        setWpmAverageAllTime200(response.data.wpmAverageAllTime200);
-        setAverageMistakes200(response.data.averageMistakes200);
-        setHighestSpeedOfAllTime200(response.data.highestSpeedAllTime200);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+      axios
+        .get("https://protypist.herokuapp.com/users/statistics200", {
+          headers: headers,
+        })
+        .then((response) => {
+          setRacesCompleted200(response.data.racesCompleted200);
+          setTotalTime200(response.data.totalTime200);
+          setWpmAverage10races200(response.data.wpmAverageLast10Races200);
+          setWpmAverageAllTime200(response.data.wpmAverageAllTime200);
+          setAverageMistakes200(response.data.averageMistakes200);
+          setHighestSpeedOfAllTime200(response.data.highestSpeedAllTime200);
+        })
+        .catch((e) => {
+          console.log(e.response);
+        });
+    }
   }, [jwt]);
 
   useEffect(() => {
-    const headers = { Authorization: jwt };
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
 
-    axios
-      .get("https://protypist.herokuapp.com/users/statistics1000", {
-        headers: headers,
-      })
-      .then((response) => {
-        setRacesCompleted1000(response.data.racesCompleted1000);
-        setTotalTime1000(response.data.totalTime1000);
-        setWpmAverage10races1000(response.data.wpmAverageLast10Races1000);
-        setWpmAverageAllTime1000(response.data.wpmAverageAllTime1000);
-        setAverageMistakes1000(response.data.averageMistakes1000);
-        setHighestSpeedOfAllTime1000(response.data.highestSpeedAllTime1000);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+      axios
+        .get("https://protypist.herokuapp.com/users/statistics1000", {
+          headers: headers,
+        })
+        .then((response) => {
+          setRacesCompleted1000(response.data.racesCompleted1000);
+          setTotalTime1000(response.data.totalTime1000);
+          setWpmAverage10races1000(response.data.wpmAverageLast10Races1000);
+          setWpmAverageAllTime1000(response.data.wpmAverageAllTime1000);
+          setAverageMistakes1000(response.data.averageMistakes1000);
+          setHighestSpeedOfAllTime1000(response.data.highestSpeedAllTime1000);
+        })
+        .catch((e) => {
+          console.log(e.response);
+        });
+    }
   }, [jwt]);
 
   useEffect(() => {
