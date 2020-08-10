@@ -48,15 +48,6 @@ function SideMenu() {
       </div>
 
       <div className="navigation-buttons">
-        <Link className="left-menu-link" to="/">
-          <div className={checkButtonClass("/")}>
-            <i
-              style={{ position: "absolute", left: "20px" }}
-              className="fas fa-home"
-            ></i>
-            <h5>Home</h5>
-          </div>
-        </Link>
         <Link className="left-menu-link" to="/10second">
           <div className={checkButtonClass("/10second")}>
             <i
@@ -66,8 +57,8 @@ function SideMenu() {
             <h5>10second</h5>
           </div>
         </Link>
-        <Link className="left-menu-link" to="/typingtest">
-          <div className={checkTypingGameClass("/typingtest")}>
+        <Link className="left-menu-link" to="/">
+          <div className={checkTypingGameClass("/")}>
             <div className="typing-test-top-button">
               <i
                 style={{ position: "absolute", left: "20px" }}
