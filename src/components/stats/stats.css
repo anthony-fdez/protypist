@@ -45,9 +45,9 @@ h1 {
   position: relative;
   margin-top: 2rem;
 }
-.typing-game-statistics-div-shown,
-.typing-200-statistics-div-shown,
-.typing-1000-statistics-div-shown {
+.typing-game-statistics-div-shown-dark,
+.typing-200-statistics-div-shown-dark,
+.typing-1000-statistics-div-shown-dark {
   position: absolute;
   width: 90%;
   background-color: rgb(51, 50, 50);
@@ -60,10 +60,44 @@ h1 {
   top: 0;
   transition: 0.3s;
 }
+.typing-game-statistics-div-shown-light,
+.typing-200-statistics-div-shown-light,
+.typing-1000-statistics-div-shown-light {
+  position: absolute;
+  width: 90%;
+  background-color: rgb(238, 238, 238);
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: 0.3s;
+}
 
-.typing-game-statistics-div-hidden,
-.typing-1000-statistics-div-hidden,
-.typing-200-statistics-div-hidden {
+.typing-game-statistics-div-hidden-dark,
+.typing-1000-statistics-div-hidden-dark,
+.typing-200-statistics-div-hidden-dark {
+  position: absolute;
+  width: 90%;
+  background-color: rgb(51, 50, 50);
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transition: 0.3s;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.typing-game-statistics-div-hidden-light,
+.typing-1000-statistics-div-hidden-light,
+.typing-200-statistics-div-hidden-light {
   position: absolute;
   width: 90%;
   background-color: rgb(51, 50, 50);
@@ -87,7 +121,8 @@ h1 {
   width: 20%;
   margin: 10px;
 }
-.all-time-div-stats {
+.all-time-div-stats-light,
+.all-time-div-stats-dark {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
@@ -110,9 +145,9 @@ h1 {
   transition: 0.3s;
   transform: scale(1.1);
 }
-.typing-game-inactive,
-.top-200-inactive,
-.top-1000-inactive {
+.typing-game-inactive-dark,
+.top-200-inactive-dark,
+.top-1000-inactive-dark {
   margin: 1rem;
   background-color: rgb(51, 50, 50);
   padding: 1rem;
@@ -121,12 +156,35 @@ h1 {
   display: flex;
   justify-content: center;
   cursor: pointer;
+  z-index: 10;
   transition: 0.3s;
 }
-.typing-game-inactive:hover,
-.top-200-inactive:hover,
-.top-1000-inactive:hover {
+
+.typing-game-inactive-light,
+.top-200-inactive-light,
+.top-1000-inactive-light {
+  margin: 1rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.24);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.typing-game-inactive-dark:hover,
+.top-200-inactive-dark:hover,
+.top-1000-inactive-dark:hover {
   background-color: rgb(68, 68, 68);
+}
+.typing-game-inactive-light:hover,
+.top-200-inactive-light:hover,
+.top-1000-inactive-light:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.377);
 }
 .alert-not-enough-races {
   position: absolute;

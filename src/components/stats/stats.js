@@ -163,13 +163,21 @@ function Stats() {
         <div
           className={
             isTypingGameStatisticsShown
-              ? "typing-game-statistics-div-shown"
-              : "typing-game-statistics-div-hidden"
+              ? theme
+                ? "typing-game-statistics-div-shown-dark"
+                : "typing-game-statistics-div-shown-light"
+              : theme
+              ? "typing-game-statistics-div-hidden-dark"
+              : "typing-game-statistics-div-hidden-light"
           }
         >
           <h4>Typing Test Statistics:</h4>
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-          <div className="all-time-div-stats">
+          <div
+            className={
+              theme ? "all-time-div-stats-dark" : "all-time-div-stats-light"
+            }
+          >
             <div className="stats-box">
               <h5>Total time:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
@@ -215,13 +223,21 @@ function Stats() {
         <div
           className={
             isTyping200StatisticsShown
-              ? "typing-200-statistics-div-shown"
-              : "typing-200-statistics-div-hidden"
+              ? theme
+                ? "typing-game-statistics-div-shown-dark"
+                : "typing-game-statistics-div-shown-light"
+              : theme
+              ? "typing-game-statistics-div-hidden-dark"
+              : "typing-game-statistics-div-hidden-light"
           }
         >
           <h4>200 Most Common Words Statistics:</h4>
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-          <div className="all-time-div-stats">
+          <div
+            className={
+              theme ? "all-time-div-stats-dark" : "all-time-div-stats-light"
+            }
+          >
             <div className="stats-box">
               <h5>Total time:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
@@ -269,13 +285,21 @@ function Stats() {
         <div
           className={
             isTyping1000StatisticsShown
-              ? "typing-1000-statistics-div-shown"
-              : "typing-1000-statistics-div-hidden"
+              ? theme
+                ? "typing-game-statistics-div-shown-dark"
+                : "typing-game-statistics-div-shown-light"
+              : theme
+              ? "typing-game-statistics-div-hidden-dark"
+              : "typing-game-statistics-div-hidden-light"
           }
         >
           <h4>1000 Most Common Words Statistics:</h4>
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-          <div className="all-time-div-stats">
+          <div
+            className={
+              theme ? "all-time-div-stats-dark" : "all-time-div-stats-light"
+            }
+          >
             <div className="stats-box">
               <h5>Total time:</h5>
               <hr className={theme ? "white-hr" : "dark-hr"}></hr>
@@ -342,10 +366,12 @@ function Stats() {
             className={
               isTypingGameStatisticsShown
                 ? "typing-game-button-active bg-primary"
-                : "typing-game-inactive"
+                : theme
+                ? "typing-game-inactive-dark"
+                : "typing-game-inactive-light"
             }
           >
-            <h4>TypingGame</h4>
+            <h4 style={{ pointerEvents: "none" }}>TypingGame</h4>
           </div>
           <div
             onClick={() => {
@@ -355,11 +381,13 @@ function Stats() {
             }}
             className={
               isTyping200StatisticsShown
-                ? "top-200-button-active bg-primary"
-                : "top-200-inactive"
+                ? "typing-game-button-active bg-primary"
+                : theme
+                ? "typing-game-inactive-dark"
+                : "typing-game-inactive-light"
             }
           >
-            <h4>Top 200</h4>
+            <h4 style={{ pointerEvents: "none" }}>Top 200</h4>
           </div>
           <div
             onClick={() => {
@@ -369,11 +397,13 @@ function Stats() {
             }}
             className={
               isTyping1000StatisticsShown
-                ? "top-1000-button-active bg-primary"
-                : "top-1000-inactive"
+                ? "typing-game-button-active bg-primary"
+                : theme
+                ? "typing-game-inactive-dark"
+                : "typing-game-inactive-light"
             }
           >
-            <h4>Top 1000</h4>
+            <h4 style={{ pointerEvents: "none" }}>Top 1000</h4>
           </div>
         </div>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>
