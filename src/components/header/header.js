@@ -9,6 +9,9 @@ function Header(props) {
   const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
+  const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
+  const latestWPM200 = useSelector((state) => state.latestWPMReducer200);
+  const latestWPM1000 = useSelector((state) => state.latestWPMReducer1000);
 
   const [isLogInMenuOpen, setIsLoginMenuOpen] = useState(false);
   const [isSignUpMenuOpen, setIsSignUpMenuOpen] = useState(false);
@@ -30,6 +33,7 @@ function Header(props) {
 
   //user Info
   const [userName, setUserName] = useState("Guest");
+  const [wpmAverage, setWpmAverage] = useState();
 
   useEffect(() => {
     if (jwt === null) {
@@ -88,19 +92,57 @@ function Header(props) {
   }, []);
 
   useEffect(() => {
-    const headers = { Authorization: jwt };
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
 
-    axios
-      .get("https://protypist.herokuapp.com/users/me/name", {
-        headers: headers,
-      })
-      .then((response) => {
-        setUserName(response.data);
-      })
-      .catch((e) => {
-        setUserName("Guest");
-      });
+      axios
+        .get("https://protypist.herokuapp.com/users/me/name", {
+          headers: headers,
+        })
+        .then((response) => {
+          setUserName(response.data);
+        })
+        .catch((e) => {
+          setUserName("Guest");
+        });
+    }
   }, [jwt]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
+
+      axios
+        .get("https://protypist.herokuapp.com/users/overallStatistics", {
+          headers: headers,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.overAllRaces < 10) {
+            setWpmAverage(response.data.overAllAverageWpm);
+          } else {
+            setWpmAverage(response.data.overAllAverageWpm10races);
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+  }, [latestWPM, latestWPM200, latestWPM1000]);
+
+  const selectSkillLevel = () => {
+    if (wpmAverage < 20) {
+      return `Beginer: ${wpmAverage}wpm`;
+    } else if (wpmAverage < 40) {
+      return `Intermidiate: ${wpmAverage}wpm`;
+    } else if (wpmAverage < 60) {
+      return `Average: ${wpmAverage}wpm`;
+    } else if (wpmAverage < 80) {
+      return `Pro: ${wpmAverage}wpm`;
+    } else if (wpmAverage < 100) {
+      return `Master: ${wpmAverage}wpm`;
+    }
+  };
 
   //hide the warning after 3 seconds
   useEffect(() => {
@@ -543,7 +585,8 @@ function Header(props) {
       <div className={theme ? "Header-dark" : "Header-light"}>
         <h2 className="user-name">{userName}</h2>
         <h2>{props.text}</h2>
-        <h2></h2>
+        <h5>{selectSkillLevel()}</h5>
+
         {isLoggedIn ? logOutButton() : logInButton()}
         {logInMenu()}
         {signUpMenu()}
