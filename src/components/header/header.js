@@ -117,7 +117,6 @@ function Header(props) {
           headers: headers,
         })
         .then((response) => {
-          console.log(response);
           if (response.data.overAllRaces < 10) {
             setWpmAverage(response.data.overAllAverageWpm);
           } else {
@@ -578,6 +577,16 @@ function Header(props) {
     );
   };
 
+  // const skillLevelMenu = () => {
+  //   return (
+  //     <div
+  //       className={theme ? "skill-level-menu-dark" : "skill-level-menu-light"}
+  //     >
+  //       <h4>0 - 20 --- Beginer</h4>
+  //     </div>
+  //   );
+  // };
+
   return (
     <div>
       {errorWarning()}
@@ -585,7 +594,9 @@ function Header(props) {
       <div className={theme ? "Header-dark" : "Header-light"}>
         <h2 className="user-name">{userName}</h2>
         <h2>{props.text}</h2>
-        <h5>{selectSkillLevel()}</h5>
+        {/* <div className="skill-level">
+          <h5>{selectSkillLevel()}</h5>
+        </div> */}
 
         {isLoggedIn ? logOutButton() : logInButton()}
         {logInMenu()}

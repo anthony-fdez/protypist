@@ -17,6 +17,19 @@ h2 {
   overflow: hidden;
   overflow-y: scroll;
   padding-bottom: 3rem;
+  width: 100vw;
+  height: 100vh;
+  padding-left: 200px;
+}
+.home-page-dark {
+  background-color: rgb(31, 31, 31);
+  color: white;
+  transition: 0.3s;
+}
+.home-page-light {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  transition: 0.3s;
 }
 .settings-card-ligth,
 .settings-card-ligth-words {
@@ -104,6 +117,9 @@ h2 {
     overflow: hidden;
     overflow-y: scroll;
     padding-bottom: 3rem;
+    width: 100vw;
+    height: 100vh;
+    padding-left: 200px;
   }
   p {
     margin: 0;
