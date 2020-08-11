@@ -28,6 +28,7 @@ function Header(props) {
 
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
+  const [isSkillLevelMenuShown, setIsSkillMenuShown] = useState(false);
 
   const [message, setMessage] = useState("");
 
@@ -127,19 +128,21 @@ function Header(props) {
           console.log(e);
         });
     }
-  }, [latestWPM, latestWPM200, latestWPM1000]);
+  }, [jwt, latestWPM, latestWPM200, latestWPM1000]);
 
   const selectSkillLevel = () => {
-    if (wpmAverage < 20) {
-      return `Beginer: ${wpmAverage}wpm`;
-    } else if (wpmAverage < 40) {
-      return `Intermidiate: ${wpmAverage}wpm`;
-    } else if (wpmAverage < 60) {
-      return `Average: ${wpmAverage}wpm`;
-    } else if (wpmAverage < 80) {
-      return `Pro: ${wpmAverage}wpm`;
-    } else if (wpmAverage < 100) {
-      return `Master: ${wpmAverage}wpm`;
+    if (wpmAverage !== undefined) {
+      if (wpmAverage <= 20) {
+        return `Beginer: ${wpmAverage}wpm`;
+      } else if (wpmAverage <= 40) {
+        return `Average: ${wpmAverage}wpm`;
+      } else if (wpmAverage <= 60) {
+        return `Intermidiate: ${wpmAverage}wpm`;
+      } else if (wpmAverage <= 80) {
+        return `Pro: ${wpmAverage}wpm`;
+      } else {
+        return `Master: ${wpmAverage}wpm`;
+      }
     }
   };
 
@@ -577,15 +580,32 @@ function Header(props) {
     );
   };
 
-  // const skillLevelMenu = () => {
-  //   return (
-  //     <div
-  //       className={theme ? "skill-level-menu-dark" : "skill-level-menu-light"}
-  //     >
-  //       <h4>0 - 20 --- Beginer</h4>
-  //     </div>
-  //   );
-  // };
+  const skillLevelMenu = () => {
+    return (
+      <div
+        className={
+          theme
+            ? isSkillLevelMenuShown
+              ? "skill-level-menu-dark-shown"
+              : "skill-level-menu-dark-hidden"
+            : isSkillLevelMenuShown
+            ? "skill-level-menu-light-shown"
+            : "skill-level-menu-light-hidden"
+        }
+      >
+        <h4>Skill Level</h4>
+        <hr
+          style={{ marginTop: "2rem" }}
+          className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
+        ></hr>
+        <h5 className="mt-2">00 - 20 -{">"} Beginer</h5>
+        <h5 className="mt-2">21 - 40 -{">"} Average</h5>
+        <h5 className="mt-2">41 - 60 -{">"} Intermidiate</h5>
+        <h5 className="mt-2">61 - 80 -{">"} Pro</h5>
+        <h5 className="mt-2">81 - up -{">"} Master</h5>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -594,9 +614,19 @@ function Header(props) {
       <div className={theme ? "Header-dark" : "Header-light"}>
         <h2 className="user-name">{userName}</h2>
         <h2>{props.text}</h2>
-        {/* <div className="skill-level">
-          <h5>{selectSkillLevel()}</h5>
-        </div> */}
+        <div className="skill-level">
+          <h5
+            onMouseOver={() => {
+              setIsSkillMenuShown(true);
+            }}
+            onMouseLeave={() => {
+              setIsSkillMenuShown(false);
+            }}
+          >
+            {selectSkillLevel()}
+          </h5>
+          {skillLevelMenu()}
+        </div>
 
         {isLoggedIn ? logOutButton() : logInButton()}
         {logInMenu()}

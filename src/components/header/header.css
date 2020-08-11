@@ -285,23 +285,49 @@
     justify-content: center;
     align-items: center;
   }
-  /* .skill-level {
+  .skill-level {
     position: absolute;
     right: 13rem;
     top: 1.5rem;
+    z-index: 1000;
     cursor: pointer;
   }
-  .skill-level-menu-dark {
+  .skill-level-menu-dark-shown {
     background-color: rgb(71, 71, 71);
     padding: 1rem;
     border-radius: 10px;
+    text-align: left;
+    transition: 0.2s;
   }
-  .skill-level-menu-light {
+  .skill-level-menu-dark-hidden {
+    background-color: rgb(71, 71, 71);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: left;
+    opacity: 0;
+    transition: 0.2s;
+    transform: translateY(10px);
+  }
+  .skill-level-menu-light-shown {
     background-color: rgb(255, 255, 255);
     padding: 1rem;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
+    color: rgb(75, 75, 75);
     border-radius: 10px;
-  } */
+    text-align: left;
+    transition: 0.2s;
+  }
+  .skill-level-menu-light-hidden {
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
+    color: rgb(75, 75, 75);
+    border-radius: 10px;
+    text-align: left;
+    opacity: 0;
+    transition: 0.2s;
+    transform: translateY(10px);
+  }
 }
 @media only screen and (max-width: 1500px) {
   .Header-dark {
