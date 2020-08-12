@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
 //components
@@ -27,7 +27,6 @@ function App() {
         <h1>Sorry :(</h1>
         <h4>This website was ment for desktop.</h4>
       </div>
-
       <Switch>
         <Route exact path="/">
           <TypingTest />
@@ -47,6 +46,8 @@ function App() {
         <Route path="/stats">
           <Stats />
         </Route>
+        <Route render={() => <Redirect to="/" />} />{" "}
+        {/*  Redirect if no match */}
       </Switch>
     </div>
   );
