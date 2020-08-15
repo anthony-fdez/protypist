@@ -23,32 +23,30 @@ function App() {
           : { backgroundColor: "rgb(255,255,255)" }
       }
     >
-      <div className="mobile-warning">
-        <h1>Sorry :(</h1>
-        <h4>This website was ment for desktop.</h4>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <TypingTest />
+          </Route>
+          <Route path="/10second">
+            <Typing10second />
+          </Route>
+          <Route path="/200">
+            <Common200 />
+          </Route>
+          <Route path="/1000">
+            <Common1000 />
+          </Route>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+          <Route path="/stats">
+            <Stats />
+          </Route>
+          <Route render={() => <Redirect to="/" />} />{" "}
+          {/*  Redirect if no match */}
+        </Switch>
       </div>
-      <Switch>
-        <Route exact path="/">
-          <TypingTest />
-        </Route>
-        <Route path="/10second">
-          <Typing10second />
-        </Route>
-        <Route path="/200">
-          <Common200 />
-        </Route>
-        <Route path="/1000">
-          <Common1000 />
-        </Route>
-        <Route path="/settings">
-          <Settings />
-        </Route>
-        <Route path="/stats">
-          <Stats />
-        </Route>
-        <Route render={() => <Redirect to="/" />} />{" "}
-        {/*  Redirect if no match */}
-      </Switch>
     </div>
   );
 }

@@ -1,26 +1,3 @@
 html {
   font-family: "Inconsolata", monospace;
 }
-@media only screen and (max-width: 601px) {
-  .mobile-warning {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(31, 31, 31);
-    color: white;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    z-index: 1000;
-    text-align: center;
-    padding: 1rem;
-    padding-top: 200px;
-  }
-}
-@media only screen and (min-width: 601px) {
-  .mobile-warning {
-    z-index: -1;
-    pointer-events: none;
-    position: absolute;
-  }
-}

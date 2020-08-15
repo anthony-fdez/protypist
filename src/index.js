@@ -29,6 +29,12 @@ store.subscribe(() => {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <div className="mobile-warning">
+        <div>
+          <h1>Sorry :(</h1>
+          <h4>This website wasn't made for mobile.</h4>
+        </div>
+      </div>
       <Router>
         <div style={{ display: "flex" }}>
           <SideMenu />
