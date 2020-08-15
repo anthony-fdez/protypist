@@ -15,19 +15,19 @@ code {
 
 @media only screen and (max-width: 800px) {
   .mobile-warning {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
+    position: fixed;
+    height: 100%;
+    width: 100%;
     background-color: rgb(31, 31, 31);
     color: white;
     left: 0;
     top: 0;
-    overflow-y: hidden;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
-    padding: 1rem;
+    padding: 2rem;
     padding-bottom: 200px;
   }
 }
