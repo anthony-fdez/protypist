@@ -71,6 +71,7 @@ function TypingTest() {
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   //submit a quote info
 
@@ -126,9 +127,11 @@ function TypingTest() {
         setText(res.data[0]);
         if (isLoggedIn) {
           setTextTypedId(res.data[0]._id);
+          setIsLoading(false);
         }
       })
       .catch((e) => {
+        setIsLoading(true);
         console.log(e.response);
       });
   }, [newGame]);
@@ -964,7 +967,29 @@ function TypingTest() {
           <strong>Slow Down Boy</strong>
           the test won't stop unless you have less than 5 mistakes
         </p>
-        <div className={changeTextToTypeClassname()}>{spanArray}</div>
+        <div className={changeTextToTypeClassname()}>
+          {isLoading ? (
+            <div className={theme ? "loading-div-dark" : "loading-div-light"}>
+              <div class="lds-ellipsis">
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+              </div>
+              <h4>Loading Text</h4>
+            </div>
+          ) : (
+            spanArray
+          )}
+        </div>
         <div
           className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
         >
