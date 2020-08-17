@@ -10,7 +10,17 @@ function Ladderboard(props) {
   const isLadderBoardOpen = useSelector((state) => state.openLadderBoardMenu);
 
   return (
-    <div className={props.isShown ? "Ladderboard-shown" : "Ladderboard-hidden"}>
+    <div
+      className={
+        props.isShown
+          ? theme
+            ? "Ladderboard-shown-dark"
+            : "Ladderboard-shown-light"
+          : theme
+          ? "Ladderboard-hidden-dark"
+          : "Ladderboard-hidden-light"
+      }
+    >
       <div className="ladderboard-header">
         <h2>Ladderboard</h2>
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>

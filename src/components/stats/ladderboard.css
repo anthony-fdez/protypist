@@ -1,28 +1,59 @@
-.Ladderboard-shown {
-  width: 70%;
+.Ladderboard-shown-dark {
   margin: auto;
   left: 200px;
   right: 0;
-  height: 100vh;
+  height: 96vh;
   position: absolute;
   z-index: 1000;
-  background-color: rgb(71, 71, 71);
+  margin: 1rem;
+  background-color: rgb(49, 49, 49);
   padding: 2rem;
   transition: 0.3s;
+  border-radius: 10px;
 }
-.Ladderboard-hidden {
-  width: 70%;
+.Ladderboard-shown-light {
   margin: auto;
   left: 200px;
   right: 0;
-  height: 100vh;
+  height: 96vh;
   position: absolute;
   z-index: 1000;
-  background-color: rgb(70, 70, 70);
+  margin: 1rem;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 0px 0px 10px rgba(49, 49, 49, 0.253);
+  color: black;
   padding: 2rem;
-  opacity: 0;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+.Ladderboard-hidden-dark {
+  margin: auto;
+  left: 200px;
+  right: 0;
+  height: 10vh;
+  position: absolute;
   z-index: 0;
   pointer-events: none;
-  transform: translateY(-20px);
+  margin: 1rem;
+  opacity: 0;
+  background-color: rgb(49, 49, 49);
+  padding: 2rem;
   transition: 0.3s;
+  border-radius: 10px;
+}
+.Ladderboard-hidden-light {
+  margin: auto;
+  left: 200px;
+  right: 0;
+  height: 10vh;
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  margin: 1rem;
+  opacity: 0;
+  background-color: rgb(241, 241, 241);
+  color: black;
+  padding: 2rem;
+  transition: 0.3s;
+  border-radius: 10px;
 }

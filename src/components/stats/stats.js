@@ -370,18 +370,7 @@ function Stats() {
       className={theme ? "stats-page-dark" : "stats-page-light"}
     >
       <Ladderboard isShown={isLadderBoardMenuOpen} />
-      <div
-        onClick={() =>
-          dispatch({
-            type: "TOGGLE_OPENING_LADDERBOARD_MENU",
-          })
-        }
-        className={
-          isLadderBoardMenuOpen
-            ? "darkened-background-on"
-            : "darkened-background-off"
-        }
-      ></div>
+
       <div className={theme ? "Stats-dark" : "Stats-light"}>
         <Header text="Yous statistics!" />
         <div className="statistics-select-buttons">
