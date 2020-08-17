@@ -5,19 +5,23 @@ import { useSelector, useDispatch } from "react-redux";
 
 function Ladderboard(props) {
   const dispatch = useDispatch();
+
+  const theme = useSelector((state) => state.darkModeReducer);
   const isLadderBoardOpen = useSelector((state) => state.openLadderBoardMenu);
 
   return (
     <div className={props.isShown ? "Ladderboard-shown" : "Ladderboard-hidden"}>
       <div className="ladderboard-header">
-        <h1>This is the ladderboard div</h1>
+        <h2>Ladderboard</h2>
+        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+
         <i
           onClick={() => {
             dispatch({
               type: "TOGGLE_OPENING_LADDERBOARD_MENU",
             });
           }}
-          className="fas fa-times fa-2x close-icon"
+          className="fas fa-times fa-2x close-icon mt-3 mr-3"
         ></i>
       </div>
     </div>

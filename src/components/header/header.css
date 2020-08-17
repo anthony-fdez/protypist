@@ -289,7 +289,6 @@
     position: absolute;
     right: 13rem;
     top: 1.5rem;
-    z-index: 10;
     cursor: pointer;
   }
   .skill-level-menu-dark-shown {
@@ -642,17 +641,23 @@
     border-radius: 10px;
     text-align: left;
     transition: 0.2s;
+    z-index: 5;
+    pointer-events: none;
+    height: 230px;
+    overflow: hidden;
   }
   .skill-level-menu-dark-hidden {
     background-color: rgb(71, 71, 71);
-    padding: 1rem;
     border-radius: 10px;
+    padding: 1rem;
     text-align: left;
     opacity: 0;
+    overflow: hidden;
     transition: 0.2s;
     transform: translateY(10px);
     pointer-events: none;
-    z-index: 0;
+    z-index: -4;
+    height: 0px;
   }
   .skill-level-menu-light-shown {
     background-color: rgb(255, 255, 255);

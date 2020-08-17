@@ -3,9 +3,7 @@
   margin: auto;
   left: 200px;
   right: 0;
-  top: 50px;
-  border-radius: 20px;
-  height: 85vh;
+  height: 100vh;
   position: absolute;
   z-index: 1000;
   background-color: rgb(71, 71, 71);
@@ -17,9 +15,7 @@
   margin: auto;
   left: 200px;
   right: 0;
-  top: 50px;
-  border-radius: 20px;
-  height: 85vh;
+  height: 100vh;
   position: absolute;
   z-index: 1000;
   background-color: rgb(70, 70, 70);
