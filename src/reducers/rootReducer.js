@@ -158,6 +158,15 @@ const openSideMenuReducer = (state = false, action) => {
   }
 };
 
+const openLadderBoardMenu = (state = false, action) => {
+  switch (action.type) {
+    case "TOGGLE_OPENING_LADDERBOARD_MENU":
+      return !state;
+    default:
+      return state;
+  }
+};
+
 const isLoggedInReducer = (state = false, action) => {
   switch (action.type) {
     case "LOG_IN_OUT":
@@ -196,6 +205,7 @@ const allReducers = combineReducers({
   openSideMenuReducer: openSideMenuReducer,
   isLoggedInReducer: isLoggedInReducer,
   JWTreducer: JWTreducer,
+  openLadderBoardMenu: openLadderBoardMenu,
 });
 
 export default allReducers;

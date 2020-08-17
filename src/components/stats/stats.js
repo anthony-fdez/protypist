@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./stats.css";
 import Header from "../header/header";
+import Ladderboard from "./ladderboard";
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
@@ -363,6 +364,7 @@ function Stats() {
       style={animation}
       className={theme ? "stats-page-dark" : "stats-page-light"}
     >
+      <Ladderboard />
       <div className={theme ? "Stats-dark" : "Stats-light"}>
         <Header text="Yous statistics!" />
         <div className="statistics-select-buttons">

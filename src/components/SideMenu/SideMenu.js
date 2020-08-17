@@ -83,7 +83,7 @@ function SideMenu() {
           </div>
         </Link>
         <hr
-          style={{ marginTop: "2rem" }}
+          style={{ marginTop: "1rem" }}
           className={theme ? "white-hr" : "dark-hr"}
         ></hr>
         <Link className="left-menu-link" to="/200">
@@ -105,19 +105,28 @@ function SideMenu() {
           </div>
         </Link>
         <hr
-          style={{ marginTop: "2rem" }}
+          style={{ marginTop: "1rem" }}
           className={theme ? "white-hr" : "dark-hr"}
         ></hr>
         <Link className="left-menu-link" to="/stats">
-          <div className={checkButtonClass("/stats")}>
-            <i
-              style={{
-                position: "absolute",
-                left: "20px",
+          <div className={checkTypingGameClass("/stats")}>
+            <div className="typing-test-top-button">
+              <i
+                style={{ position: "absolute", left: "20px" }}
+                className="far fa-chart-bar"
+              ></i>
+              <h5>Stats</h5>
+            </div>
+            <div
+              onClick={() => {
+                dispatch({
+                  type: "TOGGLE_OPENING_LADDERBOARD_MENU",
+                });
               }}
-              className="far fa-chart-bar"
-            ></i>
-            <h5>Stats</h5>
+              className="typing-test-bottom-button"
+            >
+              <h5>Ladderboard</h5>
+            </div>
           </div>
         </Link>
         <Link

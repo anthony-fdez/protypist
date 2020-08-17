@@ -1,0 +1,13 @@
+.Ladderboard {
+  width: 70%;
+  margin: auto;
+  left: 200px;
+  right: 0;
+  top: 50px;
+  border-radius: 20px;
+  height: 85vh;
+  position: absolute;
+  z-index: 1000;
+  background-color: rgb(141, 141, 141);
+  padding: 2rem;
+}
