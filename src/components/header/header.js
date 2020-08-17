@@ -323,6 +323,7 @@ function Header(props) {
     return (
       <div
         className={isLogInMenuOpen ? "login-menu-open" : "login-menu-closed"}
+        style={!theme ? { backgroundColor: "white" } : {}}
       >
         <div className="log-in-header">
           <h2>Log in</h2>
@@ -345,6 +346,7 @@ function Header(props) {
                   getTheEmailLogin(e);
                 }}
                 className="login-input"
+                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
               ></input>
             </div>
             <div>
@@ -358,6 +360,7 @@ function Header(props) {
                 }}
                 type="password"
                 className="login-input"
+                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
               ></input>
             </div>
           </form>
@@ -378,6 +381,7 @@ function Header(props) {
                 setIsSignUpMenuOpen(true);
               }}
               className="sign-up-login-button-menu"
+              style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
             >
               <h5>Create Account</h5>
             </div>
@@ -391,6 +395,7 @@ function Header(props) {
     return (
       <div
         className={isSignUpMenuOpen ? "signUp-menu-open" : "signUp-menu-closed"}
+        style={!theme ? { backgroundColor: "white" } : {}}
       >
         <div className="signUp-header">
           <h2>Sign Up</h2>
@@ -414,6 +419,7 @@ function Header(props) {
                   getTheName(e);
                 }}
                 className="login-input"
+                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
               ></input>
             </div>
             <div>
@@ -423,6 +429,7 @@ function Header(props) {
                   getTheEmailSignup(e);
                 }}
                 className="login-input"
+                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
               ></input>
             </div>
             <div>
@@ -433,6 +440,7 @@ function Header(props) {
                 }}
                 type="password"
                 className="login-input"
+                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
               ></input>
             </div>
           </form>
@@ -470,6 +478,7 @@ function Header(props) {
         className={
           isLogOutMenuOpen ? "log-out-menu-open" : "log-out-menu-closed"
         }
+        style={!theme ? { backgroundColor: "white" } : {}}
       >
         <div className="log-in-header">
           <h2>Log Out</h2>
