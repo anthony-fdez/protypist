@@ -33,6 +33,8 @@ function Stats() {
   const [averageMistakes1000, setAverageMistakes1000] = useState(0);
   const [highestSpeedOfAllTime1000, setHighestSpeedOfAllTime1000] = useState(0);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [
     isTypingGameStatisticsShown,
     setIsTypingGameStatisticsShown,
@@ -70,6 +72,7 @@ function Stats() {
           setHighestSpeedOfAllTime(response.data.highestSpeedAllTime);
         })
         .catch((e) => {
+          setIsLoading(true);
           console.log(e.response);
         });
     }
@@ -357,6 +360,30 @@ function Stats() {
       <div className={theme ? "Stats-dark" : "Stats-light"}>
         <Header text="Yous statistics!" />
         <div className="statistics-select-buttons">
+          {isLoading && (
+            <div
+              className={
+                theme
+                  ? "loading-div-statistics-dark"
+                  : "loading-div-statistics-light"
+              }
+            >
+              <div class="lds-ellipsis">
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+              </div>
+            </div>
+          )}
           <div
             onClick={() => {
               setIsTypingGameStatisticsShown(true);
