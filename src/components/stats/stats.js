@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import "./stats.css";
 import Header from "../header/header";
 import Ladderboard from "./ladderboard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 
 function Stats() {
+  const dispatch = useDispatch();
+
   const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
+  const isLadderBoardMenuOpen = useSelector(
+    (state) => state.openLadderBoardMenu
+  );
 
   //state TypingGame
   const [wpmAverage10races, setWpmAverage10races] = useState(0);
@@ -364,7 +369,19 @@ function Stats() {
       style={animation}
       className={theme ? "stats-page-dark" : "stats-page-light"}
     >
-      <Ladderboard />
+      <Ladderboard isShown={isLadderBoardMenuOpen} />
+      <div
+        onClick={() =>
+          dispatch({
+            type: "TOGGLE_OPENING_LADDERBOARD_MENU",
+          })
+        }
+        className={
+          isLadderBoardMenuOpen
+            ? "darkened-background-on"
+            : "darkened-background-off"
+        }
+      ></div>
       <div className={theme ? "Stats-dark" : "Stats-light"}>
         <Header text="Yous statistics!" />
         <div className="statistics-select-buttons">

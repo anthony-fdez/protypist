@@ -1,4 +1,4 @@
-.Ladderboard {
+.Ladderboard-shown {
   width: 70%;
   margin: auto;
   left: 200px;
@@ -8,6 +8,25 @@
   height: 85vh;
   position: absolute;
   z-index: 1000;
-  background-color: rgb(141, 141, 141);
+  background-color: rgb(71, 71, 71);
   padding: 2rem;
+  transition: 0.3s;
+}
+.Ladderboard-hidden {
+  width: 70%;
+  margin: auto;
+  left: 200px;
+  right: 0;
+  top: 50px;
+  border-radius: 20px;
+  height: 85vh;
+  position: absolute;
+  z-index: 1000;
+  background-color: rgb(70, 70, 70);
+  padding: 2rem;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: 0.3s;
 }
