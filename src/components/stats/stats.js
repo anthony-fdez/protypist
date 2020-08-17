@@ -115,6 +115,7 @@ function Stats() {
           setWpmAverageAllTime1000(response.data.wpmAverageAllTime1000);
           setAverageMistakes1000(response.data.averageMistakes1000);
           setHighestSpeedOfAllTime1000(response.data.highestSpeedAllTime1000);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e.response);
