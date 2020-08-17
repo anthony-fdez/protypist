@@ -32,7 +32,7 @@ h1 {
   margin: 0;
 }
 .log-in-message {
-  width: 50%;
+  width: 70%;
   margin: auto;
   left: 0;
   right: 0;
@@ -40,6 +40,8 @@ h1 {
   border-radius: 10px;
   background-color: rgb(51, 50, 50);
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }
 .all-statistics-div {
   position: relative;

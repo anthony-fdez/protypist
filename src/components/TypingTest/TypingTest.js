@@ -127,8 +127,8 @@ function TypingTest() {
         setText(res.data[0]);
         if (isLoggedIn) {
           setTextTypedId(res.data[0]._id);
-          setIsLoading(false);
         }
+        setIsLoading(false);
       })
       .catch((e) => {
         setIsLoading(true);

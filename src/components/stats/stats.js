@@ -120,6 +120,8 @@ function Stats() {
         .catch((e) => {
           console.log(e.response);
         });
+    } else {
+      setIsLoading(false);
     }
   }, [jwt]);
 
@@ -347,7 +349,10 @@ function Stats() {
 
   const notLoggedIn = () => {
     return (
-      <div className="log-in-message">
+      <div
+        style={!theme && { backgroundColor: "rgb(240,240,240)" }}
+        className="log-in-message"
+      >
         <h2>You have to be logged in to see your statistics.</h2>
       </div>
     );
