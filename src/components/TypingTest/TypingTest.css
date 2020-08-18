@@ -765,25 +765,59 @@
       color: rgb(255, 255, 255);
     }
   }
-  .alert-shown,
-  .alert-hidden,
-  .alert-tip {
-    position: absolute;
-    z-index: -10;
+  .alert-shown {
+    padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    transition: 0.5s;
+    border-radius: 5px;
+  }
+  .alert-hidden {
+    transform: translateY(-20px);
     opacity: 0;
-    pointer-events: none;
+    padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    transition: 0.5s;
   }
   .alert-warning-shown {
+    position: fixed;
     padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 60vw;
     transition: 0.5s;
-    opacity: 1;
+    border-radius: 5px;
+    transform: translateY(-20px);
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
   .alert-warning-hidden {
-    padding: 0;
+    transform: translateY(-50px);
+    position: fixed;
     opacity: 0;
+    padding: 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    left: 200px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     transition: 0.5s;
-    transform: translateY(-20px);
-    z-index: 1;
+  }
+  .alert-tip {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
   }
 
   .statistics {

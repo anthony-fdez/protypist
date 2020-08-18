@@ -103,12 +103,12 @@ function Common1000() {
   //========= Convert the plain text into arrays //
 
   useEffect(() => {
-    let json = require("../data/1000words.json");
+    let json = require("../data/words.json");
     let wordsArray = [];
     let infoAboutCharacterObject = [];
     for (let i = 0; i < length; i++) {
       let random = Math.floor(Math.random() * 1000);
-      let randomWord = json.words[random];
+      let randomWord = json.english_expanded[random];
 
       for (let i = 0; i < randomWord.length; i++) {
         wordsArray.push(randomWord[i]);

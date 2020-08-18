@@ -137,15 +137,15 @@ function Header(props) {
   const selectSkillLevel = () => {
     if (wpmAverage !== undefined) {
       if (wpmAverage <= 20) {
-        return `Beginer: ${wpmAverage}wpm`;
+        return `Beginer: ${Math.round(wpmAverage * 100) / 100}wpm`;
       } else if (wpmAverage <= 40) {
-        return `Average: ${wpmAverage}wpm`;
+        return `Average: ${Math.round(wpmAverage * 100) / 100}wpm`;
       } else if (wpmAverage <= 60) {
-        return `Intermidiate: ${wpmAverage}wpm`;
+        return `Intermidiate: ${Math.round(wpmAverage * 100) / 100}wpm`;
       } else if (wpmAverage <= 80) {
-        return `Pro: ${wpmAverage}wpm`;
+        return `Pro: ${Math.round(wpmAverage * 100) / 100}wpm`;
       } else {
-        return `Master: ${wpmAverage}wpm`;
+        return `Master: ${Math.round(wpmAverage * 100) / 100}wpm`;
       }
     }
   };
