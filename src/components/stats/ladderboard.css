@@ -10,6 +10,7 @@
   padding: 2rem;
   transition: 0.3s;
   border-radius: 10px;
+  overflow: hidden;
 }
 .Ladderboard-shown-light {
   margin: auto;
@@ -25,6 +26,7 @@
   padding: 2rem;
   transition: 0.3s;
   border-radius: 10px;
+  overflow: hidden;
 }
 .Ladderboard-hidden-dark {
   margin: auto;
@@ -39,6 +41,8 @@
   background-color: rgb(49, 49, 49);
   padding: 2rem;
   transition: 0.3s;
+  overflow: hidden;
+
   border-radius: 10px;
 }
 .Ladderboard-hidden-light {
@@ -56,14 +60,16 @@
   padding: 2rem;
   transition: 0.3s;
   border-radius: 10px;
+  overflow: hidden;
 }
 .ladderboard-table {
   padding: 2rem;
+  overflow-y: scroll;
+  height: 74vh;
 }
 .ladderboard-row {
   display: flex;
   background-color: rgb(29, 29, 29);
-  margin-bottom: 1rem;
   position: relative;
   align-items: center;
 }
@@ -151,4 +157,9 @@
 .ladderboard-info-higest {
   position: absolute;
   right: 2vw;
+}
+.select-sort-method {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
 }
