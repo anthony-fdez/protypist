@@ -57,3 +57,98 @@
   transition: 0.3s;
   border-radius: 10px;
 }
+.ladderboard-table {
+  padding: 2rem;
+}
+.ladderboard-row {
+  display: flex;
+  background-color: rgb(29, 29, 29);
+  margin-bottom: 1rem;
+  position: relative;
+  align-items: center;
+}
+.ladderboard-info {
+  position: relative;
+  margin-top: 2rem;
+}
+.ladderboard-number-item {
+  left: 1rem;
+  margin-right: 2rem;
+  padding: 1rem;
+}
+.ladderboard-name-item {
+  position: absolute;
+  left: 4rem;
+  padding: 1rem;
+}
+.ladderboard-races-item {
+  position: absolute;
+  right: 36vw;
+  padding: 1rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
+.ladderboard-time-item {
+  position: absolute;
+  right: 27vw;
+  padding: 1rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
+.ladderboard-averageWpm-item {
+  position: absolute;
+  right: 18vw;
+  padding: 1rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
+.ladderboard-last10races-item {
+  position: absolute;
+  right: 9vw;
+  padding: 1rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
+.ladderboard-item-higest {
+  position: absolute;
+  right: 0;
+  padding: 1rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.ladderboard-number-info {
+  left: 1rem;
+  margin-right: 2rem;
+  background-color: blue;
+  padding: 1rem;
+}
+.ladderboard-name-info {
+  position: absolute;
+  left: 7rem;
+}
+.ladderboard-races-info {
+  position: absolute;
+  right: 39vw;
+}
+.ladderboard-time-info {
+  position: absolute;
+  right: 30vw;
+}
+.ladderboard-averageWpm-info {
+  position: absolute;
+  right: 20vw;
+}
+.ladderboard-last10races-info {
+  position: absolute;
+  right: 10vw;
+}
+.ladderboard-info-higest {
+  position: absolute;
+  right: 2vw;
+}
