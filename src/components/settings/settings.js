@@ -14,6 +14,10 @@ function Settings() {
   );
   const dispatch = useDispatch();
 
+  const colors = useSelector((state) => state.themeReducer);
+
+  const colorFiles = require(`../themes/${colors}`);
+
   const animation = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -23,9 +27,13 @@ function Settings() {
   return (
     <animated.div
       style={animation}
-      className={theme ? "home-page-dark" : "home-page-light"}
+      className={"home-page"}
+      style={{
+        backgroundColor: colorFiles.backgroundColor,
+        color: colorFiles.fontColor,
+      }}
     >
-      <div className={theme ? "Home-dark" : "Home-light"}>
+      <div>
         <Header text="Settings" />
         <div className="container">
           <p className="alert-primary settings-alert">
@@ -34,25 +42,49 @@ function Settings() {
             you browser cache.
           </p>
           <div
-            onClick={() => {
-              dispatch({ type: "CHANGE_THEME" });
+            className={"settings-card"}
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
             }}
-            className={theme ? "settings-card-dark" : "settings-card-ligth"}
           >
             <div style={{ textAlign: "left" }}>
-              <h2>Dark Mode</h2>
-              <p>Change between dark and light mode.</p>
+              <h2>Theme</h2>
+              <p>Change the overall theme of the app!</p>
             </div>
             <h1 className="text">{theme ? "ON" : "OFF"}</h1>
+            <button
+              onClick={() => {
+                dispatch({ type: "SELECT_THEME", payload: "dark.json" });
+              }}
+            >
+              Dark
+            </button>
+            <button
+              onClick={() => {
+                dispatch({ type: "SELECT_THEME", payload: "light.json" });
+              }}
+            >
+              Light
+            </button>
+            <button
+              onClick={() => {
+                dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+              }}
+            >
+              DarkBlue
+            </button>
           </div>
         </div>
 
         <div className="container mt-5">
           <h3>Typing Settings</h3>
           <div
-            className={
-              theme ? "settings-card-dark-words" : "settings-card-ligth-words"
-            }
+            className={"settings-card-words"}
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
           >
             <div style={{ textAlign: "left" }}>
               <h2>Test Length</h2>
@@ -63,7 +95,10 @@ function Settings() {
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT", payload: 25 });
                 }}
-                style={{ marginLeft: "2rem" }}
+                style={{
+                  marginLeft: "2rem",
+                  backgroundColor: colorFiles.primaryColor,
+                }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
                 25
@@ -72,8 +107,11 @@ function Settings() {
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT", payload: 50 });
                 }}
-                style={{ marginLeft: "2rem" }}
-                className={theme ? "btn btn-primary" : "btn btn-dark"}
+                style={{
+                  marginLeft: "2rem",
+                  backgroundColor: colorFiles.primaryColor,
+                }}
+                className={"btn btn-primary"}
               >
                 50
               </button>
@@ -81,7 +119,11 @@ function Settings() {
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT", payload: 75 });
                 }}
-                style={{ marginRight: "11rem", marginLeft: "2rem" }}
+                style={{
+                  marginRight: "11rem",
+                  marginLeft: "2rem",
+                  backgroundColor: colorFiles.primaryColor,
+                }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
                 75
@@ -90,9 +132,11 @@ function Settings() {
             <h1 className="text">{length}</h1>
           </div>
           <div
-            className={
-              theme ? "settings-card-dark-words" : "settings-card-ligth-words"
-            }
+            className={"settings-card-words"}
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
           >
             <div style={{ textAlign: "left" }}>
               <h2>Test Length (advanced)</h2>
@@ -103,7 +147,10 @@ function Settings() {
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 25 });
                 }}
-                style={{ marginLeft: "2rem" }}
+                style={{
+                  marginLeft: "2rem",
+                  backgroundColor: colorFiles.primaryColor,
+                }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
                 25
@@ -112,7 +159,10 @@ function Settings() {
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 50 });
                 }}
-                style={{ marginLeft: "2rem" }}
+                style={{
+                  marginLeft: "2rem",
+                  backgroundColor: colorFiles.primaryColor,
+                }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
                 50
@@ -121,7 +171,11 @@ function Settings() {
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 75 });
                 }}
-                style={{ marginRight: "11rem", marginLeft: "2rem" }}
+                style={{
+                  marginRight: "11rem",
+                  marginLeft: "2rem",
+                  backgroundColor: colorFiles.primaryColor,
+                }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
                 75
@@ -136,9 +190,11 @@ function Settings() {
             onClick={() => {
               dispatch({ type: "SET_KEYBOARD_ON_SCREEN" });
             }}
-            className={
-              theme ? "settings-card-dark-words" : "settings-card-ligth-words"
-            }
+            className={"settings-card-words"}
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
           >
             <div style={{ textAlign: "left" }}>
               <h2>On Screen Keyboard</h2>
@@ -152,9 +208,11 @@ function Settings() {
             onClick={() => {
               dispatch({ type: "REAL_TIME_WPM" });
             }}
-            className={
-              theme ? "settings-card-dark-words" : "settings-card-ligth-words"
-            }
+            className={"settings-card-words"}
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
           >
             <div style={{ textAlign: "left" }}>
               <h2>Real Time WPM</h2>

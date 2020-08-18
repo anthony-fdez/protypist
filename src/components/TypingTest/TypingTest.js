@@ -1078,11 +1078,7 @@ function TypingTest() {
               getAndCheckTheInput(e);
             }}
             placeholder="The test will bigin when you start typing!"
-            className={
-              finished
-                ? "input-box-hidden form-control"
-                : "input-box-shown form-control"
-            }
+            className={finished ? "input-box-hidden" : "input-box-shown"}
           ></input>
           <p className="alert-warning alert-tip">
             <strong>Tip:</strong> you can type //f to finish the current game.

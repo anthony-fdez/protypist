@@ -29,6 +29,12 @@
     opacity: 1;
     transition: 0.3s;
     z-index: 0;
+    background: none;
+    outline: none;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 2px solid rgb(0, 153, 255);
   }
   .input-box-hidden {
     position: absolute;

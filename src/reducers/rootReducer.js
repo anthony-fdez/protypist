@@ -10,6 +10,15 @@ const darkModeReducer = (state = true, action) => {
   }
 };
 
+const themeReducer = (state = "dark.json", action) => {
+  switch (action.type) {
+    case "SELECT_THEME":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const lengthReducerNormal = (state = 25, action) => {
   switch (action.type) {
     case "SET_TEXT_LENGHT":
@@ -200,6 +209,7 @@ const userIdReducer = (state = null, action) => {
 
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
+  themeReducer: themeReducer,
   darkModeReducer: darkModeReducer,
   lengthReducerNormal: lengthReducerNormal,
   realTimeWPMReducer: realTimeWPMReducer,
