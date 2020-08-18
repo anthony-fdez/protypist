@@ -102,7 +102,7 @@
 }
 .ladderboard-races-item {
   position: absolute;
-  right: 36vw;
+  right: 27vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
@@ -110,7 +110,7 @@
 }
 .ladderboard-time-item {
   position: absolute;
-  right: 27vw;
+  right: 1vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
@@ -118,23 +118,16 @@
 }
 .ladderboard-averageWpm-item {
   position: absolute;
-  right: 18vw;
-  padding: 1rem;
-  width: 5rem;
-  display: flex;
-  justify-content: center;
-}
-.ladderboard-last10races-item {
-  position: absolute;
   right: 9vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
   justify-content: center;
 }
+
 .ladderboard-item-higest {
   position: absolute;
-  right: 0;
+  right: 18vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
@@ -153,23 +146,23 @@
 }
 .ladderboard-races-info {
   position: absolute;
-  right: 39vw;
+  right: 31vw;
 }
 .ladderboard-time-info {
   position: absolute;
-  right: 30vw;
+  right: 4vw;
 }
 .ladderboard-averageWpm-info {
   position: absolute;
-  right: 20vw;
+  right: 12vw;
 }
 .ladderboard-last10races-info {
   position: absolute;
-  right: 10vw;
+  right: 12vw;
 }
 .ladderboard-info-higest {
   position: absolute;
-  right: 2vw;
+  right: 22vw;
 }
 .select-sort-method {
   display: flex;

@@ -15,18 +15,20 @@ function Ladderboard(props) {
   const userId = useSelector((state) => state.userIdReducer);
 
   const [data, setData] = useState([]);
-  const [sortBy, setSortBy] = useState("races");
+  const [sortBy, setSortBy] = useState("wpm");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
-
+      setIsLoading(true);
       axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/races", {
+        .get("https://protypist.herokuapp.com/users/ladderboard/wpm", {
           headers: headers,
         })
         .then((response) => {
           setData(response.data);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e.response);
@@ -37,13 +39,14 @@ function Ladderboard(props) {
   const sortByWpm = () => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
-
+      setIsLoading(true);
       axios
         .get("https://protypist.herokuapp.com/users/ladderboard/wpm", {
           headers: headers,
         })
         .then((response) => {
           setData(response.data);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e.response);
@@ -54,6 +57,7 @@ function Ladderboard(props) {
   const sortByHighest = () => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
+      setIsLoading(true);
 
       axios
         .get("https://protypist.herokuapp.com/users/ladderboard/highest", {
@@ -61,6 +65,7 @@ function Ladderboard(props) {
         })
         .then((response) => {
           setData(response.data);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e.response);
@@ -71,6 +76,7 @@ function Ladderboard(props) {
   const sortByRaces = () => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
+      setIsLoading(true);
 
       axios
         .get("https://protypist.herokuapp.com/users/ladderboard/races", {
@@ -78,6 +84,7 @@ function Ladderboard(props) {
         })
         .then((response) => {
           setData(response.data);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e.response);
@@ -88,6 +95,7 @@ function Ladderboard(props) {
   const sortByTime = () => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
+      setIsLoading(true);
 
       axios
         .get("https://protypist.herokuapp.com/users/ladderboard/time", {
@@ -95,6 +103,7 @@ function Ladderboard(props) {
         })
         .then((response) => {
           setData(response.data);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e.response);
@@ -105,6 +114,7 @@ function Ladderboard(props) {
   const sortBy10races = () => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
+      setIsLoading(true);
 
       axios
         .get("https://protypist.herokuapp.com/users/ladderboard/10races", {
@@ -112,11 +122,33 @@ function Ladderboard(props) {
         })
         .then((response) => {
           setData(response.data);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e.response);
         });
     }
+  };
+
+  const formatTheTime = (time) => {
+    let hours;
+    let minutes;
+    let seconds;
+
+    if (time !== undefined) {
+      hours = Math.floor(time / 3600);
+      time = time % 3600;
+      minutes = Math.floor(time / 60);
+      seconds = time % 60;
+    }
+
+    const formtatedTimeString = `${
+      hours === 0 ? "00" : hours < 10 ? "0" + hours : hours
+    }:${minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes}:${
+      seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds
+    }`;
+
+    return formtatedTimeString;
   };
 
   return (
@@ -133,9 +165,50 @@ function Ladderboard(props) {
     >
       <div className="ladderboard-header">
         <h2>Ladderboard</h2>
+        {isLoading && (
+          <div
+            style={{ position: "absolute", top: "15px" }}
+            className={
+              theme
+                ? "loading-div-statistics-dark"
+                : "loading-div-statistics-light"
+            }
+          >
+            <div class="lds-ellipsis">
+              <div
+                className={theme ? "loading-dot-dark" : "loading-dot-light"}
+              ></div>
+              <div
+                className={theme ? "loading-dot-dark" : "loading-dot-light"}
+              ></div>
+              <div
+                className={theme ? "loading-dot-dark" : "loading-dot-light"}
+              ></div>
+              <div
+                className={theme ? "loading-dot-dark" : "loading-dot-light"}
+              ></div>
+            </div>
+          </div>
+        )}
+
         <hr className={theme ? "white-hr" : "dark-hr"}></hr>
         <div className="select-sort-method">
           <h4 className="mr-5">Sorty by:</h4>
+          <button
+            onClick={() => {
+              setSortBy("wpm");
+              sortByWpm();
+            }}
+            className={
+              sortBy === "wpm"
+                ? "btn btn-primary mr-2"
+                : theme
+                ? "btn btn-light mr-2"
+                : "btn btn-dark mr-2"
+            }
+          >
+            WPM
+          </button>
           <button
             onClick={() => {
               setSortBy("races");
@@ -168,36 +241,6 @@ function Ladderboard(props) {
           </button>
           <button
             onClick={() => {
-              setSortBy("average");
-              sortByWpm();
-            }}
-            className={
-              sortBy === "average"
-                ? "btn btn-primary mr-2"
-                : theme
-                ? "btn btn-light mr-2"
-                : "btn btn-dark mr-2"
-            }
-          >
-            Average
-          </button>
-          <button
-            onClick={() => {
-              setSortBy("10races");
-              sortBy10races();
-            }}
-            className={
-              sortBy === "10races"
-                ? "btn btn-primary mr-2"
-                : theme
-                ? "btn btn-light mr-2"
-                : "btn btn-dark mr-2"
-            }
-          >
-            10 races
-          </button>
-          <button
-            onClick={() => {
               setSortBy("highest");
               sortByHighest();
             }}
@@ -226,10 +269,9 @@ function Ladderboard(props) {
       <div className="ladderboard-info">
         <h5 className="ladderboard-name-info">Name</h5>
         <h5 className="ladderboard-races-info">Races</h5>
-        <h5 className="ladderboard-time-info">Time</h5>
         <h5 className="ladderboard-averageWpm-info">Average</h5>
-        <h5 className="ladderboard-last10races-info">10 Races Avg</h5>
         <h5 className="ladderboard-info-higest">Highest</h5>
+        <h5 className="ladderboard-time-info">Time</h5>
       </div>
       <div className="ladderboard-table">
         {data.map((user, index) => {
@@ -246,10 +288,11 @@ function Ladderboard(props) {
               <h4 className="ladderboard-number-item">{index + 1}</h4>
               <h4 className="ladderboard-name-item">{user.name}</h4>
               <h4 className="ladderboard-races-item">{user.races}</h4>
-              <h4 className="ladderboard-time-item">{user.time}</h4>
-              <h4 className="ladderboard-averageWpm-item">{user.averageWpm}</h4>
-              <h4 className="ladderboard-last10races-item">
-                {user.last10racesWpm}
+              <h4 className="ladderboard-time-item">
+                {formatTheTime(user.time)}
+              </h4>
+              <h4 className="ladderboard-averageWpm-item">
+                {Math.round(user.averageWpm * 100) / 100}
               </h4>
               <h4 className="ladderboard-item-higest">{user.highestWpm}</h4>
             </div>
