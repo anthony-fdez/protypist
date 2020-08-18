@@ -76,21 +76,22 @@
   }
 
   .none {
-    width: 23px;
-    height: 40px;
-    font-size: 25px;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 0.03s;
   }
   .green {
-    width: 23px;
-    height: 40px;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
+    font-size: 18px;
     color: rgb(150, 150, 150);
     transition: 0.03s;
   }
@@ -98,18 +99,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 23px;
-    height: 40px;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     transition: 0.03s;
-    font-size: 25px;
     background-color: rgb(255, 0, 0);
     color: white;
   }
   .blinking-light {
     animation: blinker-light 1s linear infinite;
-    width: 23px;
-    height: 40px;
-    font-size: 25px;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,9 +148,9 @@
   }
   .blinking-dark {
     animation: blinker-dark 1s linear infinite;
-    width: 23px;
-    height: 40px;
-    font-size: 25px;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;

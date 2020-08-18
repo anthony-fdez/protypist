@@ -6,7 +6,8 @@ import { useSpring, animated } from "react-spring";
 
 function Settings() {
   const theme = useSelector((state) => state.darkModeReducer);
-  const length = useSelector((state) => state.lengthReducer);
+  const length = useSelector((state) => state.lengthReducerNormal);
+  const lenghtAdvanced = useSelector((state) => state.lengthReducerAdvanced);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
@@ -18,16 +19,6 @@ function Settings() {
     to: { opacity: 1 },
     config: { duration: 300 },
   });
-
-  const selectTheText = () => {
-    if (length === 20) {
-      return "20";
-    } else if (length === 35) {
-      return "35";
-    } else if (length === 50) {
-      return "50";
-    }
-  };
 
   return (
     <animated.div
@@ -65,40 +56,81 @@ function Settings() {
           >
             <div style={{ textAlign: "left" }}>
               <h2>Test Length</h2>
-              <p>Change the amoung of words that you want on your tests.</p>
+              <p>Change how many word to type in the normal test.</p>
             </div>
             <div>
               <button
                 onClick={() => {
-                  dispatch({ type: "SET_TO_20" });
+                  dispatch({ type: "SET_TEXT_LENGHT", payload: 25 });
                 }}
                 style={{ marginLeft: "2rem" }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
-                20
+                25
               </button>
               <button
                 onClick={() => {
-                  dispatch({ type: "SET_TO_35" });
+                  dispatch({ type: "SET_TEXT_LENGHT", payload: 50 });
                 }}
                 style={{ marginLeft: "2rem" }}
-                className={theme ? "btn btn-primary" : "btn btn-dark"}
-              >
-                35
-              </button>
-              <button
-                onClick={() => {
-                  dispatch({ type: "SET_TO_50" });
-                }}
-                style={{ marginRight: "11rem", marginLeft: "2rem" }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
                 50
               </button>
+              <button
+                onClick={() => {
+                  dispatch({ type: "SET_TEXT_LENGHT", payload: 75 });
+                }}
+                style={{ marginRight: "11rem", marginLeft: "2rem" }}
+                className={theme ? "btn btn-primary" : "btn btn-dark"}
+              >
+                75
+              </button>
             </div>
-            <h1 className="text">{selectTheText()}</h1>
+            <h1 className="text">{length}</h1>
+          </div>
+          <div
+            className={
+              theme ? "settings-card-dark-words" : "settings-card-ligth-words"
+            }
+          >
+            <div style={{ textAlign: "left" }}>
+              <h2>Test Length (advanced)</h2>
+              <p>Change how many word to type in the advanced test.</p>
+            </div>
+            <div>
+              <button
+                onClick={() => {
+                  dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 25 });
+                }}
+                style={{ marginLeft: "2rem" }}
+                className={theme ? "btn btn-primary" : "btn btn-dark"}
+              >
+                25
+              </button>
+              <button
+                onClick={() => {
+                  dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 50 });
+                }}
+                style={{ marginLeft: "2rem" }}
+                className={theme ? "btn btn-primary" : "btn btn-dark"}
+              >
+                50
+              </button>
+              <button
+                onClick={() => {
+                  dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 75 });
+                }}
+                style={{ marginRight: "11rem", marginLeft: "2rem" }}
+                className={theme ? "btn btn-primary" : "btn btn-dark"}
+              >
+                75
+              </button>
+            </div>
+            <h1 className="text">{lenghtAdvanced}</h1>
           </div>
         </div>
+        <h3>Ui settings</h3>
         <div style={{ cursor: "pointer" }} className="container">
           <div
             onClick={() => {
@@ -131,7 +163,7 @@ function Settings() {
               </p>
               <p>
                 <strong>Note:</strong> if its on and it says infinite, you are
-                not a god, its a bug.
+                not a god, its a bug :)
               </p>
             </div>
             <h1 className="text">{realTimeWPM ? "ON" : "OFF"}</h1>

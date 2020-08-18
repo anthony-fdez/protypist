@@ -10,14 +10,18 @@ const darkModeReducer = (state = true, action) => {
   }
 };
 
-const lengthReducer = (state = 20, action) => {
+const lengthReducerNormal = (state = 25, action) => {
   switch (action.type) {
-    case "SET_TO_20":
-      return (state = 20);
-    case "SET_TO_35":
-      return (state = 35);
-    case "SET_TO_50":
-      return (state = 50);
+    case "SET_TEXT_LENGHT":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+const lengthReducerAdvanced = (state = 25, action) => {
+  switch (action.type) {
+    case "SET_TEXT_LENGHT_ADVANCED":
+      return action.payload;
     default:
       return state;
   }
@@ -195,8 +199,9 @@ const userIdReducer = (state = null, action) => {
 };
 
 const allReducers = combineReducers({
+  lengthReducerAdvanced: lengthReducerAdvanced,
   darkModeReducer: darkModeReducer,
-  lengthReducer: lengthReducer,
+  lengthReducerNormal: lengthReducerNormal,
   realTimeWPMReducer: realTimeWPMReducer,
   latestWPMReducer200: latestWPMReducer200,
   latestWPMReducer1000: latestWPMReducer1000,
