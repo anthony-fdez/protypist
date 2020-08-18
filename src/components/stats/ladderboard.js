@@ -12,6 +12,7 @@ function Ladderboard(props) {
   const isLadderBoardOpen = useSelector((state) => state.openLadderBoardMenu);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
+  const userId = useSelector((state) => state.userIdReducer);
 
   const [data, setData] = useState([]);
   const [sortBy, setSortBy] = useState("races");
@@ -219,7 +220,13 @@ function Ladderboard(props) {
       <div className="ladderboard-table">
         {data.map((user, index) => {
           return (
-            <div className="ladderboard-row">
+            <div
+              className={
+                userId === user._id
+                  ? "ladderboard-row bg-primary"
+                  : "ladderboard-row"
+              }
+            >
               <h4 className="ladderboard-number-item">{index + 1}</h4>
               <h4 className="ladderboard-name-item">{user.name}</h4>
               <h4 className="ladderboard-races-item">{user.races}</h4>
@@ -232,249 +239,6 @@ function Ladderboard(props) {
             </div>
           );
         })}
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
-        <div className="ladderboard-row">
-          <h4 className="ladderboard-number-item">Testing</h4>
-          <h4 className="ladderboard-name-item">Testing</h4>
-          <h4 className="ladderboard-races-item">Testing</h4>
-          <h4 className="ladderboard-time-item">Testing</h4>
-          <h4 className="ladderboard-averageWpm-item">Testing</h4>
-          <h4 className="ladderboard-last10races-item">Testing</h4>
-          <h4 className="ladderboard-item-higest">Testing</h4>
-        </div>
       </div>
     </div>
   );

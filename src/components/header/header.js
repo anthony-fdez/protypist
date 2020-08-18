@@ -97,11 +97,15 @@ function Header(props) {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/me/name", {
+        .get("https://protypist.herokuapp.com/users/me", {
           headers: headers,
         })
         .then((response) => {
-          setUserName(response.data);
+          setUserName(response.data.name);
+          dispatch({
+            type: "SET_USER_ID",
+            payload: response.data._id,
+          });
         })
         .catch((e) => {
           setUserName("Guest");
