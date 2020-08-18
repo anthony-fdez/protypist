@@ -68,8 +68,21 @@
   height: 74vh;
 }
 .ladderboard-row {
+  color: white;
   display: flex;
   background-color: rgb(29, 29, 29);
+  position: relative;
+  align-items: center;
+}
+.ladderboard-row-dark {
+  display: flex;
+  background-color: rgb(29, 29, 29);
+  position: relative;
+  align-items: center;
+}
+.ladderboard-row-light {
+  display: flex;
+  background-color: rgb(255, 255, 255);
   position: relative;
   align-items: center;
 }

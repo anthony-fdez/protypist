@@ -142,7 +142,11 @@ function Ladderboard(props) {
               sortByRaces();
             }}
             className={
-              sortBy === "races" ? "btn btn-primary mr-2" : "btn btn-light mr-2"
+              sortBy === "races"
+                ? "btn btn-primary mr-2"
+                : theme
+                ? "btn btn-light mr-2"
+                : "btn btn-dark mr-2"
             }
           >
             Races
@@ -153,7 +157,11 @@ function Ladderboard(props) {
               sortByTime();
             }}
             className={
-              sortBy === "time" ? "btn btn-primary mr-2" : "btn btn-light mr-2"
+              sortBy === "time"
+                ? "btn btn-primary mr-2"
+                : theme
+                ? "btn btn-light mr-2"
+                : "btn btn-dark mr-2"
             }
           >
             Time
@@ -166,7 +174,9 @@ function Ladderboard(props) {
             className={
               sortBy === "average"
                 ? "btn btn-primary mr-2"
-                : "btn btn-light mr-2"
+                : theme
+                ? "btn btn-light mr-2"
+                : "btn btn-dark mr-2"
             }
           >
             Average
@@ -179,7 +189,9 @@ function Ladderboard(props) {
             className={
               sortBy === "10races"
                 ? "btn btn-primary mr-2"
-                : "btn btn-light mr-2"
+                : theme
+                ? "btn btn-light mr-2"
+                : "btn btn-dark mr-2"
             }
           >
             10 races
@@ -192,7 +204,9 @@ function Ladderboard(props) {
             className={
               sortBy === "highest"
                 ? "btn btn-primary mr-2"
-                : "btn btn-light mr-2"
+                : theme
+                ? "btn btn-light mr-2"
+                : "btn btn-dark mr-2"
             }
           >
             Highest
@@ -224,7 +238,9 @@ function Ladderboard(props) {
               className={
                 userId === user._id
                   ? "ladderboard-row bg-primary"
-                  : "ladderboard-row"
+                  : theme
+                  ? "ladderboard-row-dark"
+                  : "ladderboard-row-light"
               }
             >
               <h4 className="ladderboard-number-item">{index + 1}</h4>
