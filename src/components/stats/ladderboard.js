@@ -164,7 +164,7 @@ function Ladderboard(props) {
       }
     >
       <div className="ladderboard-header">
-        <h2>Ladderboard</h2>
+        <h2>Leaderboard</h2>
         {isLoading && (
           <div
             style={{ position: "absolute", top: "15px" }}

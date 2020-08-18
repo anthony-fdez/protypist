@@ -125,7 +125,7 @@ function SideMenu() {
               }}
               className="typing-test-bottom-button"
             >
-              <h5>Ladderboard</h5>
+              <h5>Leaderboard</h5>
             </div>
           </div>
         </Link>
