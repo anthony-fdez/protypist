@@ -13,7 +13,7 @@ function Common1000() {
   const dispatch = useDispatch();
 
   const theme = useSelector((state) => state.darkModeReducer);
-  const length = useSelector((state) => state.lengthReducer);
+  const length = useSelector((state) => state.lengthReducerAdvanced);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM1000 = useSelector((state) => state.latestWPMReducer1000);
   const keyboardOnScreen = useSelector(

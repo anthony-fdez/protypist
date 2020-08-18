@@ -14,7 +14,7 @@ function Common200() {
 
   //redux reducers
   const theme = useSelector((state) => state.darkModeReducer);
-  const length = useSelector((state) => state.lengthReducer);
+  const length = useSelector((state) => state.lengthReducerNormal);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM200 = useSelector((state) => state.latestWPMReducer200);
   const keyboardOnScreen = useSelector(
