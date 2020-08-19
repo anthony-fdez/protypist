@@ -10,10 +10,7 @@ function SideMenu() {
   const dispatch = useDispatch();
 
   const colors = useSelector((state) => state.themeReducer);
-
   const colorFiles = require(`../themes/${colors}`);
-
-  const theme = useSelector((state) => state.darkModeReducer);
 
   let location = useLocation();
   location = location.pathname;

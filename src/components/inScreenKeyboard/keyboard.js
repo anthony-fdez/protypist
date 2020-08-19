@@ -2,6 +2,7 @@ import React from "react";
 import "./keyboard.css";
 
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function useKeyPress(targetKey) {
   // State for keeping track of whether key is pressed
@@ -41,6 +42,9 @@ function useKeyPress(targetKey) {
 }
 
 function Keyboard() {
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`../themes/${colors}`);
+
   const pressedA = useKeyPress("a");
   const pressedCapitalA = useKeyPress("A");
 
@@ -165,9 +169,16 @@ function Keyboard() {
 
   return (
     <div>
-      <div className="keyboard">
+      <div
+        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+        className="keyboard"
+      >
         <div className="fifth-row">
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedAproximate || pressedBackTic
                 ? "keyboard-key-pressed"
@@ -177,6 +188,10 @@ function Keyboard() {
             `~
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed1 || pressedExclamation
                 ? "keyboard-key-pressed"
@@ -186,6 +201,10 @@ function Keyboard() {
             1 !
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed2 || pressedAdd ? "keyboard-key-pressed" : "keyboard-key"
             }
@@ -193,6 +212,10 @@ function Keyboard() {
             2 @
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed3 || pressedSharp ? "keyboard-key-pressed" : "keyboard-key"
             }
@@ -200,6 +223,10 @@ function Keyboard() {
             3 #
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed4 || pressedDollar
                 ? "keyboard-key-pressed"
@@ -209,6 +236,10 @@ function Keyboard() {
             4 $
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed5 || pressedPerCent
                 ? "keyboard-key-pressed"
@@ -218,6 +249,10 @@ function Keyboard() {
             5 %
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed6 || pressedUpArrow
                 ? "keyboard-key-pressed"
@@ -227,6 +262,10 @@ function Keyboard() {
             6 ^
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed7 || pressedAnd ? "keyboard-key-pressed" : "keyboard-key"
             }
@@ -234,6 +273,10 @@ function Keyboard() {
             7 &
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed8 || pressedStart ? "keyboard-key-pressed" : "keyboard-key"
             }
@@ -241,6 +284,10 @@ function Keyboard() {
             8 *
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed9 || pressedOpenParenthesis
                 ? "keyboard-key-pressed"
@@ -250,6 +297,10 @@ function Keyboard() {
             9 (
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressed0 || pressedCloseParenthesis
                 ? "keyboard-key-pressed"
@@ -259,6 +310,10 @@ function Keyboard() {
             0 )
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedMinus || pressedUnderScore
                 ? "keyboard-key-pressed"
@@ -268,6 +323,10 @@ function Keyboard() {
             - _
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedEqual || pressedPlus
                 ? "keyboard-key-pressed"
@@ -277,6 +336,10 @@ function Keyboard() {
             = +
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedAproximate || pressedBackTic
                 ? "keyboard-backspace"
@@ -287,8 +350,20 @@ function Keyboard() {
           </div>
         </div>
         <div className="forth-row">
-          <div className="keyboard-tab">TAB</div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-tab"
+          >
+            TAB
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedQ || pressedCapitalQ
                 ? "keyboard-key-pressed"
@@ -298,6 +373,10 @@ function Keyboard() {
             Q
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedW || pressedCapitalW
                 ? "keyboard-key-pressed"
@@ -307,6 +386,10 @@ function Keyboard() {
             W
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedE || pressedCapitalE
                 ? "keyboard-key-pressed"
@@ -316,6 +399,10 @@ function Keyboard() {
             E
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedR || pressedCapitalR
                 ? "keyboard-key-pressed"
@@ -325,6 +412,10 @@ function Keyboard() {
             R
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedT || pressedCapitalT
                 ? "keyboard-key-pressed"
@@ -334,6 +425,10 @@ function Keyboard() {
             T
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedY || pressedCapitalY
                 ? "keyboard-key-pressed"
@@ -343,6 +438,10 @@ function Keyboard() {
             Y
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedU || pressedCapitalU
                 ? "keyboard-key-pressed"
@@ -352,6 +451,10 @@ function Keyboard() {
             U
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedI || pressedCapitalI
                 ? "keyboard-key-pressed"
@@ -361,6 +464,10 @@ function Keyboard() {
             I
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedO || pressedCapitalO
                 ? "keyboard-key-pressed"
@@ -370,6 +477,10 @@ function Keyboard() {
             O
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedP || pressedCapitalP
                 ? "keyboard-key-pressed"
@@ -379,6 +490,10 @@ function Keyboard() {
             P
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedLeftCurlyBrace || pressedLeftSquareBracket
                 ? "keyboard-key-pressed"
@@ -388,6 +503,10 @@ function Keyboard() {
             [{" {"}
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedRigthCurlyBrace || pressedRigthSquareBracket
                 ? "keyboard-key-pressed"
@@ -396,13 +515,31 @@ function Keyboard() {
           >
             ]{" }"}
           </div>
-          <div className={pressedQ ? "keyboard-key-pressed" : "keyboard-key"}>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={pressedQ ? "keyboard-key-pressed" : "keyboard-key"}
+          >
             \ |
           </div>
         </div>
         <div className="third-row">
-          <div className="keyboard-caps">CAPS</div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-caps"
+          >
+            CAPS
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedA || pressedCapitalA
                 ? "keyboard-key-pressed"
@@ -412,6 +549,10 @@ function Keyboard() {
             A
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedS || pressedCapitalS
                 ? "keyboard-key-pressed"
@@ -421,6 +562,10 @@ function Keyboard() {
             S
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedD || pressedCapitalD
                 ? "keyboard-key-pressed"
@@ -430,6 +575,10 @@ function Keyboard() {
             D
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedF || pressedCapitalF
                 ? "keyboard-key-pressed"
@@ -439,6 +588,10 @@ function Keyboard() {
             F
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedG || pressedCapitalG
                 ? "keyboard-key-pressed"
@@ -448,6 +601,10 @@ function Keyboard() {
             G
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedH || pressedCapitalH
                 ? "keyboard-key-pressed"
@@ -457,6 +614,10 @@ function Keyboard() {
             H
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedJ || pressedCapitalJ
                 ? "keyboard-key-pressed"
@@ -466,6 +627,10 @@ function Keyboard() {
             J
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedK || pressedCapitalK
                 ? "keyboard-key-pressed"
@@ -475,6 +640,10 @@ function Keyboard() {
             K
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedL || pressedCapitalL
                 ? "keyboard-key-pressed"
@@ -484,6 +653,10 @@ function Keyboard() {
             L
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedColon || pressedSemiColon
                 ? "keyboard-key-pressed"
@@ -493,6 +666,10 @@ function Keyboard() {
             ; :
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedSingleQuote || pressedDoubleQuote
                 ? "keyboard-key-pressed"
@@ -501,11 +678,31 @@ function Keyboard() {
           >
             ' "
           </div>
-          <div className="keyboard-enter">ENTER</div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-enter"
+          >
+            ENTER
+          </div>
         </div>
         <div className="second-row">
-          <div className="keyboard-shift">SHIFT</div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-shift"
+          >
+            SHIFT
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedZ || pressedCapitalZ
                 ? "keyboard-key-pressed"
@@ -515,6 +712,10 @@ function Keyboard() {
             Z
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedX || pressedCapitalX
                 ? "keyboard-key-pressed"
@@ -524,6 +725,10 @@ function Keyboard() {
             X
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedC || pressedCapitalC
                 ? "keyboard-key-pressed"
@@ -533,6 +738,10 @@ function Keyboard() {
             C
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedV || pressedCapitalV
                 ? "keyboard-key-pressed"
@@ -542,6 +751,10 @@ function Keyboard() {
             V
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedB || pressedCapitalB
                 ? "keyboard-key-pressed"
@@ -551,6 +764,10 @@ function Keyboard() {
             B
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedN || pressedCapitalN
                 ? "keyboard-key-pressed"
@@ -560,6 +777,10 @@ function Keyboard() {
             N
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedM || pressedCapitalM
                 ? "keyboard-key-pressed"
@@ -569,6 +790,10 @@ function Keyboard() {
             M
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedComma || pressedLesserThan
                 ? "keyboard-key-pressed"
@@ -578,6 +803,10 @@ function Keyboard() {
             ,{" <"}
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedDot || pressedBiggerThan
                 ? "keyboard-key-pressed"
@@ -587,6 +816,10 @@ function Keyboard() {
             .{" >"}
           </div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedForwardSlash || pressedQuestion
                 ? "keyboard-key-pressed"
@@ -595,20 +828,64 @@ function Keyboard() {
           >
             / ?
           </div>
-          <div className="keyboard-big-shift">SHIFT</div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-big-shift"
+          >
+            SHIFT
+          </div>
         </div>
         <div className="first-row">
-          <div className="keyboard-ctrl">CTRL</div>
-          <div className="keyboard-alt">ALT</div>
           <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-ctrl"
+          >
+            CTRL
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-alt"
+          >
+            ALT
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
             className={
               pressedSpace ? "keyboard-space-pressed" : "keyboard-space"
             }
           >
             SPACE
           </div>
-          <div className="keyboard-alt">ALT</div>
-          <div className="keyboard-ctrl">CTRL</div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-alt"
+          >
+            ALT
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-ctrl"
+          >
+            CTRL
+          </div>
         </div>
       </div>
     </div>

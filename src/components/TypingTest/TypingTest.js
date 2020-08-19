@@ -4,7 +4,6 @@ import "./TypingTest.css";
 //components
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
-import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 import validator from "validator";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -499,14 +498,6 @@ function TypingTest() {
     }
   };
 
-  const displayKeyboard = () => {
-    if (keyboardOnScreen) {
-      if (theme) {
-        return <KeyboardDark />;
-      } else return <Keyboard />;
-    } else return null;
-  };
-
   const handleThemInTheFinishedPage = () => {
     if (theme === false) {
       if (finished) {
@@ -993,7 +984,7 @@ function TypingTest() {
         <div
           className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
         >
-          {displayKeyboard()}
+          <Keyboard />
         </div>
         <div className={handleThemInTheFinishedPage()}>
           <div className="about-text-header">

@@ -3,7 +3,6 @@ import "./common200.css";
 
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
-import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -391,14 +390,6 @@ function Common200() {
     } else return latestWPM200;
   };
 
-  const displayKeyboard = () => {
-    if (keyboardOnScreen) {
-      if (theme) {
-        return <KeyboardDark />;
-      } else return <Keyboard />;
-    } else return null;
-  };
-
   const calculateWithOfProgressBar = () => {
     if (textArrayCharacters !== undefined) {
       let percent = (charactersTyped / textArrayCharacters.length) * 100;
@@ -499,7 +490,7 @@ function Common200() {
           the test won't stop unless you have less than 5 mistakes
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        {displayKeyboard()}
+        <Keyboard />
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}

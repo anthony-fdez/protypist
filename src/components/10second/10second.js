@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./10second.css";
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
-import KeyboardDark from "../inScreenKeyboard/keyboard-dark";
 
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -24,14 +23,6 @@ function Typing10Second() {
     to: { opacity: 1 },
     config: { duration: 300 },
   });
-
-  const displayKeyboard = () => {
-    if (keyboardOnScreen) {
-      if (theme) {
-        return <KeyboardDark />;
-      } else return <Keyboard />;
-    }
-  };
 
   return (
     <animated.div
@@ -67,7 +58,9 @@ function Typing10Second() {
               : "keyboard-div-hidden-10seconds"
           }
         >
-          <div className="check-for-small-display">{displayKeyboard()}</div>
+          <div className="check-for-small-display">
+            <Keyboard />
+          </div>
         </div>
 
         <div
