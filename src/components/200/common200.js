@@ -490,7 +490,7 @@ function Common200() {
           the test won't stop unless you have less than 5 mistakes
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        <Keyboard />
+        {keyboardOnScreen && <Keyboard />}
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}

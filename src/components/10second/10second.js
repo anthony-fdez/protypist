@@ -59,7 +59,7 @@ function Typing10Second() {
           }
         >
           <div className="check-for-small-display">
-            <Keyboard />
+            {keyboardOnScreen && <Keyboard />}
           </div>
         </div>
 

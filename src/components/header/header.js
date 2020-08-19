@@ -19,7 +19,6 @@ function Header(props) {
   const [isLogOutMenuOpen, setIsLogOutMenuOpen] = useState(false);
 
   const colors = useSelector((state) => state.themeReducer);
-
   const colorFiles = require(`../themes/${colors}`);
 
   //==================================================================
@@ -342,7 +341,6 @@ function Header(props) {
           ></i>
         </div>
         <hr
-          className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
           style={{ marginTop: "2rem", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <div>

@@ -34,6 +34,9 @@ function TypingTest() {
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
 
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`../themes/${colors}`);
+
   //state
   const [text, setText] = useState();
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -487,27 +490,15 @@ function TypingTest() {
   };
 
   const changeTextToTypeClassname = () => {
-    if (theme) {
-      if (isUserTyping) {
-        return "text-to-type";
-      } else return "text-to-type-dark";
-    } else {
-      if (isUserTyping) {
-        return "text-to-type";
-      } else return "text-to-type-light";
-    }
+    if (isUserTyping) {
+      return "text-to-type";
+    } else return "text-to-type-dark";
   };
 
   const handleThemInTheFinishedPage = () => {
-    if (theme === false) {
-      if (finished) {
-        return "about-the-text-shown-light";
-      } else return "about-the-text-hidden-light";
-    } else {
-      if (finished) {
-        return "about-the-text-shown-dark";
-      } else return "about-the-text-hidden-dark";
-    }
+    if (finished) {
+      return "about-the-text-shown";
+    } else return "about-the-text-hidden";
   };
 
   const calculateWithOfProgressBar = () => {
@@ -631,13 +622,7 @@ function TypingTest() {
     if (textTypedHistory !== undefined) {
       const data = textTypedHistory;
       return (
-        <div
-          className={
-            theme
-              ? "ml-4 mr-4  mt-1 history-div-dark"
-              : "m-4 mt-3 history-div-light"
-          }
-        >
+        <div className={"ml-4 mr-4  mt-1 history-div"}>
           {data
             .slice(0)
             .reverse()
@@ -768,18 +753,9 @@ function TypingTest() {
     return (
       <div>
         <h4 style={{ margin: "2rem", marginBottom: 0 }}>This Text:</h4>
-        <hr
-          style={{ width: "85%" }}
-          className={theme ? "white-hr" : "dark-hr"}
-        ></hr>
+        <hr style={{ width: "85%" }}></hr>
         <h4 style={{ margin: "2rem", marginBottom: 0 }}>Highest</h4>
-        <div
-          className={
-            theme
-              ? "ml-4 mr-4 mb-4 mt-1 history-div-dark bg-primary"
-              : "ml-4 mr-4 mb-4 mt-1 history-div-light"
-          }
-        >
+        <div className={"ml-4 mr-4 mb-4 mt-1 history-div"}>
           <div className={"d-flex justify-content-between  p-2"}>
             <p>{highestSpeed} WPM</p>
             <p>Date: {highestSpeedDate}</p>
@@ -794,17 +770,7 @@ function TypingTest() {
   const sideMenu = () => {
     if (text !== undefined) {
       return (
-        <div
-          className={
-            isSideMenuOpen
-              ? theme
-                ? "side-menu-open-dark"
-                : "side-menu-open-light"
-              : theme
-              ? "side-menu-closed-dark"
-              : "side-menu-closed-light"
-          }
-        >
+        <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
           <div>
             <div className="side-menu-header">
               <h3>Info About Text</h3>
@@ -818,15 +784,20 @@ function TypingTest() {
               ></i>
             </div>
 
-            <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+            <hr
+              style={{ marginTop: "2rem", backgroundColor: colorFiles.hrColor }}
+            ></hr>
           </div>
           <div className="side-menu-container">
             <div className="side-menu-picture-div">
               <img className="side-menu-picture" src={text.image}></img>
             </div>
             <hr
-              style={{ width: "85%" }}
-              className={theme ? "white-hr" : "dark-hr"}
+              style={{
+                width: "85%",
+                marginTop: "2rem",
+                backgroundColor: colorFiles.hrColor,
+              }}
             ></hr>
           </div>
           <div className="side-menu-info-container">
@@ -901,10 +872,7 @@ function TypingTest() {
   };
 
   return (
-    <animated.div
-      style={animation}
-      className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
-    >
+    <animated.div style={animation} className={"TypingTest-page"}>
       <div
         onClick={() =>
           dispatch({
@@ -920,22 +888,28 @@ function TypingTest() {
 
       {/* {submitQuoteMenu()} */}
       {sideMenu()}
-      <div className="TypingTest">
+      <div
+        style={{
+          backgroundColor: colorFiles.backgroundColor,
+          color: colorFiles.fontColor,
+        }}
+        className="TypingTest"
+      >
         <Header />
         {displayTheStatistics()}
         {errorWarning()}
         {successWarning()}
-        <hr
-          style={isRunning || finished ? { opacity: 0 } : { opacity: 1 }}
-          className={theme ? "white-hr" : "dark-hr"}
-        ></hr>
+
         <hr
           style={
-            finished
-              ? { width: "100%" }
-              : { width: calculateWithOfProgressBar() + "%" }
+            finished || !isRunning
+              ? { width: "100%", backgroundColor: colorFiles.primaryColor }
+              : {
+                  width: calculateWithOfProgressBar() + "%",
+                  backgroundColor: colorFiles.primaryColor,
+                }
           }
-          className={theme ? "white-hr-progress" : "dark-hr-progress"}
+          className="hr-progress"
         ></hr>
         <p
           className={
@@ -958,9 +932,9 @@ function TypingTest() {
           <strong>Slow Down Boy</strong>
           the test won't stop unless you have less than 5 mistakes
         </p>
-        <div className={changeTextToTypeClassname()}>
+        <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
           {isLoading ? (
-            <div className={theme ? "loading-div-dark" : "loading-div-light"}>
+            <div className={"loading-div"}>
               <div class="lds-ellipsis">
                 <div
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
@@ -984,7 +958,7 @@ function TypingTest() {
         <div
           className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
         >
-          <Keyboard />
+          {keyboardOnScreen && <Keyboard />}
         </div>
         <div className={handleThemInTheFinishedPage()}>
           <div className="about-text-header">
