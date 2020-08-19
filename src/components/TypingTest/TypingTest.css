@@ -449,20 +449,32 @@
   }
   .input-box-shown {
     position: absolute;
-    width: 660px;
+    width: 670px;
     bottom: 240px;
     opacity: 1;
     transition: 0.3s;
     z-index: 0;
+    background: none;
+    outline: none;
+    padding: 0.5rem;
+    border: none;
   }
   .input-box-hidden {
     position: absolute;
-    width: 660px;
-    bottom: 160px;
+    width: 670px;
+    bottom: 200px;
     pointer-events: none;
     transition: 0.3s;
     opacity: 0;
     z-index: 0;
+    transition: 0.3s;
+    background: none;
+    outline: none;
+    padding: 0.5rem;
+    border: none;
+  }
+  .input-box-shown:focus {
+    padding: 0.7rem;
   }
   .text-to-type {
     margin-top: 1rem;
