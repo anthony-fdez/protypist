@@ -61,7 +61,7 @@ function SideMenu() {
       </div>
 
       <div className="navigation-buttons">
-        <Link className="left-menu-link" to="/10second">
+        {/* <Link className="left-menu-link" to="/10second">
           <div
             style={{
               backgroundColor: checkButtonStyle("/10second"),
@@ -75,7 +75,7 @@ function SideMenu() {
             ></i>
             <h5>10second</h5>
           </div>
-        </Link>
+        </Link> */}
         <Link className="left-menu-link" to="/">
           <div
             style={{
@@ -89,7 +89,7 @@ function SideMenu() {
                 style={{ position: "absolute", left: "20px" }}
                 className="fas fa-keyboard"
               ></i>
-              <h5>TypingTest</h5>
+              <h5>Quotes</h5>
             </div>
             <div
               onClick={() => {

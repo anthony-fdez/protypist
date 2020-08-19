@@ -24,9 +24,9 @@ function App() {
           <Route exact path="/">
             <TypingTest />
           </Route>
-          <Route path="/10second">
+          {/* <Route path="/10second">
             <Typing10second />
-          </Route>
+          </Route> */}
           <Route path="/200">
             <Common200 />
           </Route>

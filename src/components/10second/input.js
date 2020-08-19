@@ -122,13 +122,7 @@ function Input(props) {
           <h3 className="word-to-type">{randomWord.split("").join(" ")}</h3>
 
           <div className="">
-            <h5
-              className={
-                props.darkMode
-                  ? "time-left text-light "
-                  : "time-left text-dark "
-              }
-            >
+            <h5 className={"time-left text"}>
               {seconds}:{miliseconds < 10 ? `${miliseconds}0` : miliseconds}
             </h5>
           </div>
@@ -266,27 +260,13 @@ function Input(props) {
         />
       </div>
       <div className="mt-3 ml-2 d-flex justify-content-between">
-        <h4
-          className={
-            props.darkMode ? "transition text-light" : "transition text-dark"
-          }
-        >
-          Score: {addSecond ? "+1" : score}
-        </h4>
+        <h4 className={"transition text"}>Score: {addSecond ? "+1" : score}</h4>
         <div>{displayAddingSeconds()}</div>
       </div>
       <div>
-        <h5
-          className={
-            props.darkMode ? "highest-score-dark" : "highest-score-light"
-          }
-        >
-          Highest Score: {highestScore}
-        </h5>
+        <h5 className={"highest-score"}>Highest Score: {highestScore}</h5>
         <h5 //this is the words per minute h5, it says highest score but it doesn't matter
-          className={
-            props.darkMode ? "highest-score-dark" : "highest-score-light"
-          }
+          className={"highest-score"}
         >
           WPM: {wpm === NaN ? "0" : wpm.toFixed(1)}
         </h5>

@@ -1,40 +1,15 @@
-.Typing10Second-page-dark {
+.Typing10Second-page {
   height: 100vh;
   width: 100vw;
-  background-color: rgb(31, 30, 30);
   color: white;
   padding: 1rem;
   padding-left: 215px;
   overflow: hidden;
 }
-.Typing10Second-page-light {
-  height: 100vh;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  width: 100vw;
-  padding: 1rem;
-  padding-left: 215px;
-  overflow: hidden;
-}
-.settings-10second-dark {
+
+.settings-10second {
   position: absolute;
   bottom: 0.5rem;
-  background-color: rgb(50, 50, 50);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 870px;
-  margin: auto;
-  left: 200px;
-  right: 0;
-  border-radius: 10px;
-  padding: 1rem;
-  z-index: 10;
-}
-.settings-10second-light {
-  position: absolute;
-  bottom: 0.5rem;
-  background-color: rgb(201, 201, 201);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -25,12 +25,7 @@ function Typing10Second() {
   });
 
   return (
-    <animated.div
-      style={animation}
-      className={
-        theme ? "Typing10Second-page-dark" : "Typing10Second-page-light"
-      }
-    >
+    <animated.div style={animation} className={"Typing10Second-page"}>
       <div className={"Typing10Second"}>
         <Header />
       </div>
@@ -63,11 +58,7 @@ function Typing10Second() {
           </div>
         </div>
 
-        <div
-          className={
-            theme ? "settings-10second-dark" : "settings-10second-light"
-          }
-        >
+        <div className={"settings-10second"}>
           <div className="d-flex">
             <h4 className="mr-2">Difficulty: </h4>
             <button
