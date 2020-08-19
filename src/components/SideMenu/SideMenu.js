@@ -27,7 +27,7 @@ function SideMenu() {
   const checkButtonStyle = (path) => {
     if (location === path) {
       return colorFiles.primaryColor;
-    } else return colorFiles.secondaryBackgroundColor;
+    } else return colorFiles.secondSecondaryBackgroundColor;
   };
 
   const checkButtonStyleColor = (path) => {
@@ -43,7 +43,10 @@ function SideMenu() {
   };
 
   return (
-    <div className={"SideMenu"}>
+    <div
+      style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+      className={"SideMenu"}
+    >
       <div className="d-flex justify-content-center">
         <h3 className="text-primary">Pro</h3>
         <h3>
@@ -89,6 +92,10 @@ function SideMenu() {
                 });
               }}
               className="typing-test-bottom-button"
+              style={{
+                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
             >
               <i
                 style={{ position: "absolute", left: "20px" }}
@@ -156,6 +163,10 @@ function SideMenu() {
                 });
               }}
               className="typing-test-bottom-button"
+              style={{
+                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
             >
               <h5>Leaderboard</h5>
             </div>

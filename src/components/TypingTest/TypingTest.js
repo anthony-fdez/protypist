@@ -606,7 +606,7 @@ function TypingTest() {
   const successWarning = () => {
     return (
       <div
-        style={{ left: "250px" }}
+        style={{ left: "200px" }}
         className={
           isSuccessWarningShown
             ? "success-warning-shown bg-primary"
@@ -621,7 +621,7 @@ function TypingTest() {
   const errorWarning = () => {
     return (
       <div
-        style={{ left: "250px" }}
+        style={{ left: "200px" }}
         className={
           isErrorWarningShown
             ? "error-warning-shown bg-danger"

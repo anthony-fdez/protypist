@@ -1,6 +1,6 @@
 .Ladderboard-shown-dark {
   margin: auto;
-  left: 250px;
+  left: 200px;
   right: 0;
   height: 96vh;
   position: absolute;
@@ -14,7 +14,7 @@
 }
 .Ladderboard-shown-light {
   margin: auto;
-  left: 250px;
+  left: 200px;
   right: 0;
   height: 96vh;
   position: absolute;
@@ -30,7 +30,7 @@
 }
 .Ladderboard-hidden-dark {
   margin: auto;
-  left: 250px;
+  left: 200px;
   right: 0;
   height: 10vh;
   position: absolute;
@@ -47,7 +47,7 @@
 }
 .Ladderboard-hidden-light {
   margin: auto;
-  left: 250px;
+  left: 200px;
   right: 0;
   height: 10vh;
   position: absolute;
