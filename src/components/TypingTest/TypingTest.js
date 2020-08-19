@@ -4,7 +4,6 @@ import "./TypingTest.css";
 //components
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
-import validator from "validator";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -295,12 +294,12 @@ function TypingTest() {
               style={
                 blinking
                   ? {
-                      backgroundColor: colorFiles.fontColor,
-                      color: colorFiles.secondaryBackgroundColor,
+                      color: colorFiles.noneColor,
+                      borderLeft: `2px solid ${colorFiles.fontColor}`,
                     }
                   : {
-                      backgroundColor: colorFiles.secondaryBackgroundColor,
-                      color: colorFiles.fontColor,
+                      color: colorFiles.noneColor,
+                      borderLeft: `2px solid ${colorFiles.backgroundColor}`,
                     }
               }
             >
@@ -322,7 +321,10 @@ function TypingTest() {
             <div
               key={"key" + i}
               className="red"
-              style={{ color: colorFiles.wrongColor }}
+              style={{
+                backgroundColor: colorFiles.wrongColor,
+                color: colorFiles.fontColor,
+              }}
             >
               {textArrayCharacters[i]}
             </div>
@@ -562,7 +564,6 @@ function TypingTest() {
 
   const getTheHighestSpeedForARace = (data) => {
     if (data.length === 0) {
-      console.log("Working");
       setHighestSpeed("No Data");
       setHighestSpeedDate("No Data");
       return 0;
@@ -1007,22 +1008,29 @@ function TypingTest() {
         </p>
         <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
           {isLoading ? (
-            <div className={"loading-div"}>
+            <div
+              style={{ color: colorFiles.fontColor }}
+              className={"loading-div"}
+            >
               <div class="lds-ellipsis">
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
               </div>
-              <h4>Loading Text</h4>
+              <h4 style={{ color: colorFiles.fontColor }}>Loading Text</h4>
             </div>
           ) : (
             spanArray
@@ -1099,7 +1107,8 @@ function TypingTest() {
               <h5>
                 This quote is from the {text && text.type}:{" "}
                 <a
-                  className={theme ? "linkURL" : "linkURLlight"}
+                  className={"linkURL"}
+                  style={{ color: colorFiles.fontColor }}
                   target="blank"
                   href={text && text.linkURL}
                 >

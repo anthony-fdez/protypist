@@ -26,6 +26,9 @@ function Common200() {
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
 
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`../themes/${colors}`);
+
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -48,6 +51,7 @@ function Common200() {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+  const [blinking, setIsBlinking] = useState(true);
 
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
@@ -134,7 +138,7 @@ function Common200() {
     if (newGame === true) {
       setSpanArray(blankSpanArray);
     } else setSpanArray(displayTheArray());
-  }, [charactersTyped, textArrayCharacters, newGame]);
+  }, [charactersTyped, textArrayCharacters, newGame, blinking]);
 
   useEffect(() => {
     if (textArrayCharacters !== undefined) {
@@ -145,6 +149,17 @@ function Common200() {
       setInfoAboutCharacter(spanArray);
     }
   }, [newGame]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBlinking(!blinking);
+    }, 500);
+    return () => clearInterval(interval);
+  }, [blinking, charactersTyped]);
+
+  useEffect(() => {
+    setIsBlinking(true);
+  }, [charactersTyped]);
 
   useEffect(() => {
     if (isRunning === true) {
@@ -174,26 +189,52 @@ function Common200() {
           spanArray.push(
             <div
               key={"key" + i}
-              className={theme ? "blinking-dark" : "blinking-light"}
+              className={"blinking"}
+              style={
+                blinking
+                  ? {
+                      color: colorFiles.noneColor,
+                      borderLeft: `2px solid ${colorFiles.fontColor}`,
+                    }
+                  : {
+                      color: colorFiles.noneColor,
+                      borderLeft: `2px solid ${colorFiles.backgroundColor}`,
+                    }
+              }
             >
               {textArrayCharacters[i]}
             </div>
           );
         } else if (infoAboutCharacter[i] === true) {
           spanArray.push(
-            <div key={"key" + i} className="green">
+            <div
+              key={"key" + i}
+              className="green"
+              style={{ color: colorFiles.correctColor }}
+            >
               {textArrayCharacters[i]}
             </div>
           );
         } else if (infoAboutCharacter[i] === false) {
           spanArray.push(
-            <div key={"key" + i} className="red">
+            <div
+              key={"key" + i}
+              className="red"
+              style={{
+                backgroundColor: colorFiles.wrongColor,
+                color: colorFiles.fontColor,
+              }}
+            >
               {textArrayCharacters[i]}
             </div>
           );
         } else {
           spanArray.push(
-            <div key={"key" + i} className="none">
+            <div
+              key={"key" + i}
+              className="none"
+              style={{ color: colorFiles.noneColor }}
+            >
               {textArrayCharacters[i]}
             </div>
           );
@@ -412,11 +453,14 @@ function Common200() {
   };
 
   return (
-    <animated.div
-      style={animation}
-      className={theme ? "TypingTest-page-dark" : "TypingTest-page-light"}
-    >
-      <div className="TypingTest">
+    <animated.div style={animation} className={"TypingTest-page"}>
+      <div
+        style={{
+          backgroundColor: colorFiles.backgroundColor,
+          color: colorFiles.fontColor,
+        }}
+        className="TypingTest"
+      >
         <Header />
         <div className="statistics">
           <div className="d-flex">
@@ -461,12 +505,15 @@ function Common200() {
           </div>
         </div>
         <hr
-          style={isRunning ? { opacity: 0 } : { opacity: 1 }}
-          className={theme ? "white-hr" : "dark-hr"}
-        ></hr>
-        <hr
-          style={{ width: calculateWithOfProgressBar() + "%" }}
-          className={theme ? "white-hr-progress" : "dark-hr-progress"}
+          style={
+            !isRunning
+              ? { width: "100%", backgroundColor: colorFiles.primaryColor }
+              : {
+                  width: calculateWithOfProgressBar() + "%",
+                  backgroundColor: colorFiles.primaryColor,
+                }
+          }
+          className="hr-progress"
         ></hr>
         <p
           className={
@@ -505,7 +552,11 @@ function Common200() {
               getAndCheckTheInput(e);
             }}
             placeholder="The test will bigin when you start typing!"
-            className="input-box-shown form-control"
+            className="input-box-shown"
+            style={{
+              color: colorFiles.fontColor,
+              borderBottom: `2px solid ${colorFiles.primaryColor}`,
+            }}
           ></input>
           <p className="alert-warning alert-tip">
             <strong>Tip:</strong> you can type " //f" any time you want to
