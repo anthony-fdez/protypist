@@ -137,7 +137,7 @@ function TypingTest() {
         setIsLoading(true);
         console.log(e.response);
       });
-  }, [newGame]);
+  }, [newGame, jwt]);
 
   // const submitNewQuote = () => {
   //   const data = {
@@ -186,7 +186,7 @@ function TypingTest() {
           console.log(e.response);
         });
     }
-  }, [isSideMenuOpen]);
+  }, [isSideMenuOpen, textTypedId]);
 
   const getTheDate = () => {
     const date = new Date();
@@ -561,6 +561,13 @@ function TypingTest() {
   };
 
   const getTheHighestSpeedForARace = (data) => {
+    if (data.length === 0) {
+      console.log("Working");
+      setHighestSpeed("No Data");
+      setHighestSpeedDate("No Data");
+      return 0;
+    }
+
     let speed = 0;
     let date = "";
 
@@ -663,25 +670,21 @@ function TypingTest() {
     if (textTypedHistory !== undefined) {
       const data = textTypedHistory;
       return (
-        <div className={"ml-4 mr-4  mt-1 history-div"}>
+        <div
+          className={"ml-4 mr-4  mt-1 history-div"}
+          style={{
+            backgroundColor: colorFiles.secondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
+        >
           {data
             .slice(0)
             .reverse()
             .map((item, index) => {
-              let isEven = false;
-
-              if (index % 2 === 0) {
-                isEven = true;
-              }
-
               return (
                 <div
                   key={index}
-                  className={
-                    isEven
-                      ? "d-flex justify-content-between mb-1 p-2 text-white"
-                      : "d-flex justify-content-between mb-1 p-2"
-                  }
+                  className={"d-flex justify-content-between mb-1 p-2"}
                 >
                   <p>{item.wpm} WPM</p>
                   <p>Date: {item.date}</p>
@@ -792,11 +795,23 @@ function TypingTest() {
 
   const thisTextInfo = () => {
     return (
-      <div>
+      <div style={{ color: colorFiles.fontColor }}>
         <h4 style={{ margin: "2rem", marginBottom: 0 }}>This Text:</h4>
-        <hr style={{ width: "85%" }}></hr>
+        <hr
+          style={{
+            marginTop: "1rem",
+            backgroundColor: colorFiles.hrColor,
+            width: "85%",
+          }}
+        ></hr>
         <h4 style={{ margin: "2rem", marginBottom: 0 }}>Highest</h4>
-        <div className={"ml-4 mr-4 mb-4 mt-1 history-div"}>
+        <div
+          style={{
+            backgroundColor: colorFiles.primaryColor,
+            color: colorFiles.contrastFontColor,
+          }}
+          className={" mb-4 mt-1 history-div"}
+        >
           <div className={"d-flex justify-content-between  p-2"}>
             <p>{highestSpeed} WPM</p>
             <p>Date: {highestSpeedDate}</p>
@@ -812,8 +827,11 @@ function TypingTest() {
     if (text !== undefined) {
       return (
         <div
-          style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
           className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}
+          style={{
+            backgroundColor: colorFiles.backgroundColor,
+            color: colorFiles.fontColor,
+          }}
         >
           <div>
             <div className="side-menu-header">
@@ -852,7 +870,15 @@ function TypingTest() {
               {/* This quote is from the {data.text[selectedRandomTextIndex].type}: */}
             </h5>
             <a className="link" target="blank" href={text.linkURL}>
-              <h5 className="link-h5">"{text.from}"</h5>
+              <h5
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                }}
+                className="link-h5"
+              >
+                "{text.from}"
+              </h5>
             </a>
 
             <h5 className="mt-2">By: {text.by}</h5>
