@@ -101,46 +101,6 @@
     transition: 0.03s;
   }
 
-  .blinking-dark {
-    animation: blinker-dark 1s linear infinite;
-    width: 12px;
-    height: 25px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.03s;
-  }
-  @keyframes blinker-dark {
-    0% {
-      background-color: rgb(255, 255, 255);
-      color: rgb(0, 0, 0);
-    }
-    20% {
-      background-color: rgb(255, 255, 255);
-      color: rgb(0, 0, 0);
-    }
-    40% {
-      background-color: rgb(255, 255, 255);
-      color: rgb(0, 0, 0);
-    }
-    50% {
-      background-color: rgb(102, 102, 102);
-      color: rgb(255, 255, 255);
-    }
-    60% {
-      background-color: rgb(110, 110, 110);
-      color: rgb(255, 255, 255);
-    }
-    80% {
-      background-color: rgb(116, 116, 116);
-      color: rgb(255, 255, 255);
-    }
-    100% {
-      background-color: rgb(124, 124, 124);
-      color: rgb(255, 255, 255);
-    }
-  }
   .alert-shown {
     padding: 0;
     margin: auto;

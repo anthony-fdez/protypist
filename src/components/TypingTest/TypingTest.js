@@ -247,8 +247,10 @@ function TypingTest() {
   useEffect(() => {
     if (finished === true) {
       setSpanArray(blankSpanArray);
-    } else setSpanArray(displayTheArray());
-  }, [charactersTyped, textArrayCharacters, finished]);
+    } else {
+      setSpanArray(displayTheArray());
+    }
+  }, [charactersTyped, textArrayCharacters, finished, blinking]);
 
   useEffect(() => {
     if (isRunning === true) {
@@ -275,7 +277,11 @@ function TypingTest() {
       setIsBlinking(!blinking);
     }, 500);
     return () => clearInterval(interval);
-  }, [blinking, textArrayCharacters]);
+  }, [blinking, charactersTyped]);
+
+  useEffect(() => {
+    setIsBlinking(true);
+  }, [charactersTyped]);
 
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
@@ -285,11 +291,17 @@ function TypingTest() {
           spanArray.push(
             <div
               key={"key" + i}
-              className="blinking"
+              className={"blinking"}
               style={
                 blinking
-                  ? { backgroundColor: "red" }
-                  : { backgroundColor: "blue" }
+                  ? {
+                      backgroundColor: colorFiles.fontColor,
+                      color: colorFiles.secondaryBackgroundColor,
+                    }
+                  : {
+                      backgroundColor: colorFiles.secondaryBackgroundColor,
+                      color: colorFiles.fontColor,
+                    }
               }
             >
               {textArrayCharacters[i]}
@@ -1073,6 +1085,10 @@ function TypingTest() {
             }}
             placeholder="The test will bigin when you start typing!"
             className={finished ? "input-box-hidden" : "input-box-shown"}
+            style={{
+              color: colorFiles.fontColor,
+              borderBottom: `2px solid ${colorFiles.primaryColor}`,
+            }}
           ></input>
           <p className="alert-warning alert-tip">
             <strong>Tip:</strong> you can type //f to finish the current game.
