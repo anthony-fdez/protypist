@@ -71,7 +71,6 @@
     align-items: center;
     justify-content: center;
     transition: 0.03s;
-    color: rgb(128, 128, 128);
   }
   .green {
     width: 12px;
@@ -81,7 +80,6 @@
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: rgb(255, 255, 255);
     transition: 0.03s;
   }
   .red {
@@ -92,11 +90,8 @@
     height: 25px;
     font-size: 18px;
     transition: 0.03s;
-    background-color: rgb(255, 0, 0);
-    color: white;
   }
-  .blinking-light {
-    animation: blinker-light 1s linear infinite;
+  .blinking {
     width: 12px;
     height: 25px;
     font-size: 18px;
@@ -105,36 +100,7 @@
     justify-content: center;
     transition: 0.03s;
   }
-  @keyframes blinker-light {
-    0% {
-      background-color: black;
-      color: white;
-    }
-    20% {
-      background-color: black;
-      color: white;
-    }
-    40% {
-      background-color: black;
-      color: white;
-    }
-    50% {
-      background-color: rgb(197, 197, 197);
-      color: rgb(0, 0, 0);
-    }
-    60% {
-      background-color: rgb(197, 197, 197);
-      color: rgb(0, 0, 0);
-    }
-    80% {
-      background-color: rgb(197, 197, 197);
-      color: rgb(0, 0, 0);
-    }
-    100% {
-      background-color: rgb(197, 197, 197);
-      color: rgb(0, 0, 0);
-    }
-  }
+
   .blinking-dark {
     animation: blinker-dark 1s linear infinite;
     width: 12px;
@@ -494,23 +460,17 @@
   }
 }
 @media only screen and (max-width: 1500px) {
-  .TypingTest-page-dark {
+  .TypingTest-page {
     width: 100vw;
     height: 100vh;
     background-color: rgb(31, 30, 30);
     color: white;
     transition: 0.3s;
   }
-  .TypingTest-page-light {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    transition: 0.3s;
-  }
   .TypingTest {
     text-align: center;
     margin-left: 200px;
+    height: 100vh;
   }
   .input-zone {
     margin-top: 10rem;
@@ -541,6 +501,17 @@
     margin: 4rem;
     margin-top: 0.5rem;
     transition: 0.3s;
+    padding: 1rem;
+  }
+
+  .text-to-type-dark {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4rem;
+    margin-top: 0.5rem;
+    transition: 0.3s;
+    opacity: 0.3;
     padding: 1rem;
   }
 
@@ -706,7 +677,6 @@
     pointer-events: none;
     position: absolute;
   }
-
   .statistics {
     display: flex;
     justify-content: space-between;
@@ -714,24 +684,12 @@
     margin-right: 4rem;
     margin-top: 1rem;
   }
-
   .hr-progress {
-    margin-top: 0;
+    margin-top: 1rem;
     z-index: 3;
     height: 4px;
     transition: 0.5s;
     border-radius: 5px;
-  }
-
-  .hamburger-menu {
-    position: absolute;
-    top: 0.8rem;
-    right: 2rem;
-    transition: 0.2s;
-  }
-  .hamburger-menu:hover {
-    cursor: pointer;
-    transform: translateY(-3px);
   }
   .whole-page-background-open {
     position: fixed;
@@ -748,7 +706,7 @@
     pointer-events: none;
     transition: 0.3s;
   }
-  .about-the-text-hidden-dark {
+  .about-the-text-hidden {
     border-radius: 10px;
     position: fixed;
     bottom: 1rem;
@@ -767,7 +725,7 @@
     transform: translateY(500px);
     z-index: 4;
   }
-  .about-the-text-shown-dark {
+  .about-the-text-shown {
     transition: 0.6s;
     height: 273px;
     background-color: rgb(50, 50, 50);
@@ -782,40 +740,7 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .about-the-text-hidden-light {
-    border-radius: 10px;
-    position: fixed;
-    bottom: 1rem;
-    padding: 1rem;
-    width: 870px;
-    height: 273px;
-    right: 0;
-    left: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgb(220, 220, 220);
-    height: 303px;
-    opacity: 1;
-    pointer-events: none;
-    transition: 0.6s;
-    transform: translateY(500px);
-    z-index: 4;
-  }
-  .about-the-text-shown-light {
-    transition: 0.6s;
-    height: 273px;
-    background-color: rgb(220, 220, 220);
-    border-radius: 10px;
-    position: fixed;
-    bottom: 1rem;
-    padding: 1rem;
-    width: 870px;
-    left: 200px;
-    right: 0;
-    z-index: 2;
-    margin-left: auto;
-    margin-right: auto;
-  }
+
   .about-text-header {
     display: flex;
     justify-content: space-between;
@@ -850,7 +775,7 @@
     opacity: 0;
     transition: 0.2s;
   }
-  .side-menu-open-dark {
+  .side-menu-open {
     z-index: 40;
     background-color: rgb(51, 51, 51);
     position: fixed;
@@ -861,19 +786,8 @@
     transition: 0.3s;
     overflow-y: scroll;
   }
-  .side-menu-open-light {
-    z-index: 40;
-    background-color: rgb(231, 231, 231);
-    color: rgb(105, 105, 105);
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 400px;
-    transition: 0.3s;
-    overflow-y: scroll;
-  }
-  .side-menu-closed-dark {
+
+  .side-menu-closed {
     transform: translateX(400px);
     z-index: 40;
     background-color: rgb(51, 51, 51);
@@ -885,18 +799,7 @@
     width: 400px;
     overflow-y: scroll;
   }
-  .side-menu-closed-light {
-    transform: translateX(400px);
-    z-index: 40;
-    background-color: rgb(255, 255, 255);
-    position: fixed;
-    transition: 0.3s;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 400px;
-    overflow-y: scroll;
-  }
+
   .darkened-background-on {
     z-index: 30;
     width: 100%;
@@ -944,17 +847,12 @@
     margin-left: 2rem;
     margin-right: 2rem;
   }
-  .history-div-dark {
+  .history-div {
     padding: 1rem;
     background-color: rgb(30, 30, 30);
     transition: 0.3s;
   }
-  .history-div-light {
-    padding: 1rem;
-    background-color: rgb(211, 210, 210);
-    color: rgb(36, 36, 36);
-    transition: 0.3s;
-  }
+
   .submit-quote-button {
     background-color: rgb(0, 119, 255);
     position: fixed;

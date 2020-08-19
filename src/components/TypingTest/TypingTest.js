@@ -74,6 +74,7 @@ function TypingTest() {
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [blinking, setIsBlinking] = useState(true);
 
   //submit a quote info
 
@@ -233,7 +234,11 @@ function TypingTest() {
     if (textArrayCharacters !== undefined) {
       let spanArray = [];
       for (let i = 0; i < textArrayCharacters.length; i++) {
-        spanArray.push(<div className="none">{textArrayCharacters[i]}</div>);
+        spanArray.push(
+          <div style={{ color: colorFiles.noneColor }} className="none">
+            {textArrayCharacters[i]}
+          </div>
+        );
       }
       setInfoAboutCharacter(spanArray);
     }
@@ -265,6 +270,13 @@ function TypingTest() {
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBlinking(!blinking);
+    }, 500);
+    return () => clearInterval(interval);
+  }, [blinking, textArrayCharacters]);
+
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
       let spanArray = [];
@@ -273,26 +285,43 @@ function TypingTest() {
           spanArray.push(
             <div
               key={"key" + i}
-              className={theme ? "blinking-dark" : "blinking-light"}
+              className="blinking"
+              style={
+                blinking
+                  ? { backgroundColor: "red" }
+                  : { backgroundColor: "blue" }
+              }
             >
               {textArrayCharacters[i]}
             </div>
           );
         } else if (infoAboutCharacter[i] === true) {
           spanArray.push(
-            <div key={"key" + i} className="green">
+            <div
+              key={"key" + i}
+              className="green"
+              style={{ color: colorFiles.correctColor }}
+            >
               {textArrayCharacters[i]}
             </div>
           );
         } else if (infoAboutCharacter[i] === false) {
           spanArray.push(
-            <div key={"key" + i} className="red">
+            <div
+              key={"key" + i}
+              className="red"
+              style={{ color: colorFiles.wrongColor }}
+            >
               {textArrayCharacters[i]}
             </div>
           );
         } else {
           spanArray.push(
-            <div key={"key" + i} className="none">
+            <div
+              key={"key" + i}
+              className="none"
+              style={{ color: colorFiles.noneColor }}
+            >
               {textArrayCharacters[i]}
             </div>
           );

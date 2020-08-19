@@ -5,5 +5,8 @@
   "primaryColor": "rgb(242, 223, 92)",
   "fontColor": "rgb(200,200,200)",
   "contrastFontColor": "rgb(0,0,0)",
-  "hrColor": "rgb(255,255,255)"
+  "hrColor": "rgb(255,255,255)",
+  "correctColor": "rgb(255,255,255)",
+  "noneColor": "rgb(130,130,130)",
+  "wrongColor": "rgb(255, 0, 0)"
 }

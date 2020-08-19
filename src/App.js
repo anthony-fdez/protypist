@@ -14,15 +14,11 @@ import { useSelector } from "react-redux";
 
 function App() {
   const theme = useSelector((state) => state.darkModeReducer);
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`./components/themes/${colors}`);
 
   return (
-    <div
-      style={
-        theme
-          ? { backgroundColor: "rgb(40,40,40)" }
-          : { backgroundColor: "rgb(255,255,255)" }
-      }
-    >
+    <div style={{ backgroundColor: colorFiles.backgroundColor }}>
       <div>
         <Switch>
           <Route exact path="/">
