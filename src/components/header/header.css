@@ -145,14 +145,13 @@
   }
   .login-input:focus {
     transition: 0.3s;
-    background-color: rgb(187, 187, 187);
+    filter: brightness(90%);
   }
   .log-in-button-menu {
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 10px;
     text-align: center;
-    background-color: rgb(0, 110, 255);
     width: 100%;
     transition: 0.3s;
     cursor: pointer;
@@ -167,10 +166,11 @@
     cursor: pointer;
   }
   .log-out-all-button-menu:hover {
+    filter: brightness(90%);
     transform: translateY(-2px);
   }
   .log-in-button-menu:hover {
-    background-color: rgb(0, 94, 218);
+    filter: brightness(90%);
     transform: translateY(-2px);
     transition: 0.3s;
   }
@@ -185,7 +185,7 @@
     margin-top: 10px;
   }
   .sign-up-login-button-menu:hover {
-    background-color: rgb(95, 95, 95);
+    filter: brightness(90%);
     transform: translateY(-2px);
     transition: 0.3s;
   }
@@ -382,7 +382,6 @@
     top: 1rem;
     width: 350px;
     height: 385px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -394,7 +393,6 @@
     top: 1rem;
     width: 350px;
     height: 385px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -408,7 +406,6 @@
     margin: 1rem;
   }
   .darkned-background-active {
-    background-color: rgba(0, 0, 0, 0.527);
     position: absolute;
     height: 100vh;
     width: 100vw;
@@ -453,7 +450,7 @@
   }
   .login-input:focus {
     transition: 0.3s;
-    background-color: rgb(187, 187, 187);
+    filter: sepia();
   }
   .log-in-button-menu {
     margin-top: 1rem;
@@ -476,9 +473,10 @@
   }
   .log-out-all-button-menu:hover {
     transform: translateY(-2px);
+    filter: brightness(90%);
   }
   .log-in-button-menu:hover {
-    background-color: rgb(0, 94, 218);
+    filter: brightness(90%);
     transform: translateY(-2px);
     transition: 0.3s;
   }
@@ -493,7 +491,7 @@
     margin-top: 10px;
   }
   .sign-up-login-button-menu:hover {
-    background-color: rgb(95, 95, 95);
+    filter: brightness(90%);
     transform: translateY(-2px);
     transition: 0.3s;
   }

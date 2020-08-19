@@ -332,7 +332,7 @@ function Header(props) {
     return (
       <div
         className={isLogInMenuOpen ? "login-menu-open" : "login-menu-closed"}
-        style={!theme ? { backgroundColor: "white" } : {}}
+        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
       >
         <div className="log-in-header">
           <h2>Log in</h2>
@@ -342,8 +342,8 @@ function Header(props) {
           ></i>
         </div>
         <hr
-          style={{ marginTop: "2rem" }}
           className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
+          style={{ marginTop: "2rem", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <div>
           <form>
@@ -355,7 +355,10 @@ function Header(props) {
                   getTheEmailLogin(e);
                 }}
                 className="login-input"
-                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
+                style={{
+                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  color: colorFiles.fontColor,
+                }}
               ></input>
             </div>
             <div>
@@ -369,7 +372,10 @@ function Header(props) {
                 }}
                 type="password"
                 className="login-input"
-                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
+                style={{
+                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  color: colorFiles.fontColor,
+                }}
               ></input>
             </div>
           </form>
@@ -379,6 +385,10 @@ function Header(props) {
               logIn();
             }}
             className="log-in-button-menu"
+            style={{
+              backgroundColor: colorFiles.primaryColor,
+              color: "black",
+            }}
           >
             <h5>Log In</h5>
           </div>
@@ -390,7 +400,9 @@ function Header(props) {
                 setIsSignUpMenuOpen(true);
               }}
               className="sign-up-login-button-menu"
-              style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
+              style={{
+                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              }}
             >
               <h5>Create Account</h5>
             </div>
@@ -404,7 +416,7 @@ function Header(props) {
     return (
       <div
         className={isSignUpMenuOpen ? "signUp-menu-open" : "signUp-menu-closed"}
-        style={!theme ? { backgroundColor: "white" } : {}}
+        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
       >
         <div className="signUp-header">
           <h2>Sign Up</h2>
@@ -428,7 +440,10 @@ function Header(props) {
                   getTheName(e);
                 }}
                 className="login-input"
-                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
+                style={{
+                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  color: colorFiles.fontColor,
+                }}
               ></input>
             </div>
             <div>
@@ -438,7 +453,10 @@ function Header(props) {
                   getTheEmailSignup(e);
                 }}
                 className="login-input"
-                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
+                style={{
+                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  color: colorFiles.fontColor,
+                }}
               ></input>
             </div>
             <div>
@@ -449,7 +467,10 @@ function Header(props) {
                 }}
                 type="password"
                 className="login-input"
-                style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
+                style={{
+                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  color: colorFiles.fontColor,
+                }}
               ></input>
             </div>
           </form>
@@ -470,7 +491,12 @@ function Header(props) {
                 setIsSignUpMenuOpen(false);
                 setIsLoginMenuOpen(true);
               }}
-              style={{ width: "6rem", marginTop: "10px" }}
+              style={{
+                width: "6rem",
+                marginTop: "10px",
+                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
               className={theme ? "linkURL" : "linkURLlight"}
             >
               Log In

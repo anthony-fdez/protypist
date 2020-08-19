@@ -1,6 +1,8 @@
 {
   "backgroundColor": "rgb(0, 6, 43)",
   "secondaryBackgroundColor": "rgb(8, 19, 84)",
+  "secondSecondaryBackgroundColor": "rgb(23, 31, 99)",
   "primaryColor": "rgb(242, 223, 92)",
-  "fontColor": "rgb(200,200,200)"
+  "fontColor": "rgb(200,200,200)",
+  "hrColor": "rgb(255,255,255)"
 }

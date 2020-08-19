@@ -25,15 +25,14 @@ function Settings() {
   });
 
   return (
-    <animated.div
-      className={"home-page"}
-      style={{
-        backgroundColor: colorFiles.backgroundColor,
-        color: colorFiles.fontColor,
-      }}
-      style={animation}
-    >
-      <div>
+    <animated.div className={"home-page"} style={animation}>
+      <div
+        style={{
+          backgroundColor: colorFiles.backgroundColor,
+          color: colorFiles.fontColor,
+          transition: "0.3s",
+        }}
+      >
         <Header text="Settings" />
         <div className="container">
           <p className="alert-primary settings-alert">
