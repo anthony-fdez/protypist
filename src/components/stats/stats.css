@@ -15,7 +15,7 @@
 .Stats-dark {
   background-color: rgb(31, 30, 30);
   text-align: center;
-  margin-left: 200px;
+  margin-left: 250px;
   transition: 0.3s;
   color: white;
   padding: 1rem;
@@ -23,7 +23,7 @@
 .Stats-light {
   background-color: rgb(255, 255, 255);
   text-align: center;
-  margin-left: 200px;
+  margin-left: 250px;
   transition: 0.3s;
   color: black;
   padding: 1rem;

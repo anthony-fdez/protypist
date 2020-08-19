@@ -16,7 +16,7 @@
   .TypingTest {
     padding: 1rem;
     text-align: center;
-    margin-left: 200px;
+    margin-left: 250px;
   }
   .input-zone {
     display: flex;
@@ -222,7 +222,7 @@
     transition: 0.5s;
     border-radius: 5px;
     transform: translateY(-20px);
-    left: 200px;
+    left: 250px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -236,7 +236,7 @@
     display: flex;
     justify-content: center;
     width: 60vw;
-    left: 200px;
+    left: 250px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -306,7 +306,7 @@
     bottom: 0;
     position: absolute;
     bottom: 4rem;
-    left: 200px;
+    left: 250px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -317,7 +317,7 @@
     bottom: 4rem;
     padding: 1rem;
     width: 870px;
-    left: 200px;
+    left: 250px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -337,7 +337,7 @@
     bottom: 4rem;
     padding: 1rem;
     width: 870px;
-    left: 200px;
+    left: 250px;
     right: 0;
     z-index: 2;
     margin-left: auto;
@@ -349,7 +349,7 @@
     bottom: 4rem;
     padding: 1rem;
     width: 870px;
-    left: 200px;
+    left: 250px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -369,7 +369,7 @@
     bottom: 4rem;
     padding: 1rem;
     width: 870px;
-    left: 200px;
+    left: 250px;
     right: 0;
     z-index: 2;
     margin-left: auto;
@@ -388,12 +388,12 @@
     width: 250px;
     display: flex;
     justify-content: center;
-    height: 200px;
+    height: 250px;
     overflow: hidden;
   }
   .picture-image {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
   }
   .info-about-text-bottom {
@@ -542,7 +542,7 @@
     border-radius: 10px;
     margin: auto;
     right: 0;
-    left: 200px;
+    left: 250px;
     top: 0;
     bottom: 0;
     width: 600px;
@@ -556,7 +556,7 @@
     opacity: 0;
     margin: auto;
     right: 0;
-    left: 200px;
+    left: 250px;
     top: 0;
     bottom: 0;
     width: 600px;
@@ -604,7 +604,7 @@
   }
   .TypingTest {
     text-align: center;
-    margin-left: 200px;
+    margin-left: 250px;
   }
   .input-zone {
     margin-top: 10rem;
@@ -800,7 +800,7 @@
     transition: 0.5s;
     border-radius: 5px;
     transform: translateY(-20px);
-    left: 200px;
+    left: 250px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -814,7 +814,7 @@
     display: flex;
     justify-content: center;
     width: 60vw;
-    left: 200px;
+    left: 250px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -893,7 +893,7 @@
     width: 870px;
     height: 273px;
     right: 0;
-    left: 200px;
+    left: 250px;
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(50, 50, 50);
@@ -913,7 +913,7 @@
     bottom: 1rem;
     padding: 1rem;
     width: 870px;
-    left: 200px;
+    left: 250px;
     right: 0;
     z-index: 2;
     margin-left: auto;
@@ -927,7 +927,7 @@
     width: 870px;
     height: 273px;
     right: 0;
-    left: 200px;
+    left: 250px;
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(220, 220, 220);
@@ -947,7 +947,7 @@
     bottom: 1rem;
     padding: 1rem;
     width: 870px;
-    left: 200px;
+    left: 250px;
     right: 0;
     z-index: 2;
     margin-left: auto;

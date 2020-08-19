@@ -14,30 +14,49 @@ h5 {
   color: white;
   text-decoration: none;
 }
-.SideMenu-dark {
-  background-color: rgb(50, 50, 50);
+.SideMenu {
   color: white;
   width: 200px;
   margin: 0;
+  margin-left: 2rem;
+
   height: 100vh;
   position: fixed;
   transition: 0.3s;
   z-index: 3;
 }
-.SideMenu-light {
-  background-color: rgb(231, 231, 231);
-  color: rgb(0, 0, 0);
-  width: 200px;
-  margin: 0;
-  height: 100vh;
-  position: fixed;
-  transition: 0.3s;
-  z-index: 3;
-}
+
 .navigation-buttons {
   margin-top: 66px;
 }
-.navigation-button-dark {
+.navigation-button {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+  margin-top: 1rem;
+  padding: 5px;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 2.5rem;
+  transition: 0.3s;
+}
+
+.navigation-button-active {
+  align-items: center;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+.typing-game-button {
+  overflow: hidden;
+  position: relative;
   display: flex;
   justify-content: center;
   margin: 0.5rem;
@@ -51,88 +70,19 @@ h5 {
   transition: 0.3s;
 }
 
-.navigation-button-light {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5rem;
-  margin-top: 1rem;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-  color: rgb(75, 75, 75);
-  cursor: pointer;
-  height: 2.5rem;
-  transition: 0.3s;
-}
-.navigation-button-active-dark {
-  align-items: center;
-  height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  margin-top: 1rem;
-  padding: 5px;
-  background-color: rgb(0, 110, 255);
-  cursor: pointer;
-  transition: 0.3s;
-}
-.typing-game-button-dark {
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin: 0.5rem;
-  margin-top: 1rem;
-  padding: 5px;
-  align-items: center;
-  border-radius: 5px;
-  background-color: rgb(70, 70, 70);
-  cursor: pointer;
-  height: 2.5rem;
-  transition: 0.3s;
-}
-.typing-game-button-light {
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin: 0.5rem;
-  margin-top: 1rem;
-  padding: 5px;
-  align-items: center;
-  border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(75, 75, 75);
-  cursor: pointer;
-  height: 2.5rem;
-  transition: 0.3s;
-}
-.typing-game-active-dark {
+.typing-game-active {
   align-items: center;
   height: 8rem;
   margin: 0;
   margin-top: 1rem;
   padding: 5px;
-  background-color: rgb(0, 110, 255);
   cursor: pointer;
   transition: 0.2s;
   overflow: hidden;
   position: relative;
+  border-radius: 10px;
 }
-.typing-game-active-light {
-  align-items: center;
-  height: 8rem;
-  margin: 0;
-  margin-top: 1rem;
-  padding: 5px;
-  background-color: rgb(0, 110, 255);
-  cursor: pointer;
-  transition: 0.2s;
-  overflow: hidden;
-  position: relative;
-}
+
 .typing-test-top-button {
   top: 0;
   position: absolute;
@@ -157,24 +107,18 @@ h5 {
 .typing-test-bottom-button:hover {
   transform: translateY(-5px);
 }
-.navigation-button-active-light {
+.navigation-button-active {
   align-items: center;
   height: 2.5rem;
-
   display: flex;
   justify-content: center;
   margin: 0;
   margin-top: 1rem;
   padding: 5px;
-  background-color: rgb(0, 110, 255);
   cursor: pointer;
   transition: 0.3s;
+  border-radius: 10px;
 }
-.navigation-button-dark:hover {
-  color: white;
-  background-color: rgb(88, 88, 88);
-}
-.navigation-button-light:hover {
-  background-color: rgba(131, 131, 131, 0.295);
-  box-shadow: none;
+.navigation-button:hover {
+  filter: brightness(90%);
 }

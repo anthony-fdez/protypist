@@ -9,37 +9,41 @@ import { useLocation } from "react-router-dom";
 function SideMenu() {
   const dispatch = useDispatch();
 
+  const colors = useSelector((state) => state.themeReducer);
+
+  const colorFiles = require(`../themes/${colors}`);
+
   const theme = useSelector((state) => state.darkModeReducer);
 
   let location = useLocation();
   location = location.pathname;
 
   const checkButtonClass = (path) => {
-    if (theme) {
-      if (location === path) {
-        return "navigation-button-active-dark";
-      } else return "navigation-button-dark";
-    } else if (theme === false) {
-      if (location === path) {
-        return "navigation-button-active-light";
-      } else return "navigation-button-light";
-    }
+    if (location === path) {
+      return "navigation-button-active";
+    } else return "navigation-button";
+  };
+
+  const checkButtonStyle = (path) => {
+    if (location === path) {
+      return colorFiles.primaryColor;
+    } else return colorFiles.secondaryBackgroundColor;
+  };
+
+  const checkButtonStyleColor = (path) => {
+    if (location === path) {
+      return colorFiles.contrastFontColor;
+    } else return colorFiles.fontColor;
   };
 
   const checkTypingGameClass = (path) => {
-    if (theme) {
-      if (location === path) {
-        return "typing-game-active-dark";
-      } else return "typing-game-button-dark";
-    } else if (theme === false) {
-      if (location === path) {
-        return "typing-game-active-light";
-      } else return "typing-game-button-light";
-    }
+    if (location === path) {
+      return "typing-game-active";
+    } else return "typing-game-button";
   };
 
   return (
-    <div className={theme ? "SideMenu-dark" : "SideMenu-light"}>
+    <div className={"SideMenu"}>
       <div className="d-flex justify-content-center">
         <h3 className="text-primary">Pro</h3>
         <h3>
@@ -49,7 +53,13 @@ function SideMenu() {
 
       <div className="navigation-buttons">
         <Link className="left-menu-link" to="/10second">
-          <div className={checkButtonClass("/10second")}>
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/10second"),
+              color: checkButtonStyleColor("/10second"),
+            }}
+            className={checkButtonClass("/10second")}
+          >
             <i
               style={{ position: "absolute", left: "20px" }}
               className="fas fa-clock"
@@ -58,7 +68,13 @@ function SideMenu() {
           </div>
         </Link>
         <Link className="left-menu-link" to="/">
-          <div className={checkTypingGameClass("/")}>
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/"),
+              color: checkButtonStyleColor("/"),
+            }}
+            className={checkTypingGameClass("/")}
+          >
             <div className="typing-test-top-button">
               <i
                 style={{ position: "absolute", left: "20px" }}
@@ -83,11 +99,16 @@ function SideMenu() {
           </div>
         </Link>
         <hr
-          style={{ marginTop: "1rem" }}
-          className={theme ? "white-hr" : "dark-hr"}
+          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <Link className="left-menu-link" to="/200">
-          <div className={checkButtonClass("/200")}>
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/200"),
+              color: checkButtonStyleColor("/200"),
+            }}
+            className={checkButtonClass("/200")}
+          >
             <i
               style={{ position: "absolute", left: "20px" }}
               className="fas fa-biking"
@@ -96,7 +117,13 @@ function SideMenu() {
           </div>
         </Link>
         <Link className="left-menu-link" to="/1000">
-          <div className={checkButtonClass("/1000")}>
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/1000"),
+              color: checkButtonStyleColor("/1000"),
+            }}
+            className={checkButtonClass("/1000")}
+          >
             <i
               style={{ position: "absolute", left: "20px" }}
               className="fas fa-car-side"
@@ -105,11 +132,16 @@ function SideMenu() {
           </div>
         </Link>
         <hr
-          style={{ marginTop: "1rem" }}
-          className={theme ? "white-hr" : "dark-hr"}
+          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <Link className="left-menu-link" to="/stats">
-          <div className={checkTypingGameClass("/stats")}>
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/stats"),
+              color: checkButtonStyleColor("/stats"),
+            }}
+            className={checkTypingGameClass("/stats")}
+          >
             <div className="typing-test-top-button">
               <i
                 style={{ position: "absolute", left: "20px" }}
@@ -134,7 +166,13 @@ function SideMenu() {
           to="/settings"
           style={{ position: "absolute", width: "200px", bottom: "2rem" }}
         >
-          <div className={checkButtonClass("/settings")}>
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/settings"),
+              color: checkButtonStyleColor("/settings"),
+            }}
+            className={checkButtonClass("/settings")}
+          >
             <i
               style={{ position: "absolute", left: "20px" }}
               className="fas fa-tools"

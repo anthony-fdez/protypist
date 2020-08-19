@@ -18,7 +18,7 @@ h2 {
   margin-bottom: 5rem;
   width: 100vw;
   height: 100vh;
-  padding-left: 200px;
+  padding-left: 250px;
 }
 .home-page {
   color: white;
@@ -99,7 +99,7 @@ h2 {
   right: 12rem;
   opacity: 0.2;
   font-style: italic;
-  font-size: 200px;
+  font-size: 250px;
   pointer-events: none;
 }
 .btn {
@@ -118,7 +118,7 @@ h2 {
     padding-bottom: 3rem;
     width: 100vw;
     height: 100vh;
-    padding-left: 200px;
+    padding-left: 250px;
   }
   p {
     margin: 0;
@@ -197,7 +197,7 @@ h2 {
     right: 12rem;
     opacity: 0.2;
     font-style: italic;
-    font-size: 200px;
+    font-size: 250px;
     pointer-events: none;
   }
   .btn {
