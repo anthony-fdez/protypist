@@ -48,8 +48,8 @@ function SideMenu() {
       className={"SideMenu"}
     >
       <div className="d-flex justify-content-center">
-        <h3 className="text-primary">Pro</h3>
-        <h3>
+        <h3 style={{ color: colorFiles.primaryColor }}>Pro</h3>
+        <h3 style={{ color: colorFiles.fontColor }}>
           <Typical steps={["Typist"]} />
         </h3>
       </div>
