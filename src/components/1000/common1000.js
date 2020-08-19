@@ -52,7 +52,6 @@ function Common1000() {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
-  const [blinking, setIsBlinking] = useState(true);
 
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
@@ -135,7 +134,7 @@ function Common1000() {
     if (newGame === true) {
       setSpanArray(blankSpanArray);
     } else setSpanArray(displayTheArray());
-  }, [charactersTyped, textArrayCharacters, newGame, blinking]);
+  }, [charactersTyped, textArrayCharacters, newGame]);
 
   useEffect(() => {
     if (textArrayCharacters !== undefined) {
@@ -146,17 +145,6 @@ function Common1000() {
       setInfoAboutCharacter(spanArray);
     }
   }, [newGame]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsBlinking(!blinking);
-    }, 500);
-    return () => clearInterval(interval);
-  }, [blinking, charactersTyped]);
-
-  useEffect(() => {
-    setIsBlinking(true);
-  }, [charactersTyped]);
 
   //========= Display all the characters to the screen //
   //========= This returns an array of spans //
@@ -189,17 +177,10 @@ function Common1000() {
             <div
               key={"key" + i}
               className={"blinking"}
-              style={
-                blinking
-                  ? {
-                      color: colorFiles.noneColor,
-                      borderLeft: `2px solid ${colorFiles.fontColor}`,
-                    }
-                  : {
-                      color: colorFiles.noneColor,
-                      borderLeft: `2px solid ${colorFiles.backgroundColor}`,
-                    }
-              }
+              style={{
+                color: colorFiles.noneColor,
+                borderLeft: `2px solid ${colorFiles.fontColor}`,
+              }}
             >
               {textArrayCharacters[i]}
             </div>
@@ -220,8 +201,8 @@ function Common1000() {
               key={"key" + i}
               className="red"
               style={{
-                backgroundColor: colorFiles.wrongColor,
-                color: colorFiles.fontColor,
+                color: colorFiles.wrongColor,
+                borderBottom: `2px solid ${colorFiles.wrongColor}`,
               }}
             >
               {textArrayCharacters[i]}

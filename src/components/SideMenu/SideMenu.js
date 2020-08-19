@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 function SideMenu() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -37,6 +38,14 @@ function SideMenu() {
     if (location === path) {
       return "typing-game-active";
     } else return "typing-game-button";
+  };
+
+  const checkStatisticsClass = (path) => {
+    if (location === path) {
+      if (isLoggedIn) {
+        return "stats-active";
+      } else return "stats-not-logedin";
+    } else return "stats-button";
   };
 
   return (
@@ -144,7 +153,7 @@ function SideMenu() {
               backgroundColor: checkButtonStyle("/stats"),
               color: checkButtonStyleColor("/stats"),
             }}
-            className={checkTypingGameClass("/stats")}
+            className={checkStatisticsClass("/stats")}
           >
             <div className="typing-test-top-button">
               <i

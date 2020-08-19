@@ -347,14 +347,14 @@ function Stats() {
   const notLoggedIn = () => {
     return (
       <div style={{ color: colorFiles.fontColor }} className="log-in-message">
-        <h2>You have to be logged in to see your statistics.</h2>
+        <h4>Log in to see your statistics and the leaderboard.</h4>
       </div>
     );
   };
 
   return (
     <animated.div style={animation} className={"stats-page"}>
-      <Ladderboard isShown={isLadderBoardMenuOpen} />
+      {isLoggedIn && <Ladderboard isShown={isLadderBoardMenuOpen} />}
 
       <div
         style={{ backgroundColor: colorFiles.backgroundColor }}

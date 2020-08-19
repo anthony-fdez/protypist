@@ -73,7 +73,6 @@ function TypingTest() {
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [blinking, setIsBlinking] = useState(true);
 
   //submit a quote info
 
@@ -249,7 +248,7 @@ function TypingTest() {
     } else {
       setSpanArray(displayTheArray());
     }
-  }, [charactersTyped, textArrayCharacters, finished, blinking]);
+  }, [charactersTyped, textArrayCharacters, finished]);
 
   useEffect(() => {
     if (isRunning === true) {
@@ -271,17 +270,6 @@ function TypingTest() {
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsBlinking(!blinking);
-    }, 500);
-    return () => clearInterval(interval);
-  }, [blinking, charactersTyped]);
-
-  useEffect(() => {
-    setIsBlinking(true);
-  }, [charactersTyped]);
-
   const displayTheArray = () => {
     if (textArrayCharacters !== undefined) {
       let spanArray = [];
@@ -291,17 +279,10 @@ function TypingTest() {
             <div
               key={"key" + i}
               className={"blinking"}
-              style={
-                blinking
-                  ? {
-                      color: colorFiles.noneColor,
-                      borderLeft: `2px solid ${colorFiles.fontColor}`,
-                    }
-                  : {
-                      color: colorFiles.noneColor,
-                      borderLeft: `2px solid ${colorFiles.backgroundColor}`,
-                    }
-              }
+              style={{
+                color: colorFiles.noneColor,
+                borderLeft: `2px solid ${colorFiles.fontColor}`,
+              }}
             >
               {textArrayCharacters[i]}
             </div>
@@ -322,8 +303,8 @@ function TypingTest() {
               key={"key" + i}
               className="red"
               style={{
-                backgroundColor: colorFiles.wrongColor,
-                color: colorFiles.fontColor,
+                color: colorFiles.wrongColor,
+                borderBottom: `2px solid ${colorFiles.wrongColor}`,
               }}
             >
               {textArrayCharacters[i]}
