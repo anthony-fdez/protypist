@@ -479,11 +479,17 @@ function Header(props) {
               signUp();
             }}
             className="log-in-button-menu mt-5"
+            style={{
+              backgroundColor: colorFiles.primaryColor,
+              color: colorFiles.fontColor,
+            }}
           >
             <h5>Create Account</h5>
           </div>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+            }}
             className="d-flex justify-content-center"
           >
             <h5
@@ -494,7 +500,7 @@ function Header(props) {
               style={{
                 width: "6rem",
                 marginTop: "10px",
-                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
               className={theme ? "linkURL" : "linkURLlight"}
@@ -513,7 +519,7 @@ function Header(props) {
         className={
           isLogOutMenuOpen ? "log-out-menu-open" : "log-out-menu-closed"
         }
-        style={!theme ? { backgroundColor: "white" } : {}}
+        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
       >
         <div className="log-in-header">
           <h2>Log Out</h2>
@@ -523,8 +529,7 @@ function Header(props) {
           ></i>
         </div>
         <hr
-          style={{ marginTop: "2rem" }}
-          className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
+          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <h5 className="text-left mt-3 ml-3">Are you sure?</h5>
         <div className="d-flex justify-content-between">
@@ -542,8 +547,7 @@ function Header(props) {
           </button>
         </div>
         <hr
-          style={{ marginTop: "2rem" }}
-          className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
+          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <h5 className="text-left mt-3 ml-3">Log out in all devices</h5>
         <input
@@ -554,11 +558,16 @@ function Header(props) {
           onChange={(e) => {
             getThePasswordLogout(e);
           }}
+          style={{
+            backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
         ></input>
         <div
           onClick={() => {
             logOutAll();
           }}
+          style={{ color: "white" }}
           className="log-out-all-button-menu bg-danger"
         >
           <h5>Log Out All</h5>

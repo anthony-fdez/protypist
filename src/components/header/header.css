@@ -141,7 +141,7 @@
     transition: 0.3s;
   }
   .login-input::placeholder {
-    color: rgb(26, 26, 26);
+    color: rgb(150, 150, 150);
   }
   .login-input:focus {
     transition: 0.3s;
@@ -446,7 +446,7 @@
     transition: 0.3s;
   }
   .login-input::placeholder {
-    color: rgb(26, 26, 26);
+    color: rgb(150, 150, 150);
   }
   .login-input:focus {
     transition: 0.3s;

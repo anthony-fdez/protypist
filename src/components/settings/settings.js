@@ -202,7 +202,10 @@ function Settings() {
             <h1 className="text">{keyboardOnScreen ? "ON" : "OFF"}</h1>
           </div>
         </div>
-        <div style={{ cursor: "pointer" }} className="container">
+        <div
+          style={{ cursor: "pointer", paddingBottom: "5rem" }}
+          className="container"
+        >
           <div
             onClick={() => {
               dispatch({ type: "REAL_TIME_WPM" });
