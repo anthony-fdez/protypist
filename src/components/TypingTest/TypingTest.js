@@ -811,7 +811,10 @@ function TypingTest() {
   const sideMenu = () => {
     if (text !== undefined) {
       return (
-        <div className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}>
+        <div
+          style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+          className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}
+        >
           <div>
             <div className="side-menu-header">
               <h3>Info About Text</h3>
@@ -826,7 +829,10 @@ function TypingTest() {
             </div>
 
             <hr
-              style={{ marginTop: "2rem", backgroundColor: colorFiles.hrColor }}
+              style={{
+                marginTop: "1rem",
+                backgroundColor: colorFiles.hrColor,
+              }}
             ></hr>
           </div>
           <div className="side-menu-container">
@@ -1001,7 +1007,13 @@ function TypingTest() {
         >
           {keyboardOnScreen && <Keyboard />}
         </div>
-        <div className={handleThemInTheFinishedPage()}>
+        <div
+          style={{
+            backgroundColor: colorFiles.secondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
+          className={handleThemInTheFinishedPage()}
+        >
           <div className="about-text-header">
             <h4>What you just typed:</h4>
             <div>
@@ -1021,6 +1033,10 @@ function TypingTest() {
                   calculateAccuracy();
                 }}
                 className="btn btn-primary mr-3"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                }}
               >
                 Type Again
               </button>
@@ -1034,6 +1050,10 @@ function TypingTest() {
                   calculateAccuracy();
                 }}
                 className="btn btn-primary"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                }}
               >
                 New Text
               </button>
@@ -1045,8 +1065,10 @@ function TypingTest() {
             </div>
             <div className="info-about-text-text">
               <hr
-                style={{ marginBottom: "1rem" }}
-                className={theme ? "white-hr" : "dark-hr"}
+                style={{
+                  marginTop: "1rem",
+                  backgroundColor: colorFiles.hrColor,
+                }}
               ></hr>
               <h5>
                 This quote is from the {text && text.type}:{" "}

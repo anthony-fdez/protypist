@@ -390,7 +390,7 @@ function Header(props) {
           >
             <h5>Log In</h5>
           </div>
-          <div style={{ marginTop: "5rem" }}>
+          <div style={{ marginTop: "3rem" }}>
             <p>Don't have an account?</p>
             <div
               onClick={() => {
@@ -580,6 +580,10 @@ function Header(props) {
         <button
           onClick={() => setIsLoginMenuOpen(!isLogInMenuOpen)}
           className="btn btn-primary"
+          style={{
+            backgroundColor: colorFiles.primaryColor,
+            color: colorFiles.contrastFontColor,
+          }}
         >
           Login
         </button>
@@ -595,7 +599,15 @@ function Header(props) {
         }}
         className="log-in-button"
       >
-        <button className="btn btn-primary">Logout</button>
+        <button
+          style={{
+            backgroundColor: colorFiles.primaryColor,
+            color: colorFiles.contrastFontColor,
+          }}
+          className="btn btn-primary"
+        >
+          Logout
+        </button>
       </div>
     );
   };
