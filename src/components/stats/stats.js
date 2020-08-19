@@ -16,6 +16,9 @@ function Stats() {
     (state) => state.openLadderBoardMenu
   );
 
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`../themes/${colors}`);
+
   //state TypingGame
   const [wpmAverage10races, setWpmAverage10races] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
@@ -175,51 +178,47 @@ function Stats() {
         <div
           className={
             isTypingGameStatisticsShown
-              ? theme
-                ? "typing-game-statistics-div-shown-dark"
-                : "typing-game-statistics-div-shown-light"
-              : theme
-              ? "typing-game-statistics-div-hidden-dark"
-              : "typing-game-statistics-div-hidden-light"
+              ? "typing-game-statistics-div-shown"
+              : "typing-game-statistics-div-hidden"
           }
+          style={{
+            backgroundColor: colorFiles.secondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
         >
           <h4>Typing Test Statistics:</h4>
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-          <div
-            className={
-              theme ? "all-time-div-stats-dark" : "all-time-div-stats-light"
-            }
-          >
+          <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{formatTheTime(totalTime)}</h5>
             </div>
             <div className="stats-box">
               <h5>Races:</h5>
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{racesCompleted}</h5>
             </div>
             <div className="stats-box">
               <h5>Highest:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime}</h5>
             </div>
             <div className="stats-box">
               <h5>Average:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
                 {Math.round(wpmAverageAllTime * 10) / 10}
               </h5>
             </div>
             <div className="stats-box">
               <h5>Recent Avg:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races}</h5>
             </div>
             <div className="stats-box">
               <h5>Mistakes Avg:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes}</h5>
             </div>
           </div>
@@ -235,53 +234,49 @@ function Stats() {
         <div
           className={
             isTyping200StatisticsShown
-              ? theme
-                ? "typing-game-statistics-div-shown-dark"
-                : "typing-game-statistics-div-shown-light"
-              : theme
-              ? "typing-game-statistics-div-hidden-dark"
-              : "typing-game-statistics-div-hidden-light"
+              ? "typing-game-statistics-div-shown"
+              : "typing-game-statistics-div-hidden"
           }
+          style={{
+            backgroundColor: colorFiles.secondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
         >
           <h4>200 Most Common Words Statistics:</h4>
-          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-          <div
-            className={
-              theme ? "all-time-div-stats-dark" : "all-time-div-stats-light"
-            }
-          >
+          <hr style={{ background: colorFiles.hrColor }}></hr>
+          <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
                 {formatTheTime(totalTime200)}
               </h5>
             </div>
             <div className="stats-box">
               <h5>Races:</h5>
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{racesCompleted200}</h5>
             </div>
             <div className="stats-box">
               <h5>Highest:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime200}</h5>
             </div>
             <div className="stats-box">
               <h5>Average:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
                 {Math.round(wpmAverageAllTime200 * 10) / 10}
               </h5>
             </div>
             <div className="stats-box">
               <h5>Recent Avg:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races200}</h5>
             </div>
             <div className="stats-box">
               <h5>Avg Mistakes:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes200}</h5>
             </div>
           </div>
@@ -297,53 +292,49 @@ function Stats() {
         <div
           className={
             isTyping1000StatisticsShown
-              ? theme
-                ? "typing-game-statistics-div-shown-dark"
-                : "typing-game-statistics-div-shown-light"
-              : theme
-              ? "typing-game-statistics-div-hidden-dark"
-              : "typing-game-statistics-div-hidden-light"
+              ? "typing-game-statistics-div-shown"
+              : "typing-game-statistics-div-hidden"
           }
+          style={{
+            backgroundColor: colorFiles.secondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
         >
           <h4>1000 Most Common Words Statistics:</h4>
-          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
-          <div
-            className={
-              theme ? "all-time-div-stats-dark" : "all-time-div-stats-light"
-            }
-          >
+          <hr style={{ background: colorFiles.hrColor }}></hr>
+          <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
                 {formatTheTime(totalTime1000)}
               </h5>
             </div>
             <div className="stats-box">
               <h5>Races:</h5>
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{racesCompleted1000}</h5>
             </div>
             <div className="stats-box">
               <h5>Highest:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{highestSpeedOfAllTime1000}</h5>
             </div>
             <div className="stats-box">
               <h5>Average:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
                 {Math.round(wpmAverageAllTime1000 * 10) / 10}
               </h5>
             </div>
             <div className="stats-box">
               <h5>Recent Avg:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races1000}</h5>
             </div>
             <div className="stats-box">
               <h5>Avg Mistakes:</h5>{" "}
-              <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>{averageMistakes1000}</h5>
             </div>
           </div>
@@ -355,44 +346,46 @@ function Stats() {
 
   const notLoggedIn = () => {
     return (
-      <div
-        style={theme ? {} : { backgroundColor: "rgb(240,240,240)" }}
-        className="log-in-message"
-      >
+      <div style={{ color: colorFiles.fontColor }} className="log-in-message">
         <h2>You have to be logged in to see your statistics.</h2>
       </div>
     );
   };
 
   return (
-    <animated.div
-      style={animation}
-      className={theme ? "stats-page-dark" : "stats-page-light"}
-    >
+    <animated.div style={animation} className={"stats-page"}>
       <Ladderboard isShown={isLadderBoardMenuOpen} />
 
-      <div className={theme ? "Stats-dark" : "Stats-light"}>
+      <div
+        style={{ backgroundColor: colorFiles.backgroundColor }}
+        className={"Stats"}
+      >
         <Header text="Yous statistics!" />
         <div className="statistics-select-buttons">
           {isLoading && (
             <div
-              className={
-                theme
-                  ? "loading-div-statistics-dark"
-                  : "loading-div-statistics-light"
-              }
+              style={{
+                color: colorFiles.fontColor,
+                position: "absolute",
+                left: "250px",
+              }}
+              className={"loading-div"}
             >
               <div class="lds-ellipsis">
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
                 <div
+                  style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
                 ></div>
               </div>
@@ -407,9 +400,15 @@ function Stats() {
             className={
               isTypingGameStatisticsShown
                 ? "typing-game-button-active bg-primary"
-                : theme
-                ? "typing-game-inactive-dark"
-                : "typing-game-inactive-light"
+                : "typing-game-inactive"
+            }
+            style={
+              isTypingGameStatisticsShown
+                ? { backgroundColor: colorFiles.primaryColor }
+                : {
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
+                    color: colorFiles.fontColor,
+                  }
             }
           >
             <h4 style={{ pointerEvents: "none" }}>TypingGame</h4>
@@ -423,9 +422,15 @@ function Stats() {
             className={
               isTyping200StatisticsShown
                 ? "typing-game-button-active bg-primary"
-                : theme
-                ? "typing-game-inactive-dark"
-                : "typing-game-inactive-light"
+                : "typing-game-inactive"
+            }
+            style={
+              isTyping200StatisticsShown
+                ? { backgroundColor: colorFiles.primaryColor }
+                : {
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
+                    color: colorFiles.fontColor,
+                  }
             }
           >
             <h4 style={{ pointerEvents: "none" }}>Top 200</h4>
@@ -439,15 +444,21 @@ function Stats() {
             className={
               isTyping1000StatisticsShown
                 ? "typing-game-button-active bg-primary"
-                : theme
-                ? "typing-game-inactive-dark"
-                : "typing-game-inactive-light"
+                : "typing-game-inactive"
+            }
+            style={
+              isTyping1000StatisticsShown
+                ? { backgroundColor: colorFiles.primaryColor }
+                : {
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
+                    color: colorFiles.fontColor,
+                  }
             }
           >
             <h4 style={{ pointerEvents: "none" }}>Top 1000</h4>
           </div>
         </div>
-        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        <hr style={{ background: colorFiles.hrColor }}></hr>
         <div className="all-statistics-div">
           {isLoggedIn
             ? [

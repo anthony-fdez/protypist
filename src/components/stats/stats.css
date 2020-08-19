@@ -1,32 +1,14 @@
-.stats-page-dark {
+.stats-page {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(31, 30, 30);
-  color: white;
   transition: 0.3s;
 }
-.stats-page-light {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  transition: 0.3s;
-}
-.Stats-dark {
-  background-color: rgb(31, 30, 30);
+.Stats {
   text-align: center;
   margin-left: 200px;
   transition: 0.3s;
-  color: white;
   padding: 1rem;
-}
-.Stats-light {
-  background-color: rgb(255, 255, 255);
-  text-align: center;
-  margin-left: 200px;
-  transition: 0.3s;
-  color: black;
-  padding: 1rem;
+  height: 100vh;
 }
 h1 {
   margin: 0;
@@ -38,7 +20,6 @@ h1 {
   right: 0;
   padding: 2rem;
   border-radius: 10px;
-  background-color: rgb(51, 50, 50);
   margin-top: 2rem;
   display: flex;
   justify-content: center;
@@ -47,27 +28,11 @@ h1 {
   position: relative;
   margin-top: 2rem;
 }
-.typing-game-statistics-div-shown-dark,
-.typing-200-statistics-div-shown-dark,
-.typing-1000-statistics-div-shown-dark {
+.typing-game-statistics-div-shown,
+.typing-200-statistics-div-shown,
+.typing-1000-statistics-div-shown {
   position: absolute;
   width: 90%;
-  background-color: rgb(51, 50, 50);
-  margin-top: 2rem;
-  padding: 2rem;
-  border-radius: 10px;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  transition: 0.3s;
-}
-.typing-game-statistics-div-shown-light,
-.typing-200-statistics-div-shown-light,
-.typing-1000-statistics-div-shown-light {
-  position: absolute;
-  width: 90%;
-  background-color: rgb(238, 238, 238);
   margin-top: 2rem;
   padding: 2rem;
   border-radius: 10px;
@@ -78,31 +43,11 @@ h1 {
   transition: 0.3s;
 }
 
-.typing-game-statistics-div-hidden-dark,
-.typing-1000-statistics-div-hidden-dark,
-.typing-200-statistics-div-hidden-dark {
+.typing-game-statistics-div-hidden,
+.typing-1000-statistics-div-hidden,
+.typing-200-statistics-div-hidden {
   position: absolute;
   width: 90%;
-  background-color: rgb(51, 50, 50);
-  margin-top: 2rem;
-  padding: 2rem;
-  border-radius: 10px;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  opacity: 0;
-  transition: 0.3s;
-  transform: scale(0.8);
-  pointer-events: none;
-}
-
-.typing-game-statistics-div-hidden-light,
-.typing-1000-statistics-div-hidden-light,
-.typing-200-statistics-div-hidden-light {
-  position: absolute;
-  width: 90%;
-  background-color: rgb(51, 50, 50);
   margin-top: 2rem;
   padding: 2rem;
   border-radius: 10px;
@@ -123,8 +68,7 @@ h1 {
   width: 20%;
   margin: 10px;
 }
-.all-time-div-stats-light,
-.all-time-div-stats-dark {
+.all-time-div-stats {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
@@ -147,11 +91,10 @@ h1 {
   transition: 0.3s;
   transform: scale(1.1);
 }
-.typing-game-inactive-dark,
-.top-200-inactive-dark,
-.top-1000-inactive-dark {
+.typing-game-inactive,
+.top-200-inactive,
+.top-1000-inactive {
   margin: 1rem;
-  background-color: rgb(51, 50, 50);
   padding: 1rem;
   border-radius: 10px;
   width: 200px;
@@ -161,33 +104,12 @@ h1 {
   z-index: 0;
   transition: 0.3s;
 }
-
-.typing-game-inactive-light,
-.top-200-inactive-light,
-.top-1000-inactive-light {
-  margin: 1rem;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.24);
-  padding: 1rem;
-  border-radius: 10px;
-  width: 200px;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s;
-  z-index: 10;
+.typing-game-inactive:hover,
+.top-200-inactive:hover,
+.top-1000-inactive:hover {
+  filter: brightness(90%);
 }
 
-.typing-game-inactive-dark:hover,
-.top-200-inactive-dark:hover,
-.top-1000-inactive-dark:hover {
-  background-color: rgb(68, 68, 68);
-}
-.typing-game-inactive-light:hover,
-.top-200-inactive-light:hover,
-.top-1000-inactive-light:hover {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.377);
-}
 .alert-not-enough-races {
   position: absolute;
   margin: auto;

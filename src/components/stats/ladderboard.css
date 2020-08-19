@@ -1,4 +1,4 @@
-.Ladderboard-shown-dark {
+.Ladderboard-shown {
   margin: auto;
   left: 200px;
   right: 0;
@@ -12,23 +12,10 @@
   border-radius: 10px;
   overflow: hidden;
 }
-.Ladderboard-shown-light {
-  margin: auto;
-  left: 200px;
-  right: 0;
-  height: 96vh;
-  position: absolute;
-  z-index: 1000;
-  margin: 1rem;
-  background-color: rgb(240, 240, 240);
-  box-shadow: 0px 0px 10px rgba(49, 49, 49, 0.253);
-  color: black;
-  padding: 2rem;
-  transition: 0.3s;
-  border-radius: 10px;
-  overflow: hidden;
+.ladderboard-header {
+  display: flex;
 }
-.Ladderboard-hidden-dark {
+.Ladderboard-hidden {
   margin: auto;
   left: 200px;
   right: 0;
@@ -42,26 +29,9 @@
   padding: 2rem;
   transition: 0.3s;
   overflow: hidden;
+  border-radius: 10px;
+}
 
-  border-radius: 10px;
-}
-.Ladderboard-hidden-light {
-  margin: auto;
-  left: 200px;
-  right: 0;
-  height: 10vh;
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  margin: 1rem;
-  opacity: 0;
-  background-color: rgb(241, 241, 241);
-  color: black;
-  padding: 2rem;
-  transition: 0.3s;
-  border-radius: 10px;
-  overflow: hidden;
-}
 .ladderboard-table {
   padding: 2rem;
   overflow-y: scroll;
@@ -74,18 +44,13 @@
   position: relative;
   align-items: center;
 }
-.ladderboard-row-dark {
+.ladderboard-row {
   display: flex;
   background-color: rgb(29, 29, 29);
   position: relative;
   align-items: center;
 }
-.ladderboard-row-light {
-  display: flex;
-  background-color: rgb(255, 255, 255);
-  position: relative;
-  align-items: center;
-}
+
 .ladderboard-info {
   position: relative;
   margin-top: 2rem;
@@ -134,12 +99,6 @@
   justify-content: center;
 }
 
-.ladderboard-number-info {
-  left: 1rem;
-  margin-right: 2rem;
-  background-color: blue;
-  padding: 1rem;
-}
 .ladderboard-name-info {
   position: absolute;
   left: 7rem;
@@ -168,4 +127,11 @@
   display: flex;
   align-items: center;
   padding: 1rem;
+}
+.loading-div-ladderboard {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  left: 270px;
 }

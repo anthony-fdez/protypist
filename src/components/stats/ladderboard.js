@@ -18,6 +18,9 @@ function Ladderboard(props) {
   const [sortBy, setSortBy] = useState("wpm");
   const [isLoading, setIsLoading] = useState(true);
 
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`../themes/${colors}`);
+
   useEffect(() => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
@@ -153,45 +156,45 @@ function Ladderboard(props) {
 
   return (
     <div
-      className={
-        props.isShown
-          ? theme
-            ? "Ladderboard-shown-dark"
-            : "Ladderboard-shown-light"
-          : theme
-          ? "Ladderboard-hidden-dark"
-          : "Ladderboard-hidden-light"
-      }
+      style={{
+        backgroundColor: colorFiles.secondaryBackgroundColor,
+        color: colorFiles.fontColor,
+      }}
+      className={props.isShown ? "Ladderboard-shown" : "Ladderboard-hidden"}
     >
-      <div className="ladderboard-header">
-        <h2>Leaderboard</h2>
-        {isLoading && (
-          <div
-            style={{ position: "absolute", top: "15px" }}
-            className={
-              theme
-                ? "loading-div-statistics-dark"
-                : "loading-div-statistics-light"
-            }
-          >
-            <div class="lds-ellipsis">
-              <div
-                className={theme ? "loading-dot-dark" : "loading-dot-light"}
-              ></div>
-              <div
-                className={theme ? "loading-dot-dark" : "loading-dot-light"}
-              ></div>
-              <div
-                className={theme ? "loading-dot-dark" : "loading-dot-light"}
-              ></div>
-              <div
-                className={theme ? "loading-dot-dark" : "loading-dot-light"}
-              ></div>
+      <div>
+        <div className="ladderboard-header">
+          <h2>Leaderboard</h2>
+          {isLoading && (
+            <div
+              style={{
+                color: colorFiles.fontColor,
+              }}
+              className={"loading-div-ladderboard"}
+            >
+              <div class="lds-ellipsis">
+                <div
+                  style={{ background: colorFiles.fontColor }}
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  style={{ background: colorFiles.fontColor }}
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  style={{ background: colorFiles.fontColor }}
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+                <div
+                  style={{ background: colorFiles.fontColor }}
+                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                ></div>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
-        <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+        <hr style={{ background: colorFiles.hrColor }}></hr>
         <div className="select-sort-method">
           <h4 className="mr-5">Sorty by:</h4>
           <button
@@ -199,12 +202,17 @@ function Ladderboard(props) {
               setSortBy("wpm");
               sortByWpm();
             }}
-            className={
+            className={"btn  mr-2"}
+            style={
               sortBy === "wpm"
-                ? "btn btn-primary mr-2"
-                : theme
-                ? "btn btn-light mr-2"
-                : "btn btn-dark mr-2"
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    color: colorFiles.contrastFontColor,
+                  }
+                : {
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.fontColor,
+                  }
             }
           >
             WPM
@@ -214,12 +222,17 @@ function Ladderboard(props) {
               setSortBy("races");
               sortByRaces();
             }}
-            className={
+            className={"btn  mr-2"}
+            style={
               sortBy === "races"
-                ? "btn btn-primary mr-2"
-                : theme
-                ? "btn btn-light mr-2"
-                : "btn btn-dark mr-2"
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    color: colorFiles.contrastFontColor,
+                  }
+                : {
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.fontColor,
+                  }
             }
           >
             Races
@@ -229,12 +242,17 @@ function Ladderboard(props) {
               setSortBy("time");
               sortByTime();
             }}
-            className={
+            className={"btn  mr-2"}
+            style={
               sortBy === "time"
-                ? "btn btn-primary mr-2"
-                : theme
-                ? "btn btn-light mr-2"
-                : "btn btn-dark mr-2"
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    color: colorFiles.contrastFontColor,
+                  }
+                : {
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.fontColor,
+                  }
             }
           >
             Time
@@ -244,18 +262,23 @@ function Ladderboard(props) {
               setSortBy("highest");
               sortByHighest();
             }}
-            className={
+            className={"btn  mr-2"}
+            style={
               sortBy === "highest"
-                ? "btn btn-primary mr-2"
-                : theme
-                ? "btn btn-light mr-2"
-                : "btn btn-dark mr-2"
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    color: colorFiles.contrastFontColor,
+                  }
+                : {
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.fontColor,
+                  }
             }
           >
             Highest
           </button>
         </div>
-        <hr className={theme ? "white-hr mt-0" : "dark-hr mt-0"}></hr>
+        <hr style={{ background: colorFiles.hrColor }}></hr>
 
         <i
           onClick={() => {
@@ -277,12 +300,17 @@ function Ladderboard(props) {
         {data.map((user, index) => {
           return (
             <div
-              className={
+              className={"ladderboard-row"}
+              style={
                 userId === user._id
-                  ? "ladderboard-row bg-primary"
-                  : theme
-                  ? "ladderboard-row-dark"
-                  : "ladderboard-row-light"
+                  ? {
+                      backgroundColor: colorFiles.primaryColor,
+                      color: colorFiles.contrastFontColor,
+                    }
+                  : {
+                      backgroundColor: colorFiles.backgroundColor,
+                      color: colorFiles.fontColor,
+                    }
               }
             >
               <h4 className="ladderboard-number-item">{index + 1}</h4>
