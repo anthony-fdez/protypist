@@ -1,20 +1,9 @@
 @media only screen and (min-width: 1501px) {
-  .Header-dark {
+  .Header {
     background-color: rgb(50, 50, 50);
     padding: 1rem;
     border-radius: 10px;
     color: white;
-    transition: 0.3s;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    height: 4.5rem;
-  }
-  .Header-light {
-    color: black;
-    background-color: rgb(231, 231, 231);
-    padding: 1rem;
-    border-radius: 10px;
     transition: 0.3s;
     display: flex;
     justify-content: center;
@@ -285,21 +274,27 @@
     justify-content: center;
     align-items: center;
   }
-  .skill-level {
+  .skill-level-shown {
     position: absolute;
     right: 13rem;
     top: 1.5rem;
     cursor: pointer;
+    z-index: 100;
   }
-  .skill-level-menu-dark-shown {
-    background-color: rgb(71, 71, 71);
+  .skill-level-hidden {
+    position: absolute;
+    right: 13rem;
+    top: 1.5rem;
+    z-index: 0;
+  }
+  .skill-level-menu-shown {
     padding: 1rem;
     border-radius: 10px;
     text-align: left;
     transition: 0.2s;
+    pointer-events: none;
   }
-  .skill-level-menu-dark-hidden {
-    background-color: rgb(71, 71, 71);
+  .skill-level-menu-hidden {
     padding: 1rem;
     border-radius: 10px;
     text-align: left;
@@ -307,33 +302,10 @@
     transition: 0.2s;
     transform: translateY(10px);
     pointer-events: none;
-    z-index: 0;
-  }
-  .skill-level-menu-light-shown {
-    background-color: rgb(255, 255, 255);
-    padding: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
-    color: rgb(75, 75, 75);
-    border-radius: 10px;
-    text-align: left;
-    transition: 0.2s;
-  }
-  .skill-level-menu-light-hidden {
-    background-color: rgb(255, 255, 255);
-    padding: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
-    color: rgb(75, 75, 75);
-    border-radius: 10px;
-    text-align: left;
-    opacity: 0;
-    transition: 0.2s;
-    transform: translateY(10px);
-    pointer-events: none;
-    z-index: 0;
   }
 }
 @media only screen and (max-width: 1500px) {
-  .Header-dark {
+  .Header {
     background-color: rgb(50, 50, 50);
     padding: 1rem;
     margin: 0;
@@ -344,18 +316,6 @@
     border-radius: 10px;
     position: relative;
     border-radius: 0;
-    height: 4.5rem;
-  }
-  .Header-light {
-    margin: 0;
-    color: black;
-    background-color: rgb(231, 231, 231);
-    padding: 1rem;
-    transition: 0.3s;
-    display: flex;
-    justify-content: center;
-    border-radius: 0px;
-    position: relative;
     height: 4.5rem;
   }
   .log-in-button {
@@ -635,19 +595,16 @@
     z-index: 10;
     cursor: pointer;
   }
-  .skill-level-menu-dark-shown {
-    background-color: rgb(71, 71, 71);
+  .skill-level-menu-shown {
     padding: 1rem;
     border-radius: 10px;
     text-align: left;
     transition: 0.2s;
-    z-index: 5;
     pointer-events: none;
     height: 230px;
     overflow: hidden;
   }
-  .skill-level-menu-dark-hidden {
-    background-color: rgb(71, 71, 71);
+  .skill-level-menu-hidden {
     border-radius: 10px;
     padding: 1rem;
     text-align: left;
@@ -658,27 +615,5 @@
     pointer-events: none;
     z-index: -4;
     height: 0px;
-  }
-  .skill-level-menu-light-shown {
-    background-color: rgb(255, 255, 255);
-    padding: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
-    color: rgb(75, 75, 75);
-    border-radius: 10px;
-    text-align: left;
-    transition: 0.2s;
-  }
-  .skill-level-menu-light-hidden {
-    background-color: rgb(255, 255, 255);
-    padding: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
-    color: rgb(75, 75, 75);
-    border-radius: 10px;
-    text-align: left;
-    opacity: 0;
-    transition: 0.2s;
-    transform: translateY(10px);
-    pointer-events: none;
-    z-index: 0;
   }
 }

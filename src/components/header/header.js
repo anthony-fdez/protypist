@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { animated } from "react-spring/renderprops-universal";
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -16,6 +17,10 @@ function Header(props) {
   const [isLogInMenuOpen, setIsLoginMenuOpen] = useState(false);
   const [isSignUpMenuOpen, setIsSignUpMenuOpen] = useState(false);
   const [isLogOutMenuOpen, setIsLogOutMenuOpen] = useState(false);
+
+  const colors = useSelector((state) => state.themeReducer);
+
+  const colorFiles = require(`../themes/${colors}`);
 
   //==================================================================
   const [name, setName] = useState("");
@@ -597,14 +602,14 @@ function Header(props) {
     return (
       <div
         className={
-          theme
-            ? isSkillLevelMenuShown
-              ? "skill-level-menu-dark-shown"
-              : "skill-level-menu-dark-hidden"
-            : isSkillLevelMenuShown
-            ? "skill-level-menu-light-shown"
-            : "skill-level-menu-light-hidden"
+          isSkillLevelMenuShown
+            ? "skill-level-menu-shown"
+            : "skill-level-menu-hidden"
         }
+        style={{
+          backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+          color: colorFiles.fontColor,
+        }}
       >
         <h4>Skill Level</h4>
         <hr
@@ -624,13 +629,27 @@ function Header(props) {
     <div>
       {errorWarning()}
       {successWarning()}
-      <div className={theme ? "Header-dark" : "Header-light"}>
+      <div
+        style={{
+          backgroundColor: colorFiles.secondaryBackgroundColor,
+          color: colorFiles.fontColor,
+        }}
+        className={"Header"}
+      >
         <h2 className="user-name">{userName}</h2>
         <h2>{props.text}</h2>
-        <div className="skill-level">
+        <div
+          className={
+            isSkillLevelMenuShown ? "skill-level-shown" : "skill-level-hidden"
+          }
+          style={{
+            color: colorFiles.fontColor,
+          }}
+        >
           <h5
             onMouseOver={() => {
               setIsSkillMenuShown(true);
+              console.log(isSkillLevelMenuShown);
             }}
             onMouseLeave={() => {
               setIsSkillMenuShown(false);

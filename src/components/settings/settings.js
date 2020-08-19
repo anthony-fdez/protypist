@@ -26,12 +26,12 @@ function Settings() {
 
   return (
     <animated.div
-      style={animation}
       className={"home-page"}
       style={{
         backgroundColor: colorFiles.backgroundColor,
         color: colorFiles.fontColor,
       }}
+      style={animation}
     >
       <div>
         <Header text="Settings" />
