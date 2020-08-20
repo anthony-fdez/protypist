@@ -399,7 +399,7 @@ function Stats() {
             }}
             className={
               isTypingGameStatisticsShown
-                ? "typing-game-button-active bg-primary"
+                ? "typing-game-button-active"
                 : "typing-game-inactive"
             }
             style={
@@ -421,7 +421,7 @@ function Stats() {
             }}
             className={
               isTyping200StatisticsShown
-                ? "typing-game-button-active bg-primary"
+                ? "typing-game-button-active"
                 : "typing-game-inactive"
             }
             style={
@@ -443,7 +443,7 @@ function Stats() {
             }}
             className={
               isTyping1000StatisticsShown
-                ? "typing-game-button-active bg-primary"
+                ? "typing-game-button-active"
                 : "typing-game-inactive"
             }
             style={
