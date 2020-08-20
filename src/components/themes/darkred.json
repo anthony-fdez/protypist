@@ -1,0 +1,12 @@
+{
+  "backgroundColor": "#162447",
+  "secondaryBackgroundColor": "#1f4068",
+  "secondSecondaryBackgroundColor": "#162447",
+  "primaryColor": "#e43f5a",
+  "fontColor": "rgb(255,255,255)",
+  "contrastFontColor": "#1b1b2f",
+  "hrColor": "rgb(105,105,105)",
+  "correctColor": "rgb(255,255,255)",
+  "noneColor": "rgb(130,130,130)",
+  "wrongColor": "#e43f5a"
+}

@@ -1,0 +1,12 @@
+{
+  "backgroundColor": "#03045e",
+  "secondaryBackgroundColor": "#023e8a",
+  "secondSecondaryBackgroundColor": "#0077b6",
+  "primaryColor": "#48cae4",
+  "fontColor": "#caf0f8",
+  "contrastFontColor": "#293241",
+  "hrColor": "#caf0f8",
+  "correctColor": "#00b4d8",
+  "noneColor": "#caf0f8",
+  "wrongColor": "#e85d04"
+}

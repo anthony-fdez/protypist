@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./settings.css";
 import Header from "../header/header";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,11 +12,26 @@ function Settings() {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
+  const [isThemesCardOpen, setIsThemesCardOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const colors = useSelector((state) => state.themeReducer);
 
   const colorFiles = require(`../themes/${colors}`);
+
+  const displayTheActualTheme = () => {
+    let name = colors.split("");
+    for (let i = 0; i < 5; i++) {
+      name.pop();
+    }
+
+    name = name.join("");
+
+    return name.toUpperCase();
+  };
+
+  displayTheActualTheme();
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -34,45 +49,283 @@ function Settings() {
         }}
       >
         <Header text="Settings" />
-        <div className="container">
-          <p className="alert-primary settings-alert">
-            <strong>Note: </strong>
-            all the adjustments that you make here will be erased if you clear
-            you browser cache.
-          </p>
+        <div className="container mt-5">
           <div
-            className={"settings-card"}
+            onClick={() => {
+              setIsThemesCardOpen(!isThemesCardOpen);
+            }}
+            className={
+              isThemesCardOpen
+                ? "settings-card-themes-open"
+                : "settings-card-themes-closed"
+            }
             style={{
               backgroundColor: colorFiles.secondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
           >
-            <div style={{ textAlign: "left" }}>
-              <h2>Theme</h2>
-              <p>Change the overall theme of the app!</p>
+            <div className="theme-card-info">
+              <div style={{ textAlign: "left" }}>
+                <h2>Theme</h2>
+                <p>Change the overall theme of the app!</p>
+              </div>
+              <h1 className="text-themes">{displayTheActualTheme()}</h1>
             </div>
-            <h1 className="text">{theme ? "ON" : "OFF"}</h1>
-            <button
-              onClick={() => {
-                dispatch({ type: "SELECT_THEME", payload: "dark.json" });
-              }}
-            >
-              Dark
-            </button>
-            <button
-              onClick={() => {
-                dispatch({ type: "SELECT_THEME", payload: "light.json" });
-              }}
-            >
-              Light
-            </button>
-            <button
-              onClick={() => {
-                dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
-              }}
-            >
-              DarkBlue
-            </button>
+            <div className="themes-buttons">
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "dark.json" });
+                }}
+              >
+                Dark
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "light.json" });
+                }}
+              >
+                Light
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "oceanBlue.json" });
+                }}
+              >
+                OceanBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "fire.json" });
+                }}
+              >
+                Fire
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "aqua.json" });
+                }}
+              >
+                Aqua
+              </button>
+
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkred.json" });
+                }}
+              >
+                DarkRed
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  marginRight: "1rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={() => {
+                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
+                }}
+              >
+                DarkBlue
+              </button>
+            </div>
           </div>
         </div>
 

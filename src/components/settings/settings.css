@@ -31,9 +31,6 @@ h2 {
 }
 .settings-card,
 .settings-card-words {
-  background-color: rgb(255, 255, 255);
-  color: black;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -48,13 +45,57 @@ h2 {
   transform: translateY(-3px);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
 }
-
-.settings-card {
+.settings-card-themes-closed {
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  margin-top: 1rem;
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.3s;
   cursor: pointer;
+  height: 8rem;
+  position: relative;
+}
+.settings-card-themes-open {
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  margin-top: 1rem;
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.3s;
+  cursor: pointer;
+  height: 17rem;
+  position: relative;
+}
+.theme-card-info {
+  position: absolute;
+  width: 100%;
+  top: 2rem;
 }
 .settings-card:hover {
   transform: translateY(-3px);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
+}
+.text-themes {
+  position: absolute;
+  z-index: 0;
+  right: 4rem;
+  bottom: 0;
+  opacity: 0.2;
+  font-style: italic;
+  font-size: 200px;
+  pointer-events: none;
+  top: -6rem;
+}
+.themes-buttons {
+  position: absolute;
+  top: 10rem;
 }
 .settings-card {
   color: white;
