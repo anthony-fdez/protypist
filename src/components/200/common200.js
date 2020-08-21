@@ -3,6 +3,7 @@ import "./common200.css";
 
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
+import displayTheArray from "../functions/displayTheArray";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -136,7 +137,15 @@ function Common200() {
   useEffect(() => {
     if (newGame === true) {
       setSpanArray(blankSpanArray);
-    } else setSpanArray(displayTheArray());
+    } else
+      setSpanArray(
+        displayTheArray(
+          textArrayCharacters,
+          charactersTyped,
+          colorFiles,
+          infoAboutCharacter
+        )
+      );
   }, [charactersTyped, textArrayCharacters, newGame]);
 
   useEffect(() => {
@@ -168,64 +177,6 @@ function Common200() {
     setDIfferenceInErrors(differenceErrors);
     setDifferenceInWPM(differenceWPM);
   }, [isRunning]);
-
-  const displayTheArray = () => {
-    if (textArrayCharacters !== undefined) {
-      let spanArray = [];
-      for (let i = 0; i < textArrayCharacters.length; i++) {
-        if (i === charactersTyped) {
-          spanArray.push(
-            <div
-              key={"key" + i}
-              className={"blinking"}
-              style={{
-                color: colorFiles.noneColor,
-                borderLeft: `2px solid ${colorFiles.fontColor}`,
-              }}
-            >
-              {textArrayCharacters[i]}
-            </div>
-          );
-        } else if (infoAboutCharacter[i] === true) {
-          spanArray.push(
-            <div
-              key={"key" + i}
-              className="green"
-              style={{ color: colorFiles.correctColor }}
-            >
-              {textArrayCharacters[i]}
-            </div>
-          );
-        } else if (infoAboutCharacter[i] === false) {
-          spanArray.push(
-            <div
-              key={"key" + i}
-              className="red"
-              style={{
-                color: colorFiles.wrongColor,
-                borderBottom: `2px solid ${colorFiles.wrongColor}`,
-              }}
-            >
-              {textArrayCharacters[i]}
-            </div>
-          );
-        } else {
-          spanArray.push(
-            <div
-              key={"key" + i}
-              className="none"
-              style={{ color: colorFiles.noneColor }}
-            >
-              {textArrayCharacters[i]}
-            </div>
-          );
-        }
-      }
-      return spanArray;
-    }
-  };
-
-  //========= Display the errors the user makes //
 
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {

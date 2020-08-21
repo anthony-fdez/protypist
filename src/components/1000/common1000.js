@@ -154,10 +154,6 @@ function Common1000() {
       setInfoAboutCharacter(spanArray);
     }
   }, [newGame]);
-
-  //========= Display all the characters to the screen //
-  //========= This returns an array of spans //
-
   useEffect(() => {
     if (isRunning === true) {
       dispatch({

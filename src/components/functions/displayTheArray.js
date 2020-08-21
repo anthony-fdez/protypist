@@ -9,9 +9,10 @@ const displayTheArray = (
   if (textArrayCharacters !== undefined) {
     let spanArray = [];
     let wordArr = [];
+    console.log(textArrayCharacters);
 
-    for (let i = 0; i < textArrayCharacters.length; i++) {
-      if (textArrayCharacters[i] === " ") {
+    for (let i = 0; i <= textArrayCharacters.length; i++) {
+      if (textArrayCharacters[i] === " " || i === textArrayCharacters.length) {
         spanArray.push(
           <div style={{ display: "flex" }} className="word">
             {wordArr}
