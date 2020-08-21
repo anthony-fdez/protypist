@@ -498,42 +498,45 @@
   }
 
   .none {
-    width: 17px;
-    height: 30px;
-    font-size: 17px;
-    border-radius: 5px 5px 0 0;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.03s;
+    border-left: 2px solid rgba(0, 0, 0, 0);
   }
   .green {
-    width: 17px;
-    height: 30px;
-    font-size: 17px;
-    border-radius: 5px 5px 0 0;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(121, 121, 121);
+    font-size: 18px;
+    transition: 0.03s;
+    border-left: 2px solid rgba(0, 0, 0, 0);
   }
   .red {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 17px;
-    height: 30px;
-    font-size: 17px;
-    background-color: rgb(255, 0, 0);
-    color: white;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
+    transition: 0.03s;
+    border-left: 2px solid rgba(0, 0, 0, 0);
   }
-
   .blinking {
-    width: 17px;
-    height: 30px;
-    font-size: 17px;
+    width: 12px;
+    height: 25px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.03s;
+    border-left: 2px solid black;
   }
 
   .alert-shown {

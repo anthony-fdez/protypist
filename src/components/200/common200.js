@@ -224,14 +224,6 @@ function Common200() {
     return wordsPerMinute;
   };
 
-  const calculateCharactersPerMinute = () => {
-    let charactersPerSecond = charactersTyped / timeSeconds;
-    let charactersPerMinute = charactersPerSecond * 60;
-    charactersPerMinute = Math.round(charactersPerMinute);
-
-    return charactersPerMinute;
-  };
-
   //========= Check input //
 
   const getAndCheckTheInput = (e) => {

@@ -9,7 +9,6 @@ function Ladderboard(props) {
   const dispatch = useDispatch();
 
   const theme = useSelector((state) => state.darkModeReducer);
-  const isLadderBoardOpen = useSelector((state) => state.openLadderBoardMenu);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const userId = useSelector((state) => state.userIdReducer);
@@ -102,25 +101,6 @@ function Ladderboard(props) {
 
       axios
         .get("https://protypist.herokuapp.com/users/ladderboard/time", {
-          headers: headers,
-        })
-        .then((response) => {
-          setData(response.data);
-          setIsLoading(false);
-        })
-        .catch((e) => {
-          console.log(e.response);
-        });
-    }
-  };
-
-  const sortBy10races = () => {
-    if (isLoggedIn) {
-      const headers = { Authorization: jwt };
-      setIsLoading(true);
-
-      axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/10races", {
           headers: headers,
         })
         .then((response) => {

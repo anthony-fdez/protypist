@@ -312,20 +312,10 @@ function TypingTest() {
   const calculateWordsPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
-    let charactersPerMinute = charactersPerSecond * 60;
     wordsPerMinute = Math.round(wordsPerMinute);
-    charactersPerMinute = Math.round(charactersPerMinute);
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;
-  };
-
-  const calculateCharactersPerMinute = () => {
-    let charactersPerSecond = charactersTyped / timeSeconds;
-    let charactersPerMinute = charactersPerSecond * 60;
-    charactersPerMinute = Math.round(charactersPerMinute);
-
-    return charactersPerMinute;
   };
 
   const getAndCheckTheInput = (e) => {
@@ -457,12 +447,6 @@ function TypingTest() {
         return wpm;
       } else return latestWPM;
     } else return latestWPM;
-  };
-
-  const changeTextToTypeClassname = () => {
-    if (isUserTyping) {
-      return "text-to-type";
-    } else return "text-to-type-dark";
   };
 
   const handleThemInTheFinishedPage = () => {
@@ -783,7 +767,11 @@ function TypingTest() {
           </div>
           <div className="side-menu-container">
             <div className="side-menu-picture-div">
-              <img className="side-menu-picture" src={text.image}></img>
+              <img
+                alt="Current text"
+                className="side-menu-picture"
+                src={text.image}
+              ></img>
             </div>
             <hr
               style={{
@@ -939,7 +927,7 @@ function TypingTest() {
               style={{ color: colorFiles.fontColor }}
               className={"loading-div"}
             >
-              <div class="lds-ellipsis">
+              <div className="lds-ellipsis">
                 <div
                   style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}

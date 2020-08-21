@@ -7,8 +7,6 @@ import { useSpring, animated } from "react-spring";
 import axios from "axios";
 
 function Stats() {
-  const dispatch = useDispatch();
-
   const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);

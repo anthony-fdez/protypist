@@ -208,8 +208,6 @@ function Common1000() {
     }
   }, [charactersTyped]);
 
-  //========= Calculate words per minute //
-
   const calculateWordsPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
@@ -220,16 +218,6 @@ function Common1000() {
 
     return wordsPerMinute;
   };
-
-  const calculateCharactersPerMinute = () => {
-    let charactersPerSecond = charactersTyped / timeSeconds;
-    let charactersPerMinute = charactersPerSecond * 60;
-    charactersPerMinute = Math.round(charactersPerMinute);
-
-    return charactersPerMinute;
-  };
-
-  //========= Check input //
 
   const getAndCheckTheInput = (e) => {
     if (realTimeWPM) {

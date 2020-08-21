@@ -9,12 +9,11 @@ const displayTheArray = (
   if (textArrayCharacters !== undefined) {
     let spanArray = [];
     let wordArr = [];
-    console.log(textArrayCharacters);
 
     for (let i = 0; i <= textArrayCharacters.length; i++) {
       if (textArrayCharacters[i] === " " || i === textArrayCharacters.length) {
         spanArray.push(
-          <div style={{ display: "flex" }} className="word">
+          <div key={`word${i}`} style={{ display: "flex" }} className="word">
             {wordArr}
           </div>
         );
@@ -69,7 +68,6 @@ const displayTheArray = (
         );
       }
     }
-    console.log(spanArray);
     return spanArray;
   }
 };
