@@ -62,6 +62,7 @@ function Common1000() {
         mistakes: realMistakes,
         date: getTheDate(),
       };
+      console.log(data);
       const headers = {
         Authorization: jwt,
       };
