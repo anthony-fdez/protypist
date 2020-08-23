@@ -206,7 +206,7 @@ function Stats() {
               <h5>Average:</h5>{" "}
               <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
-                {Math.round(wpmAverageAllTime * 10) / 10}
+                {Math.round(wpmAverageAllTime * 100) / 100}
               </h5>
             </div>
             <div className="stats-box">
@@ -264,7 +264,7 @@ function Stats() {
               <h5>Average:</h5>{" "}
               <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
-                {Math.round(wpmAverageAllTime200 * 10) / 10}
+                {Math.round(wpmAverageAllTime200 * 100) / 100}
               </h5>
             </div>
             <div className="stats-box">
@@ -322,7 +322,7 @@ function Stats() {
               <h5>Average:</h5>{" "}
               <hr style={{ background: colorFiles.hrColor }}></hr>
               <h5 style={{ marginTop: "1rem" }}>
-                {Math.round(wpmAverageAllTime1000 * 10) / 10}
+                {Math.round(wpmAverageAllTime1000 * 100) / 100}
               </h5>
             </div>
             <div className="stats-box">
