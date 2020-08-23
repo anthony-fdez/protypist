@@ -135,7 +135,7 @@ function Common1000() {
   useEffect(() => {
     if (newGame === true) {
       setSpanArray(blankSpanArray);
-    } else
+    } else {
       setSpanArray(
         displayTheArray(
           textArrayCharacters,
@@ -144,6 +144,7 @@ function Common1000() {
           infoAboutCharacter
         )
       );
+    }
   }, [charactersTyped, textArrayCharacters, newGame]);
 
   useEffect(() => {
@@ -166,8 +167,8 @@ function Common1000() {
         payload: latestErrors,
       });
     }
+    const differenceWPM = Math.round((latestWPM1000 - previousWPM) * 100) / 100;
 
-    const differenceWPM = latestWPM1000 - previousWPM;
     const differenceErrors = latestErrors - previousErrors;
 
     setDIfferenceInErrors(differenceErrors);
@@ -212,9 +213,7 @@ function Common1000() {
   const calculateWordsPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
-    let charactersPerMinute = charactersPerSecond * 60;
-    wordsPerMinute = Math.round(wordsPerMinute);
-    charactersPerMinute = Math.round(charactersPerMinute);
+    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;

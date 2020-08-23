@@ -266,8 +266,8 @@ function TypingTest() {
         payload: latestErrors,
       });
     }
+    const differenceWPM = Math.round((latestWPM - previousWPM) * 100) / 100;
 
-    const differenceWPM = latestWPM - previousWPM;
     const differenceErrors = latestErrors - previousErrors;
 
     setDIfferenceInErrors(differenceErrors);
@@ -312,7 +312,7 @@ function TypingTest() {
   const calculateWordsPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
-    wordsPerMinute = Math.round(wordsPerMinute);
+    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;

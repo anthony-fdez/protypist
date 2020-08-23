@@ -171,7 +171,7 @@ function Common200() {
       });
     }
 
-    const differenceWPM = latestWPM200 - previousWPM;
+    const differenceWPM = Math.round((latestWPM200 - previousWPM) * 100) / 100;
     const differenceErrors = latestErrors - previousErrors;
 
     setDIfferenceInErrors(differenceErrors);
@@ -216,9 +216,7 @@ function Common200() {
   const calculateWordsPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
-    let charactersPerMinute = charactersPerSecond * 60;
-    wordsPerMinute = Math.round(wordsPerMinute);
-    charactersPerMinute = Math.round(charactersPerMinute);
+    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;
