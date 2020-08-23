@@ -70,7 +70,7 @@ h2 {
   overflow: hidden;
   transition: 0.3s;
   cursor: pointer;
-  height: 17rem;
+  height: 18rem;
   position: relative;
 }
 .theme-card-info {
@@ -143,8 +143,10 @@ h2 {
   font-size: 200px;
   pointer-events: none;
 }
-.btn {
+.btn-themes {
+  margin-right: 1rem;
   z-index: 3;
+  width: 5.7rem;
 }
 @media only screen and (max-width: 1500px) {
   .settings-alert {
@@ -242,6 +244,15 @@ h2 {
     pointer-events: none;
   }
   .btn {
+    margin-right: 1rem;
     z-index: 3;
   }
+}
+.dark-themes {
+  display: flex;
+  align-items: center;
+}
+.light-themes {
+  display: flex;
+  align-items: center;
 }

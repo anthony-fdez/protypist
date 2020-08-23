@@ -1,0 +1,12 @@
+{
+  "backgroundColor": "rgb(0,0,0)",
+  "secondaryBackgroundColor": "rgb(0,0,0)",
+  "secondSecondaryBackgroundColor": "rgb(20,20,20)",
+  "primaryColor": "rgb(255,255,255)",
+  "contrastFontColor": "rgb(0,0,0)",
+  "fontColor": "rgb(255,255,255)",
+  "hrColor": "rgb(255,255,255)",
+  "correctColor": "rgb(255,255,255)",
+  "noneColor": "rgb(130,130,130)",
+  "wrongColor": "rgb(255, 0, 0)"
+}

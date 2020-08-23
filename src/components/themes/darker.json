@@ -1,8 +1,8 @@
 {
-  "backgroundColor": "rgb(10,10,10)",
-  "secondaryBackgroundColor": "rgb(30,30,30)",
-  "secondSecondaryBackgroundColor": "rgb(40,40,40)",
-  "primaryColor": "rgb(255, 31, 15)",
+  "backgroundColor": "rgb(5,5,5)",
+  "secondaryBackgroundColor": "rgb(10,10,10)",
+  "secondSecondaryBackgroundColor": "rgb(25,25,25)",
+  "primaryColor": "rgb(0,100,255)",
   "contrastFontColor": "rgb(250,250,250)",
   "fontColor": "rgb(255,255,255)",
   "hrColor": "rgb(255,255,255)",

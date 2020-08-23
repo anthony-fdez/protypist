@@ -72,119 +72,125 @@ function Settings() {
               <h1 className="text-themes">{displayTheActualTheme()}</h1>
             </div>
             <div className="themes-buttons">
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "dark.json" });
-                }}
-              >
-                Dark
-              </button>
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "light.json" });
-                }}
-              >
-                Light
-              </button>
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
-                }}
-              >
-                DarkBlue
-              </button>
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "oceanBlue.json" });
-                }}
-              >
-                OceanBlue
-              </button>
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "fire.json" });
-                }}
-              >
-                Fire
-              </button>
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "aqua.json" });
-                }}
-              >
-                Aqua
-              </button>
+              <div className="dark-themes">
+                <h4 style={{ marginRight: "1rem" }}>Dark: </h4>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "dark.json" });
+                  }}
+                >
+                  Blue
+                </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "darkRed.json" });
+                  }}
+                >
+                  Red
+                </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "green.json" });
+                  }}
+                >
+                  Green
+                </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "pink.json" });
+                  }}
+                >
+                  Pink
+                </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "orange.json" });
+                  }}
+                >
+                  Orange
+                </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "white.json" });
+                  }}
+                >
+                  White
+                </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({
+                      type: "SELECT_THEME",
+                      payload: "terminal.json",
+                    });
+                  }}
+                >
+                  Terminal
+                </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "darker.json" });
+                  }}
+                >
+                  Darker
+                </button>
 
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "darkred.json" });
-                }}
-              >
-                DarkRed
-              </button>
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                }}
-                onClick={() => {
-                  dispatch({ type: "SELECT_THEME", payload: "darkblue.json" });
-                }}
-              >
-                DarkBlue
-              </button>
+                <button
+                  className="btn btn-themes"
+                  style={{
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.primaryColor,
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "SELECT_THEME", payload: "amoled.json" });
+                  }}
+                >
+                  Amoled
+                </button>
+              </div>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
+              <div className="light-themes">
+                <h4>Light: </h4>
+              </div>
             </div>
           </div>
         </div>
@@ -210,6 +216,7 @@ function Settings() {
                 style={{
                   marginLeft: "2rem",
                   backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
                 }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
@@ -222,6 +229,7 @@ function Settings() {
                 style={{
                   marginLeft: "2rem",
                   backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
                 }}
                 className={"btn btn-primary"}
               >
@@ -235,6 +243,7 @@ function Settings() {
                   marginRight: "11rem",
                   marginLeft: "2rem",
                   backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
                 }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
@@ -262,6 +271,7 @@ function Settings() {
                 style={{
                   marginLeft: "2rem",
                   backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
                 }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
@@ -274,6 +284,7 @@ function Settings() {
                 style={{
                   marginLeft: "2rem",
                   backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
                 }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
@@ -287,6 +298,7 @@ function Settings() {
                   marginRight: "11rem",
                   marginLeft: "2rem",
                   backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
                 }}
                 className={theme ? "btn btn-primary" : "btn btn-dark"}
               >
