@@ -583,6 +583,7 @@ function Header(props) {
           style={{
             backgroundColor: colorFiles.primaryColor,
             color: colorFiles.contrastFontColor,
+            border: "none",
           }}
         >
           Login
@@ -603,6 +604,7 @@ function Header(props) {
           style={{
             backgroundColor: colorFiles.primaryColor,
             color: colorFiles.contrastFontColor,
+            border: "none",
           }}
           className="btn btn-primary"
         >
