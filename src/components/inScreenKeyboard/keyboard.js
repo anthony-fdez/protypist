@@ -167,6 +167,13 @@ function Keyboard() {
   const pressedForwardSlash = useKeyPress("/");
   const pressedQuestion = useKeyPress("?");
 
+  const pressedBackSpace = useKeyPress("Backspace");
+  const pressedShift = useKeyPress("Shift");
+  const pressedEnter = useKeyPress("Enter");
+  const pressedControl = useKeyPress("Control");
+  const pressedTab = useKeyPress("Tab");
+  const pressedAlt = useKeyPress("Alt");
+
   return (
     <div>
       <div
@@ -341,8 +348,8 @@ function Keyboard() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedAproximate || pressedBackTic
-                ? "keyboard-backspace"
+              pressedBackSpace
+                ? "keyboard-backspace-pressed"
                 : "keyboard-backspace"
             }
           >
@@ -694,7 +701,9 @@ function Keyboard() {
               backgroundColor: colorFiles.secondSecondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
-            className="keyboard-shift"
+            className={
+              pressedShift ? "keyboard-shift-pressed" : "keyboard-shift"
+            }
           >
             SHIFT
           </div>
@@ -833,7 +842,7 @@ function Keyboard() {
               backgroundColor: colorFiles.secondSecondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
-            className="keyboard-big-shift"
+            className={"keyboard-big-shift"}
           >
             SHIFT
           </div>
