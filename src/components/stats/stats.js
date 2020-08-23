@@ -212,12 +212,9 @@ function Stats() {
             <div className="stats-box">
               <h5>Recent Avg:</h5>{" "}
               <hr style={{ background: colorFiles.hrColor }}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races}</h5>
-            </div>
-            <div className="stats-box">
-              <h5>Mistakes Avg:</h5>{" "}
-              <hr style={{ background: colorFiles.hrColor }}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{averageMistakes}</h5>
+              <h5 style={{ marginTop: "1rem" }}>
+                {Math.round(wpmAverage10races * 100) / 100}
+              </h5>
             </div>
           </div>
           {racesCompleted < 10 && timeIsUp === true && alert()}
@@ -270,12 +267,9 @@ function Stats() {
             <div className="stats-box">
               <h5>Recent Avg:</h5>{" "}
               <hr style={{ background: colorFiles.hrColor }}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races200}</h5>
-            </div>
-            <div className="stats-box">
-              <h5>Avg Mistakes:</h5>{" "}
-              <hr style={{ background: colorFiles.hrColor }}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{averageMistakes200}</h5>
+              <h5 style={{ marginTop: "1rem" }}>
+                {Math.round(wpmAverage10races200 * 100) / 100}
+              </h5>
             </div>
           </div>
           {racesCompleted200 < 10 && timeIsUp === true && alert()}
@@ -328,12 +322,9 @@ function Stats() {
             <div className="stats-box">
               <h5>Recent Avg:</h5>{" "}
               <hr style={{ background: colorFiles.hrColor }}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{wpmAverage10races1000}</h5>
-            </div>
-            <div className="stats-box">
-              <h5>Avg Mistakes:</h5>{" "}
-              <hr style={{ background: colorFiles.hrColor }}></hr>
-              <h5 style={{ marginTop: "1rem" }}>{averageMistakes1000}</h5>
+              <h5 style={{ marginTop: "1rem" }}>
+                {Math.round(wpmAverage10races1000 * 100) / 100}
+              </h5>
             </div>
           </div>
           {racesCompleted1000 < 10 && timeIsUp === true && alert()}

@@ -20,7 +20,6 @@ function Common200() {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
-  const previousWPM = useSelector((state) => state.previousWPMReducer200);
   const latestErrors = useSelector((state) => state.latestErrorsReducer200);
   const previousErrors = useSelector((state) => state.previousErrorsReducer200);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
@@ -35,8 +34,6 @@ function Common200() {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
-
-  //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [timeSeconds, setTimeSeconds] = useState(0);
@@ -51,6 +48,10 @@ function Common200() {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+  const [wpmAverageLast10races, setWpmAverage10races] = useState();
+  const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
+  const [averageMistakes, setAverageMistakes] = useState();
+  const [highestSpeedAllTime, setHighestSpeedOfAllTime] = useState();
 
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
@@ -74,6 +75,27 @@ function Common200() {
         });
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
+
+      axios
+        .get("https://protypist.herokuapp.com/users/statistics200", {
+          headers: headers,
+        })
+        .then((response) => {
+          console.log(response);
+          setWpmAverage10races(response.data.wpmAverageLast10Races200);
+          setWpmAverageAllTime(response.data.wpmAverageAllTime200);
+          setAverageMistakes(response.data.averageMistakes200);
+          setHighestSpeedOfAllTime(response.data.highestSpeedAllTime200);
+        })
+        .catch((e) => {
+          console.log(e.response);
+        });
+    }
+  }, [jwt]);
 
   const getTheDate = () => {
     const date = new Date();
@@ -160,22 +182,24 @@ function Common200() {
   useEffect(() => {
     if (isRunning === true) {
       dispatch({
-        type: "SET_PREVIOUS_WPM_200",
-        payload: latestWPM200,
-      });
-
-      dispatch({
         type: "SET_PREVIOUS_ERRORS_200",
         payload: latestErrors,
       });
     }
 
-    const differenceWPM = Math.round((latestWPM200 - previousWPM) * 100) / 100;
-    const differenceErrors = latestErrors - previousErrors;
+    const last10races = parseInt(wpmAverageLast10races);
+
+    const valueToCompare =
+      wpmAverageLast10races === 0 ? wpmAverageAllTime : last10races;
+
+    const differenceWPM =
+      Math.round((latestWPM200 - valueToCompare) * 100) / 100;
+    const differenceErrors =
+      Math.round((latestErrors - averageMistakes) * 100) / 100;
 
     setDIfferenceInErrors(differenceErrors);
     setDifferenceInWPM(differenceWPM);
-  }, [isRunning]);
+  }, [isRunning, wpmAverageAllTime, averageMistakes]);
 
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {
@@ -419,7 +443,11 @@ function Common200() {
                   : { color: "rgba(230, 41, 41)" }
               }
             >
-              {differenceInWPM > 0 ? `+${differenceInWPM}` : differenceInWPM}
+              {isLoggedIn
+                ? differenceInWPM > 0
+                  ? `+${differenceInWPM}`
+                  : differenceInWPM
+                : ""}
             </h5>
           </div>
           <div className="d-flex">
@@ -432,9 +460,11 @@ function Common200() {
                     : { color: "rgba(230, 41, 41)" }
                 }
               >
-                {differenceInErrors > 0
-                  ? `+${differenceInErrors}`
-                  : differenceInErrors}
+                {isLoggedIn
+                  ? differenceInErrors > 0
+                    ? `+${differenceInErrors}`
+                    : differenceInErrors
+                  : ""}
               </h5>
             </div>
             <div className="d-flex">
