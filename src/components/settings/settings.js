@@ -12,6 +12,8 @@ function Settings() {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
+  const instaDeath = useSelector((state) => state.instaDeathReducer);
+
   const [isThemesCardOpen, setIsThemesCardOpen] = useState(false);
 
   const [hoverDarkBlue, setHoverDarkBlue] = useState(false);
@@ -701,6 +703,33 @@ function Settings() {
               </button>
             </div>
             <h1 className="text">{lenghtAdvanced}</h1>
+          </div>
+          <div
+            className={"settings-card-words"}
+            style={
+              instaDeath
+                ? {
+                    backgroundColor: "rgb(235, 64, 52)",
+                    color: "white",
+                  }
+                : {
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
+                    color: colorFiles.fontColor,
+                  }
+            }
+            onClick={() => {
+              dispatch({ type: "ACTIVATE_INSTA_DEATH!" });
+            }}
+          >
+            <div style={{ textAlign: "left" }}>
+              <h2>Instant Death Mode</h2>
+              <p>
+                This is for those who want to take their accuracy to the next
+                level. If you make an error you lose. And no data will be saved
+                if you lose
+              </p>
+            </div>
+            <h1 className="text">{instaDeath ? "ON" : "OFF"}</h1>
           </div>
         </div>
         <h3>Ui settings</h3>

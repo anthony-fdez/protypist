@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+import { findAllByPlaceholderText } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
 const darkModeReducer = (state = true, action) => {
   switch (action.type) {
@@ -206,6 +208,15 @@ const userIdReducer = (state = null, action) => {
   }
 };
 
+const instaDeathReducer = (state = false, action) => {
+  switch (action.type) {
+    case "ACTIVATE_INSTA_DEATH!":
+      return !state;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
@@ -230,6 +241,7 @@ const allReducers = combineReducers({
   JWTreducer: JWTreducer,
   openLadderBoardMenu: openLadderBoardMenu,
   userIdReducer: userIdReducer,
+  instaDeathReducer: instaDeathReducer,
 });
 
 export default allReducers;

@@ -23,11 +23,10 @@ function Common200() {
   const previousWPM = useSelector((state) => state.previousWPMReducer200);
   const latestErrors = useSelector((state) => state.latestErrorsReducer200);
   const previousErrors = useSelector((state) => state.previousErrorsReducer200);
-
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
-
   const colors = useSelector((state) => state.themeReducer);
+  const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colorFiles = require(`../themes/${colors}`);
 
   //state
@@ -235,7 +234,33 @@ function Common200() {
       setMistakesAlert(false);
     }
 
-    if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
+    if (realMistakes === 1 && instaDeath) {
+      calculateWordsPerMinute();
+      setTimeSeconds(0);
+      e.target.value = "";
+      setIsRunning(false);
+      setNewGame(true);
+      setSpanArray(blankSpanArray);
+      setInfoAboutCharacter(blankInfoArray);
+      setRealMistakes(0);
+      setProgress(1);
+      calculateAccuracy();
+      setCharactersTyped(0);
+      setSeconds(0);
+
+      dispatch({
+        type: "SET_LATEST_WPM_200",
+        payload: calculateWordsPerMinute(),
+      });
+
+      dispatch({
+        type: "SET_LATEST_ERRORS_200",
+        payload: realMistakes,
+      });
+    } else if (
+      e.target.value.length === textArrayCharacters.length &&
+      mistakes < 5
+    ) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
       e.target.value = "";

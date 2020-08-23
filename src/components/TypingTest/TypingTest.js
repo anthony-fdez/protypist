@@ -33,6 +33,7 @@ function TypingTest() {
   const isSideMenuOpen = useSelector((state) => state.openSideMenuReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
+  const instaDeath = useSelector((state) => state.instaDeathReducer);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -74,6 +75,8 @@ function TypingTest() {
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const [instaDeathFail, setInstaDeathFail] = useState(false);
 
   //submit a quote info
 
@@ -220,10 +223,10 @@ function TypingTest() {
   }, [text]);
 
   useEffect(() => {
-    if (newGame === true) {
+    if (newGame || instaDeathFail) {
       setSpanArray(blankSpanArray);
     } else setSpanArray(displayTheArray());
-  }, [charactersTyped, textArrayCharacters, newGame]);
+  }, [charactersTyped, textArrayCharacters, newGame, instaDeathFail]);
 
   useEffect(() => {
     if (textArrayCharacters !== undefined) {
@@ -237,7 +240,7 @@ function TypingTest() {
       }
       setInfoAboutCharacter(spanArray);
     }
-  }, [newGame, finished]);
+  }, [newGame, finished, instaDeathFail]);
 
   useEffect(() => {
     if (finished === true) {
@@ -252,7 +255,7 @@ function TypingTest() {
         )
       );
     }
-  }, [charactersTyped, textArrayCharacters, finished]);
+  }, [charactersTyped, textArrayCharacters, finished, instaDeathFail]);
 
   useEffect(() => {
     if (isRunning === true) {
@@ -288,7 +291,8 @@ function TypingTest() {
 
   useEffect(() => {
     setNewGame(false);
-  }, [newGame]);
+    setInstaDeathFail(false);
+  }, [newGame, instaDeathFail]);
 
   //real errors
   useEffect(() => {
@@ -330,9 +334,34 @@ function TypingTest() {
     } else if (mistakes < 10) {
       setMistakesAlert(false);
     }
-    if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
-      calculateWordsPerMinute();
 
+    if (realMistakes === 1 && instaDeath) {
+      setSpanArray(blankSpanArray);
+      setInfoAboutCharacter(blankInfoArray);
+      setSeconds(0);
+      setMinutes(0);
+      setTimeSeconds(0);
+      setCharactersTyped(0);
+      setMistakes(0);
+      setRealMistakes(0);
+      setProgress(1);
+      calculateAccuracy();
+      setInstaDeathFail(true);
+      e.target.value = "";
+
+      dispatch({
+        type: "SET_LATEST_WPM",
+        payload: calculateWordsPerMinute(),
+      });
+      dispatch({
+        type: "SET_LATEST_ERRORS_TYPING_GAME",
+        payload: realMistakes,
+      });
+    } else if (
+      e.target.value.length === textArrayCharacters.length &&
+      mistakes < 5
+    ) {
+      calculateWordsPerMinute();
       setTimeSeconds(0);
       e.target.value = "";
       setIsRunning(false);

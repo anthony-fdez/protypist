@@ -24,6 +24,7 @@ function Common1000() {
   const previousErrors = useSelector(
     (state) => state.previousErrorsReducer1000
   );
+  const instaDeath = useSelector((state) => state.instaDeathReducer);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -228,7 +229,33 @@ function Common1000() {
     } else if (mistakes < 10) {
       setMistakesAlert(false);
     }
-    if (e.target.value.length === textArrayCharacters.length && mistakes < 5) {
+
+    if (realMistakes === 1 && instaDeath) {
+      calculateWordsPerMinute();
+      setTimeSeconds(0);
+      e.target.value = "";
+      setIsRunning(false);
+      setNewGame(true);
+      setSpanArray(blankSpanArray);
+      setInfoAboutCharacter(blankInfoArray);
+      setRealMistakes(0);
+      setProgress(1);
+      calculateAccuracy();
+      setCharactersTyped(0);
+      setSeconds(0);
+
+      dispatch({
+        type: "SET_LATEST_WPM_1000",
+        payload: calculateWordsPerMinute(),
+      });
+      dispatch({
+        type: "SET_LATEST_ERRORS_1000",
+        payload: realMistakes,
+      });
+    } else if (
+      e.target.value.length === textArrayCharacters.length &&
+      mistakes < 5
+    ) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
       e.target.value = "";
