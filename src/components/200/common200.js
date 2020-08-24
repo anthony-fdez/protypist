@@ -27,6 +27,7 @@ function Common200() {
   const colors = useSelector((state) => state.themeReducer);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const testLanguage = useSelector((state) => state.testLanguageReducer);
 
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -130,8 +131,53 @@ function Common200() {
     let wordsArray = [];
     let infoAboutCharacterObject = [];
     for (let i = 0; i < length; i++) {
-      let random = Math.floor(Math.random() * 200);
-      let randomWord = json.english[random];
+      let random;
+      let randomWord = " ";
+      if (testLanguage === "english") {
+        random = Math.floor(Math.random() * json.english.length);
+        randomWord = json.english[random];
+      } else if (testLanguage === "spanish") {
+        random = Math.floor(Math.random() * json.spanish.length);
+        randomWord = json.spanish[random];
+      } else if (testLanguage === "german") {
+        random = Math.floor(Math.random() * json.german.length);
+        randomWord = json.german[random];
+      } else if (testLanguage === "dutch") {
+        random = Math.floor(Math.random() * json.dutch.length);
+        randomWord = json.dutch[random];
+      } else if (testLanguage === "french") {
+        random = Math.floor(Math.random() * json.french.length);
+        randomWord = json.french[random];
+      } else if (testLanguage === "portuguese") {
+        random = Math.floor(Math.random() * json.portuguese.length);
+        randomWord = json.portuguese[random];
+      } else if (testLanguage === "italian") {
+        random = Math.floor(Math.random() * json.italian.length);
+        randomWord = json.italian[random];
+      } else if (testLanguage === "polish") {
+        random = Math.floor(Math.random() * json.polish.length);
+        randomWord = json.polish[random];
+      } else if (testLanguage === "thai") {
+        random = Math.floor(Math.random() * json.thai.length);
+        randomWord = json.thai[random];
+      } else if (testLanguage === "russian") {
+        random = Math.floor(Math.random() * json.russian.length);
+        randomWord = json.russian[random];
+      } else if (testLanguage === "turkish") {
+        random = Math.floor(Math.random() * json.turkish.length);
+        randomWord = json.turkish[random];
+      } else if (testLanguage === "hungarian") {
+        random = Math.floor(Math.random() * json.hungarian.length);
+        randomWord = json.hungarian[random];
+      } else if (testLanguage === "norwegian") {
+        random = Math.floor(Math.random() * json.norwegian.length);
+        randomWord = json.norwegian[random];
+      } else if (testLanguage === "indonesian") {
+        random = Math.floor(Math.random() * json.indonesian.length);
+        randomWord = json.indonesian[random];
+      }
+
+      console.log(randomWord);
 
       for (let i = 0; i < randomWord.length; i++) {
         wordsArray.push(randomWord[i]);

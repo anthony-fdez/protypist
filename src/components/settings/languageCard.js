@@ -93,7 +93,7 @@ const LanguageCard = () => {
             onClick={() => {
               dispatch({
                 type: "CHANGE_LANGUAGE",
-                payload: "protuguese",
+                payload: "portuguese",
               });
             }}
             className="font-button"
