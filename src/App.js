@@ -18,7 +18,12 @@ function App() {
   const colorFiles = require(`./components/themes/${colors}`);
 
   return (
-    <div style={{ backgroundColor: colorFiles.backgroundColor }}>
+    <div
+      style={{
+        backgroundColor: colorFiles.backgroundColor,
+        fontFamily: "Arial",
+      }}
+    >
       <div>
         <Switch>
           <Route exact path="/">
