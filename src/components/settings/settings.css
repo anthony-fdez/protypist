@@ -143,6 +143,15 @@ h2 {
   font-size: 200px;
   pointer-events: none;
 }
+.text-font-family {
+  position: absolute;
+  z-index: 0;
+  right: 1rem;
+  opacity: 0.2;
+  font-style: italic;
+  font-size: 200px;
+  pointer-events: none;
+}
 .btn-themes {
   margin-right: 1rem;
   z-index: 3;

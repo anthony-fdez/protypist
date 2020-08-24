@@ -4,9 +4,28 @@ import "./fontFamilyCard.css";
 
 const FontFamilyCard = () => {
   const dispatch = useDispatch();
+  const fontFamily = useSelector((state) => state.fontFamilyReducer);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+
+  const selectTheBackgroundText = () => {
+    if (fontFamily === "Arial, sans-serif") {
+      return "ARIAL";
+    } else if (fontFamily === "monospace") {
+      return "MONOSPACE";
+    } else if (fontFamily === "Source Code Pro") {
+      return "CODE";
+    } else if (fontFamily === "cursive") {
+      return "CURSIVE";
+    } else if (fontFamily === "Times, Times New Roman, serif") {
+      return "TIMES";
+    } else if (fontFamily === "Courier New, monospace") {
+      return "COURIER";
+    }
+  };
+
+  selectTheBackgroundText();
 
   return (
     <div style={{ cursor: "pointer" }} className="container">
@@ -29,7 +48,17 @@ const FontFamilyCard = () => {
                 payload: "Arial, sans-serif",
               });
             }}
-            style={{ fontFamily: "Arial, sans-serif" }}
+            style={
+              fontFamily === "Arial, sans-serif"
+                ? {
+                    color: colorFiles.primaryColor,
+                    fontFamily: "Arial, sans-serif",
+                  }
+                : {
+                    color: colorFiles.fontColor,
+                    fontFamily: "Arial, sans-serif",
+                  }
+            }
             className="font-button"
           >
             Arial
@@ -42,7 +71,17 @@ const FontFamilyCard = () => {
                 payload: "monospace",
               });
             }}
-            style={{ fontFamily: "monospace" }}
+            style={
+              fontFamily === "monospace"
+                ? {
+                    color: colorFiles.primaryColor,
+                    fontFamily: "monospace",
+                  }
+                : {
+                    color: colorFiles.fontColor,
+                    fontFamily: "monospace",
+                  }
+            }
             className="font-button"
           >
             Monospace
@@ -54,7 +93,17 @@ const FontFamilyCard = () => {
                 payload: "Source Code Pro",
               });
             }}
-            style={{ fontFamily: "Source Code Pro" }}
+            style={
+              fontFamily === "Source Code Pro"
+                ? {
+                    color: colorFiles.primaryColor,
+                    fontFamily: "Source Code Pro",
+                  }
+                : {
+                    color: colorFiles.fontColor,
+                    fontFamily: "Source Code Pro",
+                  }
+            }
             className="font-button"
           >
             Code
@@ -66,7 +115,17 @@ const FontFamilyCard = () => {
                 payload: "cursive",
               });
             }}
-            style={{ fontFamily: "cursive" }}
+            style={
+              fontFamily === "cursive"
+                ? {
+                    color: colorFiles.primaryColor,
+                    fontFamily: "cursive",
+                  }
+                : {
+                    color: colorFiles.fontColor,
+                    fontFamily: "cursive",
+                  }
+            }
             className="font-button"
           >
             Cursive
@@ -78,7 +137,17 @@ const FontFamilyCard = () => {
                 payload: "Times, Times New Roman, serif",
               });
             }}
-            style={{ fontFamily: "Times, Times New Roman, serif" }}
+            style={
+              fontFamily === "Times, Times New Roman, serif"
+                ? {
+                    color: colorFiles.primaryColor,
+                    fontFamily: "Times, Times New Roman, serif",
+                  }
+                : {
+                    color: colorFiles.fontColor,
+                    fontFamily: "Times, Times New Roman, serif",
+                  }
+            }
             className="font-button"
           >
             Times
@@ -90,13 +159,23 @@ const FontFamilyCard = () => {
                 payload: "Courier New, monospace",
               });
             }}
-            style={{ fontFamily: "Courier New, monospace" }}
+            style={
+              fontFamily === "Courier New, monospace"
+                ? {
+                    color: colorFiles.primaryColor,
+                    fontFamily: "Courier New, monospace",
+                  }
+                : {
+                    color: colorFiles.fontColor,
+                    fontFamily: "Courier New, monospace",
+                  }
+            }
             className="font-button"
           >
             Courier
           </h4>
         </div>
-        <h1 className="text">Text</h1>
+        <h1 className="text-font-family">{selectTheBackgroundText()}</h1>
       </div>
     </div>
   );
