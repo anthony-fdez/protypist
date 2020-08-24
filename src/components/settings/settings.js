@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./settings.css";
 import Header from "../header/header";
 import ThemesCard from "./themesCard";
+import LanguageCard from "./languageCard";
 import FontFamilyCard from "./fontFamilyCard";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -38,6 +39,8 @@ function Settings() {
       >
         <Header text="Settings" />
         <ThemesCard />
+        <LanguageCard />
+
         <div className="container mt-5">
           <h3>Typing Settings</h3>
           <div
@@ -156,6 +159,7 @@ function Settings() {
             </div>
             <h1 className="text">{lenghtAdvanced}</h1>
           </div>
+
           <div
             className={"settings-card-words"}
             style={

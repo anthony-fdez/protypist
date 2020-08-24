@@ -6,3 +6,11 @@
   transition: 0.3s;
   transform: translateY(-5px);
 }
+.languages-top {
+  position: absolute;
+  top: 130px;
+}
+.languages-bottom {
+  position: absolute;
+  top: 190px;
+}

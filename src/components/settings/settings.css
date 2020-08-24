@@ -91,7 +91,18 @@ h2 {
   font-style: italic;
   font-size: 200px;
   pointer-events: none;
-  top: -6rem;
+  top: -5.3rem;
+}
+.text-languages {
+  position: absolute;
+  z-index: 0;
+  right: 4rem;
+  bottom: 0;
+  opacity: 0.2;
+  font-style: italic;
+  font-size: 200px;
+  pointer-events: none;
+  top: -5.3rem;
 }
 .themes-buttons {
   position: absolute;

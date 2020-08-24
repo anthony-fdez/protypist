@@ -226,6 +226,15 @@ const fontFamilyReducer = (state = "Arial, sans-serif", action) => {
   }
 };
 
+const testLanguageReducer = (state = "english", action) => {
+  switch (action.type) {
+    case "CHANGE_LANGUAGE":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
@@ -252,6 +261,7 @@ const allReducers = combineReducers({
   userIdReducer: userIdReducer,
   instaDeathReducer: instaDeathReducer,
   fontFamilyReducer: fontFamilyReducer,
+  testLanguageReducer: testLanguageReducer,
 });
 
 export default allReducers;
