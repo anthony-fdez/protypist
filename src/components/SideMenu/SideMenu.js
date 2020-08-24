@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 function SideMenu() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const fontFamily = useSelector((state) => state.fontFamilyReducer);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -50,7 +51,10 @@ function SideMenu() {
 
   return (
     <div
-      style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+      style={{
+        backgroundColor: colorFiles.secondaryBackgroundColor,
+        fontFamily: fontFamily,
+      }}
       className={"SideMenu"}
     >
       <div className="d-flex justify-content-center">

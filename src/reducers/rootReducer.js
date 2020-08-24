@@ -217,6 +217,15 @@ const instaDeathReducer = (state = false, action) => {
   }
 };
 
+const fontFamilyReducer = (state = "Arial, sans-serif", action) => {
+  switch (action.type) {
+    case "CHANGE_FONT_FAMILY":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
@@ -242,6 +251,7 @@ const allReducers = combineReducers({
   openLadderBoardMenu: openLadderBoardMenu,
   userIdReducer: userIdReducer,
   instaDeathReducer: instaDeathReducer,
+  fontFamilyReducer: fontFamilyReducer,
 });
 
 export default allReducers;

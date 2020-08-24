@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./settings.css";
 import Header from "../header/header";
 import ThemesCard from "./themesCard";
+import FontFamilyCard from "./fontFamilyCard";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
@@ -184,6 +185,7 @@ function Settings() {
           </div>
         </div>
         <h3>Ui settings</h3>
+        <FontFamilyCard />
         <div style={{ cursor: "pointer" }} className="container">
           <div
             onClick={() => {

@@ -16,12 +16,14 @@ function App() {
   const theme = useSelector((state) => state.darkModeReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`./components/themes/${colors}`);
+  const fontFamily = useSelector((state) => state.fontFamilyReducer);
 
   return (
     <div
       style={{
         backgroundColor: colorFiles.backgroundColor,
-        fontFamily: "Arial",
+        fontFamily: fontFamily,
+        fontSize: "12px",
       }}
     >
       <div>

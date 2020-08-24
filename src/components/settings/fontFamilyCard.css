@@ -1,0 +1,8 @@
+.font-button {
+  padding: 1rem;
+  transition: 0.3s;
+}
+.font-button:hover {
+  transition: 0.3s;
+  transform: translateY(-5px);
+}
