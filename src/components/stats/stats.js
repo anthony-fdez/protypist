@@ -45,6 +45,12 @@ function Stats() {
   const [chartData200, setChartData200] = useState({});
   const [data200Chart, setData200Chart] = useState();
 
+  const [chartDataTypingGame, setChartDataTypingGame] = useState([]);
+  const [dataTypingGameChart, setDataTypingGameChart] = useState();
+
+  const [chartData1000, setChartData1000] = useState({});
+  const [data1000Chart, setData1000Chart] = useState();
+
   const [
     isTypingGameStatisticsShown,
     setIsTypingGameStatisticsShown,
@@ -75,6 +81,8 @@ function Stats() {
         })
         .then((response) => {
           setData200Chart(response.data.typing200Statistics);
+          setData1000Chart(response.data.typing1000Statistics);
+          setDataTypingGameChart(response.data.typingGameStatistics);
         })
         .catch((e) => {
           setIsLoading(true);
@@ -86,26 +94,90 @@ function Stats() {
   const getTheDataForTheChart = (DATA) => {
     let wpm = [];
     let races = [];
+    let mistakes = [];
+
     if (DATA !== undefined) {
       let data = DATA;
 
       for (let i = 0; i < data.length; i++) {
         wpm.push(data[i].wpm);
+        mistakes.push(data[i].mistakes);
         races.push(i + 1);
       }
-      return { races: races, wpm: wpm };
+      return { races: races, wpm: wpm, mistakes: mistakes };
     }
   };
 
-  const chart = () => {
+  const chart200 = () => {
     if (data200Chart !== undefined) {
       const data = getTheDataForTheChart(data200Chart);
       const wpm = data.wpm;
       const races = data.races;
+      const mistakes = data.mistakes;
 
       setChartData200({
         labels: races,
         datasets: [
+          {
+            label: "Mistakes",
+            data: mistakes,
+            borderWidth: 4,
+            backgroundColor: colorFiles.fontColor,
+          },
+          {
+            label: "WPM",
+            data: wpm,
+            borderWidth: 5,
+            backgroundColor: colorFiles.primaryColor,
+          },
+        ],
+      });
+    }
+  };
+
+  const chart1000 = () => {
+    if (data1000Chart !== undefined) {
+      const data = getTheDataForTheChart(data1000Chart);
+      const wpm = data.wpm;
+      const races = data.races;
+      const mistakes = data.mistakes;
+
+      setChartData1000({
+        labels: races,
+        datasets: [
+          {
+            label: "Mistakes",
+            data: mistakes,
+            borderWidth: 4,
+            backgroundColor: colorFiles.fontColor,
+          },
+          {
+            label: "WPM",
+            data: wpm,
+            borderWidth: 5,
+            backgroundColor: colorFiles.primaryColor,
+          },
+        ],
+      });
+    }
+  };
+
+  const chartTypingGame = () => {
+    if (dataTypingGameChart !== undefined) {
+      const data = getTheDataForTheChart(dataTypingGameChart);
+      const wpm = data.wpm;
+      const races = data.races;
+      const mistakes = data.mistakes;
+
+      setChartDataTypingGame({
+        labels: races,
+        datasets: [
+          {
+            label: "Mistakes",
+            data: mistakes,
+            borderWidth: 4,
+            backgroundColor: colorFiles.fontColor,
+          },
           {
             label: "WPM",
             data: wpm,
@@ -118,8 +190,10 @@ function Stats() {
   };
 
   useEffect(() => {
-    chart();
-  }, [data200Chart]);
+    chart200();
+    chartTypingGame();
+    chart1000();
+  }, [data200Chart, data1000Chart, dataTypingGameChart]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -277,15 +351,39 @@ function Stats() {
             </div>
           </div>
           <div className="chart">
-            <Line data={chartData200} />
+            <Line
+              options={{
+                responsive: true,
+                title: { text: "Words Per Minute ", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                },
+              }}
+              data={chartDataTypingGame}
+            />
           </div>
           {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
   };
-
-  console.log(chartData200);
 
   const statistics200Component = () => {
     return (
@@ -335,6 +433,35 @@ function Stats() {
                 {Math.round(wpmAverage10races200 * 100) / 100}
               </h5>
             </div>
+          </div>
+          <div className="chart">
+            <Line
+              options={{
+                responsive: true,
+                title: { text: "Words Per Minute ", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                },
+              }}
+              data={chartData200}
+            />
           </div>
           {racesCompleted200 < 10 && timeIsUp === true && alert()}
         </div>
@@ -390,6 +517,35 @@ function Stats() {
                 {Math.round(wpmAverage10races1000 * 100) / 100}
               </h5>
             </div>
+          </div>
+          <div className="chart">
+            <Line
+              options={{
+                responsive: true,
+                title: { text: "Words Per Minute ", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                },
+              }}
+              data={chartData1000}
+            />
           </div>
           {racesCompleted1000 < 10 && timeIsUp === true && alert()}
         </div>
