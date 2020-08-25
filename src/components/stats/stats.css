@@ -42,6 +42,7 @@ h1 {
   right: 0;
   top: 0;
   transition: 0.3s;
+  margin-bottom: 6rem;
 }
 
 .typing-game-statistics-div-hidden,
@@ -116,13 +117,11 @@ h1 {
   margin: auto;
   right: 0;
   left: 0;
-  top: 300px;
+  bottom: -50px;
   z-index: 0;
   width: 95%;
   margin-top: 1rem;
   padding: 0.5rem;
   border-radius: 10px;
   transition: 0.3s;
-}
-.chart {
 }
