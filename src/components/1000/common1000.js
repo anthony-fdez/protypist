@@ -434,7 +434,9 @@ function Common1000() {
         <Header />
         <div className="statistics">
           <div className="d-flex">
-            <h5 className="mr-1">WPM: {displayWPM()} |</h5>
+            <h5 className="mr-1">
+              WPM: {displayWPM()} {isLoggedIn && "|"}
+            </h5>
             <h5
               style={
                 differenceInWPM > 0
@@ -452,7 +454,9 @@ function Common1000() {
 
           <div className="d-flex">
             <div className="d-flex mr-5">
-              <h5 className="mr-1">Errors: {latestErrors} |</h5>
+              <h5 className="mr-1">
+                Errors: {latestErrors} {isLoggedIn && "|"}
+              </h5>
               <h5
                 style={
                   differenceInErrors < 0
