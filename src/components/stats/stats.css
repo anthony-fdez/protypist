@@ -2,6 +2,7 @@
   width: 100vw;
   height: 100vh;
   transition: 0.3s;
+  overflow-y: scroll;
 }
 .Stats {
   text-align: center;
@@ -122,4 +123,6 @@ h1 {
   padding: 0.5rem;
   border-radius: 10px;
   transition: 0.3s;
+}
+.chart {
 }

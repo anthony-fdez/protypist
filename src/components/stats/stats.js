@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./stats.css";
 import Header from "../header/header";
 import Ladderboard from "./ladderboard";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, ReactReduxContext } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
+import { Line } from "react-chartjs-2";
 
 function Stats() {
   const theme = useSelector((state) => state.darkModeReducer);
@@ -41,6 +42,8 @@ function Stats() {
   const [highestSpeedOfAllTime1000, setHighestSpeedOfAllTime1000] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [chartData200, setChartData200] = useState({});
+  const [data200Chart, setData200Chart] = useState();
 
   const [
     isTypingGameStatisticsShown,
@@ -61,6 +64,62 @@ function Stats() {
     to: { opacity: 1 },
     config: { duration: 300 },
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
+
+      axios
+        .get("https://protypist.herokuapp.com/users/me", {
+          headers: headers,
+        })
+        .then((response) => {
+          setData200Chart(response.data.typing200Statistics);
+        })
+        .catch((e) => {
+          setIsLoading(true);
+          console.log(e.response);
+        });
+    }
+  }, []);
+
+  const getTheDataForTheChart = (DATA) => {
+    let wpm = [];
+    let races = [];
+    if (DATA !== undefined) {
+      let data = DATA;
+
+      for (let i = 0; i < data.length; i++) {
+        wpm.push(data[i].wpm);
+        races.push(i + 1);
+      }
+      return { races: races, wpm: wpm };
+    }
+  };
+
+  const chart = () => {
+    if (data200Chart !== undefined) {
+      const data = getTheDataForTheChart(data200Chart);
+      const wpm = data.wpm;
+      const races = data.races;
+
+      setChartData200({
+        labels: races,
+        datasets: [
+          {
+            label: "WPM",
+            data: wpm,
+            borderWidth: 5,
+            backgroundColor: colorFiles.primaryColor,
+          },
+        ],
+      });
+    }
+  };
+
+  useEffect(() => {
+    chart();
+  }, [data200Chart]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -217,11 +276,16 @@ function Stats() {
               </h5>
             </div>
           </div>
+          <div className="chart">
+            <Line data={chartData200} />
+          </div>
           {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
   };
+
+  console.log(chartData200);
 
   const statistics200Component = () => {
     return (
