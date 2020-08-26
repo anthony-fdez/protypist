@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./stats.css";
 import Header from "../header/header";
 import Ladderboard from "./ladderboard";
+import formatTheTime from "../functions/formatTime";
 import { useSelector, useDispatch, ReactReduxContext } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
@@ -43,13 +44,13 @@ function Stats() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [chartData200, setChartData200] = useState({});
-  const [data200Chart, setData200Chart] = useState();
+  const [data200, setData200] = useState();
 
   const [chartDataTypingGame, setChartDataTypingGame] = useState([]);
-  const [dataTypingGameChart, setDataTypingGameChart] = useState();
+  const [dataTypingGame, setDataTypingGame] = useState();
 
   const [chartData1000, setChartData1000] = useState({});
-  const [data1000Chart, setData1000Chart] = useState();
+  const [data1000, setData1000] = useState();
 
   const [
     isTypingGameStatisticsShown,
@@ -80,9 +81,9 @@ function Stats() {
           headers: headers,
         })
         .then((response) => {
-          setData200Chart(response.data.typing200Statistics);
-          setData1000Chart(response.data.typing1000Statistics);
-          setDataTypingGameChart(response.data.typingGameStatistics);
+          setData200(response.data.typing200Statistics);
+          setData1000(response.data.typing1000Statistics);
+          setDataTypingGame(response.data.typingGameStatistics);
         })
         .catch((e) => {
           setIsLoading(true);
@@ -109,8 +110,8 @@ function Stats() {
   };
 
   const chart200 = () => {
-    if (data200Chart !== undefined) {
-      const data = getTheDataForTheChart(data200Chart);
+    if (data200 !== undefined) {
+      const data = getTheDataForTheChart(data200);
       const wpm = data.wpm;
       const races = data.races;
       const mistakes = data.mistakes;
@@ -136,8 +137,8 @@ function Stats() {
   };
 
   const chart1000 = () => {
-    if (data1000Chart !== undefined) {
-      const data = getTheDataForTheChart(data1000Chart);
+    if (data1000 !== undefined) {
+      const data = getTheDataForTheChart(data1000);
       const wpm = data.wpm;
       const races = data.races;
       const mistakes = data.mistakes;
@@ -163,8 +164,8 @@ function Stats() {
   };
 
   const chartTypingGame = () => {
-    if (dataTypingGameChart !== undefined) {
-      const data = getTheDataForTheChart(dataTypingGameChart);
+    if (dataTypingGame !== undefined) {
+      const data = getTheDataForTheChart(dataTypingGame);
       const wpm = data.wpm;
       const races = data.races;
       const mistakes = data.mistakes;
@@ -193,12 +194,11 @@ function Stats() {
     chart200();
     chartTypingGame();
     chart1000();
-  }, [data200Chart, data1000Chart, dataTypingGameChart]);
+  }, [data200, data1000, dataTypingGame]);
 
   useEffect(() => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
-
       axios
         .get("https://protypist.herokuapp.com/users/statistics", {
           headers: headers,
@@ -221,7 +221,6 @@ function Stats() {
   useEffect(() => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
-
       axios
         .get("https://protypist.herokuapp.com/users/statistics200", {
           headers: headers,
@@ -272,27 +271,6 @@ function Stats() {
     return () => clearTimeout(myTimeOut);
   }, []);
 
-  const formatTheTime = (time) => {
-    let hours;
-    let minutes;
-    let seconds;
-
-    if (time !== undefined) {
-      hours = Math.floor(time / 3600);
-      time = time % 3600;
-      minutes = Math.floor(time / 60);
-      seconds = time % 60;
-    }
-
-    const formtatedTimeString = `${
-      hours === 0 ? "00" : hours < 10 ? "0" + hours : hours
-    }:${minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes}:${
-      seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds
-    }`;
-
-    return formtatedTimeString;
-  };
-
   const alert = () => {
     return (
       <p className={"alert-warning alert-not-enough-races"}>
@@ -302,7 +280,6 @@ function Stats() {
       </p>
     );
   };
-
   const statisticsTypingGameComponent = () => {
     return (
       <div key="statisticsTypingGame">
@@ -379,11 +356,16 @@ function Stats() {
               data={chartDataTypingGame}
             />
           </div>
+          <div className="tests-history">
+            <h3>Tests History</h3>
+          </div>
           {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
   };
+
+  console.log(dataTypingGame);
 
   const statistics200Component = () => {
     return (
