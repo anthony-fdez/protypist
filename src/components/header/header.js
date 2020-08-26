@@ -331,7 +331,7 @@ function Header(props) {
     return (
       <div
         className={isLogInMenuOpen ? "login-menu-open" : "login-menu-closed"}
-        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+        style={{ backgroundColor: colorFiles.secondSecondaryBackgroundColor }}
       >
         <div className="log-in-header">
           <h2>Log in</h2>
@@ -354,7 +354,7 @@ function Header(props) {
                 }}
                 className="login-input"
                 style={{
-                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
               ></input>
@@ -371,7 +371,7 @@ function Header(props) {
                 type="password"
                 className="login-input"
                 style={{
-                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
               ></input>
@@ -399,7 +399,7 @@ function Header(props) {
               }}
               className="sign-up-login-button-menu"
               style={{
-                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                backgroundColor: colorFiles.secondaryBackgroundColor,
               }}
             >
               <h5>Create Account</h5>
@@ -414,7 +414,7 @@ function Header(props) {
     return (
       <div
         className={isSignUpMenuOpen ? "signUp-menu-open" : "signUp-menu-closed"}
-        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+        style={{ backgroundColor: colorFiles.secondSecondaryBackgroundColor }}
       >
         <div className="signUp-header">
           <h2>Sign Up</h2>
@@ -439,7 +439,7 @@ function Header(props) {
                 }}
                 className="login-input"
                 style={{
-                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
               ></input>
@@ -452,7 +452,7 @@ function Header(props) {
                 }}
                 className="login-input"
                 style={{
-                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
               ></input>
@@ -466,7 +466,7 @@ function Header(props) {
                 type="password"
                 className="login-input"
                 style={{
-                  backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                  backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
               ></input>
@@ -517,7 +517,7 @@ function Header(props) {
         className={
           isLogOutMenuOpen ? "log-out-menu-open" : "log-out-menu-closed"
         }
-        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+        style={{ backgroundColor: colorFiles.secondSecondaryBackgroundColor }}
       >
         <div className="log-in-header">
           <h2>Log Out</h2>
@@ -557,7 +557,7 @@ function Header(props) {
             getThePasswordLogout(e);
           }}
           style={{
-            backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+            backgroundColor: colorFiles.secondaryBackgroundColor,
             color: colorFiles.fontColor,
           }}
         ></input>
@@ -696,7 +696,6 @@ function Header(props) {
           <h5
             onMouseOver={() => {
               setIsSkillMenuShown(true);
-              console.log(isSkillLevelMenuShown);
             }}
             onMouseLeave={() => {
               setIsSkillMenuShown(false);

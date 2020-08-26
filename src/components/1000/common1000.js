@@ -68,7 +68,6 @@ function Common1000() {
         mistakes: realMistakes,
         date: getTheDate(),
       };
-      console.log(data);
       const headers = {
         Authorization: jwt,
       };
@@ -93,7 +92,6 @@ function Common1000() {
           headers: headers,
         })
         .then((response) => {
-          console.log(response);
           setWpmAverage10races(response.data.wpmAverageLast10Races1000);
           setWpmAverageAllTime(response.data.wpmAverageAllTime1000);
           setAverageMistakes(response.data.averageMistakes1000);

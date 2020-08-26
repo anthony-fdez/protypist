@@ -635,7 +635,6 @@ function Stats() {
               .reverse()
               .slice(0, seeAllHistory200 ? DATA.length : 20)
               .map((data, index) => {
-                console.log(data);
                 return (
                   <div
                     style={
@@ -697,7 +696,6 @@ function Stats() {
               .reverse()
               .slice(0, seeAllHistory1000 ? DATA.length : 20)
               .map((data, index) => {
-                console.log(data);
                 return (
                   <div
                     style={
@@ -758,7 +756,6 @@ function Stats() {
               .reverse()
               .slice(0, seeAllHistoryQuote ? DATA.length : 20)
               .map((data, index) => {
-                console.log(data);
                 return (
                   <div
                     style={
