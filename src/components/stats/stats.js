@@ -666,6 +666,7 @@ function Stats() {
         <div>
           {!seeAllHistory200 && (
             <h3
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 setSeeAllHistory200(true);
               }}
@@ -727,6 +728,7 @@ function Stats() {
         <div>
           {!seeAllHistory1000 && (
             <h3
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 setSeeAllHistory1000(true);
               }}
@@ -787,6 +789,7 @@ function Stats() {
         <div>
           {!seeAllHistoryQuote && (
             <h3
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 setSeeAllHistoryQuote(true);
               }}
