@@ -59,8 +59,8 @@ h1 {
   top: 0;
   opacity: 0;
   transition: 0.3s;
-  transform: scale(0.8);
   pointer-events: none;
+  transform: translateY(100px);
 }
 
 .stats-box {
@@ -126,10 +126,17 @@ h1 {
   transition: 0.3s;
 }
 .tests-history {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 .test-history-item {
   display: flex;
   width: 60%;
   margin: auto;
+  padding: 0.5rem;
+  align-content: center;
+}
+.loading-div-stats {
+  position: absolute;
+  right: 15%;
+  top: 5px;
 }

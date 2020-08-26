@@ -41,6 +41,9 @@ function Stats() {
   const [racesCompleted1000, setRacesCompleted1000] = useState(0);
   const [averageMistakes1000, setAverageMistakes1000] = useState(0);
   const [highestSpeedOfAllTime1000, setHighestSpeedOfAllTime1000] = useState(0);
+  const [seeAllHistoryQuote, setSeeAllHistoryQuote] = useState(false);
+  const [seeAllHistory200, setSeeAllHistory200] = useState(false);
+  const [seeAllHistory1000, setSeeAllHistory1000] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
   const [chartData200, setChartData200] = useState({});
@@ -190,6 +193,37 @@ function Stats() {
     }
   };
 
+  const loadingComponent = () => {
+    return (
+      <div
+        style={{
+          color: colorFiles.fontColor,
+          position: "absolute",
+        }}
+        className={"loading-div"}
+      >
+        <div class="lds-ellipsis">
+          <div
+            style={{ background: colorFiles.fontColor }}
+            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+          ></div>
+          <div
+            style={{ background: colorFiles.fontColor }}
+            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+          ></div>
+          <div
+            style={{ background: colorFiles.fontColor }}
+            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+          ></div>
+          <div
+            style={{ background: colorFiles.fontColor }}
+            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+          ></div>
+        </div>
+      </div>
+    );
+  };
+
   useEffect(() => {
     chart200();
     chartTypingGame();
@@ -294,7 +328,13 @@ function Stats() {
             color: colorFiles.fontColor,
           }}
         >
-          <h4>Typing Test Statistics:</h4>
+          <div className="d-flex">
+            <h4>Quotes Statistics:</h4>
+            <div className="loading-div-stats">
+              {isLoading && loadingComponent()}
+            </div>
+          </div>
+
           <hr className={theme ? "white-hr" : "dark-hr"}></hr>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
@@ -340,14 +380,35 @@ function Stats() {
                         maxTicksLimit: 10,
                       },
                       gridLines: {
-                        display: false,
+                        display: true,
                       },
                     },
                   ],
                   xAxes: [
                     {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                      },
+
                       gridLines: {
-                        display: false,
+                        display: true,
+                      },
+                    },
+                  ],
+                },
+                annotation: {
+                  annotations: [
+                    {
+                      type: "line",
+                      mode: "horizontal",
+                      scaleID: "y-axis-0",
+                      value: 200,
+                      borderColor: "rgb(75, 192, 192)",
+                      borderWidth: 4,
+                      label: {
+                        enabled: false,
+                        content: "Test label",
                       },
                     },
                   ],
@@ -356,46 +417,8 @@ function Stats() {
               data={chartDataTypingGame}
             />
           </div>
-          <div className="tests-history">
-            <h3>Tests History</h3>
-            <h2 style={{ paddingLeft: "1vw" }}></h2>
-            <h2 style={{ position: "absolute", left: "13vw" }}>wpm</h2>
-            <h2 style={{ position: "absolute", left: "28vw" }}>s</h2>
-            <h2 style={{ position: "absolute", right: "1vw" }}></h2>
-            {dataTypingGame !== undefined &&
-              dataTypingGame
-                .slice(0)
-                .reverse()
-                .map((data, index) => {
-                  console.log(data);
-                  return (
-                    <div
-                      style={
-                        index % 2 === 0
-                          ? {
-                              backgroundColor: colorFiles.backgroundColor,
-                              position: "relative",
-                            }
-                          : { position: "relative" }
-                      }
-                      className="test-history-item"
-                      key={index}
-                    >
-                      <h2 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h2>
-                      <h2 style={{ position: "absolute", left: "13vw" }}>
-                        {data.wpm}wpm
-                      </h2>
-                      <h2 style={{ position: "absolute", left: "28vw" }}>
-                        {data.time}s
-                      </h2>
-                      <h2 style={{ position: "absolute", right: "1vw" }}>
-                        {" "}
-                        {data.mistakes}
-                      </h2>
-                    </div>
-                  );
-                })}
-          </div>
+          <hr style={{ background: colorFiles.hrColor }}></hr>
+          {!isLoading && testHistoryQuote(dataTypingGame)}
           {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
@@ -416,7 +439,12 @@ function Stats() {
             color: colorFiles.fontColor,
           }}
         >
-          <h4>200 Most Common Words Statistics:</h4>
+          <div className="d-flex">
+            <h4>200 Common Statistics:</h4>
+            <div className="loading-div-stats">
+              {isLoading && loadingComponent()}
+            </div>
+          </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
@@ -464,14 +492,19 @@ function Stats() {
                         maxTicksLimit: 10,
                       },
                       gridLines: {
-                        display: false,
+                        display: true,
                       },
                     },
                   ],
                   xAxes: [
                     {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                      },
+
                       gridLines: {
-                        display: false,
+                        display: true,
                       },
                     },
                   ],
@@ -480,6 +513,8 @@ function Stats() {
               data={chartData200}
             />
           </div>
+          <hr style={{ background: colorFiles.hrColor }}></hr>
+          {!isLoading && testHistory200(data200)}
           {racesCompleted200 < 10 && timeIsUp === true && alert()}
         </div>
       </div>
@@ -500,7 +535,12 @@ function Stats() {
             color: colorFiles.fontColor,
           }}
         >
-          <h4>1000 Most Common Words Statistics:</h4>
+          <div className="d-flex">
+            <h4>1000 Common Statistics:</h4>
+            <div className="loading-div-stats">
+              {isLoading && loadingComponent()}
+            </div>
+          </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
@@ -548,14 +588,19 @@ function Stats() {
                         maxTicksLimit: 10,
                       },
                       gridLines: {
-                        display: false,
+                        display: true,
                       },
                     },
                   ],
                   xAxes: [
                     {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                      },
+
                       gridLines: {
-                        display: false,
+                        display: true,
                       },
                     },
                   ],
@@ -564,7 +609,194 @@ function Stats() {
               data={chartData1000}
             />
           </div>
+          <hr style={{ background: colorFiles.hrColor }}></hr>
+          {!isLoading && testHistory200(data1000)}
           {racesCompleted1000 < 10 && timeIsUp === true && alert()}
+        </div>
+      </div>
+    );
+  };
+
+  const testHistory200 = (DATA) => {
+    return (
+      <div>
+        <h3>Tests History</h3>
+        <div style={{ position: "relative", width: "60%", margin: "auto" }}>
+          <div className="test-history-item">
+            <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+            <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+            <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+            <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+          </div>
+        </div>
+        <div className="tests-history">
+          {DATA !== undefined &&
+            DATA.slice(0)
+              .reverse()
+              .slice(0, seeAllHistory200 ? DATA.length : 20)
+              .map((data, index) => {
+                console.log(data);
+                return (
+                  <div
+                    style={
+                      index % 2 === 0
+                        ? {
+                            backgroundColor: colorFiles.backgroundColor,
+                            position: "relative",
+                          }
+                        : { position: "relative" }
+                    }
+                    className="test-history-item"
+                    key={index}
+                  >
+                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                    <h4 style={{ position: "absolute", left: "13vw" }}>
+                      {data.wpm}wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", left: "28vw" }}>
+                      {data.time}s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {data.mistakes}
+                    </h4>
+                  </div>
+                );
+              })}
+        </div>
+        <div>
+          {!seeAllHistory200 && (
+            <h3
+              onClick={() => {
+                setSeeAllHistory200(true);
+              }}
+            >
+              See all
+            </h3>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const testHistory1000 = (DATA) => {
+    return (
+      <div>
+        <h3>Tests History</h3>
+        <div style={{ position: "relative", width: "60%", margin: "auto" }}>
+          <div className="test-history-item">
+            <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+            <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+            <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+            <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+          </div>
+        </div>
+        <div className="tests-history">
+          {DATA !== undefined &&
+            DATA.slice(0)
+              .reverse()
+              .slice(0, seeAllHistory1000 ? DATA.length : 20)
+              .map((data, index) => {
+                console.log(data);
+                return (
+                  <div
+                    style={
+                      index % 2 === 0
+                        ? {
+                            backgroundColor: colorFiles.backgroundColor,
+                            position: "relative",
+                          }
+                        : { position: "relative" }
+                    }
+                    className="test-history-item"
+                    key={index}
+                  >
+                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                    <h4 style={{ position: "absolute", left: "13vw" }}>
+                      {data.wpm}wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", left: "28vw" }}>
+                      {data.time}s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {data.mistakes}
+                    </h4>
+                  </div>
+                );
+              })}
+        </div>
+        <div>
+          {!seeAllHistory1000 && (
+            <h3
+              onClick={() => {
+                setSeeAllHistory1000(true);
+              }}
+            >
+              See all
+            </h3>
+          )}
+        </div>
+      </div>
+    );
+  };
+  const testHistoryQuote = (DATA) => {
+    return (
+      <div>
+        <h3>Tests History</h3>
+        <div style={{ position: "relative", width: "60%", margin: "auto" }}>
+          <div className="test-history-item">
+            <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+            <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+            <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+            <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+          </div>
+        </div>
+        <div className="tests-history">
+          {DATA !== undefined &&
+            DATA.slice(0)
+              .reverse()
+              .slice(0, seeAllHistoryQuote ? DATA.length : 20)
+              .map((data, index) => {
+                console.log(data);
+                return (
+                  <div
+                    style={
+                      index % 2 === 0
+                        ? {
+                            backgroundColor: colorFiles.backgroundColor,
+                            position: "relative",
+                          }
+                        : { position: "relative" }
+                    }
+                    className="test-history-item"
+                    key={index}
+                  >
+                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                    <h4 style={{ position: "absolute", left: "13vw" }}>
+                      {data.wpm}wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", left: "28vw" }}>
+                      {data.time}s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {data.mistakes}
+                    </h4>
+                  </div>
+                );
+              })}
+        </div>
+        <div>
+          {!seeAllHistoryQuote && (
+            <h3
+              onClick={() => {
+                setSeeAllHistoryQuote(true);
+              }}
+            >
+              See all
+            </h3>
+          )}
         </div>
       </div>
     );
@@ -588,40 +820,14 @@ function Stats() {
       >
         <Header text="Yous statistics!" />
         <div className="statistics-select-buttons">
-          {isLoading && (
-            <div
-              style={{
-                color: colorFiles.fontColor,
-                position: "absolute",
-                left: "250px",
-              }}
-              className={"loading-div"}
-            >
-              <div class="lds-ellipsis">
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-              </div>
-            </div>
-          )}
           <div
             onClick={() => {
               setIsTypingGameStatisticsShown(true);
               setIsTyping200StatisticsShown(false);
               setIsTyping1000StatisticsShown(false);
+              setSeeAllHistory1000(false);
+              setSeeAllHistory200(false);
+              setSeeAllHistoryQuote(false);
             }}
             className={
               isTypingGameStatisticsShown
@@ -644,6 +850,9 @@ function Stats() {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(true);
               setIsTyping1000StatisticsShown(false);
+              setSeeAllHistory1000(false);
+              setSeeAllHistory200(false);
+              setSeeAllHistoryQuote(false);
             }}
             className={
               isTyping200StatisticsShown
@@ -666,6 +875,9 @@ function Stats() {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(false);
               setIsTyping1000StatisticsShown(true);
+              setSeeAllHistory1000(false);
+              setSeeAllHistory200(false);
+              setSeeAllHistoryQuote(false);
             }}
             className={
               isTyping1000StatisticsShown

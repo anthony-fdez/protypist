@@ -819,12 +819,10 @@
   margin: auto;
 }
 .loading-div-statistics-dark {
-  color: rgb(255, 255, 255);
   position: absolute;
   left: 230px;
 }
 .loading-div-statistics-light {
-  color: rgb(0, 0, 0);
   position: absolute;
   left: 230px;
 }
