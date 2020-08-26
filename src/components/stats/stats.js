@@ -358,14 +358,49 @@ function Stats() {
           </div>
           <div className="tests-history">
             <h3>Tests History</h3>
+            <h2 style={{ paddingLeft: "1vw" }}></h2>
+            <h2 style={{ position: "absolute", left: "13vw" }}>wpm</h2>
+            <h2 style={{ position: "absolute", left: "28vw" }}>s</h2>
+            <h2 style={{ position: "absolute", right: "1vw" }}></h2>
+            {dataTypingGame !== undefined &&
+              dataTypingGame
+                .slice(0)
+                .reverse()
+                .map((data, index) => {
+                  console.log(data);
+                  return (
+                    <div
+                      style={
+                        index % 2 === 0
+                          ? {
+                              backgroundColor: colorFiles.backgroundColor,
+                              position: "relative",
+                            }
+                          : { position: "relative" }
+                      }
+                      className="test-history-item"
+                      key={index}
+                    >
+                      <h2 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h2>
+                      <h2 style={{ position: "absolute", left: "13vw" }}>
+                        {data.wpm}wpm
+                      </h2>
+                      <h2 style={{ position: "absolute", left: "28vw" }}>
+                        {data.time}s
+                      </h2>
+                      <h2 style={{ position: "absolute", right: "1vw" }}>
+                        {" "}
+                        {data.mistakes}
+                      </h2>
+                    </div>
+                  );
+                })}
           </div>
           {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
   };
-
-  console.log(dataTypingGame);
 
   const statistics200Component = () => {
     return (

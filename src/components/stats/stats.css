@@ -128,3 +128,8 @@ h1 {
 .tests-history {
   margin-top: 3rem;
 }
+.test-history-item {
+  display: flex;
+  width: 60%;
+  margin: auto;
+}

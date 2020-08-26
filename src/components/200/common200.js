@@ -54,6 +54,8 @@ function Common200() {
   const [averageMistakes, setAverageMistakes] = useState();
   const [highestSpeedAllTime, setHighestSpeedOfAllTime] = useState();
 
+  const [speedOverSeconds, setSpeedOverSeconds] = useState([]);
+
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
       const data = {
@@ -86,7 +88,6 @@ function Common200() {
           headers: headers,
         })
         .then((response) => {
-          console.log(response);
           setWpmAverage10races(response.data.wpmAverageLast10Races200);
           setWpmAverageAllTime(response.data.wpmAverageAllTime200);
           setAverageMistakes(response.data.averageMistakes200);
@@ -176,9 +177,6 @@ function Common200() {
         random = Math.floor(Math.random() * json.indonesian.length);
         randomWord = json.indonesian[random];
       }
-
-      console.log(randomWord);
-
       for (let i = 0; i < randomWord.length; i++) {
         wordsArray.push(randomWord[i]);
       }
