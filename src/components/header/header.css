@@ -1,9 +1,7 @@
 @media only screen and (min-width: 1501px) {
   .Header {
-    background-color: rgb(50, 50, 50);
     padding: 1rem;
     border-radius: 10px;
-    color: white;
     transition: 0.3s;
     display: flex;
     justify-content: center;
@@ -20,7 +18,6 @@
     top: 1rem;
     width: 350px;
     height: 500px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -32,7 +29,6 @@
     top: 1rem;
     width: 350px;
     height: 500px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -47,7 +43,6 @@
     top: 1rem;
     width: 350px;
     height: 480px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -59,7 +54,6 @@
     top: 1rem;
     width: 350px;
     height: 500px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -74,7 +68,6 @@
     top: 1rem;
     width: 350px;
     height: 385px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -86,7 +79,6 @@
     top: 1rem;
     width: 350px;
     height: 385px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -100,7 +92,6 @@
     margin: 1rem;
   }
   .darkned-background-active {
-    background-color: rgba(0, 0, 0, 0.527);
     position: absolute;
     height: 100vh;
     width: 100vw;
@@ -135,7 +126,6 @@
     width: 100%;
     outline: none;
     border: none;
-    background-color: rgb(131, 131, 131);
     border-radius: 5px;
     padding: 5px;
     transition: 0.3s;
@@ -178,7 +168,6 @@
     padding: 1rem;
     border-radius: 10px;
     text-align: center;
-    background-color: rgb(131, 131, 131);
     width: 100%;
     transition: 0.3s;
     cursor: pointer;
@@ -306,10 +295,8 @@
 }
 @media only screen and (max-width: 1500px) {
   .Header {
-    background-color: rgb(50, 50, 50);
     padding: 1rem;
     margin: 0;
-    color: white;
     transition: 0.3s;
     display: flex;
     justify-content: center;
@@ -328,7 +315,6 @@
     top: 1rem;
     width: 350px;
     height: 500px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -340,7 +326,6 @@
     top: 1rem;
     width: 350px;
     height: 500px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -355,7 +340,6 @@
     top: 1rem;
     width: 350px;
     height: 480px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -367,7 +351,6 @@
     top: 1rem;
     width: 350px;
     height: 500px;
-    background-color: rgb(60, 60, 60);
     padding: 1rem;
     border-radius: 10px;
     z-index: 21;
@@ -440,7 +423,6 @@
     width: 100%;
     outline: none;
     border: none;
-    background-color: rgb(131, 131, 131);
     border-radius: 5px;
     padding: 5px;
     transition: 0.3s;
@@ -484,7 +466,6 @@
     padding: 1rem;
     border-radius: 10px;
     text-align: center;
-    background-color: rgb(131, 131, 131);
     width: 100%;
     transition: 0.3s;
     cursor: pointer;

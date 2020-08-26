@@ -2,8 +2,6 @@
   .TypingTest-page {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(31, 30, 30);
-    color: white;
     transition: 0.3s;
   }
 
@@ -191,7 +189,6 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
     transition: 0.3s;
     z-index: 5;
   }
@@ -222,7 +219,6 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(220, 220, 220);
     height: 303px;
     pointer-events: none;
     transition: 0.6s;
@@ -232,7 +228,6 @@
   .about-the-text-shown {
     transition: 0.6s;
     height: 303px;
-    background-color: rgb(220, 220, 220);
     border-radius: 10px;
     position: fixed;
     bottom: 4rem;
@@ -252,7 +247,6 @@
     padding-left: 0;
   }
   .picture-div {
-    background-color: rgb(175, 175, 175);
     border-radius: 10px;
     margin-right: 1rem;
     width: 200px;
@@ -284,7 +278,6 @@
   }
   .side-menu-open {
     z-index: 40;
-    background-color: rgb(51, 51, 51);
     position: fixed;
     top: 0;
     right: 0;
@@ -297,7 +290,6 @@
   .side-menu-closed {
     transform: translateX(400px);
     z-index: 40;
-    background-color: rgb(51, 51, 51);
     position: fixed;
     transition: 0.3s;
     top: 0;
@@ -311,7 +303,6 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.6);
     transition: 0.3s;
   }
   .darkened-background-off {
@@ -321,13 +312,11 @@
     position: fixed;
     height: 100%;
     transition: 0.3s;
-    background-color: rgba(129, 37, 37, 0);
   }
 
   .side-menu-list-item {
     margin: 1rem;
     padding: 1rem;
-    background-color: rgb(102, 102, 102);
     border-radius: 10px;
     transition: 0.3s;
     cursor: pointer;
@@ -335,7 +324,6 @@
   .side-menu-list-item:hover {
     transition: 0.3s;
     transform: translateY(-3px);
-    background-color: rgb(121, 121, 121);
   }
   .side-menu-container {
     position: relative;
@@ -355,13 +343,11 @@
   }
   .history-div {
     padding: 1rem;
-    background-color: rgb(30, 30, 30);
     transition: 0.3s;
     margin-bottom: 6rem;
   }
 
   .submit-quote-button {
-    background-color: rgb(0, 119, 255);
     position: fixed;
     height: 70px;
     width: 100%;
@@ -373,13 +359,11 @@
     transition: 0.2s;
   }
   .submit-quote-button:hover {
-    background-color: rgb(35, 216, 147);
     height: 80px;
     transition: 0.2s;
   }
   .submit-quote-menu-open {
     position: fixed;
-    background-color: rgb(75, 75, 75);
     padding: 1rem;
     border-radius: 10px;
     margin: auto;
@@ -394,7 +378,6 @@
   }
   .submit-quote-menu-closed {
     position: fixed;
-    background-color: rgb(49, 49, 49);
     opacity: 0;
     margin: auto;
     right: 0;
@@ -415,7 +398,6 @@
   .submit-quote-form-button {
     width: 570px;
     border-radius: 10px;
-    background-color: rgb(0, 119, 255);
     padding: 1rem;
     position: absolute;
     bottom: 10px;
@@ -433,8 +415,6 @@
   .TypingTest-page {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(31, 30, 30);
-    color: white;
     transition: 0.3s;
   }
   .TypingTest {
@@ -611,7 +591,6 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
     transition: 0.3s;
     z-index: 5;
   }
@@ -633,7 +612,6 @@
     left: 200px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(50, 50, 50);
     height: 303px;
     opacity: 1;
     pointer-events: none;
@@ -644,7 +622,6 @@
   .about-the-text-shown {
     transition: 0.6s;
     height: 273px;
-    background-color: rgb(50, 50, 50);
     border-radius: 10px;
     position: fixed;
     bottom: 1rem;
@@ -664,7 +641,6 @@
     padding-left: 0;
   }
   .picture-div {
-    background-color: rgb(175, 175, 175);
     border-radius: 10px;
     margin-right: 1rem;
     width: 170px;
@@ -693,7 +669,6 @@
   }
   .side-menu-open {
     z-index: 40;
-    background-color: rgb(51, 51, 51);
     position: fixed;
     top: 0;
     right: 0;
@@ -706,7 +681,6 @@
   .side-menu-closed {
     transform: translateX(400px);
     z-index: 40;
-    background-color: rgb(51, 51, 51);
     position: fixed;
     transition: 0.3s;
     top: 0;
@@ -721,7 +695,6 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.6);
     transition: 0.3s;
   }
   .darkened-background-off {
@@ -731,13 +704,11 @@
     position: fixed;
     height: 100%;
     transition: 0.3s;
-    background-color: rgba(129, 37, 37, 0);
   }
 
   .side-menu-list-item {
     margin: 1rem;
     padding: 1rem;
-    background-color: rgb(102, 102, 102);
     border-radius: 10px;
     transition: 0.3s;
     cursor: pointer;
@@ -745,7 +716,6 @@
   .side-menu-list-item:hover {
     transition: 0.3s;
     transform: translateY(-3px);
-    background-color: rgb(121, 121, 121);
   }
   .side-menu-container {
     position: relative;
@@ -765,12 +735,10 @@
   }
   .history-div {
     padding: 1rem;
-    background-color: rgb(30, 30, 30);
     transition: 0.3s;
   }
 
   .submit-quote-button {
-    background-color: rgb(0, 119, 255);
     position: fixed;
     height: 70px;
     width: 100%;
@@ -782,7 +750,6 @@
     transition: 0.2s;
   }
   .submit-quote-button:hover {
-    background-color: rgb(35, 216, 147);
     height: 100px;
     transition: 0.2s;
   }
@@ -793,18 +760,15 @@
 }
 .link:hover {
   text-decoration: none;
-  color: rgb(255, 255, 255);
 }
 .link-h5 {
   transition: 0.2s;
   padding: 1rem;
   text-align: center;
-  background-color: rgb(0, 132, 255);
 }
 .link-h5:hover {
   transition: 0.2s;
   transform: translateY(-3px);
-  background-color: rgb(35, 216, 147);
 }
 .linkURL {
   text-decoration: none;
@@ -823,7 +787,6 @@
 }
 
 .linkURL:hover {
-  color: white;
   text-decoration: none;
   background-size: 4px 50px;
 }

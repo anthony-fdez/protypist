@@ -8,13 +8,11 @@ h5 {
 }
 .left-menu-link {
   text-decoration: none;
-  color: white;
 }
 .left-menu-link:hover {
   text-decoration: none;
 }
 .SideMenu {
-  color: white;
   width: 200px;
   margin: 0;
   height: 100vh;

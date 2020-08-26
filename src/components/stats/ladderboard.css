@@ -6,7 +6,6 @@
   position: absolute;
   z-index: 1000;
   margin: 1rem;
-  background-color: rgb(49, 49, 49);
   padding: 2rem;
   transition: 0.3s;
   border-radius: 10px;
@@ -25,7 +24,6 @@
   pointer-events: none;
   margin: 1rem;
   opacity: 0;
-  background-color: rgb(49, 49, 49);
   padding: 2rem;
   transition: 0.3s;
   overflow: hidden;
@@ -38,15 +36,12 @@
   height: 74vh;
 }
 .ladderboard-row {
-  color: white;
   display: flex;
-  background-color: rgb(29, 29, 29);
   position: relative;
   align-items: center;
 }
 .ladderboard-row {
   display: flex;
-  background-color: rgb(29, 29, 29);
   position: relative;
   align-items: center;
 }
