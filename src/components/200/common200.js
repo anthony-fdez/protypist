@@ -63,6 +63,7 @@ function Common200() {
         time: seconds,
         mistakes: realMistakes,
         date: getTheDate(),
+        accuracy: calculateAccuracy(),
       };
       const headers = {
         Authorization: jwt,
@@ -464,6 +465,7 @@ function Common200() {
       );
 
       setAccuracy(accuracy);
+      return accuracy;
     }
   };
 
@@ -521,7 +523,7 @@ function Common200() {
                 style={
                   accuracy > 96
                     ? { color: "rgb(41, 230, 50)" }
-                    : { color: "rgba(255, 255, 255)" }
+                    : { color: colorFiles.fontColor }
                 }
               >
                 {accuracy === 0 ? "..." : `${accuracy}%`}

@@ -109,6 +109,7 @@ function TypingTest() {
         mistakes: realMistakes,
         textTypedId: textTypedId,
         date: getTheDate(),
+        accuracy: calculateAccuracy(),
       };
       const headers = {
         Authorization: jwt,
@@ -521,6 +522,7 @@ function TypingTest() {
       );
 
       setAccuracy(accuracy);
+      return accuracy;
     }
   };
 
@@ -912,7 +914,13 @@ function TypingTest() {
           </div>
           <div className="d-flex">
             <h5 className="mr-2">Acuracy: </h5>
-            <h5 style={accuracy > 96 ? { color: "rgb(41, 230, 50)" } : {}}>
+            <h5
+              style={
+                accuracy > 96
+                  ? { color: "rgb(41, 230, 50)" }
+                  : { color: colorFiles.fontColor }
+              }
+            >
               {accuracy === 0 ? "..." : `${accuracy}%`}
             </h5>
           </div>
