@@ -151,7 +151,6 @@ function TypingTest() {
           headers: headers,
         })
         .then((response) => {
-          console.log(response);
           setWpmAverage10races(response.data.wpmAverageLast10Races);
           setWpmAverageAllTime(response.data.wpmAverageAllTime);
           setAverageMistakes(response.data.averageMistakes);

@@ -84,6 +84,7 @@ function Stats() {
           headers: headers,
         })
         .then((response) => {
+          console.log(response);
           setData200(response.data.typing200Statistics);
           setData1000(response.data.typing1000Statistics);
           setDataTypingGame(response.data.typingGameStatistics);
@@ -202,7 +203,7 @@ function Stats() {
         }}
         className={"loading-div"}
       >
-        <div class="lds-ellipsis">
+        <div className="lds-ellipsis">
           <div
             style={{ background: colorFiles.fontColor }}
             className={theme ? "loading-dot-dark" : "loading-dot-light"}
@@ -314,6 +315,7 @@ function Stats() {
       </p>
     );
   };
+
   const statisticsTypingGameComponent = () => {
     return (
       <div key="statisticsTypingGame">
@@ -393,22 +395,6 @@ function Stats() {
 
                       gridLines: {
                         display: true,
-                      },
-                    },
-                  ],
-                },
-                annotation: {
-                  annotations: [
-                    {
-                      type: "line",
-                      mode: "horizontal",
-                      scaleID: "y-axis-0",
-                      value: 200,
-                      borderColor: "rgb(75, 192, 192)",
-                      borderWidth: 4,
-                      label: {
-                        enabled: false,
-                        content: "Test label",
                       },
                     },
                   ],
@@ -621,11 +607,12 @@ function Stats() {
     return (
       <div>
         <h3>Tests History</h3>
-        <div style={{ position: "relative", width: "60%", margin: "auto" }}>
+        <div style={{ position: "relative", width: "70%", margin: "auto" }}>
           <div className="test-history-item">
             <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
             <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
             <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+            <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
             <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
           </div>
         </div>
@@ -659,6 +646,10 @@ function Stats() {
                       {" "}
                       {data.mistakes}
                     </h4>
+                    <h4 style={{ position: "absolute", right: "10vw" }}>
+                      {" "}
+                      {`${data.accuracy}%`}
+                    </h4>
                   </div>
                 );
               })}
@@ -683,11 +674,12 @@ function Stats() {
     return (
       <div>
         <h3>Tests History</h3>
-        <div style={{ position: "relative", width: "60%", margin: "auto" }}>
+        <div style={{ position: "relative", width: "70%", margin: "auto" }}>
           <div className="test-history-item">
             <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
             <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
             <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+            <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
             <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
           </div>
         </div>
@@ -721,6 +713,10 @@ function Stats() {
                       {" "}
                       {data.mistakes}
                     </h4>
+                    <h4 style={{ position: "absolute", right: "10vw" }}>
+                      {" "}
+                      {`${data.accuracy}%`}
+                    </h4>
                   </div>
                 );
               })}
@@ -744,11 +740,12 @@ function Stats() {
     return (
       <div>
         <h3>Tests History</h3>
-        <div style={{ position: "relative", width: "60%", margin: "auto" }}>
+        <div style={{ position: "relative", width: "70%", margin: "auto" }}>
           <div className="test-history-item">
             <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
             <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
             <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+            <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
             <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
           </div>
         </div>
@@ -781,6 +778,10 @@ function Stats() {
                     <h4 style={{ position: "absolute", right: "1vw" }}>
                       {" "}
                       {data.mistakes}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "10vw" }}>
+                      {" "}
+                      {`${data.accuracy}%`}
                     </h4>
                   </div>
                 );

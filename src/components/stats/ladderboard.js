@@ -152,7 +152,7 @@ function Ladderboard(props) {
               }}
               className={"loading-div-ladderboard"}
             >
-              <div class="lds-ellipsis">
+              <div className="lds-ellipsis">
                 <div
                   style={{ background: colorFiles.fontColor }}
                   className={theme ? "loading-dot-dark" : "loading-dot-light"}
@@ -280,6 +280,7 @@ function Ladderboard(props) {
         {data.map((user, index) => {
           return (
             <div
+              key={index}
               className={"ladderboard-row"}
               style={
                 userId === user._id
