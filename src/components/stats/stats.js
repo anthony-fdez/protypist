@@ -94,7 +94,7 @@ function Stats() {
           console.log(e.response);
         });
     }
-  }, [jswt]);
+  }, [jwt]);
 
   const getTheDataForTheChart = (DATA) => {
     let wpm = [];
