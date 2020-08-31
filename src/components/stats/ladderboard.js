@@ -38,7 +38,7 @@ function Ladderboard(props) {
           console.log(e.response);
         });
     }
-  }, []);
+  }, [jwt]);
 
   const sortByWpm = () => {
     if (isLoggedIn) {

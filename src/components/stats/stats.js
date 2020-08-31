@@ -94,7 +94,7 @@ function Stats() {
           console.log(e.response);
         });
     }
-  }, []);
+  }, [jswt]);
 
   const getTheDataForTheChart = (DATA) => {
     let wpm = [];
@@ -229,7 +229,7 @@ function Stats() {
     chart200();
     chartTypingGame();
     chart1000();
-  }, [data200, data1000, dataTypingGame]);
+  }, [data200, data1000, dataTypingGame, jwt]);
 
   useEffect(() => {
     if (isLoggedIn) {
