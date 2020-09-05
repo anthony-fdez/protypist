@@ -304,6 +304,7 @@
     height: 100%;
     position: fixed;
     transition: 0.3s;
+    background-color: rgba(0, 0, 0, 0.603);
   }
   .darkened-background-off {
     pointer-events: none;
