@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useDebugValue } from "react";
+import React, { useState, useEffect } from "react";
 import "./TypingTest.css";
-
-//components
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import displayTheArray from "../functions/displayTheArray";
-
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
@@ -18,23 +15,15 @@ function TypingTest() {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
-  const previousWPM = useSelector(
-    (state) => state.previousWPMReducerTypingGame
-  );
-
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestErrors = useSelector(
     (state) => state.latestErrorsReducerTypingGame
   );
-  const previousErrors = useSelector(
-    (state) => state.previousErrorsReducerTypingGame
-  );
   const isSideMenuOpen = useSelector((state) => state.openSideMenuReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
-
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
 
@@ -67,7 +56,7 @@ function TypingTest() {
   const [textTypedHistory, setTextTypedHistory] = useState([]);
   const [highestSpeed, setHighestSpeed] = useState();
   const [highestSpeedDate, setHighestSpeedDate] = useState();
-  const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
+  // const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
   const [message, setMessage] = useState("");

@@ -5,24 +5,18 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function useKeyPress(targetKey) {
-  // State for keeping track of whether key is pressed
   const [keyPressed, setKeyPressed] = useState(false);
 
-  // If pressed key is our target key then set to true
   function downHandler({ key }) {
     if (key === targetKey) {
       setKeyPressed(true);
     }
   }
-
-  // If released key is our target key then set to false
   const upHandler = ({ key }) => {
     if (key === targetKey) {
       setKeyPressed(false);
     }
   };
-
-  // Add event listeners
   useEffect(() => {
     window.addEventListener("keydown", downHandler);
     window.addEventListener("keyup", upHandler);
@@ -31,12 +25,11 @@ function useKeyPress(targetKey) {
         setKeyPressed(false);
       }
     }, 300);
-    // Remove event listeners on cleanup
     return () => {
       window.removeEventListener("keydown", downHandler);
       window.removeEventListener("keyup", upHandler);
     };
-  }, [keyPressed]); // Empty array ensures that effect is only run on mount and unmount
+  }, [keyPressed]);
 
   return keyPressed;
 }
@@ -44,86 +37,59 @@ function useKeyPress(targetKey) {
 function Keyboard() {
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-
   const pressedA = useKeyPress("a");
   const pressedCapitalA = useKeyPress("A");
-
   const pressedB = useKeyPress("b");
   const pressedCapitalB = useKeyPress("B");
-
   const pressedC = useKeyPress("c");
   const pressedCapitalC = useKeyPress("C");
-
   const pressedD = useKeyPress("d");
   const pressedCapitalD = useKeyPress("D");
-
   const pressedE = useKeyPress("e");
   const pressedCapitalE = useKeyPress("E");
-
   const pressedF = useKeyPress("f");
   const pressedCapitalF = useKeyPress("F");
-
   const pressedG = useKeyPress("g");
   const pressedCapitalG = useKeyPress("G");
-
   const pressedH = useKeyPress("h");
   const pressedCapitalH = useKeyPress("H");
-
   const pressedI = useKeyPress("i");
   const pressedCapitalI = useKeyPress("I");
-
   const pressedJ = useKeyPress("j");
   const pressedCapitalJ = useKeyPress("J");
-
   const pressedK = useKeyPress("k");
   const pressedCapitalK = useKeyPress("K");
-
   const pressedL = useKeyPress("l");
   const pressedCapitalL = useKeyPress("L");
-
   const pressedM = useKeyPress("m");
   const pressedCapitalM = useKeyPress("M");
-
   const pressedN = useKeyPress("n");
   const pressedCapitalN = useKeyPress("N");
-
   const pressedO = useKeyPress("o");
   const pressedCapitalO = useKeyPress("O");
-
   const pressedP = useKeyPress("p");
   const pressedCapitalP = useKeyPress("P");
-
   const pressedQ = useKeyPress("q");
   const pressedCapitalQ = useKeyPress("Q");
-
   const pressedR = useKeyPress("r");
   const pressedCapitalR = useKeyPress("R");
-
   const pressedS = useKeyPress("s");
   const pressedCapitalS = useKeyPress("S");
-
   const pressedT = useKeyPress("t");
-  let pressedCapitalT = useKeyPress("T");
-
+  const pressedCapitalT = useKeyPress("T");
   const pressedU = useKeyPress("u");
   const pressedCapitalU = useKeyPress("U");
-
   const pressedV = useKeyPress("v");
   const pressedCapitalV = useKeyPress("V");
-
   const pressedW = useKeyPress("w");
   const pressedCapitalW = useKeyPress("W");
-
   const pressedX = useKeyPress("x");
   const pressedCapitalX = useKeyPress("X");
-
   const pressedY = useKeyPress("y");
   const pressedCapitalY = useKeyPress("Y");
-
   const pressedZ = useKeyPress("z");
   const pressedCapitalZ = useKeyPress("Z");
 
-  //Numbers and simbols
   const pressed1 = useKeyPress("1");
   const pressed2 = useKeyPress("2");
   const pressed3 = useKeyPress("3");
@@ -166,13 +132,8 @@ function Keyboard() {
   const pressedBiggerThan = useKeyPress(">");
   const pressedForwardSlash = useKeyPress("/");
   const pressedQuestion = useKeyPress("?");
-
   const pressedBackSpace = useKeyPress("Backspace");
   const pressedShift = useKeyPress("Shift");
-  const pressedEnter = useKeyPress("Enter");
-  const pressedControl = useKeyPress("Control");
-  const pressedTab = useKeyPress("Tab");
-  const pressedAlt = useKeyPress("Alt");
 
   return (
     <div>

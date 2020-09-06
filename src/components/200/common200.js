@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./common200.css";
-
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import displayTheArray from "../functions/displayTheArray";
-
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
@@ -21,7 +19,6 @@ function Common200() {
     (state) => state.keyboardOnScreenReducer
   );
   const latestErrors = useSelector((state) => state.latestErrorsReducer200);
-  const previousErrors = useSelector((state) => state.previousErrorsReducer200);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const colors = useSelector((state) => state.themeReducer);
@@ -53,8 +50,6 @@ function Common200() {
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
   const [averageMistakes, setAverageMistakes] = useState();
   const [highestSpeedAllTime, setHighestSpeedOfAllTime] = useState();
-
-  const [speedOverSeconds, setSpeedOverSeconds] = useState([]);
 
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
@@ -491,11 +486,9 @@ function Common200() {
                   : { color: "rgba(230, 41, 41)" }
               }
             >
-              {isLoggedIn
-                ? differenceInWPM > 0
-                  ? `+${differenceInWPM}`
-                  : differenceInWPM
-                : ""}
+              {isLoggedIn && differenceInWPM > 0
+                ? `+${differenceInWPM}`
+                : differenceInWPM}
             </h5>
           </div>
           <div className="d-flex">

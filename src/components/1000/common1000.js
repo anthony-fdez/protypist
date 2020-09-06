@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./common1000.css";
-
 import Header from "../header/header";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import displayTheArray from "../functions/displayTheArray";
-
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
@@ -19,16 +17,10 @@ function Common1000() {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
-  const previousWPM = useSelector((state) => state.previousWPMReducer1000);
   const latestErrors = useSelector((state) => state.latestErrorsReducer1000);
-  const previousErrors = useSelector(
-    (state) => state.previousErrorsReducer1000
-  );
   const instaDeath = useSelector((state) => state.instaDeathReducer);
-
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./settings.css";
 import Header from "../header/header";
 import ThemesCard from "./themesCard";

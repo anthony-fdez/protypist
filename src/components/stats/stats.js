@@ -3,7 +3,7 @@ import "./stats.css";
 import Header from "../header/header";
 import Ladderboard from "./ladderboard";
 import formatTheTime from "../functions/formatTime";
-import { useSelector, useDispatch, ReactReduxContext } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
@@ -15,7 +15,6 @@ function Stats() {
   const isLadderBoardMenuOpen = useSelector(
     (state) => state.openLadderBoardMenu
   );
-
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
 
@@ -84,7 +83,6 @@ function Stats() {
           headers: headers,
         })
         .then((response) => {
-          console.log(response);
           setData200(response.data.typing200Statistics);
           setData1000(response.data.typing1000Statistics);
           setDataTypingGame(response.data.typingGameStatistics);
@@ -819,7 +817,7 @@ function Stats() {
         style={{ backgroundColor: colorFiles.backgroundColor }}
         className={"Stats"}
       >
-        <Header text="Yous statistics!" />
+        <Header />
         <div className="statistics-select-buttons">
           <div
             onClick={() => {

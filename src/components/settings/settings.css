@@ -163,6 +163,7 @@ h2 {
   margin-right: 1rem;
   z-index: 3;
   width: 5.7rem;
+  transition: 0.1s;
 }
 @media only screen and (max-width: 1500px) {
   .settings-alert {

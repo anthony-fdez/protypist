@@ -1,6 +1,4 @@
 import { combineReducers } from "redux";
-import { findAllByPlaceholderText } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
 
 const darkModeReducer = (state = true, action) => {
   switch (action.type) {
