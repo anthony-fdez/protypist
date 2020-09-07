@@ -686,6 +686,18 @@ function Header(props) {
         <h2 className="user-name">{userName}</h2>
         <h2>{props.text}</h2>
         <div
+          onClick={() => {
+            setIsLoginMenuOpen(false);
+            setIsSignUpMenuOpen(false);
+            setIsLogOutMenuOpen(false);
+          }}
+          className={
+            isLogOutMenuOpen || isSignUpMenuOpen || isLogInMenuOpen // isSubmitQuoteMenuOpen
+              ? "darkened-background-header-on"
+              : "darkened-background-header-off"
+          }
+        ></div>
+        <div
           className={
             isSkillLevelMenuShown ? "skill-level-shown" : "skill-level-hidden"
           }
