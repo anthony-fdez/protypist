@@ -10,9 +10,11 @@ import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
 import Stats from "./components/stats/stats";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
@@ -28,42 +30,64 @@ function App() {
 
   const colorFiles = require(`./components/themes/${colors}`);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      const data = {
-        theme: colors,
-        language: testLanguage,
-        testLenghtAdvanced: lenghtAdvanced,
-        onScreenKeyboard: keyboardOnScreen,
-        fontFamily: fontFamily,
-        realTimeWpm: realTimeWPM,
-        instaDeathMode: instaDeath,
-      };
-      const headers = {
-        Authorization: jwt,
-      };
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     const headers = {
+  //       Authorization: jwt,
+  //     };
 
-      axios
-        .patch("http://localhost:5000/users/me/settings", data, {
-          headers: headers,
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-  }, [
-    fontFamily,
-    colors,
-    length,
-    lenghtAdvanced,
-    realTimeWPM,
-    keyboardOnScreen,
-    instaDeath,
-    testLanguage,
-  ]);
+  //     axios
+  //       .get("https://protypist.herokuapp.com/users/me/settings", {
+  //         headers: headers,
+  //       })
+  //       .then((response) => {
+  //         console.log(response);
+  //         dispatch({
+  //           type: "SELECT_THEME",
+  //           payload: response.data.theme,
+  //         });
+  //       })
+  //       .then((e) => {
+  //         console.log(e);
+  //       });
+  //   }
+  // }, [jwt]);
+
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     const data = {
+  //       theme: colors,
+  //       language: testLanguage,
+  //       testLenghtAdvanced: lenghtAdvanced,
+  //       testLenght: length,
+  //       onScreenKeyboard: keyboardOnScreen,
+  //       fontFamily: fontFamily,
+  //       realTimeWpm: realTimeWPM,
+  //       instaDeathMode: instaDeath,
+  //     };
+  //     const headers = {
+  //       Authorization: jwt,
+  //     };
+
+  //     axios
+  //       .patch("https://protypist.herokuapp.com/users/me/settings", data, {
+  //         headers: headers,
+  //       })
+  //       .then((response) => {})
+  //       .catch((e) => {
+  //         console.log(e);
+  //       });
+  //   }
+  // }, [
+  //   fontFamily,
+  //   colors,
+  //   length,
+  //   lenghtAdvanced,
+  //   realTimeWPM,
+  //   keyboardOnScreen,
+  //   instaDeath,
+  //   testLanguage,
+  // ]);
 
   return (
     <div
