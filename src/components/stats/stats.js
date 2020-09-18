@@ -3,12 +3,14 @@ import "./stats.css";
 import Header from "../header/header";
 import Ladderboard from "./ladderboard";
 import formatTheTime from "../functions/formatTime";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 
 function Stats() {
+  const dispatch = useDispatch();
+
   const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
@@ -93,6 +95,14 @@ function Stats() {
         });
     }
   }, [jwt]);
+
+  useEffect(() => {
+    if (isLadderBoardMenuOpen) {
+      dispatch({
+        type: "TOGGLE_OPENING_LADDERBOARD_MENU",
+      });
+    }
+  }, []);
 
   const getTheDataForTheChart = (DATA) => {
     let wpm = [];

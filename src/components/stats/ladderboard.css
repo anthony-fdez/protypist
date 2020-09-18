@@ -2,13 +2,13 @@
   margin: auto;
   left: 200px;
   right: 0;
-  height: 96vh;
+  height: 100vh;
   position: absolute;
   z-index: 1000;
-  margin: 1rem;
-  padding: 2rem;
+  margin: 0rem;
+  margin-right: 0rem;
+  padding: 3rem;
   transition: 0.3s;
-  border-radius: 10px;
   overflow: hidden;
 }
 .ladderboard-header {
@@ -22,7 +22,7 @@
   position: absolute;
   z-index: 0;
   pointer-events: none;
-  margin: 1rem;
+  margin: 0rem;
   opacity: 0;
   padding: 2rem;
   transition: 0.3s;
