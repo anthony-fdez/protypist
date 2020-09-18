@@ -9,14 +9,14 @@ import Common200 from "./components/200/common200";
 import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
 import Stats from "./components/stats/stats";
-import axios from "axios";
+// import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
-  const jwt = useSelector((state) => state.JWTreducer);
+  // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  // const jwt = useSelector((state) => state.JWTreducer);
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`./components/themes/${colors}`);
