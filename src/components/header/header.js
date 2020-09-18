@@ -199,6 +199,7 @@ function Header(props) {
           if ((e.response.status = 400)) {
             setMessage("Wrong Email or Password");
             setIsErrorWarningShown(true);
+            console.log(e.response);
           } else {
             setMessage("There is an error in the server, try again later.");
             setIsErrorWarningShown(true);

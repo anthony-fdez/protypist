@@ -9,25 +9,40 @@ import Common200 from "./components/200/common200";
 import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
 import Stats from "./components/stats/stats";
-// import axios from "axios";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
-  // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
-  // const jwt = useSelector((state) => state.JWTreducer);
+  const dispatch = useDispatch();
 
-  // const length = useSelector((state) => state.lengthReducerNormal);
-  // const lenghtAdvanced = useSelector((state) => state.lengthReducerAdvanced);
-  // const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
-  // const keyboardOnScreen = useSelector(
-  //   (state) => state.keyboardOnScreenReducer
-  // );
-  // const instaDeath = useSelector((state) => state.instaDeathReducer);
-  // const testLanguage = useSelector((state) => state.testLanguageReducer);
-
+  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const jwt = useSelector((state) => state.JWTreducer);
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`./components/themes/${colors}`);
+
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     const headers = {
+  //       Authorization: jwt,
+  //     };
+
+  //     axios
+  //       .get("https://protypist.herokuapp.com/users/me/settings", {
+  //         headers: headers,
+  //       })
+  //       .then((response) => {
+  //         console.log(response);
+  //         dispatch({
+  //           type: "SELECT_THEME",
+  //           payload: response.data.theme,
+  //         });
+  //       })
+  //       .then((e) => {
+  //         console.log(e);
+  //       });
+  //   }
+  // }, [jwt]);
 
   // useEffect(() => {
   //   if (isLoggedIn) {
@@ -35,6 +50,7 @@ function App() {
   //       theme: colors,
   //       language: testLanguage,
   //       testLenghtAdvanced: lenghtAdvanced,
+  //       testLenght: length,
   //       onScreenKeyboard: keyboardOnScreen,
   //       fontFamily: fontFamily,
   //       realTimeWpm: realTimeWPM,
@@ -45,12 +61,10 @@ function App() {
   //     };
 
   //     axios
-  //       .patch("http://localhost:5000/users/me/settings", data, {
+  //       .patch("https://protypist.herokuapp.com/users/me/settings", data, {
   //         headers: headers,
   //       })
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
+  //       .then((response) => {})
   //       .catch((e) => {
   //         console.log(e);
   //       });
