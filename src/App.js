@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
@@ -9,61 +9,62 @@ import Common200 from "./components/200/common200";
 import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
 import Stats from "./components/stats/stats";
-import axios from "axios";
+// import axios from "axios";
 import { useSelector } from "react-redux";
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
-  const jwt = useSelector((state) => state.JWTreducer);
+  // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  // const jwt = useSelector((state) => state.JWTreducer);
+
+  // const length = useSelector((state) => state.lengthReducerNormal);
+  // const lenghtAdvanced = useSelector((state) => state.lengthReducerAdvanced);
+  // const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
+  // const keyboardOnScreen = useSelector(
+  //   (state) => state.keyboardOnScreenReducer
+  // );
+  // const instaDeath = useSelector((state) => state.instaDeathReducer);
+  // const testLanguage = useSelector((state) => state.testLanguageReducer);
+
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
   const colors = useSelector((state) => state.themeReducer);
-  const length = useSelector((state) => state.lengthReducerNormal);
-  const lenghtAdvanced = useSelector((state) => state.lengthReducerAdvanced);
-  const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
-  const keyboardOnScreen = useSelector(
-    (state) => state.keyboardOnScreenReducer
-  );
-  const instaDeath = useSelector((state) => state.instaDeathReducer);
-  const testLanguage = useSelector((state) => state.testLanguageReducer);
-
   const colorFiles = require(`./components/themes/${colors}`);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      const data = {
-        theme: colors,
-        language: testLanguage,
-        testLenghtAdvanced: lenghtAdvanced,
-        onScreenKeyboard: keyboardOnScreen,
-        fontFamily: fontFamily,
-        realTimeWpm: realTimeWPM,
-        instaDeathMode: instaDeath,
-      };
-      const headers = {
-        Authorization: jwt,
-      };
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     const data = {
+  //       theme: colors,
+  //       language: testLanguage,
+  //       testLenghtAdvanced: lenghtAdvanced,
+  //       onScreenKeyboard: keyboardOnScreen,
+  //       fontFamily: fontFamily,
+  //       realTimeWpm: realTimeWPM,
+  //       instaDeathMode: instaDeath,
+  //     };
+  //     const headers = {
+  //       Authorization: jwt,
+  //     };
 
-      axios
-        .patch("http://localhost:5000/users/me/settings", data, {
-          headers: headers,
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-  }, [
-    fontFamily,
-    colors,
-    length,
-    lenghtAdvanced,
-    realTimeWPM,
-    keyboardOnScreen,
-    instaDeath,
-    testLanguage,
-  ]);
+  //     axios
+  //       .patch("http://localhost:5000/users/me/settings", data, {
+  //         headers: headers,
+  //       })
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((e) => {
+  //         console.log(e);
+  //       });
+  //   }
+  // }, [
+  //   fontFamily,
+  //   colors,
+  //   length,
+  //   lenghtAdvanced,
+  //   realTimeWPM,
+  //   keyboardOnScreen,
+  //   instaDeath,
+  //   testLanguage,
+  // ]);
 
   return (
     <div
