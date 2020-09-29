@@ -243,7 +243,7 @@ function Settings() {
           className="gitHub-link-div"
         >
           <a
-            style={{ color: colorFiles.fontColor }}
+            style={{ color: colorFiles.contrastFontColor }}
             className="gitHub-link"
             href="https://github.com/anthony-fdez/protypist"
             target="blank"
