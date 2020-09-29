@@ -266,3 +266,24 @@ h2 {
   display: flex;
   align-items: center;
 }
+.gitHub-link-div {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  align-items: center;
+  position: fixed;
+  left: 200px;
+  bottom: 16px;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 0px 5px 5px 0px;
+  transition: 0.3s;
+}
+.gitHub-link {
+  font-size: 20px;
+}
+.gitHub-icon {
+  transform: scale(1.4);
+  margin-right: 10px;
+}
