@@ -65,7 +65,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-primary" : "btn btn-dark"}
+                className={theme ? "btn btn-light" : "btn btn-dark"}
               >
                 25
               </button>
@@ -79,7 +79,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={"btn btn-primary"}
+                className={"btn btn-light"}
               >
                 50
               </button>
@@ -94,7 +94,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-primary" : "btn btn-dark"}
+                className={theme ? "btn btn-light" : "btn btn-dark"}
               >
                 75
               </button>
@@ -123,7 +123,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-primary" : "btn btn-dark"}
+                className={theme ? "btn btn-light" : "btn btn-dark"}
               >
                 25
               </button>
@@ -137,7 +137,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-primary" : "btn btn-dark"}
+                className={theme ? "btn btn-light" : "btn btn-dark"}
               >
                 50
               </button>
@@ -152,7 +152,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-primary" : "btn btn-dark"}
+                className={theme ? "btn btn-light" : "btn btn-dark"}
               >
                 75
               </button>

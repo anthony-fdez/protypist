@@ -580,7 +580,7 @@ function Header(props) {
       <div className="log-in-button">
         <button
           onClick={() => setIsLoginMenuOpen(!isLogInMenuOpen)}
-          className="btn btn-primary"
+          className="btn btn-light"
           style={{
             backgroundColor: colorFiles.primaryColor,
             color: colorFiles.contrastFontColor,
@@ -607,7 +607,7 @@ function Header(props) {
             color: colorFiles.contrastFontColor,
             border: "none",
           }}
-          className="btn btn-primary"
+          className="btn btn-light"
         >
           Logout
         </button>

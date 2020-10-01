@@ -67,7 +67,7 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "EZZY"
-                  ? "difficulty-btn btn btn-primary mr-2"
+                  ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
               }
             >
@@ -79,7 +79,7 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "NORMAL"
-                  ? "difficulty-btn btn btn-primary mr-2"
+                  ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
               }
             >
@@ -91,7 +91,7 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "HARD"
-                  ? "difficulty-btn btn btn-primary mr-2"
+                  ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
               }
             >
@@ -103,7 +103,7 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "HARDER"
-                  ? "difficulty-btn btn btn-primary mr-2"
+                  ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
               }
             >

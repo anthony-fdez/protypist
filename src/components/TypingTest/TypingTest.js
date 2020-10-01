@@ -1038,7 +1038,7 @@ function TypingTest() {
                   setProgress(1);
                   calculateAccuracy();
                 }}
-                className="btn btn-primary mr-3"
+                className="btn btn-light mr-3"
                 style={{
                   backgroundColor: colorFiles.primaryColor,
                   color: colorFiles.contrastFontColor,
@@ -1055,7 +1055,7 @@ function TypingTest() {
                   setRealMistakes(0);
                   calculateAccuracy();
                 }}
-                className="btn btn-primary"
+                className="btn btn-light"
                 style={{
                   backgroundColor: colorFiles.primaryColor,
                   color: colorFiles.contrastFontColor,
