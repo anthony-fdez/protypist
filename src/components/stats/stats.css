@@ -134,9 +134,13 @@ h1 {
   margin: auto;
   padding: 0.5rem;
   align-content: center;
+  align-items: center;
 }
 .loading-div-stats {
   position: absolute;
   right: 15%;
   top: 5px;
+}
+h4 {
+  margin: 0;
 }

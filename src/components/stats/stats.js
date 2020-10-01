@@ -604,7 +604,7 @@ function Stats() {
             />
           </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
-          {!isLoading && testHistory200(data1000)}
+          {!isLoading && testHistory1000(data1000)}
           {racesCompleted1000 < 10 && timeIsUp === true && alert()}
         </div>
       </div>
@@ -615,14 +615,17 @@ function Stats() {
     return (
       <div>
         <h3>Tests History</h3>
+        <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
         <div style={{ position: "relative", width: "70%", margin: "auto" }}>
-          <div className="test-history-item">
-            <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
-            <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
-            <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
-            <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
-            <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
-          </div>
+          {data200 !== undefined && data200.length !== 0 && (
+            <div className="test-history-item">
+              <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+              <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+              <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+              <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
+              <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+            </div>
+          )}
         </div>
         <div className="tests-history">
           {DATA !== undefined &&
@@ -662,18 +665,31 @@ function Stats() {
                 );
               })}
         </div>
-        <div>
-          {!seeAllHistory200 && (
-            <h3
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                setSeeAllHistory200(true);
-              }}
-            >
-              See all
-            </h3>
-          )}
-        </div>
+        {data200 !== undefined && data200.length > 20 && (
+          <div>
+            {!seeAllHistoryQuote && (
+              <h3
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setSeeAllHistoryQuote(true);
+                }}
+              >
+                See all
+              </h3>
+            )}
+          </div>
+        )}
+        {data200 !== undefined && data200.length === 0 && (
+          <div
+            className="test-history-item"
+            style={{
+              backgroundColor: colorFiles.backgroundColor,
+              color: colorFiles.fontColor,
+            }}
+          >
+            <h4>You haven't done any test yet.</h4>
+          </div>
+        )}
       </div>
     );
   };
@@ -682,14 +698,17 @@ function Stats() {
     return (
       <div>
         <h3>Tests History</h3>
+        <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
         <div style={{ position: "relative", width: "70%", margin: "auto" }}>
-          <div className="test-history-item">
-            <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
-            <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
-            <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
-            <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
-            <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
-          </div>
+          {data1000 !== undefined && data1000.length !== 0 && (
+            <div className="test-history-item">
+              <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+              <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+              <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+              <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
+              <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+            </div>
+          )}
         </div>
         <div className="tests-history">
           {DATA !== undefined &&
@@ -729,34 +748,51 @@ function Stats() {
                 );
               })}
         </div>
-        <div>
-          {!seeAllHistory1000 && (
-            <h3
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                setSeeAllHistory1000(true);
-              }}
-            >
-              See all
-            </h3>
-          )}
-        </div>
+        {data1000 !== undefined && data1000.length > 20 && (
+          <div>
+            {!seeAllHistoryQuote && (
+              <h3
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setSeeAllHistoryQuote(true);
+                }}
+              >
+                See all
+              </h3>
+            )}
+          </div>
+        )}
+        {data1000 !== undefined && data1000.length === 0 && (
+          <div
+            className="test-history-item"
+            style={{
+              backgroundColor: colorFiles.backgroundColor,
+              color: colorFiles.fontColor,
+            }}
+          >
+            <h4>You haven't done any test yet.</h4>
+          </div>
+        )}
       </div>
     );
   };
+
   const testHistoryQuote = (DATA) => {
     return (
       <div>
         <h3>Tests History</h3>
-        <div style={{ position: "relative", width: "70%", margin: "auto" }}>
-          <div className="test-history-item">
-            <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
-            <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
-            <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
-            <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
-            <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+        <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
+        {dataTypingGame !== undefined && dataTypingGame.length !== 0 && (
+          <div style={{ position: "relative", width: "70%", margin: "auto" }}>
+            <div className="test-history-item">
+              <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+              <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+              <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+              <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
+              <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+            </div>
           </div>
-        </div>
+        )}
         <div className="tests-history">
           {DATA !== undefined &&
             DATA.slice(0)
@@ -795,18 +831,31 @@ function Stats() {
                 );
               })}
         </div>
-        <div>
-          {!seeAllHistoryQuote && (
-            <h3
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                setSeeAllHistoryQuote(true);
-              }}
-            >
-              See all
-            </h3>
-          )}
-        </div>
+        {dataTypingGame !== undefined && dataTypingGame.length > 20 && (
+          <div>
+            {!seeAllHistoryQuote && (
+              <h3
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setSeeAllHistoryQuote(true);
+                }}
+              >
+                See all
+              </h3>
+            )}
+          </div>
+        )}
+        {dataTypingGame !== undefined && dataTypingGame.length === 0 && (
+          <div
+            className="test-history-item"
+            style={{
+              backgroundColor: colorFiles.backgroundColor,
+              color: colorFiles.fontColor,
+            }}
+          >
+            <h4>You haven't done any test yet.</h4>
+          </div>
+        )}
       </div>
     );
   };
