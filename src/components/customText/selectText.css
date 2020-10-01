@@ -1,8 +1,12 @@
 .select-text-div {
-  width: 100%;
+  width: 90%;
+  max-width: 90%;
   margin-top: 3rem;
   padding: 1rem;
   border-radius: 10px;
+  margin: auto;
+  margin-top: 70px;
+  word-wrap: break-word;
 }
 .select-text-input {
   width: 100%;
