@@ -282,6 +282,9 @@
     text-align: left;
     transition: 0.2s;
     pointer-events: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
+    height: 240px;
+    overflow: hidden;
   }
   .skill-level-menu-hidden {
     padding: 1rem;
@@ -291,6 +294,8 @@
     transition: 0.2s;
     transform: translateY(10px);
     pointer-events: none;
+    height: 10px;
+    overflow: hidden;
   }
 }
 @media only screen and (max-width: 1500px) {
@@ -561,18 +566,18 @@
     justify-content: center;
     align-items: center;
   }
-  .skill-level {
+  .skill-level-shown {
     position: absolute;
     right: 13rem;
     top: 1.5rem;
     cursor: pointer;
+    z-index: 100;
   }
-  .skill-level {
+  .skill-level-hidden {
     position: absolute;
     right: 13rem;
     top: 1.5rem;
-    z-index: 10;
-    cursor: pointer;
+    z-index: 0;
   }
   .skill-level-menu-shown {
     padding: 1rem;
@@ -580,20 +585,20 @@
     text-align: left;
     transition: 0.2s;
     pointer-events: none;
-    height: 230px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
+    height: 240px;
     overflow: hidden;
   }
   .skill-level-menu-hidden {
-    border-radius: 10px;
     padding: 1rem;
+    border-radius: 10px;
     text-align: left;
     opacity: 0;
-    overflow: hidden;
     transition: 0.2s;
     transform: translateY(10px);
     pointer-events: none;
-    z-index: -4;
-    height: 0px;
+    height: 10px;
+    overflow: hidden;
   }
 }
 .darkened-background-header-on {
