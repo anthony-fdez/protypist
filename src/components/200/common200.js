@@ -486,9 +486,11 @@ function Common200() {
                   : { color: "rgba(230, 41, 41)" }
               }
             >
-              {isLoggedIn && differenceInWPM > 0
-                ? `+${differenceInWPM}`
-                : differenceInWPM}
+              {isLoggedIn
+                ? differenceInWPM > 0
+                  ? `+${differenceInWPM}`
+                  : differenceInWPM
+                : ""}
             </h5>
           </div>
           <div className="d-flex">
