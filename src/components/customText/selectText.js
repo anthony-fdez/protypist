@@ -41,7 +41,7 @@ const SelectText = () => {
         isMenuOpen ? "select-text-div-shown" : "select-text-div-hidden"
       }
     >
-      <h4>Type of paste the text you want to type in the box below!</h4>
+      <h4>Type or paste the text you want to type in the box below!</h4>
       <hr style={{ background: colorFiles.hrColor }}></hr>
       <textarea
         wrap="soft"
