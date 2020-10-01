@@ -1,0 +1,32 @@
+.select-text-div {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.select-text-input {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  text-align: left;
+}
+.start-button {
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.select-text-info-div {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.select-text-info {
+  display: flex;
+}
