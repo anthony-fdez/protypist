@@ -9,7 +9,7 @@
   margin-right: 0rem;
   padding: 3rem;
   transition: 0.3s;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 .ladderboard-header {
   display: flex;
@@ -32,8 +32,7 @@
 
 .ladderboard-table {
   padding: 2rem;
-  overflow-y: scroll;
-  height: 74vh;
+  margin-bottom: 2rem;
 }
 .ladderboard-row {
   display: flex;
@@ -57,12 +56,12 @@
 }
 .ladderboard-name-item {
   position: absolute;
-  left: 4rem;
+  left: 3rem;
   padding: 1rem;
 }
 .ladderboard-races-item {
   position: absolute;
-  right: 27vw;
+  right: 28vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
@@ -70,7 +69,7 @@
 }
 .ladderboard-time-item {
   position: absolute;
-  right: 1vw;
+  right: 2vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
@@ -78,7 +77,7 @@
 }
 .ladderboard-averageWpm-item {
   position: absolute;
-  right: 9vw;
+  right: 10vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
@@ -87,7 +86,7 @@
 
 .ladderboard-item-higest {
   position: absolute;
-  right: 18vw;
+  right: 19vw;
   padding: 1rem;
   width: 5rem;
   display: flex;
@@ -108,7 +107,7 @@
 }
 .ladderboard-averageWpm-info {
   position: absolute;
-  right: 12vw;
+  right: 13vw;
 }
 .ladderboard-last10races-info {
   position: absolute;
