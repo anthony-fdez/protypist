@@ -41,10 +41,6 @@ const CustomText = () => {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
-
-  const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
-  const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
-  const [message, setMessage] = useState("");
   const [instaDeathFail, setInstaDeathFail] = useState(false);
 
   useEffect(() => {
@@ -83,15 +79,18 @@ const CustomText = () => {
   }, [newGame, finished, instaDeathFail, textReducer]);
 
   useEffect(() => {
-    setSpanArray(
-      displayTheArray(
-        textArrayCharacters,
-        charactersTyped,
-        colorFiles,
-        infoAboutCharacter
-      )
-    );
-  }, [charactersTyped, textArrayCharacters, finished, instaDeathFail]);
+    if (newGame === true) {
+      setSpanArray(blankSpanArray);
+    } else
+      setSpanArray(
+        displayTheArray(
+          textArrayCharacters,
+          charactersTyped,
+          colorFiles,
+          infoAboutCharacter
+        )
+      );
+  }, [charactersTyped, textArrayCharacters, newGame]);
 
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {
@@ -159,16 +158,6 @@ const CustomText = () => {
       calculateAccuracy();
       setCharactersTyped(0);
       setSeconds(0);
-
-      dispatch({
-        type: "SET_LATEST_WPM_200",
-        payload: calculateWordsPerMinute(),
-      });
-
-      dispatch({
-        type: "SET_LATEST_ERRORS_200",
-        payload: realMistakes,
-      });
     } else if (
       e.target.value.length === textArrayCharacters.length &&
       mistakes < 5
@@ -288,39 +277,6 @@ const CustomText = () => {
     config: { duration: 200 },
   });
 
-  const successWarning = () => {
-    return (
-      <div
-        style={{ left: "200px" }}
-        className={
-          isSuccessWarningShown
-            ? "success-warning-shown bg-primary"
-            : "success-warning-hidden bg-primary"
-        }
-      >
-        <h5>{message}</h5>
-      </div>
-    );
-  };
-
-  const errorWarning = () => {
-    return (
-      <div
-        style={{ left: "200px" }}
-        className={
-          isErrorWarningShown
-            ? "error-warning-shown bg-danger"
-            : "error-warning-hidden bg-danger"
-        }
-      >
-        <h4 style={{ marginRight: "10px" }}>
-          <strong>Error: </strong>
-        </h4>
-        <h5>{message}</h5>
-      </div>
-    );
-  };
-
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
       <div
@@ -347,11 +303,11 @@ const CustomText = () => {
         ></div>
         <div className="statistics">
           <div className="d-flex">
-            <h5 className="mr-1">WPM: </h5>
+            <h5 className="mr-1">WPM: {wpm}</h5>
           </div>
           <div className="d-flex">
             <div className="d-flex mr-5">
-              <h5 className="mr-1">Errors:</h5>
+              <h5 className="mr-1">Errors: {realMistakes}</h5>
             </div>
             <div className="d-flex">
               <h5 className="mr-2">Acuracy: </h5>
