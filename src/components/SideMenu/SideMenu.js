@@ -148,13 +148,13 @@ function SideMenu() {
             <h5>Top 1000</h5>
           </div>
         </Link>
-        <Link className="left-menu-link" to="/custom">
+        <Link className="left-menu-link" to="/custom/text">
           <div
             style={{
-              backgroundColor: checkButtonStyle("/custom"),
-              color: checkButtonStyleColor("/custom"),
+              backgroundColor: checkButtonStyle("/custom/text"),
+              color: checkButtonStyleColor("/custom/text"),
             }}
-            className={checkButtonClass("/custom")}
+            className={checkButtonClass("/custom/text")}
           >
             <i
               style={{ position: "absolute", left: "20px" }}

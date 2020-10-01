@@ -233,6 +233,15 @@ const testLanguageReducer = (state = "english", action) => {
   }
 };
 
+const customText = (state = null, action) => {
+  switch (action.type) {
+    case "SELECT_CUSTOM_TEXT":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
@@ -260,6 +269,7 @@ const allReducers = combineReducers({
   instaDeathReducer: instaDeathReducer,
   fontFamilyReducer: fontFamilyReducer,
   testLanguageReducer: testLanguageReducer,
+  customText: customText,
 });
 
 export default allReducers;

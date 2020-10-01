@@ -10,6 +10,7 @@ import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
 import Stats from "./components/stats/stats";
 import CustomText from "./components/customText/customText";
+import SelectText from "./components/customText/selectText";
 // import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -103,8 +104,11 @@ function App() {
           <Route path="/1000">
             <Common1000 />
           </Route>
-          <Route path="/custom">
+          <Route exact path="/custom">
             <CustomText />
+          </Route>
+          <Route exact path="/custom/text">
+            <SelectText />
           </Route>
           <Route path="/settings">
             <Settings />
