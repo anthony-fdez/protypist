@@ -148,6 +148,21 @@ function SideMenu() {
             <h5>Top 1000</h5>
           </div>
         </Link>
+        <Link className="left-menu-link" to="/custom">
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/custom"),
+              color: checkButtonStyleColor("/custom"),
+            }}
+            className={checkButtonClass("/custom")}
+          >
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              className="fas fa-font"
+            ></i>
+            <h5>Custom</h5>
+          </div>
+        </Link>
         <hr
           style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
