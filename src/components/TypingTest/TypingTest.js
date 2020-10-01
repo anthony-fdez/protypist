@@ -56,6 +56,7 @@ function TypingTest() {
   const [textTypedHistory, setTextTypedHistory] = useState([]);
   const [highestSpeed, setHighestSpeed] = useState();
   const [highestSpeedDate, setHighestSpeedDate] = useState();
+
   // const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);

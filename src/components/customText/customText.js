@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./customText.css";
 import Keyboard from "../inScreenKeyboard/keyboard";
+import displayTheArray from "../functions/displayTheArray";
 import Header from "../header/header";
 import SelectText from "./selectText";
 
@@ -18,6 +19,7 @@ const CustomText = () => {
   const colorFiles = require(`../themes/${colors}`);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const isSelectMenuOpenReducer = useSelector((state) => state.selectMenuShown);
+  const textReducer = useSelector((state) => state.customText);
 
   //State
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -25,6 +27,8 @@ const CustomText = () => {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
+  const [finished, setFinished] = useState(false);
+
   const [isRunning, setIsRunning] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [timeSeconds, setTimeSeconds] = useState(0);
@@ -34,14 +38,102 @@ const CustomText = () => {
   const [wpm, setWPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
-  const [differenceInWPM, setDifferenceInWPM] = useState(0);
-  const [differenceInErrors, setDIfferenceInErrors] = useState(0);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
-  const [wpmAverageLast10races, setWpmAverage10races] = useState();
-  const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
-  const [averageMistakes, setAverageMistakes] = useState();
+
+  const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
+  const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
+  const [message, setMessage] = useState("");
+  const [instaDeathFail, setInstaDeathFail] = useState(false);
+
+  useEffect(() => {
+    if (textReducer !== undefined) {
+      const splitedText = textReducer.split("");
+      let infoAboutCharacterObject = [];
+      splitedText.map((character, index) => {
+        let object = null;
+        infoAboutCharacterObject.push(object);
+        return null;
+      });
+      setBlankInfoArray(infoAboutCharacterObject);
+      setTextArrayCharacters(splitedText);
+      setInfoAboutCharacter(infoAboutCharacterObject);
+    }
+  }, [textReducer]);
+
+  useEffect(() => {
+    if (newGame || instaDeathFail) {
+      setSpanArray(blankSpanArray);
+    } else setSpanArray(displayTheArray());
+  }, [charactersTyped, textArrayCharacters, newGame, instaDeathFail]);
+
+  useEffect(() => {
+    if (textArrayCharacters !== undefined) {
+      let spanArray = [];
+      for (let i = 0; i < textArrayCharacters.length; i++) {
+        spanArray.push(
+          <div style={{ color: colorFiles.noneColor }} className="none">
+            {textArrayCharacters[i]}
+          </div>
+        );
+      }
+      setInfoAboutCharacter(spanArray);
+    }
+  }, [newGame, finished, instaDeathFail, textReducer]);
+
+  useEffect(() => {
+    setSpanArray(
+      displayTheArray(
+        textArrayCharacters,
+        charactersTyped,
+        colorFiles,
+        infoAboutCharacter
+      )
+    );
+  }, [charactersTyped, textArrayCharacters, finished, instaDeathFail]);
+
+  useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
+      let errors = 0;
+      for (let i = 0; i < infoAboutCharacter.length; i++) {
+        if (infoAboutCharacter[i] === false) {
+          errors++;
+        }
+      }
+      setMistakes(errors);
+    }
+  }, [charactersTyped]);
+
+  useEffect(() => {
+    setNewGame(false);
+    setInstaDeathFail(false);
+  }, [newGame, instaDeathFail]);
+
+  useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
+      if (progress <= charactersTyped) {
+        setProgress((progress) => progress + 1);
+      }
+
+      for (let i = 0; i < progress; i++) {
+        if (charactersTyped === progress) {
+          if (infoAboutCharacter[i] === false) {
+            setRealMistakes((mistake) => (mistake = realMistakes + 1));
+          }
+        }
+      }
+    }
+  }, [charactersTyped]);
+
+  const calculateWordsPerMinute = () => {
+    let charactersPerSecond = charactersTyped / timeSeconds;
+    let wordsPerMinute = (charactersPerSecond * 60) / 5;
+    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
+    setWPM(wordsPerMinute);
+
+    return wordsPerMinute;
+  };
 
   const getAndCheckTheInput = (e) => {
     if (realTimeWPM) {
@@ -147,14 +239,17 @@ const CustomText = () => {
     }
   };
 
-  const calculateWordsPerMinute = () => {
-    let charactersPerSecond = charactersTyped / timeSeconds;
-    let wordsPerMinute = (charactersPerSecond * 60) / 5;
-    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
-    setWPM(wordsPerMinute);
-
-    return wordsPerMinute;
-  };
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setTimeSeconds((seconds) => seconds + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    } else if (isRunning === false) {
+      let time = timeSeconds;
+      setTimeSeconds(time);
+    }
+  }, [isRunning]);
 
   useEffect(() => {
     if (isRunning) {
@@ -192,6 +287,39 @@ const CustomText = () => {
     to: { opacity: 1 },
     config: { duration: 200 },
   });
+
+  const successWarning = () => {
+    return (
+      <div
+        style={{ left: "200px" }}
+        className={
+          isSuccessWarningShown
+            ? "success-warning-shown bg-primary"
+            : "success-warning-hidden bg-primary"
+        }
+      >
+        <h5>{message}</h5>
+      </div>
+    );
+  };
+
+  const errorWarning = () => {
+    return (
+      <div
+        style={{ left: "200px" }}
+        className={
+          isErrorWarningShown
+            ? "error-warning-shown bg-danger"
+            : "error-warning-hidden bg-danger"
+        }
+      >
+        <h4 style={{ marginRight: "10px" }}>
+          <strong>Error: </strong>
+        </h4>
+        <h5>{message}</h5>
+      </div>
+    );
+  };
 
   return (
     <animated.div style={animation} className={"TypingTest-page"}>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./selectText.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useSpring, animated } from "react-spring";
 
 const SelectText = () => {
   const dispatch = useDispatch();
@@ -15,12 +14,6 @@ const SelectText = () => {
   const isMenuOpen = useSelector((state) => state.selectMenuShown);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-
-  const animation = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: { duration: 200 },
-  });
 
   const calculateWordsInInputField = (e) => {
     setText(e.target.value);
@@ -71,6 +64,10 @@ const SelectText = () => {
 
         <button
           onClick={() => {
+            dispatch({
+              type: "SELECT_CUSTOM_TEXT",
+              payload: text,
+            });
             dispatch({
               type: "SET_SELECT_MENU_OPEN",
               payload: false,
