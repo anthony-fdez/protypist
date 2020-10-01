@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./selectText.css";
-import Header from "../header/header";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 const SelectText = () => {
   const dispatch = useDispatch();
+  const textReducer = useSelector((state) => state.customText);
 
-  const [text, setText] = useState("Type your text here");
-  const [words, setWords] = useState(0);
-  const [chars, setChars] = useState(0);
+  const [text, setText] = useState(textReducer);
+  const [words, setWords] = useState(13);
+  const [chars, setChars] = useState(68);
 
+  const isMenuOpen = useSelector((state) => state.selectMenuShown);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
 
@@ -41,51 +42,51 @@ const SelectText = () => {
   };
 
   return (
-    <animated.div style={animation} className={"TypingTest-page"}>
-      <div
+    <div
+      style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+      className={
+        isMenuOpen ? "select-text-div-shown" : "select-text-div-hidden"
+      }
+    >
+      <h4>Type of paste the text you want to type in the box below!</h4>
+      <hr style={{ background: colorFiles.hrColor }}></hr>
+      <textarea
+        wrap="soft"
+        maxLength="800"
+        rows="4"
+        onChange={(e) => calculateWordsInInputField(e)}
         style={{
-          backgroundColor: colorFiles.backgroundColor,
+          backgroundColor: colorFiles.secondSecondaryBackgroundColor,
           color: colorFiles.fontColor,
         }}
-        className="TypingTest"
+        className="select-text-input"
       >
-        <Header />
-        <div
-          style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
-          className="select-text-div"
-        >
-          <h4>Type of paste the text you want to type in the box below!</h4>
-          <hr style={{ background: colorFiles.hrColor }}></hr>
-          <textarea
-            wrap="soft"
-            maxLength="800"
-            rows="4"
-            onChange={(e) => calculateWordsInInputField(e)}
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className="select-text-input"
-          ></textarea>
-          <div className="select-text-info-div">
-            <div className="select-text-info">
-              <h5 style={{ marginRight: "3rem" }}>Words: {words}</h5>
-              <h5>Characters: {chars}</h5>
-            </div>
-            <button
-              style={{
-                backgroundColor: colorFiles.primaryColor,
-                color: colorFiles.fontColor,
-                fontSize: "16px",
-              }}
-              className="btn btn-light start-button"
-            >
-              Start typing
-            </button>
-          </div>
+        {text}
+      </textarea>
+      <div className="select-text-info-div">
+        <div className="select-text-info">
+          <h5 style={{ marginRight: "3rem" }}>Words: {words}</h5>
+          <h5>Characters: {chars}</h5>
         </div>
+
+        <button
+          onClick={() => {
+            dispatch({
+              type: "SET_SELECT_MENU_OPEN",
+              payload: false,
+            });
+          }}
+          style={{
+            backgroundColor: colorFiles.primaryColor,
+            color: colorFiles.fontColor,
+            fontSize: "16px",
+          }}
+          className="btn btn-light start-button"
+        >
+          Start typing
+        </button>
       </div>
-    </animated.div>
+    </div>
   );
 };
 

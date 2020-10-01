@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./customText.css";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import Header from "../header/header";
+import SelectText from "./selectText";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -16,6 +17,7 @@ const CustomText = () => {
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colorFiles = require(`../themes/${colors}`);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
+  const isSelectMenuOpenReducer = useSelector((state) => state.selectMenuShown);
 
   //State
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -201,6 +203,20 @@ const CustomText = () => {
         className="TypingTest"
       >
         <Header />
+        <SelectText />
+        <div
+          onClick={() => {
+            dispatch({
+              type: "SET_SELECT_MENU_OPEN",
+              payload: false,
+            });
+          }}
+          className={
+            isSelectMenuOpenReducer // isSubmitQuoteMenuOpen
+              ? "darkened-background-header-on"
+              : "darkened-background-header-off"
+          }
+        ></div>
         <div className="statistics">
           <div className="d-flex">
             <h5 className="mr-1">WPM: </h5>

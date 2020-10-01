@@ -233,9 +233,21 @@ const testLanguageReducer = (state = "english", action) => {
   }
 };
 
-const customText = (state = null, action) => {
+const customText = (
+  state = "This is a sample text, delete this and copy, or type, your own text.",
+  action
+) => {
   switch (action.type) {
     case "SELECT_CUSTOM_TEXT":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const selectMenuShown = (state = true, action) => {
+  switch (action.type) {
+    case "SET_SELECT_MENU_OPEN":
       return action.payload;
     default:
       return state;
@@ -270,6 +282,7 @@ const allReducers = combineReducers({
   fontFamilyReducer: fontFamilyReducer,
   testLanguageReducer: testLanguageReducer,
   customText: customText,
+  selectMenuShown: selectMenuShown,
 });
 
 export default allReducers;
