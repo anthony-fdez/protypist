@@ -264,6 +264,15 @@ const selectKeyboardLayout = (state = "QWERTY", action) => {
   }
 };
 
+const fontSizeReducer = (state = "14", action) => {
+  switch (action.type) {
+    case "CHANGE_FONT_SIZE":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
@@ -294,6 +303,7 @@ const allReducers = combineReducers({
   customText: customText,
   selectMenuShown: selectMenuShown,
   selectKeyboardLayout: selectKeyboardLayout,
+  fontSizeReducer: fontSizeReducer,
 });
 
 export default allReducers;

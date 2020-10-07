@@ -5,6 +5,7 @@ import ThemesCard from "./themesCard";
 import LanguageCard from "./languageCard";
 import FontFamilyCard from "./fontFamilyCard";
 import KeyboardLayout from "./keyboardLayout";
+import FontSizeCard from "./fontSize";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -192,6 +193,7 @@ function Settings() {
         </div>
         <h3>Ui settings</h3>
         <FontFamilyCard />
+        <FontSizeCard />
         <div style={{ cursor: "pointer" }} className="container">
           <div
             onClick={() => {

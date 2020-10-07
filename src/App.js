@@ -22,6 +22,7 @@ function App() {
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`./components/themes/${colors}`);
+  const fontSize = useSelector((state) => state.fontSizeReducer);
 
   // useEffect(() => {
   //   if (isLoggedIn) {
@@ -87,7 +88,7 @@ function App() {
       style={{
         backgroundColor: colorFiles.backgroundColor,
         fontFamily: fontFamily,
-        fontSize: "12px",
+        fontSize: fontSize,
       }}
     >
       <div>
