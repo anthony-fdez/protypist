@@ -333,7 +333,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedQ || pressedCapitalQ
+              pressedDoubleQuote || pressedSingleQuote
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -346,7 +346,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedW || pressedCapitalW
+              pressedLesserThan || pressedComma
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -359,7 +359,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedE || pressedCapitalE
+              pressedBiggerThan || pressedDot
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -372,7 +372,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedR || pressedCapitalR
+              pressedP || pressedCapitalP
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -385,7 +385,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedT || pressedCapitalT
+              pressedY || pressedCapitalY
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -398,7 +398,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedY || pressedCapitalY
+              pressedF || pressedCapitalF
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -411,7 +411,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedU || pressedCapitalU
+              pressedG || pressedCapitalG
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -424,7 +424,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedI || pressedCapitalI
+              pressedC || pressedCapitalC
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -437,7 +437,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedO || pressedCapitalO
+              pressedR || pressedCapitalR
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -450,7 +450,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedP || pressedCapitalP
+              pressedL || pressedCapitalL
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -463,7 +463,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedLeftCurlyBrace || pressedLeftSquareBracket
+              pressedQuestion || pressedForwardSlash
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -476,7 +476,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedRigthCurlyBrace || pressedRigthSquareBracket
+              pressedPlus || pressedEqual
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -488,7 +488,6 @@ function Dvorak() {
               backgroundColor: colorFiles.secondSecondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
-            className={pressedQ ? "keyboard-key-pressed" : "keyboard-key"}
           >
             \ |
           </div>
@@ -522,7 +521,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedS || pressedCapitalS
+              pressedO || pressedCapitalO
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -535,7 +534,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedD || pressedCapitalD
+              pressedE || pressedCapitalE
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -548,7 +547,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedF || pressedCapitalF
+              pressedU || pressedCapitalU
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -561,7 +560,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedG || pressedCapitalG
+              pressedI || pressedCapitalI
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -574,7 +573,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedH || pressedCapitalH
+              pressedD || pressedCapitalD
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -587,7 +586,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedJ || pressedCapitalJ
+              pressedH || pressedCapitalH
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -600,7 +599,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedK || pressedCapitalK
+              pressedT || pressedCapitalT
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -613,7 +612,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedL || pressedCapitalL
+              pressedN || pressedCapitalN
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -626,7 +625,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedColon || pressedSemiColon
+              pressedS || pressedCapitalS
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -639,7 +638,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedSingleQuote || pressedDoubleQuote
+              pressedUnderScore || pressedMinus
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -674,7 +673,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedZ || pressedCapitalZ
+              pressedColon || pressedSemiColon
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -687,7 +686,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedX || pressedCapitalX
+              pressedQ || pressedCapitalQ
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -700,7 +699,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedC || pressedCapitalC
+              pressedJ || pressedCapitalJ
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -713,7 +712,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedV || pressedCapitalV
+              pressedK || pressedCapitalK
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -726,7 +725,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedB || pressedCapitalB
+              pressedX || pressedCapitalX
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -739,7 +738,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedN || pressedCapitalN
+              pressedB || pressedCapitalB
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
@@ -765,9 +764,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedComma || pressedLesserThan
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
+              pressedW || pressedW ? "keyboard-key-pressed" : "keyboard-key"
             }
           >
             W
@@ -778,9 +775,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedDot || pressedBiggerThan
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
+              pressedV || pressedV ? "keyboard-key-pressed" : "keyboard-key"
             }
           >
             V
@@ -791,9 +786,7 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedForwardSlash || pressedQuestion
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
+              pressedZ || pressedZ ? "keyboard-key-pressed" : "keyboard-key"
             }
           >
             Z
