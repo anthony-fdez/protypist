@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./common200.css";
 import Header from "../header/header";
-import Keyboard from "../inScreenKeyboard/keyboard";
+import Qwerty from "../inScreenKeyboard/qwerty";
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -559,7 +559,7 @@ function Common200() {
           the test won't stop unless you have less than 5 mistakes
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        {keyboardOnScreen && <Keyboard />}
+        {keyboardOnScreen && <Qwerty />}
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}

@@ -34,7 +34,7 @@ function useKeyPress(targetKey) {
   return keyPressed;
 }
 
-function Keyboard() {
+function Qwerty() {
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
   const pressedA = useKeyPress("a");
@@ -862,4 +862,4 @@ function Keyboard() {
   );
 }
 
-export default Keyboard;
+export default Qwerty;

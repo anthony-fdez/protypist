@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./customText.css";
-import Keyboard from "../inScreenKeyboard/keyboard";
+import Qwerty from "../inScreenKeyboard/qwerty";
 import displayTheArray from "../functions/displayTheArray";
 import Header from "../header/header";
 import SelectText from "./selectText";
@@ -356,7 +356,7 @@ const CustomText = () => {
           the test won't stop unless you have less than 5 mistakes
         </p>
         <div className={"text-to-type"}>{spanArray}</div>
-        {keyboardOnScreen && <Keyboard />}
+        {keyboardOnScreen && <Qwerty />}
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./TypingTest.css";
 import Header from "../header/header";
-import Keyboard from "../inScreenKeyboard/keyboard";
+import Qwerty from "../inScreenKeyboard/qwerty";
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -1012,7 +1012,7 @@ function TypingTest() {
         <div
           className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
         >
-          {keyboardOnScreen && <Keyboard />}
+          {keyboardOnScreen && <Qwerty />}
         </div>
         <div
           style={{
