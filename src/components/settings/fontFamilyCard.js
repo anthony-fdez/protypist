@@ -25,8 +25,6 @@ const FontFamilyCard = () => {
     }
   };
 
-  selectTheBackgroundText();
-
   return (
     <div style={{ cursor: "pointer" }} className="container">
       <div

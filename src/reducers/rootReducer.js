@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import { combineReducers } from "redux";
 
 const darkModeReducer = (state = true, action) => {
@@ -254,6 +255,15 @@ const selectMenuShown = (state = true, action) => {
   }
 };
 
+const selectKeyboardLayout = (state = "QWERTY", action) => {
+  switch (action.type) {
+    case "CHANGE_KEYBOARD_LAYOUT":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
@@ -283,6 +293,7 @@ const allReducers = combineReducers({
   testLanguageReducer: testLanguageReducer,
   customText: customText,
   selectMenuShown: selectMenuShown,
+  selectKeyboardLayout: selectKeyboardLayout,
 });
 
 export default allReducers;

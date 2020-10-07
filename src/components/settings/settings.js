@@ -4,6 +4,8 @@ import Header from "../header/header";
 import ThemesCard from "./themesCard";
 import LanguageCard from "./languageCard";
 import FontFamilyCard from "./fontFamilyCard";
+import KeyboardLayout from "./keyboardLayout";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
@@ -208,6 +210,7 @@ function Settings() {
             <h1 className="text">{keyboardOnScreen ? "ON" : "OFF"}</h1>
           </div>
         </div>
+        <KeyboardLayout />
         <div
           style={{ cursor: "pointer", paddingBottom: "6rem" }}
           className="container"
