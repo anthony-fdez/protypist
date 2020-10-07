@@ -49,6 +49,17 @@ const KeyboardLayout = () => {
           >
             DVORAK
           </h4>
+          <h4
+            onClick={() => {
+              dispatch({
+                type: "CHANGE_KEYBOARD_LAYOUT",
+                payload: "COLEMAK",
+              });
+            }}
+            className="font-button"
+          >
+            COLEMAK
+          </h4>
         </div>
         <h1 className="text-font-family">{keyboardLayout}</h1>
       </div>

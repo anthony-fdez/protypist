@@ -3,6 +3,7 @@ import "./TypingTest.css";
 import Header from "../header/header";
 import Qwerty from "../inScreenKeyboard/qwerty";
 import Dvorak from "../inScreenKeyboard/dvorak";
+import Colemak from "../inScreenKeyboard/colemak";
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -27,6 +28,7 @@ function TypingTest() {
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   //state
   const [text, setText] = useState();
@@ -651,6 +653,16 @@ function TypingTest() {
     }
   };
 
+  const keyboardLayoutSelector = () => {
+    if (keyboardLayout === "QWERTY") {
+      return <Qwerty />;
+    } else if (keyboardLayout === "DVORAK") {
+      return <Dvorak />;
+    } else if (keyboardLayout === "COLEMAK") {
+      return <Colemak />;
+    } else return <Qwerty />;
+  };
+
   // const submitQuoteMenu = () => {
   //   return (
   //     <div
@@ -1013,7 +1025,7 @@ function TypingTest() {
         <div
           className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
         >
-          {keyboardOnScreen && <Dvorak />}
+          {keyboardOnScreen && keyboardLayoutSelector()}
         </div>
         <div
           style={{
