@@ -488,6 +488,11 @@ function Dvorak() {
               backgroundColor: colorFiles.secondSecondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
+            className={
+              pressedPlus || pressedEqual
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
           >
             \ |
           </div>
