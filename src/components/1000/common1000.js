@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./common1000.css";
 import Header from "../header/header";
 import Qwerty from "../inScreenKeyboard/qwerty";
+import Dvorak from "../inScreenKeyboard/dvorak";
+import Colemak from "../inScreenKeyboard/colemak";
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -23,6 +25,7 @@ function Common1000() {
   const colorFiles = require(`../themes/${colors}`);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
+  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -414,6 +417,16 @@ function Common1000() {
     }
   };
 
+  const keyboardLayoutSelector = () => {
+    if (keyboardLayout === "QWERTY") {
+      return <Qwerty />;
+    } else if (keyboardLayout === "DVORAK") {
+      return <Dvorak />;
+    } else if (keyboardLayout === "COLEMAK") {
+      return <Colemak />;
+    } else return <Qwerty />;
+  };
+
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
       <div
@@ -510,7 +523,7 @@ function Common1000() {
           the test won't stop unless you have less than 5 mistakes
         </p>
         <div className={changeTextToTypeClassname()}>{spanArray}</div>
-        {keyboardOnScreen && <Qwerty />}
+        {keyboardOnScreen && keyboardLayoutSelector()}
         <div className="input-zone">
           <input
             autoFocus
