@@ -191,7 +191,9 @@ function Header(props) {
             setIsSignUpMenuOpen(false);
             setIsLoginMenuOpen(false);
 
-            setMessage("You are logged in! Have fun.");
+            setMessage(
+              "Glad to see you again " + response.data.user.name + ". Have fun!"
+            );
             setIsSuccssWarningShown(true);
           }
         })
@@ -243,7 +245,9 @@ function Header(props) {
             setIsSignUpMenuOpen(false);
             setIsLoginMenuOpen(false);
           }
-          setMessage("Your account has been successfuly created.");
+          setMessage(
+            "Hey there " + response.data.user.name + ". Welcome to ProTypist!"
+          );
           setIsSuccssWarningShown(true);
         })
         .catch((e) => {
@@ -285,7 +289,7 @@ function Header(props) {
           type: "SET_JWT",
           payload: null,
         });
-        setMessage("Logged out successfully.");
+        setMessage("Logged out, hope to see you again soon :)");
         setIsSuccssWarningShown(true);
       })
       .catch((e) => {
