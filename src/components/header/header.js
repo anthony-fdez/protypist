@@ -197,7 +197,7 @@ function Header(props) {
           console.log(e);
         });
     }
-  }, []);
+  }, [jwt, isLoggedIn]);
 
   const selectSkillLevel = () => {
     if (wpmAverage !== undefined) {

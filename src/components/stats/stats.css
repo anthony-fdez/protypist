@@ -80,7 +80,7 @@ h1 {
   justify-content: center;
   position: sticky;
   top: 0px;
-  z-index: 100;
+  z-index: 10;
   padding: 20px;
   border-bottom: 1px solid white;
 }
