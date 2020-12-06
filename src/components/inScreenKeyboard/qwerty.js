@@ -4,6 +4,7 @@ import "./keyboard.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { Redirect } from "react-router";
 
 function useKeyPress(targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
@@ -90,6 +91,53 @@ function Qwerty() {
   const [pressed_Shift_Count, setPressed_Shift_Count] = useState(
     ALL_KEYS_PRESSED.Space
   );
+  const [pressed_Dot_Count, setPressed_Dot_Count] = useState(
+    ALL_KEYS_PRESSED.Dot
+  );
+  const [pressed_Comma_Count, setPressed_Comma_Count] = useState(
+    ALL_KEYS_PRESSED.Comma
+  );
+
+  const [hoveredA, setHoveredA] = useState(false);
+  const [hoveredB, setHoveredB] = useState(false);
+  const [hoveredC, setHoveredC] = useState(false);
+  const [hoveredD, setHoveredD] = useState(false);
+  const [hoveredE, setHoveredE] = useState(false);
+  const [hoveredF, setHoveredF] = useState(false);
+  const [hoveredG, setHoveredG] = useState(false);
+  const [hoveredH, setHoveredH] = useState(false);
+  const [hoveredI, setHoveredI] = useState(false);
+  const [hoveredJ, setHoveredJ] = useState(false);
+  const [hoveredK, setHoveredK] = useState(false);
+  const [hoveredL, setHoveredL] = useState(false);
+  const [hoveredM, setHoveredM] = useState(false);
+  const [hoveredN, setHoveredN] = useState(false);
+  const [hoveredO, setHoveredO] = useState(false);
+  const [hoveredP, setHoveredP] = useState(false);
+  const [hoveredQ, setHoveredQ] = useState(false);
+  const [hoveredR, setHoveredR] = useState(false);
+  const [hoveredS, setHoveredS] = useState(false);
+  const [hoveredT, setHoveredT] = useState(false);
+  const [hoveredU, setHoveredU] = useState(false);
+  const [hoveredV, setHoveredV] = useState(false);
+  const [hoveredW, setHoveredW] = useState(false);
+  const [hoveredX, setHoveredX] = useState(false);
+  const [hoveredY, setHoveredY] = useState(false);
+  const [hoveredZ, setHoveredZ] = useState(false);
+  const [hovered1, setHovered1] = useState(false);
+  const [hovered2, setHovered2] = useState(false);
+  const [hovered3, setHovered3] = useState(false);
+  const [hovered4, setHovered4] = useState(false);
+  const [hovered5, setHovered5] = useState(false);
+  const [hovered6, setHovered6] = useState(false);
+  const [hovered7, setHovered7] = useState(false);
+  const [hovered8, setHovered8] = useState(false);
+  const [hovered9, setHovered9] = useState(false);
+  const [hovered0, setHovered0] = useState(false);
+  const [hoveredSpace, setHoveredSpace] = useState(false);
+  const [hoveredShift, setHoveredShift] = useState(false);
+  const [hoveredDot, setHoveredDot] = useState(false);
+  const [hoveredComma, setHoveredComma] = useState(false);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -268,6 +316,10 @@ function Qwerty() {
       setPressed_Shift_Count((pressed) => (pressed = pressed_Shift_Count + 1));
     } else if (pressedSpace) {
       setPressed_Space_Count((pressed) => (pressed = pressed_Space_Count + 1));
+    } else if (pressedDot) {
+      setPressed_Dot_Count((pressed) => (pressed = pressed_Dot_Count + 1));
+    } else if (pressedComma) {
+      setPressed_Comma_Count((pressed) => (pressed = pressed_Comma_Count + 1));
     }
   }, [
     pressedA,
@@ -334,6 +386,8 @@ function Qwerty() {
     pressed0,
     pressedShift,
     pressedSpace,
+    pressedComma,
+    pressedDot,
   ]);
 
   useEffect(() => {
@@ -380,6 +434,8 @@ function Qwerty() {
           ZERO: pressed_0_Count,
           Space: pressed_Space_Count,
           Shift: pressed_Shift_Count,
+          Dot: pressed_Dot_Count,
+          Comma: pressed_Comma_Count,
         },
       };
 
@@ -435,6 +491,8 @@ function Qwerty() {
         ZERO: pressed_0_Count,
         Space: pressed_Space_Count,
         Shift: pressed_Shift_Count,
+        Dot: pressed_Dot_Count,
+        Comma: pressed_Comma_Count,
       },
     });
   }, [pressedSpace]);
@@ -469,7 +527,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHovered1(true)}
+            onMouseOut={() => setHovered1(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered1 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.ONE}x
+            </div>
             1 !
           </div>
           <div
@@ -480,7 +549,18 @@ function Qwerty() {
             className={
               pressed2 || pressedAdd ? "keyboard-key-pressed" : "keyboard-key"
             }
+            onMouseOver={() => setHovered2(true)}
+            onMouseOut={() => setHovered2(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered2 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.TWO}x
+            </div>
             2 @
           </div>
           <div
@@ -491,7 +571,18 @@ function Qwerty() {
             className={
               pressed3 || pressedSharp ? "keyboard-key-pressed" : "keyboard-key"
             }
+            onMouseOver={() => setHovered3(true)}
+            onMouseOut={() => setHovered3(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered3 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.THREE}x
+            </div>
             3 #
           </div>
           <div
@@ -504,7 +595,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHovered4(true)}
+            onMouseOut={() => setHovered4(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered4 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.FOUR}x
+            </div>
             4 $
           </div>
           <div
@@ -517,7 +619,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHovered5(true)}
+            onMouseOut={() => setHovered5(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered5 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.FIVE}x
+            </div>
             5 %
           </div>
           <div
@@ -530,7 +643,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHovered6(true)}
+            onMouseOut={() => setHovered6(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered6 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.SIX}x
+            </div>
             6 ^
           </div>
           <div
@@ -541,7 +665,18 @@ function Qwerty() {
             className={
               pressed7 || pressedAnd ? "keyboard-key-pressed" : "keyboard-key"
             }
+            onMouseOver={() => setHovered7(true)}
+            onMouseOut={() => setHovered7(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered7 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.SEVEN}x
+            </div>
             7 &
           </div>
           <div
@@ -552,7 +687,18 @@ function Qwerty() {
             className={
               pressed8 || pressedStart ? "keyboard-key-pressed" : "keyboard-key"
             }
+            onMouseOver={() => setHovered8(true)}
+            onMouseOut={() => setHovered8(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered8 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.EIGHT}x
+            </div>
             8 *
           </div>
           <div
@@ -565,7 +711,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHovered9(true)}
+            onMouseOut={() => setHovered9(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered9 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.NINE}x
+            </div>
             9 (
           </div>
           <div
@@ -578,7 +735,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHovered0(true)}
+            onMouseOut={() => setHovered0(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hovered0 ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.ZERO}x
+            </div>
             0 )
           </div>
           <div
@@ -641,7 +809,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredQ(true)}
+            onMouseOut={() => setHoveredQ(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredQ ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.q}x
+            </div>
             Q
           </div>
           <div
@@ -654,7 +833,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredW(true)}
+            onMouseOut={() => setHoveredW(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredW ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.w}x
+            </div>
             W
           </div>
           <div
@@ -667,7 +857,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredE(true)}
+            onMouseOut={() => setHoveredE(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredE ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.e}x
+            </div>
             E
           </div>
           <div
@@ -680,7 +881,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredR(true)}
+            onMouseOut={() => setHoveredR(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredR ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.r}x
+            </div>
             R
           </div>
           <div
@@ -693,7 +905,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredT(true)}
+            onMouseOut={() => setHoveredT(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredT ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.t}x
+            </div>
             T
           </div>
           <div
@@ -706,7 +929,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredY(true)}
+            onMouseOut={() => setHoveredY(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredY ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.y}x
+            </div>
             Y
           </div>
           <div
@@ -719,7 +953,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredU(true)}
+            onMouseOut={() => setHoveredU(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredU ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.u}x
+            </div>
             U
           </div>
           <div
@@ -732,7 +977,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredI(true)}
+            onMouseOut={() => setHoveredI(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredI ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.i}x
+            </div>
             I
           </div>
           <div
@@ -745,7 +1001,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredO(true)}
+            onMouseOut={() => setHoveredO(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredO ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.o}x
+            </div>
             O
           </div>
           <div
@@ -758,7 +1025,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredP(true)}
+            onMouseOut={() => setHoveredP(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredP ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.p}x
+            </div>
             P
           </div>
           <div
@@ -817,7 +1095,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredA(true)}
+            onMouseOut={() => setHoveredA(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredA ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.a}x
+            </div>
             A
           </div>
           <div
@@ -830,7 +1119,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredS(true)}
+            onMouseOut={() => setHoveredS(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredS ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.s}x
+            </div>
             S
           </div>
           <div
@@ -843,7 +1143,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredD(true)}
+            onMouseOut={() => setHoveredD(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredD ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.d}x
+            </div>
             D
           </div>
           <div
@@ -856,7 +1167,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredF(true)}
+            onMouseOut={() => setHoveredF(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredF ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.f}x
+            </div>
             F
           </div>
           <div
@@ -869,7 +1191,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredG(true)}
+            onMouseOut={() => setHoveredG(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredG ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.g}x
+            </div>
             G
           </div>
           <div
@@ -882,7 +1215,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredH(true)}
+            onMouseOut={() => setHoveredH(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredH ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.h}x
+            </div>
             H
           </div>
           <div
@@ -895,7 +1239,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredJ(true)}
+            onMouseOut={() => setHoveredJ(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredJ ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.j}x
+            </div>
             J
           </div>
           <div
@@ -908,7 +1263,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredK(true)}
+            onMouseOut={() => setHoveredK(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredK ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.k}x
+            </div>
             K
           </div>
           <div
@@ -921,7 +1287,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredL(true)}
+            onMouseOut={() => setHoveredL(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredL ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.l}x
+            </div>
             L
           </div>
           <div
@@ -969,7 +1346,18 @@ function Qwerty() {
             className={
               pressedShift ? "keyboard-shift-pressed" : "keyboard-shift"
             }
+            onMouseOver={() => setHoveredShift(true)}
+            onMouseOut={() => setHoveredShift(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredShift ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.Shift}x
+            </div>
             SHIFT
           </div>
           <div
@@ -982,7 +1370,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredZ(true)}
+            onMouseOut={() => setHoveredZ(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredZ ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.z}x
+            </div>
             Z
           </div>
           <div
@@ -995,7 +1394,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredX(true)}
+            onMouseOut={() => setHoveredX(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredX ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.x}x
+            </div>
             X
           </div>
           <div
@@ -1008,7 +1418,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredC(true)}
+            onMouseOut={() => setHoveredC(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredC ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.c}x
+            </div>
             C
           </div>
           <div
@@ -1021,7 +1442,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredV(true)}
+            onMouseOut={() => setHoveredV(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredV ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.v}x
+            </div>
             V
           </div>
           <div
@@ -1034,7 +1466,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredB(true)}
+            onMouseOut={() => setHoveredB(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredB ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.b}x
+            </div>
             B
           </div>
           <div
@@ -1047,7 +1490,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredN(true)}
+            onMouseOut={() => setHoveredN(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredN ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.n}x
+            </div>
             N
           </div>
           <div
@@ -1060,7 +1514,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredM(true)}
+            onMouseOut={() => setHoveredM(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredM ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.m}x
+            </div>
             M
           </div>
           <div
@@ -1073,7 +1538,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredComma(true)}
+            onMouseOut={() => setHoveredComma(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredComma ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.Comma}x
+            </div>
             ,{" <"}
           </div>
           <div
@@ -1086,7 +1562,18 @@ function Qwerty() {
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredDot(true)}
+            onMouseOut={() => setHoveredDot(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredDot ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.Dot}x
+            </div>
             .{" >"}
           </div>
           <div
@@ -1139,7 +1626,18 @@ function Qwerty() {
             className={
               pressedSpace ? "keyboard-space-pressed" : "keyboard-space"
             }
+            onMouseOver={() => setHoveredSpace(true)}
+            onMouseOut={() => setHoveredSpace(false)}
           >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredSpace ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.Space}x
+            </div>
             SPACE
           </div>
           <div

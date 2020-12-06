@@ -190,6 +190,8 @@ function Header(props) {
               ZERO: response.data.ZERO,
               Space: response.data.Space,
               Shift: response.data.Shift,
+              Comma: response.data.Comma,
+              Dot: response.data.Dot,
             },
           });
         })
