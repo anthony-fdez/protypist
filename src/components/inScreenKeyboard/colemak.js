@@ -37,44 +37,56 @@ function useKeyPress(targetKey) {
 function Colemak() {
   const dispatch = useDispatch();
 
-  const [pressed_A_Count, setPressed_A_Count] = useState(0);
-  const [pressed_B_Count, setPressed_B_Count] = useState(0);
-  const [pressed_C_Count, setPressed_C_Count] = useState(0);
-  const [pressed_D_Count, setPressed_D_Count] = useState(0);
-  const [pressed_E_Count, setPressed_E_Count] = useState(0);
-  const [pressed_F_Count, setPressed_F_Count] = useState(0);
-  const [pressed_G_Count, setPressed_G_Count] = useState(0);
-  const [pressed_H_Count, setPressed_H_Count] = useState(0);
-  const [pressed_I_Count, setPressed_I_Count] = useState(0);
-  const [pressed_J_Count, setPressed_J_Count] = useState(0);
-  const [pressed_K_Count, setPressed_K_Count] = useState(0);
-  const [pressed_L_Count, setPressed_L_Count] = useState(0);
-  const [pressed_M_Count, setPressed_M_Count] = useState(0);
-  const [pressed_N_Count, setPressed_N_Count] = useState(0);
-  const [pressed_O_Count, setPressed_O_Count] = useState(0);
-  const [pressed_P_Count, setPressed_P_Count] = useState(0);
-  const [pressed_Q_Count, setPressed_Q_Count] = useState(0);
-  const [pressed_R_Count, setPressed_R_Count] = useState(0);
-  const [pressed_S_Count, setPressed_S_Count] = useState(0);
-  const [pressed_T_Count, setPressed_T_Count] = useState(0);
-  const [pressed_U_Count, setPressed_U_Count] = useState(0);
-  const [pressed_V_Count, setPressed_V_Count] = useState(0);
-  const [pressed_W_Count, setPressed_W_Count] = useState(0);
-  const [pressed_X_Count, setPressed_X_Count] = useState(0);
-  const [pressed_Y_Count, setPressed_Y_Count] = useState(0);
-  const [pressed_Z_Count, setPressed_Z_Count] = useState(0);
-  const [pressed_1_Count, setPressed_1_Count] = useState(0);
-  const [pressed_2_Count, setPressed_2_Count] = useState(0);
-  const [pressed_3_Count, setPressed_3_Count] = useState(0);
-  const [pressed_4_Count, setPressed_4_Count] = useState(0);
-  const [pressed_5_Count, setPressed_5_Count] = useState(0);
-  const [pressed_6_Count, setPressed_6_Count] = useState(0);
-  const [pressed_7_Count, setPressed_7_Count] = useState(0);
-  const [pressed_8_Count, setPressed_8_Count] = useState(0);
-  const [pressed_9_Count, setPressed_9_Count] = useState(0);
-  const [pressed_0_Count, setPressed_0_Count] = useState(0);
-  const [pressed_Space_Count, setPressed_Space_Count] = useState(0);
-  const [pressed_Shift_Count, setPressed_Shift_Count] = useState(0);
+  const ALL_KEYS_PRESSED = useSelector((state) => state.allKeysPressed);
+
+  const [pressed_A_Count, setPressed_A_Count] = useState(ALL_KEYS_PRESSED.a);
+  const [pressed_B_Count, setPressed_B_Count] = useState(ALL_KEYS_PRESSED.b);
+  const [pressed_C_Count, setPressed_C_Count] = useState(ALL_KEYS_PRESSED.c);
+  const [pressed_D_Count, setPressed_D_Count] = useState(ALL_KEYS_PRESSED.d);
+  const [pressed_E_Count, setPressed_E_Count] = useState(ALL_KEYS_PRESSED.e);
+  const [pressed_F_Count, setPressed_F_Count] = useState(ALL_KEYS_PRESSED.f);
+  const [pressed_G_Count, setPressed_G_Count] = useState(ALL_KEYS_PRESSED.g);
+  const [pressed_H_Count, setPressed_H_Count] = useState(ALL_KEYS_PRESSED.h);
+  const [pressed_I_Count, setPressed_I_Count] = useState(ALL_KEYS_PRESSED.i);
+  const [pressed_J_Count, setPressed_J_Count] = useState(ALL_KEYS_PRESSED.j);
+  const [pressed_K_Count, setPressed_K_Count] = useState(ALL_KEYS_PRESSED.k);
+  const [pressed_L_Count, setPressed_L_Count] = useState(ALL_KEYS_PRESSED.l);
+  const [pressed_M_Count, setPressed_M_Count] = useState(ALL_KEYS_PRESSED.m);
+  const [pressed_N_Count, setPressed_N_Count] = useState(ALL_KEYS_PRESSED.n);
+  const [pressed_O_Count, setPressed_O_Count] = useState(ALL_KEYS_PRESSED.o);
+  const [pressed_P_Count, setPressed_P_Count] = useState(ALL_KEYS_PRESSED.p);
+  const [pressed_Q_Count, setPressed_Q_Count] = useState(ALL_KEYS_PRESSED.q);
+  const [pressed_R_Count, setPressed_R_Count] = useState(ALL_KEYS_PRESSED.r);
+  const [pressed_S_Count, setPressed_S_Count] = useState(ALL_KEYS_PRESSED.s);
+  const [pressed_T_Count, setPressed_T_Count] = useState(ALL_KEYS_PRESSED.t);
+  const [pressed_U_Count, setPressed_U_Count] = useState(ALL_KEYS_PRESSED.u);
+  const [pressed_V_Count, setPressed_V_Count] = useState(ALL_KEYS_PRESSED.v);
+  const [pressed_W_Count, setPressed_W_Count] = useState(ALL_KEYS_PRESSED.w);
+  const [pressed_X_Count, setPressed_X_Count] = useState(ALL_KEYS_PRESSED.x);
+  const [pressed_Y_Count, setPressed_Y_Count] = useState(ALL_KEYS_PRESSED.y);
+  const [pressed_Z_Count, setPressed_Z_Count] = useState(ALL_KEYS_PRESSED.z);
+  const [pressed_1_Count, setPressed_1_Count] = useState(ALL_KEYS_PRESSED.ONE);
+  const [pressed_2_Count, setPressed_2_Count] = useState(ALL_KEYS_PRESSED.TWO);
+  const [pressed_3_Count, setPressed_3_Count] = useState(
+    ALL_KEYS_PRESSED.THREE
+  );
+  const [pressed_4_Count, setPressed_4_Count] = useState(ALL_KEYS_PRESSED.FOUR);
+  const [pressed_5_Count, setPressed_5_Count] = useState(ALL_KEYS_PRESSED.FIVE);
+  const [pressed_6_Count, setPressed_6_Count] = useState(ALL_KEYS_PRESSED.SIX);
+  const [pressed_7_Count, setPressed_7_Count] = useState(
+    ALL_KEYS_PRESSED.SEVEN
+  );
+  const [pressed_8_Count, setPressed_8_Count] = useState(
+    ALL_KEYS_PRESSED.EIGHT
+  );
+  const [pressed_9_Count, setPressed_9_Count] = useState(ALL_KEYS_PRESSED.NINE);
+  const [pressed_0_Count, setPressed_0_Count] = useState(ALL_KEYS_PRESSED.ZERO);
+  const [pressed_Space_Count, setPressed_Space_Count] = useState(
+    ALL_KEYS_PRESSED.Shift
+  );
+  const [pressed_Shift_Count, setPressed_Shift_Count] = useState(
+    ALL_KEYS_PRESSED.Space
+  );
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
