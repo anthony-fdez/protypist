@@ -385,7 +385,7 @@ function Dvorak() {
       };
 
       axios
-        .post("http://localhost:5000/users/keysTyped", data, {
+        .post("https://protypist.herokuapp.com/users/keysTyped", data, {
           headers: headers,
         })
         .then((response) => {

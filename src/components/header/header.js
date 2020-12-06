@@ -143,7 +143,7 @@ function Header(props) {
       const headers = { Authorization: jwt };
 
       axios
-        .get("http://localhost:5000/users/getKeysTyped", {
+        .get("https://protypist.herokuapp.com/users/getKeysTyped", {
           headers: headers,
         })
         .then((response) => {
