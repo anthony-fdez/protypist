@@ -273,6 +273,15 @@ const fontSizeReducer = (state = "14", action) => {
   }
 };
 
+const allKeysPressed = (state = null, action) => {
+  switch (action.type) {
+    case "SET_KEYS_PRESSED":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
@@ -304,6 +313,7 @@ const allReducers = combineReducers({
   selectMenuShown: selectMenuShown,
   selectKeyboardLayout: selectKeyboardLayout,
   fontSizeReducer: fontSizeReducer,
+  allKeysPressed: allKeysPressed,
 });
 
 export default allReducers;
