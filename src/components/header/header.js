@@ -138,6 +138,67 @@ function Header(props) {
     }
   }, [jwt, latestWPM, latestWPM200, latestWPM1000]);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
+
+      axios
+        .get("http://localhost:5000/users/getKeysTyped", {
+          headers: headers,
+        })
+        .then((response) => {
+          console.log(response.data);
+
+          dispatch({
+            type: "SET_KEYS_PRESSED",
+            payload: {
+              a: response.data.a,
+              b: response.data.b,
+              c: response.data.c,
+              d: response.data.d,
+              e: response.data.e,
+              f: response.data.f,
+              g: response.data.g,
+              h: response.data.h,
+              i: response.data.i,
+              j: response.data.j,
+              k: response.data.k,
+              l: response.data.l,
+              m: response.data.m,
+              n: response.data.n,
+              o: response.data.o,
+              p: response.data.p,
+              q: response.data.q,
+              r: response.data.r,
+              s: response.data.s,
+              t: response.data.t,
+              u: response.data.u,
+              v: response.data.v,
+              w: response.data.w,
+              x: response.data.x,
+              y: response.data.y,
+              z: response.data.z,
+              ONE: response.data.ONE,
+              TWO: response.data.TWO,
+              THREE: response.data.THREE,
+              FOUR: response.data.FOUR,
+              FIVE: response.data.FIVE,
+              SIX: response.data.SIX,
+              SEVEN: response.data.SEVEN,
+              EIGHT: response.data.EIGHT,
+              NINE: response.data.NINE,
+              ZERO: response.data.ZERO,
+              Space: response.data.Space,
+              Shift: response.data.Shift,
+            },
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+  }, []);
+
   const selectSkillLevel = () => {
     if (wpmAverage !== undefined) {
       if (wpmAverage <= 20) {
