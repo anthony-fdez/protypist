@@ -147,8 +147,6 @@ function Header(props) {
           headers: headers,
         })
         .then((response) => {
-          console.log(response.data);
-
           dispatch({
             type: "SET_KEYS_PRESSED",
             payload: {

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./stats.css";
 import Header from "../header/header";
+import Qwerty from "../inScreenKeyboard/qwerty";
+import Dvorak from "../inScreenKeyboard/dvorak";
+import Colemak from "../inScreenKeyboard/colemak";
 import Ladderboard from "./ladderboard";
 import formatTheTime from "../functions/formatTime";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,6 +22,9 @@ function Stats() {
   );
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
+
+  const [totalKeysStrokes, setTotalKeyStrokes] = useState(0);
 
   //state TypingGame
   const [wpmAverage10races, setWpmAverage10races] = useState(0);
@@ -67,6 +73,9 @@ function Stats() {
     isTyping1000StatisticsShown,
     setIsTyping1000StatisticsShown,
   ] = useState(false);
+  const [isKeyboardStatisticsShown, setIsKeyboardStatisticsShown] = useState(
+    false
+  );
 
   const [timeIsUp, setTimeIsUp] = useState(false);
 
@@ -92,6 +101,16 @@ function Stats() {
         .catch((e) => {
           setIsLoading(true);
           console.log(e.response);
+        });
+      axios
+        .get("https://protypist.herokuapp.com/users/getTotalKeyStrokes", {
+          headers: headers,
+        })
+        .then((response) => {
+          setTotalKeyStrokes(response.data.totalKeyStrokes);
+        })
+        .catch((e) => {
+          console.log(e);
         });
     }
   }, [jwt]);
@@ -343,9 +362,12 @@ function Stats() {
             <div className="loading-div-stats">
               {isLoading && loadingComponent()}
             </div>
+            <div style={{ position: "absolute", right: "50px" }}>
+              <h4>Total Keystrokes: {totalKeysStrokes}</h4>
+            </div>
           </div>
 
-          <hr className={theme ? "white-hr" : "dark-hr"}></hr>
+          <hr style={{ background: colorFiles.hrColor }}></hr>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
@@ -437,6 +459,9 @@ function Stats() {
             <h4>200 Common Statistics:</h4>
             <div className="loading-div-stats">
               {isLoading && loadingComponent()}
+            </div>
+            <div style={{ position: "absolute", right: "50px" }}>
+              <h4>Total Keystrokes: {totalKeysStrokes}</h4>
             </div>
           </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
@@ -534,6 +559,9 @@ function Stats() {
             <div className="loading-div-stats">
               {isLoading && loadingComponent()}
             </div>
+            <div style={{ position: "absolute", right: "50px" }}>
+              <h4>Total Keystrokes: {totalKeysStrokes}</h4>
+            </div>
           </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
           <div className={"all-time-div-stats"}>
@@ -610,6 +638,35 @@ function Stats() {
       </div>
     );
   };
+
+  // const statisticsKeyboardComponent = () => {
+  //   return (
+  //     <div key="statisticsKeyboard">
+  //       <div
+  //         className={
+  //           isKeyboardStatisticsShown
+  //             ? "typing-game-statistics-div-shown"
+  //             : "typing-game-statistics-div-hidden"
+  //         }
+  //         style={{
+  //           backgroundColor: colorFiles.secondaryBackgroundColor,
+  //           color: colorFiles.fontColor,
+  //         }}
+  //       >
+  //         <div className="d-flex">
+  //           <h4>Keyboard Statistics: </h4>
+  //           <div className="loading-div-stats">
+  //             {isLoading && loadingComponent()}
+  //           </div>
+  //         </div>
+  //         <hr style={{ background: colorFiles.hrColor }}></hr>
+  //         <div className="keyboard-div">{keyboardLayoutSelector()}</div>
+
+  //         <hr style={{ background: colorFiles.hrColor }}></hr>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   const testHistory200 = (DATA) => {
     return (
@@ -877,12 +934,19 @@ function Stats() {
         className={"Stats"}
       >
         <Header />
-        <div className="statistics-select-buttons">
+        <div
+          style={{
+            backgroundColor: colorFiles.backgroundColor,
+            borderBottom: "1px solid " + colorFiles.hrColor,
+          }}
+          className="statistics-select-buttons"
+        >
           <div
             onClick={() => {
               setIsTypingGameStatisticsShown(true);
               setIsTyping200StatisticsShown(false);
               setIsTyping1000StatisticsShown(false);
+              setIsKeyboardStatisticsShown(false);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
               setSeeAllHistoryQuote(false);
@@ -908,6 +972,7 @@ function Stats() {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(true);
               setIsTyping1000StatisticsShown(false);
+              setIsKeyboardStatisticsShown(false);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
               setSeeAllHistoryQuote(false);
@@ -933,6 +998,7 @@ function Stats() {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(false);
               setIsTyping1000StatisticsShown(true);
+              setIsKeyboardStatisticsShown(false);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
               setSeeAllHistoryQuote(false);
@@ -953,14 +1019,42 @@ function Stats() {
           >
             <h4 style={{ pointerEvents: "none" }}>Top 1000</h4>
           </div>
+          {/* <div className="vl"></div>
+          <div
+            onClick={() => {
+              setIsTypingGameStatisticsShown(false);
+              setIsTyping200StatisticsShown(false);
+              setIsTyping1000StatisticsShown(false);
+              setIsKeyboardStatisticsShown(true);
+              setSeeAllHistory1000(false);
+              setSeeAllHistory200(false);
+              setSeeAllHistoryQuote(false);
+            }}
+            className={
+              isKeyboardStatisticsShown
+                ? "typing-game-button-active"
+                : "typing-game-inactive"
+            }
+            style={
+              isKeyboardStatisticsShown
+                ? { backgroundColor: colorFiles.primaryColor }
+                : {
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
+                    color: colorFiles.fontColor,
+                  }
+            }
+          >
+            <h4 style={{ pointerEvents: "none" }}>Keyboard</h4>
+          </div> */}
         </div>
-        <hr style={{ background: colorFiles.hrColor }}></hr>
+
         <div className="all-statistics-div">
           {isLoggedIn
             ? [
                 statisticsTypingGameComponent(),
                 statistics200Component(),
                 statistics1000Component(),
+                // statisticsKeyboardComponent(),
               ]
             : notLoggedIn()}
         </div>

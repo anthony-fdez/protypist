@@ -78,33 +78,40 @@ h1 {
 .statistics-select-buttons {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+  padding: 20px;
+  border-bottom: 1px solid white;
 }
+
 .typing-game-button-active,
 .top-200-button-active,
 .top-1000-button-active {
-  margin: 1rem;
-  padding: 1rem;
+  padding: 10px;
+  margin-right: 1rem;
+  margin-left: 1rem;
   border-radius: 10px;
   width: 200px;
   display: flex;
   justify-content: center;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.1s;
   transform: scale(1.1);
 }
 .typing-game-inactive,
 .top-200-inactive,
 .top-1000-inactive {
-  margin: 1rem;
-  padding: 1rem;
+  padding: 10px;
+  margin-right: 1rem;
+  margin-left: 1rem;
   border-radius: 10px;
   width: 200px;
   display: flex;
   justify-content: center;
   cursor: pointer;
   z-index: 0;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 .typing-game-inactive:hover,
 .top-200-inactive:hover,
@@ -138,9 +145,21 @@ h1 {
 }
 .loading-div-stats {
   position: absolute;
-  right: 15%;
+  left: 47%;
   top: 5px;
 }
 h4 {
   margin: 0;
+}
+.vl {
+  border-left: 2px solid rgb(116, 116, 116);
+  height: 50px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.keyboard-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
 }

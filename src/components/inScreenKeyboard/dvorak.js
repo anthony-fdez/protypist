@@ -442,9 +442,7 @@ function Dvorak() {
         .post("https://protypist.herokuapp.com/users/keysTyped", data, {
           headers: headers,
         })
-        .then((response) => {
-          console.log(response);
-        })
+        .then((response) => {})
         .catch((e) => {
           console.log(e);
         });
