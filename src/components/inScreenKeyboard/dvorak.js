@@ -3,6 +3,7 @@ import "./keyboard.css";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 function useKeyPress(targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
@@ -38,6 +39,9 @@ function Dvorak() {
   const dispatch = useDispatch();
 
   const ALL_KEYS_PRESSED = useSelector((state) => state.allKeysPressed);
+
+  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const jwt = useSelector((state) => state.JWTreducer);
 
   const [pressed_A_Count, setPressed_A_Count] = useState(ALL_KEYS_PRESSED.a);
   const [pressed_B_Count, setPressed_B_Count] = useState(ALL_KEYS_PRESSED.b);
@@ -334,6 +338,63 @@ function Dvorak() {
   ]);
 
   useEffect(() => {
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
+
+      const data = {
+        payload: {
+          a: pressed_A_Count,
+          b: pressed_B_Count,
+          c: pressed_C_Count,
+          d: pressed_D_Count,
+          e: pressed_E_Count,
+          f: pressed_F_Count,
+          g: pressed_G_Count,
+          h: pressed_H_Count,
+          i: pressed_I_Count,
+          j: pressed_J_Count,
+          k: pressed_K_Count,
+          l: pressed_L_Count,
+          m: pressed_M_Count,
+          n: pressed_N_Count,
+          o: pressed_O_Count,
+          p: pressed_P_Count,
+          q: pressed_Q_Count,
+          r: pressed_R_Count,
+          s: pressed_S_Count,
+          t: pressed_T_Count,
+          u: pressed_U_Count,
+          v: pressed_V_Count,
+          w: pressed_W_Count,
+          x: pressed_X_Count,
+          y: pressed_Y_Count,
+          z: pressed_Z_Count,
+          ONE: pressed_1_Count,
+          TWO: pressed_2_Count,
+          THREE: pressed_3_Count,
+          FOUR: pressed_4_Count,
+          FIVE: pressed_5_Count,
+          SIX: pressed_6_Count,
+          SEVEN: pressed_7_Count,
+          EIGHT: pressed_8_Count,
+          NINE: pressed_9_Count,
+          ZERO: pressed_0_Count,
+          Space: pressed_Space_Count,
+          Shift: pressed_Shift_Count,
+        },
+      };
+
+      axios
+        .post("http://localhost:5000/users/keysTyped", data, {
+          headers: headers,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
     dispatch({
       type: "SET_KEYS_PRESSED",
       payload: {
