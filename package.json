@@ -9,7 +9,7 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "framer-motion": "^1.11.1",
-    "netlify-cli": "^2.58.0",
+    "netlify-cli": "^2.69.1",
     "random-words": "^1.1.1",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.10.0",
