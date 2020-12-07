@@ -1074,8 +1074,9 @@ function Stats() {
           {isLoggedIn
             ? [
                 statisticsTypingGameComponent(),
-                statistics200Component(),
                 statistics1000Component(),
+                statistics200Component(),
+
                 // statisticsKeyboardComponent(),
               ]
             : notLoggedIn()}
