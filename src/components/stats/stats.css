@@ -32,9 +32,8 @@ h1 {
 .typing-game-statistics-div-shown,
 .typing-200-statistics-div-shown,
 .typing-1000-statistics-div-shown {
-  position: absolute;
-  width: 90%;
-  margin-top: 2rem;
+  position: relative;
+  width: 95%;
   padding: 2rem;
   border-radius: 10px;
   margin: auto;
@@ -42,14 +41,13 @@ h1 {
   right: 0;
   top: 0;
   transition: 0.3s;
-  margin-bottom: 6rem;
 }
 
 .typing-game-statistics-div-hidden,
 .typing-1000-statistics-div-hidden,
 .typing-200-statistics-div-hidden {
   position: absolute;
-  width: 90%;
+  width: 95%;
   margin-top: 2rem;
   padding: 2rem;
   border-radius: 10px;

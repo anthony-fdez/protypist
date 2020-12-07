@@ -536,6 +536,22 @@ function Stats() {
           {!isLoading && testHistory200(data200)}
           {racesCompleted200 < 10 && timeIsUp === true && alert()}
         </div>
+        <p
+          style={{
+            marginTop: "10px",
+            paddingBottom: "10px",
+            color: colorFiles.fontColor,
+          }}
+        >
+          Made with 🤍 by{" "}
+          <a
+            style={{ color: colorFiles.primaryColor }}
+            target="blank"
+            href="https://github.com/anthony-fdez"
+          >
+            this guy right here
+          </a>
+        </p>
       </div>
     );
   };
@@ -722,20 +738,22 @@ function Stats() {
                 );
               })}
         </div>
-        {data200 !== undefined && data200.length > 20 && (
-          <div>
-            {!seeAllHistoryQuote && (
-              <h3
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  setSeeAllHistoryQuote(true);
-                }}
-              >
-                See all
-              </h3>
-            )}
-          </div>
-        )}
+        {data200 !== undefined &&
+          data200.length > 20 &&
+          seeAllHistory200 == false && (
+            <div>
+              {!seeAllHistoryQuote && (
+                <h3
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setSeeAllHistory200(true);
+                  }}
+                >
+                  See all
+                </h3>
+              )}
+            </div>
+          )}
         {data200 !== undefined && data200.length === 0 && (
           <div
             className="test-history-item"
@@ -805,20 +823,22 @@ function Stats() {
                 );
               })}
         </div>
-        {data1000 !== undefined && data1000.length > 20 && (
-          <div>
-            {!seeAllHistoryQuote && (
-              <h3
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  setSeeAllHistoryQuote(true);
-                }}
-              >
-                See all
-              </h3>
-            )}
-          </div>
-        )}
+        {data1000 !== undefined &&
+          data1000.length > 20 &&
+          seeAllHistory1000 == false && (
+            <div>
+              {!seeAllHistoryQuote && (
+                <h3
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setSeeAllHistory1000(true);
+                  }}
+                >
+                  See all
+                </h3>
+              )}
+            </div>
+          )}
         {data1000 !== undefined && data1000.length === 0 && (
           <div
             className="test-history-item"
@@ -888,20 +908,22 @@ function Stats() {
                 );
               })}
         </div>
-        {dataTypingGame !== undefined && dataTypingGame.length > 20 && (
-          <div>
-            {!seeAllHistoryQuote && (
-              <h3
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  setSeeAllHistoryQuote(true);
-                }}
-              >
-                See all
-              </h3>
-            )}
-          </div>
-        )}
+        {dataTypingGame !== undefined &&
+          dataTypingGame.length > 20 &&
+          seeAllHistoryQuote == false && (
+            <div>
+              {!seeAllHistoryQuote && (
+                <h3
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setSeeAllHistoryQuote(true);
+                  }}
+                >
+                  See all
+                </h3>
+              )}
+            </div>
+          )}
         {dataTypingGame !== undefined && dataTypingGame.length === 0 && (
           <div
             className="test-history-item"
