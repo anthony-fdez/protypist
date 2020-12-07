@@ -4,7 +4,6 @@ import "./keyboard.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { Redirect } from "react-router";
 
 function useKeyPress(targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
@@ -97,6 +96,63 @@ function Qwerty() {
   const [pressed_Comma_Count, setPressed_Comma_Count] = useState(
     ALL_KEYS_PRESSED.Comma
   );
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const headers = { Authorization: jwt };
+
+      axios
+        .get("https://protypist.herokuapp.com/users/getKeysTyped", {
+          headers: headers,
+        })
+        .then((response) => {
+          console.log(response.data.a);
+          setPressed_A_Count(response.data.a);
+          setPressed_B_Count(response.data.b);
+          setPressed_C_Count(response.data.c);
+          setPressed_D_Count(response.data.d);
+          setPressed_E_Count(response.data.e);
+          setPressed_F_Count(response.data.f);
+          setPressed_G_Count(response.data.g);
+          setPressed_H_Count(response.data.h);
+          setPressed_I_Count(response.data.i);
+          setPressed_J_Count(response.data.j);
+          setPressed_K_Count(response.data.k);
+          setPressed_L_Count(response.data.l);
+          setPressed_M_Count(response.data.m);
+          setPressed_N_Count(response.data.n);
+          setPressed_O_Count(response.data.o);
+          setPressed_P_Count(response.data.p);
+          setPressed_Q_Count(response.data.q);
+          setPressed_R_Count(response.data.r);
+          setPressed_S_Count(response.data.s);
+          setPressed_T_Count(response.data.t);
+          setPressed_U_Count(response.data.u);
+          setPressed_V_Count(response.data.v);
+          setPressed_W_Count(response.data.w);
+          setPressed_X_Count(response.data.x);
+          setPressed_Y_Count(response.data.y);
+          setPressed_Z_Count(response.data.z);
+          setPressed_1_Count(response.data.ONE);
+          setPressed_2_Count(response.data.TWO);
+          setPressed_3_Count(response.data.THREE);
+          setPressed_4_Count(response.data.FOUR);
+          setPressed_5_Count(response.data.FIVE);
+          setPressed_6_Count(response.data.SIX);
+          setPressed_7_Count(response.data.SEVEN);
+          setPressed_8_Count(response.data.EIGHT);
+          setPressed_9_Count(response.data.NINE);
+          setPressed_0_Count(response.data.ZERO);
+          setPressed_Space_Count(response.data.Space);
+          setPressed_Shift_Count(response.data.Shift);
+          setPressed_Comma_Count(response.data.Comma);
+          setPressed_Dot_Count(response.data.Dot);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+  }, [jwt, isLoggedIn]);
 
   const [hoveredA, setHoveredA] = useState(false);
   const [hoveredB, setHoveredB] = useState(false);
