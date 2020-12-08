@@ -4,6 +4,7 @@ import "./ladderboard.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { scaleService } from "chart.js";
 
 function Ladderboard(props) {
   const dispatch = useDispatch();
@@ -295,7 +296,15 @@ function Ladderboard(props) {
               }
             >
               <h4 className="ladderboard-number-item">{index + 1}</h4>
-              <h4 className="ladderboard-name-item">{user.name}</h4>
+              <h4 className="ladderboard-name-item">
+                {user.name}
+                {user.account === true && (
+                  <i
+                    style={{ transform: "scale(0.7)", marginLeft: "10px" }}
+                    class="fas fa-lock"
+                  ></i>
+                )}
+              </h4>
               <h4 className="ladderboard-races-item">{user.races}</h4>
               <h4 className="ladderboard-time-item">
                 {formatTheTime(user.time)}

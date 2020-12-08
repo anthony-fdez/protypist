@@ -273,6 +273,15 @@ const fontSizeReducer = (state = "14", action) => {
   }
 };
 
+const privateAccountReducer = (state = false, action) => {
+  switch (action.type) {
+    case "SET_ACCOUNT_TYPE":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allKeysPressed = (
   state = {
     a: 0,
@@ -358,6 +367,7 @@ const allReducers = combineReducers({
   selectKeyboardLayout: selectKeyboardLayout,
   fontSizeReducer: fontSizeReducer,
   allKeysPressed: allKeysPressed,
+  privateAccountReducer: privateAccountReducer,
 });
 
 export default allReducers;

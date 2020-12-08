@@ -9,6 +9,7 @@ import FontSizeCard from "./fontSize";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
+import axios from "axios";
 
 function Settings() {
   const theme = useSelector((state) => state.darkModeReducer);
@@ -19,11 +20,14 @@ function Settings() {
     (state) => state.keyboardOnScreenReducer
   );
   const instaDeath = useSelector((state) => state.instaDeathReducer);
+  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const jwt = useSelector((state) => state.JWTreducer);
 
   const dispatch = useDispatch();
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const isAccountPrivate = useSelector((state) => state.privateAccountReducer);
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -162,7 +166,6 @@ function Settings() {
             </div>
             <h1 className="text">{lenghtAdvanced}</h1>
           </div>
-
           <div
             className={"settings-card-words"}
             style={
@@ -191,6 +194,65 @@ function Settings() {
             <h1 className="text">{instaDeath ? "ON" : "OFF"}</h1>
           </div>
         </div>
+        {isLoggedIn && (
+          <div>
+            <h3>Account</h3>
+            <div className="container">
+              <div
+                className={"settings-card-words"}
+                style={{
+                  backgroundColor: colorFiles.secondaryBackgroundColor,
+                  color: colorFiles.fontColor,
+                }}
+                onClick={() => {
+                  const headers = {
+                    Authorization: jwt,
+                  };
+
+                  const data = "testing";
+
+                  axios
+                    .post(
+                      "https://protypist.herokuapp.com/users/me/private",
+                      data,
+                      {
+                        headers: headers,
+                      }
+                    )
+                    .then((Response) => {
+                      console.log(Response);
+                      dispatch({
+                        type: "SET_ACCOUNT_TYPE",
+                        payload: Response.data,
+                      });
+                    })
+                    .catch((e) => {
+                      console.log(e);
+                    });
+                }}
+              >
+                <div style={{ textAlign: "left" }}>
+                  <h2>Account: {isAccountPrivate ? "Private" : "Public"}</h2>
+                  <p>
+                    If your account is public other people can see all your
+                    races and statistics.
+                  </p>
+                </div>
+                <h1 className="text">
+                  {isAccountPrivate ? "PRIVATE" : "PUBLIC"}
+                </h1>
+                <div>
+                  {isAccountPrivate ? (
+                    <i class="fas fa-lock fa-2x"></i>
+                  ) : (
+                    <i class="fas fa-lock-open fa-2x"></i>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <h3>Ui settings</h3>
         <FontFamilyCard />
         <FontSizeCard />
