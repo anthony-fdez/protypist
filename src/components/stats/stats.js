@@ -1010,6 +1010,7 @@ function Stats() {
             onClick={() => {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(false);
+              setIsTyping1000StatisticsShown(true);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
               setSeeAllHistoryQuote(false);
