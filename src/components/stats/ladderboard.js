@@ -22,6 +22,24 @@ function Ladderboard(props) {
   const [userProfileOpen, setUserProfileOpen] = useState(false);
   const [otherUserData, setOtherUserData] = useState(undefined);
 
+  const [seeAllHistoryQuote, setSeeAllHistoryQuote] = useState(false);
+  const [seeAllHistory200, setSeeAllHistory200] = useState(false);
+  const [seeAllHistory1000, setSeeAllHistory1000] = useState(false);
+  const [
+    isTypingGameStatisticsShown,
+    setIsTypingGameStatisticsShown,
+  ] = useState(true);
+  const [isTyping200StatisticsShown, setIsTyping200StatisticsShown] = useState(
+    false
+  );
+  const [
+    isTyping1000StatisticsShown,
+    setIsTyping1000StatisticsShown,
+  ] = useState(false);
+  const [isKeyboardStatisticsShown, setIsKeyboardStatisticsShown] = useState(
+    false
+  );
+
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
 
@@ -174,6 +192,358 @@ function Ladderboard(props) {
     }
   };
 
+  const selectGameModeToShowComponent = () => {
+    return (
+      <div
+        style={{
+          backgroundColor: colorFiles.secondaryBackgroundColor,
+          borderBottom: "1px solid " + colorFiles.hrColor,
+        }}
+        className="statistics-select-buttons-leaderboard"
+      >
+        <div
+          onClick={() => {
+            setIsTypingGameStatisticsShown(true);
+            setIsTyping200StatisticsShown(false);
+            setIsTyping1000StatisticsShown(false);
+            setIsKeyboardStatisticsShown(false);
+            setSeeAllHistory1000(false);
+            setSeeAllHistory200(false);
+            setSeeAllHistoryQuote(false);
+          }}
+          className={
+            isTypingGameStatisticsShown
+              ? "typing-game-button-active"
+              : "typing-game-inactive"
+          }
+          style={
+            isTypingGameStatisticsShown
+              ? { backgroundColor: colorFiles.primaryColor }
+              : {
+                  backgroundColor: colorFiles.backgroundColor,
+                  color: colorFiles.fontColor,
+                }
+          }
+        >
+          <h4 style={{ pointerEvents: "none" }}>TypingGame</h4>
+        </div>
+        <div
+          onClick={() => {
+            setIsTypingGameStatisticsShown(false);
+            setIsTyping200StatisticsShown(true);
+            setIsTyping1000StatisticsShown(false);
+            setIsKeyboardStatisticsShown(false);
+            setSeeAllHistory1000(false);
+            setSeeAllHistory200(false);
+            setSeeAllHistoryQuote(false);
+          }}
+          className={
+            isTyping200StatisticsShown
+              ? "typing-game-button-active"
+              : "typing-game-inactive"
+          }
+          style={
+            isTyping200StatisticsShown
+              ? { backgroundColor: colorFiles.primaryColor }
+              : {
+                  backgroundColor: colorFiles.backgroundColor,
+                  color: colorFiles.fontColor,
+                }
+          }
+        >
+          <h4 style={{ pointerEvents: "none" }}>Top 200</h4>
+        </div>
+        <div
+          onClick={() => {
+            setIsTypingGameStatisticsShown(false);
+            setIsTyping200StatisticsShown(false);
+            setIsTyping1000StatisticsShown(true);
+            setIsKeyboardStatisticsShown(false);
+            setSeeAllHistory1000(false);
+            setSeeAllHistory200(false);
+            setSeeAllHistoryQuote(false);
+          }}
+          className={
+            isTyping1000StatisticsShown
+              ? "typing-game-button-active"
+              : "typing-game-inactive"
+          }
+          style={
+            isTyping1000StatisticsShown
+              ? { backgroundColor: colorFiles.primaryColor }
+              : {
+                  backgroundColor: colorFiles.backgroundColor,
+                  color: colorFiles.fontColor,
+                }
+          }
+        >
+          <h4 style={{ pointerEvents: "none" }}>Top 1000</h4>
+        </div>
+      </div>
+    );
+  };
+
+  const testHistory200 = () => {
+    if (otherUserData !== undefined) {
+      let DATA = otherUserData.typing200Statistics;
+      return (
+        <div>
+          <h3>Tests History</h3>
+          <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
+          <div style={{ position: "relative", width: "70%", margin: "auto" }}>
+            {otherUserData.typing200Statistics.length !== 0 && (
+              <div className="test-history-item">
+                <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+                <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+                <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+                <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
+                <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+              </div>
+            )}
+          </div>
+          <div className="tests-history">
+            {DATA !== undefined &&
+              DATA.slice(0)
+                .reverse()
+                .slice(0, seeAllHistory200 ? DATA.length : 20)
+                .map((data, index) => {
+                  return (
+                    <div
+                      style={
+                        index % 2 === 0
+                          ? {
+                              backgroundColor: colorFiles.backgroundColor,
+                              position: "relative",
+                            }
+                          : { position: "relative" }
+                      }
+                      className="test-history-item"
+                      key={index}
+                    >
+                      <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                      <h4 style={{ position: "absolute", left: "13vw" }}>
+                        {data.wpm}wpm
+                      </h4>
+                      <h4 style={{ position: "absolute", left: "28vw" }}>
+                        {data.time}s
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "1vw" }}>
+                        {" "}
+                        {data.mistakes}
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "10vw" }}>
+                        {" "}
+                        {`${data.accuracy}%`}
+                      </h4>
+                    </div>
+                  );
+                })}
+          </div>
+          {otherUserData.typing200Statistics !== undefined &&
+            otherUserData.typing200Statistics.length > 20 &&
+            seeAllHistory200 == false && (
+              <div>
+                {!seeAllHistoryQuote && (
+                  <h3
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setSeeAllHistory200(true);
+                    }}
+                  >
+                    See all
+                  </h3>
+                )}
+              </div>
+            )}
+          {otherUserData.typing200Statistics !== undefined &&
+            otherUserData.typing200Statistics.length === 0 && (
+              <div
+                className="test-history-item"
+                style={{
+                  backgroundColor: colorFiles.backgroundColor,
+                  color: colorFiles.fontColor,
+                }}
+              >
+                <h4>Nothing to see here :(</h4>
+              </div>
+            )}
+        </div>
+      );
+    }
+  };
+
+  const testHistory1000 = () => {
+    if (otherUserData !== undefined) {
+      let DATA = otherUserData.typing1000Statistics;
+
+      return (
+        <div>
+          <h3>Tests History</h3>
+          <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
+          <div style={{ position: "relative", width: "70%", margin: "auto" }}>
+            {DATA.length !== 0 && (
+              <div className="test-history-item">
+                <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+                <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+                <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+                <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
+                <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+              </div>
+            )}
+          </div>
+          <div className="tests-history">
+            {DATA.slice(0)
+              .reverse()
+              .slice(0, seeAllHistory1000 ? DATA.length : 20)
+              .map((data, index) => {
+                return (
+                  <div
+                    style={
+                      index % 2 === 0
+                        ? {
+                            backgroundColor: colorFiles.backgroundColor,
+                            position: "relative",
+                          }
+                        : { position: "relative" }
+                    }
+                    className="test-history-item"
+                    key={index}
+                  >
+                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                    <h4 style={{ position: "absolute", left: "13vw" }}>
+                      {data.wpm}wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", left: "28vw" }}>
+                      {data.time}s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {data.mistakes}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "10vw" }}>
+                      {" "}
+                      {`${data.accuracy}%`}
+                    </h4>
+                  </div>
+                );
+              })}
+          </div>
+          {DATA.length > 20 && seeAllHistory1000 == false && (
+            <div>
+              {!seeAllHistoryQuote && (
+                <h3
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setSeeAllHistory1000(true);
+                  }}
+                >
+                  See all
+                </h3>
+              )}
+            </div>
+          )}
+          {DATA.length === 0 && (
+            <div
+              className="test-history-item"
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
+            >
+              <h4>Nothing to see here :(</h4>
+            </div>
+          )}
+        </div>
+      );
+    }
+  };
+
+  const testHistoryQuote = () => {
+    if (otherUserData !== undefined) {
+      const DATA = otherUserData.typingGameStatistics;
+
+      return (
+        <div>
+          <h3>Tests History</h3>
+          <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
+          {DATA.length !== 0 && (
+            <div style={{ position: "relative", width: "70%", margin: "auto" }}>
+              <div className="test-history-item">
+                <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
+                <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
+                <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
+                <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
+                <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+              </div>
+            </div>
+          )}
+          <div className="tests-history">
+            {DATA.slice(0)
+              .reverse()
+              .slice(0, seeAllHistoryQuote ? DATA.length : 20)
+              .map((data, index) => {
+                return (
+                  <div
+                    style={
+                      index % 2 === 0
+                        ? {
+                            backgroundColor: colorFiles.backgroundColor,
+                            position: "relative",
+                          }
+                        : { position: "relative" }
+                    }
+                    className="test-history-item"
+                    key={index}
+                  >
+                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                    <h4 style={{ position: "absolute", left: "13vw" }}>
+                      {data.wpm}wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", left: "28vw" }}>
+                      {data.time}s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {data.mistakes}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "10vw" }}>
+                      {" "}
+                      {`${data.accuracy}%`}
+                    </h4>
+                  </div>
+                );
+              })}
+          </div>
+          {DATA.length > 20 && seeAllHistoryQuote == false && (
+            <div>
+              {!seeAllHistoryQuote && (
+                <h3
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setSeeAllHistoryQuote(true);
+                  }}
+                >
+                  See all
+                </h3>
+              )}
+            </div>
+          )}
+          {DATA.length === 0 && (
+            <div
+              className="test-history-item"
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
+            >
+              <h4>Nothing to see here :(</h4>
+            </div>
+          )}
+        </div>
+      );
+    }
+  };
+
   const OtherPersonProfile = () => {
     const otherPersonProfilePlaceHolder = () => {
       const placeHolderChartData = {
@@ -244,6 +614,7 @@ function Ladderboard(props) {
                   <h5 style={{ marginTop: "1rem" }}>0</h5>
                 </div>
               </div>
+              {selectGameModeToShowComponent()}
               <div className="chart">
                 <Line
                   options={{
@@ -295,6 +666,8 @@ function Ladderboard(props) {
         const races = data.races;
         const mistakes = data.mistakes;
 
+        console.log(otherUserData);
+
         const chartData = {
           labels: races,
           datasets: [
@@ -326,7 +699,7 @@ function Ladderboard(props) {
               className="other-user-header"
             >
               <div className="other-user-div-header">
-                <h2>Name</h2>
+                <h2>{otherUserData.name}</h2>
                 <i
                   onClick={() => setUserProfileOpen(!userProfileOpen)}
                   className="close-icon-login fas fa-times fa-2x"
@@ -341,29 +714,40 @@ function Ladderboard(props) {
                   <div className="stats-box">
                     <h5>Total time:</h5>
                     <hr style={{ background: colorFiles.hrColor }}></hr>
-                    <h5 style={{ marginTop: "1rem" }}>00:00:00</h5>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {formatTheTime(otherUserData.totalTimeTyped)}
+                    </h5>
                   </div>
                   <div className="stats-box">
                     <h5>Races:</h5>
                     <hr style={{ background: colorFiles.hrColor }}></hr>
-                    <h5 style={{ marginTop: "1rem" }}>0</h5>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {otherUserData.racesCompleted}
+                    </h5>
                   </div>
                   <div className="stats-box">
                     <h5>Highest:</h5>{" "}
                     <hr style={{ background: colorFiles.hrColor }}></hr>
-                    <h5 style={{ marginTop: "1rem" }}>0</h5>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {otherUserData.highestSpeedAllTime}
+                    </h5>
                   </div>
                   <div className="stats-box">
                     <h5>Average:</h5>{" "}
                     <hr style={{ background: colorFiles.hrColor }}></hr>
-                    <h5 style={{ marginTop: "1rem" }}>0</h5>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {Math.round(otherUserData.wpmAverageAllTime * 100) / 100}
+                    </h5>
                   </div>
                   <div className="stats-box">
                     <h5>Recent Avg:</h5>{" "}
                     <hr style={{ background: colorFiles.hrColor }}></hr>
-                    <h5 style={{ marginTop: "1rem" }}>0</h5>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {Math.round(otherUserData.wpmAverage10races * 100) / 100}
+                    </h5>
                   </div>
                 </div>
+                {selectGameModeToShowComponent()}
                 <div className="chart">
                   <Line
                     options={{
@@ -400,13 +784,291 @@ function Ladderboard(props) {
                 </div>
               </div>
             </div>
+            <hr style={{ background: colorFiles.hrColor }}></hr>
+            {testHistoryQuote()}
+            <div style={{ padding: "1rem" }}></div>
+          </div>
+        );
+      }
+    };
+
+    const otherPersonProfile200 = () => {
+      if (otherUserData !== undefined) {
+        const data = getTheDataForTheChart(otherUserData.typing200Statistics);
+        const wpm = data.wpm;
+        const races = data.races;
+        const mistakes = data.mistakes;
+
+        console.log(otherUserData);
+
+        const chartData = {
+          labels: races,
+          datasets: [
+            {
+              label: "Mistakes",
+              data: mistakes,
+              borderWidth: 4,
+              backgroundColor: colorFiles.fontColor,
+            },
+            {
+              label: "WPM",
+              data: wpm,
+              borderWidth: 5,
+              backgroundColor: colorFiles.primaryColor,
+            },
+          ],
+        };
+
+        return (
+          <div
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={"other-person-profile"}
+          >
+            <div
+              style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+              className="other-user-header"
+            >
+              <div className="other-user-div-header">
+                <h2>{otherUserData.name}</h2>
+                <i
+                  onClick={() => setUserProfileOpen(!userProfileOpen)}
+                  className="close-icon-login fas fa-times fa-2x"
+                ></i>
+              </div>
+              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            </div>
+            <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
+              <div style={{ textAlign: "center" }}>
+                <div className={"all-time-div-stats"}>
+                  <div className="stats-box">
+                    <h5>Total time:</h5>
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {formatTheTime(otherUserData.totalTimeTyped200)}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Races:</h5>
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {otherUserData.racesCompleted200}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Highest:</h5>{" "}
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {otherUserData.highestSpeedAllTime200}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Average:</h5>{" "}
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {Math.round(otherUserData.wpmAverageAllTime200 * 100) /
+                        100}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Recent Avg:</h5>{" "}
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {Math.round(
+                        otherUserData.wpmAverageLast10Races200 * 100
+                      ) / 100}
+                    </h5>
+                  </div>
+                </div>
+                {selectGameModeToShowComponent()}
+                <div className="chart">
+                  <Line
+                    options={{
+                      responsive: true,
+                      title: { text: "Words Per Minute ", display: true },
+                      scales: {
+                        yAxes: [
+                          {
+                            ticks: {
+                              autoSkip: true,
+                              maxTicksLimit: 10,
+                            },
+                            gridLines: {
+                              display: true,
+                            },
+                          },
+                        ],
+                        xAxes: [
+                          {
+                            ticks: {
+                              autoSkip: true,
+                              maxTicksLimit: 15,
+                            },
+
+                            gridLines: {
+                              display: true,
+                            },
+                          },
+                        ],
+                      },
+                    }}
+                    data={chartData}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ background: colorFiles.hrColor }}></hr>
+            {testHistory200()}
+            <div style={{ padding: "1rem" }}></div>
+          </div>
+        );
+      }
+    };
+
+    const otherPersonProfile1000 = () => {
+      if (otherUserData !== undefined) {
+        const data = getTheDataForTheChart(otherUserData.typing1000Statistics);
+        const wpm = data.wpm;
+        const races = data.races;
+        const mistakes = data.mistakes;
+
+        const chartData = {
+          labels: races,
+          datasets: [
+            {
+              label: "Mistakes",
+              data: mistakes,
+              borderWidth: 4,
+              backgroundColor: colorFiles.fontColor,
+            },
+            {
+              label: "WPM",
+              data: wpm,
+              borderWidth: 5,
+              backgroundColor: colorFiles.primaryColor,
+            },
+          ],
+        };
+
+        return (
+          <div
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={"other-person-profile"}
+          >
+            <div
+              style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+              className="other-user-header"
+            >
+              <div className="other-user-div-header">
+                <h2>{otherUserData.name}</h2>
+                <i
+                  onClick={() => setUserProfileOpen(!userProfileOpen)}
+                  className="close-icon-login fas fa-times fa-2x"
+                ></i>
+              </div>
+              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            </div>
+
+            <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
+              <div style={{ textAlign: "center" }}>
+                <div className={"all-time-div-stats"}>
+                  <div className="stats-box">
+                    <h5>Total time:</h5>
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {formatTheTime(otherUserData.totalTimeTyped1000)}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Races:</h5>
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {otherUserData.racesCompleted1000}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Highest:</h5>{" "}
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {otherUserData.highestSpeedAllTime1000}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Average:</h5>{" "}
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {Math.round(otherUserData.wpmAverageAllTime1000 * 100) /
+                        100}
+                    </h5>
+                  </div>
+                  <div className="stats-box">
+                    <h5>Recent Avg:</h5>{" "}
+                    <hr style={{ background: colorFiles.hrColor }}></hr>
+                    <h5 style={{ marginTop: "1rem" }}>
+                      {Math.round(
+                        otherUserData.wpmAverageLast10Races1000 * 100
+                      ) / 100}
+                    </h5>
+                  </div>
+                </div>
+                {selectGameModeToShowComponent()}
+                <div className="chart">
+                  <Line
+                    options={{
+                      responsive: true,
+                      title: { text: "Words Per Minute ", display: true },
+                      scales: {
+                        yAxes: [
+                          {
+                            ticks: {
+                              autoSkip: true,
+                              maxTicksLimit: 10,
+                            },
+                            gridLines: {
+                              display: true,
+                            },
+                          },
+                        ],
+                        xAxes: [
+                          {
+                            ticks: {
+                              autoSkip: true,
+                              maxTicksLimit: 15,
+                            },
+
+                            gridLines: {
+                              display: true,
+                            },
+                          },
+                        ],
+                      },
+                    }}
+                    data={chartData}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ background: colorFiles.hrColor }}></hr>
+            {testHistory1000()}
+            <div style={{ padding: "1rem" }}></div>
           </div>
         );
       }
     };
 
     if (otherUserData !== undefined) {
-      return otherPersonProfileTypingGame();
+      if (isTypingGameStatisticsShown) {
+        return otherPersonProfileTypingGame();
+      } else if (isTyping200StatisticsShown) {
+        return otherPersonProfile200();
+      } else if (isTyping1000StatisticsShown) {
+        return otherPersonProfile1000();
+      }
     } else return otherPersonProfilePlaceHolder();
   };
 

@@ -40,4 +40,12 @@
   position: sticky;
   top: 0;
   padding: 1rem 1rem 0rem 1rem;
+  z-index: 1;
+}
+.statistics-select-buttons-leaderboard {
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+  padding: 20px;
+  border-bottom: 1px solid white;
 }
