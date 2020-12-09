@@ -27,10 +27,9 @@ const CustomText = () => {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
-  const [finished, setFinished] = useState(false);
+  const [finished] = useState(false);
 
   const [isRunning, setIsRunning] = useState(false);
-  const [seconds, setSeconds] = useState(0);
   const [timeSeconds, setTimeSeconds] = useState(0);
   const [newGame, setNewGame] = useState(false);
   const [blankSpanArray] = useState([]);
@@ -157,7 +156,6 @@ const CustomText = () => {
       setProgress(1);
       calculateAccuracy();
       setCharactersTyped(0);
-      setSeconds(0);
     } else if (
       e.target.value.length === textArrayCharacters.length &&
       mistakes < 5
@@ -173,7 +171,6 @@ const CustomText = () => {
       setProgress(1);
       calculateAccuracy();
       setCharactersTyped(0);
-      setSeconds(0);
     } else if (charactersTyped >= 1) {
       setIsRunning(true);
     }
@@ -191,7 +188,6 @@ const CustomText = () => {
         setRealMistakes(0);
         setProgress(1);
         calculateAccuracy();
-        setSeconds(0);
       }
     }
 
@@ -237,15 +233,6 @@ const CustomText = () => {
     } else if (isRunning === false) {
       let time = timeSeconds;
       setTimeSeconds(time);
-    }
-  }, [isRunning]);
-
-  useEffect(() => {
-    if (isRunning) {
-      let interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
-      }, 1000);
-      return () => clearInterval(interval);
     }
   }, [isRunning]);
 

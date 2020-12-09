@@ -103,7 +103,7 @@ function Stats() {
           console.log(e);
         });
     }
-  }, [jwt]);
+  }, [jwt, isLoggedIn]);
 
   useEffect(() => {
     if (isLadderBoardMenuOpen) {
@@ -712,7 +712,7 @@ function Stats() {
           </div>
           {data200 !== undefined &&
             data200.length > 20 &&
-            seeAllHistory200 == false && (
+            seeAllHistory200 === false && (
               <div>
                 {!seeAllHistoryQuote && (
                   <h3
@@ -806,7 +806,7 @@ function Stats() {
                   );
                 })}
           </div>
-          {DATA.length > 20 && seeAllHistory1000 == false && (
+          {DATA.length > 20 && seeAllHistory1000 === false && (
             <div>
               {!seeAllHistory1000 && (
                 <h3
@@ -902,7 +902,7 @@ function Stats() {
           </div>
           {dataTypingGame !== undefined &&
             dataTypingGame.length > 20 &&
-            seeAllHistoryQuote == false && (
+            seeAllHistoryQuote === false && (
               <div>
                 {!seeAllHistoryQuote && (
                   <h3
@@ -1010,7 +1010,6 @@ function Stats() {
             onClick={() => {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(false);
-              setIsKeyboardStatisticsShown(false);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
               setSeeAllHistoryQuote(false);
