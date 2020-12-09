@@ -6,9 +6,10 @@
   left: 150px;
   height: calc(100% - 100px);
   width: calc(100% - 300px);
-  padding: 1rem;
+  padding: 0rem;
   border-radius: 5px;
   opacity: 1;
+  overflow-y: scroll;
 }
 
 .dark-background-leaderboard {
@@ -30,4 +31,13 @@
   z-index: 0;
   pointer-events: none;
   transition: 0.3s;
+}
+.other-user-div-header {
+  display: flex;
+  justify-content: space-between;
+}
+.other-user-header {
+  position: sticky;
+  top: 0;
+  padding: 1rem 1rem 0rem 1rem;
 }
