@@ -107,7 +107,6 @@ function Dvorak() {
           headers: headers,
         })
         .then((response) => {
-          console.log(response.data.a);
           setPressed_A_Count(response.data.a);
           setPressed_B_Count(response.data.b);
           setPressed_C_Count(response.data.c);

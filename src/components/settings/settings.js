@@ -220,7 +220,6 @@ function Settings() {
                       }
                     )
                     .then((Response) => {
-                      console.log(Response);
                       dispatch({
                         type: "SET_ACCOUNT_TYPE",
                         payload: Response.data,
