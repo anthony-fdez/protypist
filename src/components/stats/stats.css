@@ -131,11 +131,11 @@ h1 {
   transition: 0.3s;
 }
 .tests-history {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .test-history-item {
   display: flex;
-  width: 70%;
+  width: 80%;
   margin: auto;
   padding: 0.5rem;
   align-content: center;

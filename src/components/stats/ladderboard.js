@@ -289,18 +289,23 @@ function Ladderboard(props) {
       return (
         <div>
           <h3>Tests History</h3>
-          <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
-          <div style={{ position: "relative", width: "70%", margin: "auto" }}>
-            {otherUserData.typing200Statistics.length !== 0 && (
+          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          {DATA.length !== 0 && (
+            <div style={{ position: "relative", width: "80%", margin: "auto" }}>
               <div className="test-history-item">
-                <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
-                <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
-                <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
-                <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
-                <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+                <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
+                <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
+                <h5 style={{ position: "absolute", right: "19vw" }}>
+                  Accuracy
+                </h5>
+                <h5 style={{ position: "absolute", right: "11vw" }}>
+                  Mistakes
+                </h5>
+                <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
               </div>
-            )}
-          </div>
+            </div>
+          )}
           <div className="tests-history">
             {DATA !== undefined &&
               DATA.slice(0)
@@ -321,20 +326,24 @@ function Ladderboard(props) {
                       key={index}
                     >
                       <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
-                      <h4 style={{ position: "absolute", left: "13vw" }}>
+                      <h4 style={{ position: "absolute", right: "36vw" }}>
                         {data.wpm}wpm
                       </h4>
-                      <h4 style={{ position: "absolute", left: "28vw" }}>
+                      <h4 style={{ position: "absolute", right: "28vw" }}>
                         {data.time}s
                       </h4>
-                      <h4 style={{ position: "absolute", right: "1vw" }}>
+                      <h4 style={{ position: "absolute", right: "12vw" }}>
                         {" "}
                         {data.mistakes}
                       </h4>
-                      <h4 style={{ position: "absolute", right: "10vw" }}>
+                      <h4 style={{ position: "absolute", right: "20vw" }}>
                         {" "}
                         {`${data.accuracy}%`}
                       </h4>
+                      <p style={{ position: "absolute", right: "1vw" }}>
+                        {" "}
+                        {data.date}
+                      </p>
                     </div>
                   );
                 })}
@@ -379,17 +388,16 @@ function Ladderboard(props) {
       return (
         <div>
           <h3>Tests History</h3>
-          <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
-          <div style={{ position: "relative", width: "70%", margin: "auto" }}>
-            {DATA.length !== 0 && (
-              <div className="test-history-item">
-                <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
-                <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
-                <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
-                <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
-                <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
-              </div>
-            )}
+          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          <div style={{ position: "relative", width: "80%", margin: "auto" }}>
+            <div className="test-history-item">
+              <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
+              <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+              <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
+              <h5 style={{ position: "absolute", right: "19vw" }}>Accuracy</h5>
+              <h5 style={{ position: "absolute", right: "11vw" }}>Mistakes</h5>
+              <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
+            </div>
           </div>
           <div className="tests-history">
             {DATA.slice(0)
@@ -410,20 +418,24 @@ function Ladderboard(props) {
                     key={index}
                   >
                     <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
-                    <h4 style={{ position: "absolute", left: "13vw" }}>
+                    <h4 style={{ position: "absolute", right: "36vw" }}>
                       {data.wpm}wpm
                     </h4>
-                    <h4 style={{ position: "absolute", left: "28vw" }}>
+                    <h4 style={{ position: "absolute", right: "28vw" }}>
                       {data.time}s
                     </h4>
-                    <h4 style={{ position: "absolute", right: "1vw" }}>
+                    <h4 style={{ position: "absolute", right: "12vw" }}>
                       {" "}
                       {data.mistakes}
                     </h4>
-                    <h4 style={{ position: "absolute", right: "10vw" }}>
+                    <h4 style={{ position: "absolute", right: "20vw" }}>
                       {" "}
                       {`${data.accuracy}%`}
                     </h4>
+                    <p style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {data.date}
+                    </p>
                   </div>
                 );
               })}
@@ -461,19 +473,25 @@ function Ladderboard(props) {
   const testHistoryQuote = () => {
     if (otherUserData !== undefined) {
       const DATA = otherUserData.typingGameStatistics;
+      console.log(DATA);
 
       return (
         <div>
           <h3>Tests History</h3>
-          <hr style={{ background: colorFiles.hrColor, width: "70%" }}></hr>
+          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
           {DATA.length !== 0 && (
-            <div style={{ position: "relative", width: "70%", margin: "auto" }}>
+            <div style={{ position: "relative", width: "80%", margin: "auto" }}>
               <div className="test-history-item">
-                <h4 style={{ position: "absolute", left: "0vw" }}>Test #</h4>
-                <h4 style={{ position: "absolute", left: "14vw" }}>wpm</h4>
-                <h4 style={{ position: "absolute", left: "28vw" }}>Time</h4>
-                <h4 style={{ position: "absolute", right: "9vw" }}>Accuracy</h4>
-                <h4 style={{ position: "absolute", right: "0vw" }}>Mistakes</h4>
+                <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
+                <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
+                <h5 style={{ position: "absolute", right: "19vw" }}>
+                  Accuracy
+                </h5>
+                <h5 style={{ position: "absolute", right: "11vw" }}>
+                  Mistakes
+                </h5>
+                <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
               </div>
             </div>
           )}
@@ -496,20 +514,24 @@ function Ladderboard(props) {
                     key={index}
                   >
                     <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
-                    <h4 style={{ position: "absolute", left: "13vw" }}>
+                    <h4 style={{ position: "absolute", right: "36vw" }}>
                       {data.wpm}wpm
                     </h4>
-                    <h4 style={{ position: "absolute", left: "28vw" }}>
+                    <h4 style={{ position: "absolute", right: "28vw" }}>
                       {data.time}s
                     </h4>
-                    <h4 style={{ position: "absolute", right: "1vw" }}>
+                    <h4 style={{ position: "absolute", right: "12vw" }}>
                       {" "}
                       {data.mistakes}
                     </h4>
-                    <h4 style={{ position: "absolute", right: "10vw" }}>
+                    <h4 style={{ position: "absolute", right: "20vw" }}>
                       {" "}
                       {`${data.accuracy}%`}
                     </h4>
+                    <p style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {data.date}
+                    </p>
                   </div>
                 );
               })}
