@@ -120,6 +120,23 @@ function Stats() {
     }
   }, []);
 
+  const getTheDataForTheChart = (DATA) => {
+    let wpm = [];
+    let races = [];
+    let mistakes = [];
+
+    if (DATA !== undefined) {
+      let data = DATA;
+
+      for (let i = 0; i < data.length; i++) {
+        wpm.push(data[i].wpm);
+        mistakes.push(data[i].mistakes);
+        races.push(i + 1);
+      }
+      return { races: races, wpm: wpm, mistakes: mistakes };
+    }
+  };
+
   const chart200 = () => {
     if (data200 !== undefined) {
       const data = getTheDataForTheChart(data200);
