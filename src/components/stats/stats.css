@@ -20,7 +20,7 @@ h1 {
   left: 0;
   right: 0;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 2rem;
   display: flex;
   justify-content: center;
@@ -35,7 +35,7 @@ h1 {
   position: relative;
   width: 95%;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: auto;
   left: 0;
   right: 0;
@@ -50,7 +50,7 @@ h1 {
   width: 95%;
   margin-top: 2rem;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: auto;
   left: 0;
   right: 0;
@@ -89,7 +89,7 @@ h1 {
   padding: 10px;
   margin-right: 1rem;
   margin-left: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 200px;
   display: flex;
   justify-content: center;
@@ -103,7 +103,7 @@ h1 {
   padding: 10px;
   margin-right: 1rem;
   margin-left: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 200px;
   display: flex;
   justify-content: center;
@@ -127,7 +127,7 @@ h1 {
   width: 95%;
   margin-top: 1rem;
   padding: 0.5rem;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: 0.3s;
 }
 .tests-history {

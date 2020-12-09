@@ -53,7 +53,7 @@
     margin: 4rem;
     margin-top: 0.5rem;
     transition: 0.3s;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   .text-to-type-dark {
     margin-top: 1rem;
@@ -64,7 +64,7 @@
     margin-top: 0.5rem;
     transition: 0.3s;
     opacity: 0.2;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   .none {
@@ -210,7 +210,7 @@
     margin-right: auto;
   }
   .about-the-text-hidden {
-    border-radius: 10px;
+    border-radius: 5px;
     position: fixed;
     bottom: 4rem;
     padding: 1rem;
@@ -228,7 +228,7 @@
   .about-the-text-shown {
     transition: 0.6s;
     height: 303px;
-    border-radius: 10px;
+    border-radius: 5px;
     position: fixed;
     bottom: 4rem;
     padding: 1rem;
@@ -247,7 +247,7 @@
     padding-left: 0;
   }
   .picture-div {
-    border-radius: 10px;
+    border-radius: 5px;
     margin-right: 1rem;
     width: 200px;
     display: flex;
@@ -318,7 +318,7 @@
   .side-menu-list-item {
     margin: 1rem;
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: 0.3s;
     cursor: pointer;
   }
@@ -335,7 +335,7 @@
   .side-menu-picture {
     width: 300px;
     max-height: 400px;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   .side-menu-info-container {
     margin: 1rem;
@@ -366,7 +366,7 @@
   .submit-quote-menu-open {
     position: fixed;
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: auto;
     right: 0;
     left: 200px;
@@ -398,7 +398,7 @@
   }
   .submit-quote-form-button {
     width: 570px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 1rem;
     position: absolute;
     bottom: 10px;
@@ -603,7 +603,7 @@
     transition: 0.3s;
   }
   .about-the-text-hidden {
-    border-radius: 10px;
+    border-radius: 5px;
     position: fixed;
     bottom: 1rem;
     padding: 1rem;
@@ -623,7 +623,7 @@
   .about-the-text-shown {
     transition: 0.6s;
     height: 273px;
-    border-radius: 10px;
+    border-radius: 5px;
     position: fixed;
     bottom: 1rem;
     padding: 1rem;
@@ -642,7 +642,7 @@
     padding-left: 0;
   }
   .picture-div {
-    border-radius: 10px;
+    border-radius: 5px;
     margin-right: 1rem;
     width: 170px;
     height: 170px;
@@ -710,7 +710,7 @@
   .side-menu-list-item {
     margin: 1rem;
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: 0.3s;
     cursor: pointer;
   }
@@ -727,7 +727,7 @@
   .side-menu-picture {
     width: 300px;
     max-height: 400px;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   .side-menu-info-container {
     margin: 1rem;

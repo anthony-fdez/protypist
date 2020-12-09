@@ -61,7 +61,7 @@
   transform: scale(0.9);
 }
 .keyboard {
-  border-radius: 10px;
+  border-radius: 5px;
   z-index: 1;
   position: absolute;
   bottom: 4rem;
@@ -242,7 +242,7 @@
     transition: 0.03s;
   }
   .keyboard {
-    border-radius: 10px;
+    border-radius: 5px;
     position: absolute;
     bottom: 1rem;
     padding: 1rem;

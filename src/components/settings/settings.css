@@ -29,7 +29,7 @@ h2 {
 }
 .settings-card,
 .settings-card-words {
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   padding: 2rem;
@@ -44,7 +44,7 @@ h2 {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
 }
 .settings-card-themes-closed {
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   padding: 2rem;
@@ -58,7 +58,7 @@ h2 {
   position: relative;
 }
 .settings-card-themes-open {
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   padding: 2rem;
@@ -108,7 +108,7 @@ h2 {
 }
 .settings-card {
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   padding: 2rem;
@@ -129,7 +129,7 @@ h2 {
   cursor: pointer;
 }
 .settings-card-dark-words {
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   padding: 2rem;
@@ -192,7 +192,7 @@ h2 {
   .settings-card,
   .settings-card-words {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     padding: 2rem;
@@ -214,7 +214,7 @@ h2 {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
   }
   .settings-card {
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     padding: 2rem;
@@ -232,7 +232,7 @@ h2 {
     background-color: rgb(90, 90, 90);
   }
   .settings-card-words {
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     padding: 2rem;
