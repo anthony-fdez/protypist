@@ -1126,7 +1126,7 @@ function TypingTest() {
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}
-            placeholder="The test will bigin when you start typing!"
+            placeholder="The test will begin when you start typing!"
             className={finished ? "input-box-hidden" : "input-box-shown"}
             style={{
               color: colorFiles.fontColor,

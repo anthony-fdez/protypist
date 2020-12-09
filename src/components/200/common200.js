@@ -586,7 +586,7 @@ function Common200() {
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}
-            placeholder="The test will bigin when you start typing!"
+            placeholder="The test will begin when you start typing!"
             className="input-box-shown"
             style={{
               color: colorFiles.fontColor,
