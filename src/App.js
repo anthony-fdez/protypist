@@ -12,11 +12,9 @@ import Stats from "./components/stats/stats";
 import CustomText from "./components/customText/customText";
 import SelectText from "./components/customText/selectText";
 // import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function App() {
-  const dispatch = useDispatch();
-
   // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   // const jwt = useSelector((state) => state.JWTreducer);
   const fontFamily = useSelector((state) => state.fontFamilyReducer);

@@ -19,7 +19,6 @@ function Stats() {
   );
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   const [totalKeysStrokes, setTotalKeyStrokes] = useState(0);
 
@@ -28,7 +27,6 @@ function Stats() {
   const [totalTime, setTotalTime] = useState(0);
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState(0);
   const [racesCompleted, setRacesCompleted] = useState(0);
-  const [averageMistakes, setAverageMistakes] = useState(0);
   const [highestSpeedOfAllTime, setHighestSpeedOfAllTime] = useState(0);
 
   //state 200
@@ -36,14 +34,12 @@ function Stats() {
   const [totalTime200, setTotalTime200] = useState(0);
   const [wpmAverageAllTime200, setWpmAverageAllTime200] = useState(0);
   const [racesCompleted200, setRacesCompleted200] = useState(0);
-  const [averageMistakes200, setAverageMistakes200] = useState(0);
   const [highestSpeedOfAllTime200, setHighestSpeedOfAllTime200] = useState(0);
 
   const [wpmAverage10races1000, setWpmAverage10races1000] = useState(0);
   const [totalTime1000, setTotalTime1000] = useState(0);
   const [wpmAverageAllTime1000, setWpmAverageAllTime1000] = useState(0);
   const [racesCompleted1000, setRacesCompleted1000] = useState(0);
-  const [averageMistakes1000, setAverageMistakes1000] = useState(0);
   const [highestSpeedOfAllTime1000, setHighestSpeedOfAllTime1000] = useState(0);
   const [seeAllHistoryQuote, setSeeAllHistoryQuote] = useState(false);
   const [seeAllHistory200, setSeeAllHistory200] = useState(false);
@@ -70,9 +66,6 @@ function Stats() {
     isTyping1000StatisticsShown,
     setIsTyping1000StatisticsShown,
   ] = useState(false);
-  const [isKeyboardStatisticsShown, setIsKeyboardStatisticsShown] = useState(
-    false
-  );
 
   const [timeIsUp, setTimeIsUp] = useState(false);
 
@@ -267,7 +260,6 @@ function Stats() {
           setTotalTime(response.data.totalTime);
           setWpmAverage10races(response.data.wpmAverageLast10Races);
           setWpmAverageAllTime(response.data.wpmAverageAllTime);
-          setAverageMistakes(response.data.averageMistakes);
           setHighestSpeedOfAllTime(response.data.highestSpeedAllTime);
         })
         .catch((e) => {
@@ -289,7 +281,6 @@ function Stats() {
           setTotalTime200(response.data.totalTime200);
           setWpmAverage10races200(response.data.wpmAverageLast10Races200);
           setWpmAverageAllTime200(response.data.wpmAverageAllTime200);
-          setAverageMistakes200(response.data.averageMistakes200);
           setHighestSpeedOfAllTime200(response.data.highestSpeedAllTime200);
         })
         .catch((e) => {
@@ -311,7 +302,6 @@ function Stats() {
           setTotalTime1000(response.data.totalTime1000);
           setWpmAverage10races1000(response.data.wpmAverageLast10Races1000);
           setWpmAverageAllTime1000(response.data.wpmAverageAllTime1000);
-          setAverageMistakes1000(response.data.averageMistakes1000);
           setHighestSpeedOfAllTime1000(response.data.highestSpeedAllTime1000);
           setIsLoading(false);
         })
@@ -652,42 +642,113 @@ function Stats() {
     );
   };
 
-  // const statisticsKeyboardComponent = () => {
-  //   return (
-  //     <div key="statisticsKeyboard">
-  //       <div
-  //         className={
-  //           isKeyboardStatisticsShown
-  //             ? "typing-game-statistics-div-shown"
-  //             : "typing-game-statistics-div-hidden"
-  //         }
-  //         style={{
-  //           backgroundColor: colorFiles.secondaryBackgroundColor,
-  //           color: colorFiles.fontColor,
-  //         }}
-  //       >
-  //         <div className="d-flex">
-  //           <h4>Keyboard Statistics: </h4>
-  //           <div className="loading-div-stats">
-  //             {isLoading && loadingComponent()}
-  //           </div>
-  //         </div>
-  //         <hr style={{ background: colorFiles.hrColor }}></hr>
-  //         <div className="keyboard-div">{keyboardLayoutSelector()}</div>
-
-  //         <hr style={{ background: colorFiles.hrColor }}></hr>
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
   const testHistory200 = (DATA) => {
-    return (
-      <div>
-        <h3>Tests History</h3>
-        <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
-        <div style={{ position: "relative", width: "70%", margin: "auto" }}>
-          {data200 !== undefined && data200.length !== 0 && (
+    if (DATA !== undefined) {
+      return (
+        <div>
+          <h3>Tests History</h3>
+          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          <div style={{ position: "relative", width: "70%", margin: "auto" }}>
+            {data200 !== undefined && data200.length !== 0 && (
+              <div
+                style={{ position: "relative", width: "80%", margin: "auto" }}
+              >
+                <div className="test-history-item">
+                  <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
+                  <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                  <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
+                  <h5 style={{ position: "absolute", right: "19vw" }}>
+                    Accuracy
+                  </h5>
+                  <h5 style={{ position: "absolute", right: "11vw" }}>
+                    Mistakes
+                  </h5>
+                  <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="tests-history">
+            {DATA !== undefined &&
+              DATA.slice(0)
+                .reverse()
+                .slice(0, seeAllHistory200 ? DATA.length : 20)
+                .map((data, index) => {
+                  return (
+                    <div
+                      style={
+                        index % 2 === 0
+                          ? {
+                              backgroundColor: colorFiles.backgroundColor,
+                              position: "relative",
+                            }
+                          : { position: "relative" }
+                      }
+                      className="test-history-item"
+                      key={index}
+                    >
+                      <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                      <h4 style={{ position: "absolute", right: "36vw" }}>
+                        {data.wpm}wpm
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "28vw" }}>
+                        {data.time}s
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "12vw" }}>
+                        {" "}
+                        {data.mistakes}
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "20vw" }}>
+                        {" "}
+                        {`${data.accuracy}%`}
+                      </h4>
+                      <p style={{ position: "absolute", right: "1vw" }}>
+                        {" "}
+                        {data.date}
+                      </p>
+                    </div>
+                  );
+                })}
+          </div>
+          {data200 !== undefined &&
+            data200.length > 20 &&
+            seeAllHistory200 == false && (
+              <div>
+                {!seeAllHistoryQuote && (
+                  <h3
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setSeeAllHistory200(true);
+                    }}
+                  >
+                    See all
+                  </h3>
+                )}
+              </div>
+            )}
+          {data200 !== undefined && data200.length === 0 && (
+            <div
+              className="test-history-item"
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
+            >
+              <h4>You haven't done any test yet.</h4>
+            </div>
+          )}
+        </div>
+      );
+    }
+  };
+
+  const testHistory1000 = (DATA) => {
+    if (DATA !== undefined) {
+      return (
+        <div>
+          <h3>Tests History</h3>
+          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          {DATA.length !== 0 && (
             <div style={{ position: "relative", width: "80%", margin: "auto" }}>
               <div className="test-history-item">
                 <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
@@ -703,58 +764,55 @@ function Stats() {
               </div>
             </div>
           )}
-        </div>
-        <div className="tests-history">
-          {DATA !== undefined &&
-            DATA.slice(0)
-              .reverse()
-              .slice(0, seeAllHistory200 ? DATA.length : 20)
-              .map((data, index) => {
-                return (
-                  <div
-                    style={
-                      index % 2 === 0
-                        ? {
-                            backgroundColor: colorFiles.backgroundColor,
-                            position: "relative",
-                          }
-                        : { position: "relative" }
-                    }
-                    className="test-history-item"
-                    key={index}
-                  >
-                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
-                    <h4 style={{ position: "absolute", right: "36vw" }}>
-                      {data.wpm}wpm
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "28vw" }}>
-                      {data.time}s
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "12vw" }}>
-                      {" "}
-                      {data.mistakes}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "20vw" }}>
-                      {" "}
-                      {`${data.accuracy}%`}
-                    </h4>
-                    <p style={{ position: "absolute", right: "1vw" }}>
-                      {" "}
-                      {data.date}
-                    </p>
-                  </div>
-                );
-              })}
-        </div>
-        {data200 !== undefined &&
-          data200.length > 20 &&
-          seeAllHistory200 == false && (
+          <div className="tests-history">
+            {DATA !== undefined &&
+              DATA.slice(0)
+                .reverse()
+                .slice(0, seeAllHistory1000 ? DATA.length : 20)
+                .map((data, index) => {
+                  return (
+                    <div
+                      style={
+                        index % 2 === 0
+                          ? {
+                              backgroundColor: colorFiles.backgroundColor,
+                              position: "relative",
+                            }
+                          : { position: "relative" }
+                      }
+                      className="test-history-item"
+                      key={index}
+                    >
+                      <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                      <h4 style={{ position: "absolute", right: "36vw" }}>
+                        {data.wpm}wpm
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "28vw" }}>
+                        {data.time}s
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "12vw" }}>
+                        {" "}
+                        {data.mistakes}
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "20vw" }}>
+                        {" "}
+                        {`${data.accuracy}%`}
+                      </h4>
+                      <p style={{ position: "absolute", right: "1vw" }}>
+                        {" "}
+                        {data.date}
+                      </p>
+                    </div>
+                  );
+                })}
+          </div>
+          {DATA.length > 20 && seeAllHistory1000 == false && (
             <div>
-              {!seeAllHistoryQuote && (
+              {!seeAllHistory1000 && (
                 <h3
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    setSeeAllHistory200(true);
+                    setSeeAllHistory1000(true);
                   }}
                 >
                   See all
@@ -762,197 +820,116 @@ function Stats() {
               )}
             </div>
           )}
-        {data200 !== undefined && data200.length === 0 && (
-          <div
-            className="test-history-item"
-            style={{
-              backgroundColor: colorFiles.backgroundColor,
-              color: colorFiles.fontColor,
-            }}
-          >
-            <h4>You haven't done any test yet.</h4>
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  const testHistory1000 = (DATA) => {
-    return (
-      <div>
-        <h3>Tests History</h3>
-        <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
-        {DATA.length !== 0 && (
-          <div style={{ position: "relative", width: "80%", margin: "auto" }}>
-            <div className="test-history-item">
-              <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
-              <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
-              <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
-              <h5 style={{ position: "absolute", right: "19vw" }}>Accuracy</h5>
-              <h5 style={{ position: "absolute", right: "11vw" }}>Mistakes</h5>
-              <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
+          {DATA.length === 0 && (
+            <div
+              className="test-history-item"
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
+            >
+              <h4>Nothing to see here :(</h4>
             </div>
-          </div>
-        )}
-        <div className="tests-history">
-          {DATA !== undefined &&
-            DATA.slice(0)
-              .reverse()
-              .slice(0, seeAllHistory1000 ? DATA.length : 20)
-              .map((data, index) => {
-                return (
-                  <div
-                    style={
-                      index % 2 === 0
-                        ? {
-                            backgroundColor: colorFiles.backgroundColor,
-                            position: "relative",
-                          }
-                        : { position: "relative" }
-                    }
-                    className="test-history-item"
-                    key={index}
-                  >
-                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
-                    <h4 style={{ position: "absolute", right: "36vw" }}>
-                      {data.wpm}wpm
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "28vw" }}>
-                      {data.time}s
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "12vw" }}>
-                      {" "}
-                      {data.mistakes}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "20vw" }}>
-                      {" "}
-                      {`${data.accuracy}%`}
-                    </h4>
-                    <p style={{ position: "absolute", right: "1vw" }}>
-                      {" "}
-                      {data.date}
-                    </p>
-                  </div>
-                );
-              })}
+          )}
         </div>
-        {DATA.length > 20 && seeAllHistory1000 == false && (
-          <div>
-            {!seeAllHistory1000 && (
-              <h3
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  setSeeAllHistory1000(true);
-                }}
-              >
-                See all
-              </h3>
-            )}
-          </div>
-        )}
-        {DATA.length === 0 && (
-          <div
-            className="test-history-item"
-            style={{
-              backgroundColor: colorFiles.backgroundColor,
-              color: colorFiles.fontColor,
-            }}
-          >
-            <h4>Nothing to see here :(</h4>
-          </div>
-        )}
-      </div>
-    );
+      );
+    }
   };
 
   const testHistoryQuote = (DATA) => {
-    return (
-      <div>
-        <h3>Tests History</h3>
-        <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
-        {dataTypingGame !== undefined && dataTypingGame.length !== 0 && (
-          <div style={{ position: "relative", width: "80%", margin: "auto" }}>
-            <div className="test-history-item">
-              <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
-              <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
-              <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
-              <h5 style={{ position: "absolute", right: "19vw" }}>Accuracy</h5>
-              <h5 style={{ position: "absolute", right: "11vw" }}>Mistakes</h5>
-              <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
-            </div>
-          </div>
-        )}
-        <div className="tests-history">
-          {DATA !== undefined &&
-            DATA.slice(0)
-              .reverse()
-              .slice(0, seeAllHistoryQuote ? DATA.length : 20)
-              .map((data, index) => {
-                return (
-                  <div
-                    style={
-                      index % 2 === 0
-                        ? {
-                            backgroundColor: colorFiles.backgroundColor,
-                            position: "relative",
-                          }
-                        : { position: "relative" }
-                    }
-                    className="test-history-item"
-                    key={index}
-                  >
-                    <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
-                    <h4 style={{ position: "absolute", right: "36vw" }}>
-                      {data.wpm}wpm
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "28vw" }}>
-                      {data.time}s
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "12vw" }}>
-                      {" "}
-                      {data.mistakes}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "20vw" }}>
-                      {" "}
-                      {`${data.accuracy}%`}
-                    </h4>
-                    <p style={{ position: "absolute", right: "1vw" }}>
-                      {" "}
-                      {data.date}
-                    </p>
-                  </div>
-                );
-              })}
-        </div>
-        {dataTypingGame !== undefined &&
-          dataTypingGame.length > 20 &&
-          seeAllHistoryQuote == false && (
-            <div>
-              {!seeAllHistoryQuote && (
-                <h3
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setSeeAllHistoryQuote(true);
-                  }}
-                >
-                  See all
-                </h3>
-              )}
+    if (DATA !== undefined) {
+      return (
+        <div>
+          <h3>Tests History</h3>
+          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          {dataTypingGame !== undefined && dataTypingGame.length !== 0 && (
+            <div style={{ position: "relative", width: "80%", margin: "auto" }}>
+              <div className="test-history-item">
+                <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
+                <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
+                <h5 style={{ position: "absolute", right: "19vw" }}>
+                  Accuracy
+                </h5>
+                <h5 style={{ position: "absolute", right: "11vw" }}>
+                  Mistakes
+                </h5>
+                <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
+              </div>
             </div>
           )}
-        {dataTypingGame !== undefined && dataTypingGame.length === 0 && (
-          <div
-            className="test-history-item"
-            style={{
-              backgroundColor: colorFiles.backgroundColor,
-              color: colorFiles.fontColor,
-            }}
-          >
-            <h4>You haven't done any test yet.</h4>
+          <div className="tests-history">
+            {DATA !== undefined &&
+              DATA.slice(0)
+                .reverse()
+                .slice(0, seeAllHistoryQuote ? DATA.length : 20)
+                .map((data, index) => {
+                  return (
+                    <div
+                      style={
+                        index % 2 === 0
+                          ? {
+                              backgroundColor: colorFiles.backgroundColor,
+                              position: "relative",
+                            }
+                          : { position: "relative" }
+                      }
+                      className="test-history-item"
+                      key={index}
+                    >
+                      <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
+                      <h4 style={{ position: "absolute", right: "36vw" }}>
+                        {data.wpm}wpm
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "28vw" }}>
+                        {data.time}s
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "12vw" }}>
+                        {" "}
+                        {data.mistakes}
+                      </h4>
+                      <h4 style={{ position: "absolute", right: "20vw" }}>
+                        {" "}
+                        {`${data.accuracy}%`}
+                      </h4>
+                      <p style={{ position: "absolute", right: "1vw" }}>
+                        {" "}
+                        {data.date}
+                      </p>
+                    </div>
+                  );
+                })}
           </div>
-        )}
-      </div>
-    );
+          {dataTypingGame !== undefined &&
+            dataTypingGame.length > 20 &&
+            seeAllHistoryQuote == false && (
+              <div>
+                {!seeAllHistoryQuote && (
+                  <h3
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setSeeAllHistoryQuote(true);
+                    }}
+                  >
+                    See all
+                  </h3>
+                )}
+              </div>
+            )}
+          {dataTypingGame !== undefined && dataTypingGame.length === 0 && (
+            <div
+              className="test-history-item"
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
+            >
+              <h4>You haven't done any test yet.</h4>
+            </div>
+          )}
+        </div>
+      );
+    }
   };
 
   const notLoggedIn = () => {
@@ -984,7 +961,6 @@ function Stats() {
               setIsTypingGameStatisticsShown(true);
               setIsTyping200StatisticsShown(false);
               setIsTyping1000StatisticsShown(false);
-              setIsKeyboardStatisticsShown(false);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
               setSeeAllHistoryQuote(false);
@@ -1010,7 +986,6 @@ function Stats() {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(true);
               setIsTyping1000StatisticsShown(false);
-              setIsKeyboardStatisticsShown(false);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
               setSeeAllHistoryQuote(false);
@@ -1035,7 +1010,6 @@ function Stats() {
             onClick={() => {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(false);
-              setIsTyping1000StatisticsShown(true);
               setIsKeyboardStatisticsShown(false);
               setSeeAllHistory1000(false);
               setSeeAllHistory200(false);
