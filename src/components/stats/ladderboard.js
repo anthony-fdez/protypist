@@ -1,10 +1,10 @@
 import React from "react";
 import "./ladderboard.css";
+import "./otherPersonProfile.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { scaleService } from "chart.js";
 
 function Ladderboard(props) {
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ function Ladderboard(props) {
   const [data, setData] = useState([]);
   const [sortBy, setSortBy] = useState("wpm");
   const [isLoading, setIsLoading] = useState(true);
+  const [userProfileOpen, setUserProfileOpen] = useState(false);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -135,6 +136,20 @@ function Ladderboard(props) {
     return formtatedTimeString;
   };
 
+  const OtherPersonProfile = (user_id) => {
+    return (
+      <div
+        style={{
+          backgroundColor: colorFiles.secondaryBackgroundColor,
+          color: colorFiles.fontColor,
+        }}
+        className="other-person-profile-open"
+      >
+        <h1>Profile</h1>
+      </div>
+    );
+  };
+
   return (
     <div
       style={{
@@ -143,6 +158,11 @@ function Ladderboard(props) {
       }}
       className={props.isShown ? "Ladderboard-shown" : "Ladderboard-hidden"}
     >
+      {userProfileOpen && <OtherPersonProfile />}
+      <div
+        onClick={() => setUserProfileOpen(!userProfileOpen)}
+        className={userProfileOpen ? "dark-background-leaderboard" : ""}
+      ></div>
       <div>
         <div className="ladderboard-header">
           <h2>Leaderboard</h2>
@@ -281,6 +301,7 @@ function Ladderboard(props) {
         {data.map((user, index) => {
           return (
             <div
+              onClick={() => setUserProfileOpen(!userProfileOpen)}
               key={index}
               className={"ladderboard-row"}
               style={

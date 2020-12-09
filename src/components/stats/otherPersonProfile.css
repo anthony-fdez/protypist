@@ -1,0 +1,33 @@
+.other-person-profile {
+  position: fixed;
+  z-index: 100;
+  margin: auto;
+  top: 50px;
+  left: 150px;
+  height: calc(100% - 100px);
+  width: calc(100% - 300px);
+  padding: 1rem;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.dark-background-leaderboard {
+  background-color: rgba(0, 0, 0, 0.521);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  transition: 0.3s;
+}
+.dark-background-leaderboard-hidden {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
