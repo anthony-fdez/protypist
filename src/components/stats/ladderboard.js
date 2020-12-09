@@ -545,6 +545,38 @@ function Ladderboard(props) {
   };
 
   const OtherPersonProfile = () => {
+    const privateProfile = () => {
+      return (
+        <div
+          style={{
+            backgroundColor: colorFiles.secondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
+          className={"other-person-profile"}
+        >
+          <div
+            style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+            className="other-user-header"
+          >
+            <div className="other-user-div-header">
+              <h2>Name</h2>
+              <i
+                onClick={() => setUserProfileOpen(!userProfileOpen)}
+                className="close-icon-login fas fa-times fa-2x"
+              ></i>
+            </div>
+            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          </div>
+
+          <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
+            <div style={{ textAlign: "center" }}>
+              <h3>This is a private account</h3>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     const otherPersonProfilePlaceHolder = () => {
       const placeHolderChartData = {
         labels: [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -655,18 +687,12 @@ function Ladderboard(props) {
       );
     };
 
-    if (otherUserData !== undefined) {
-      console.log(otherUserData);
-    }
-
     const otherPersonProfileTypingGame = () => {
       if (otherUserData !== undefined) {
         const data = getTheDataForTheChart(otherUserData.typingGameStatistics);
         const wpm = data.wpm;
         const races = data.races;
         const mistakes = data.mistakes;
-
-        console.log(otherUserData);
 
         const chartData = {
           labels: races,
@@ -798,8 +824,6 @@ function Ladderboard(props) {
         const wpm = data.wpm;
         const races = data.races;
         const mistakes = data.mistakes;
-
-        console.log(otherUserData);
 
         const chartData = {
           labels: races,
@@ -1062,7 +1086,9 @@ function Ladderboard(props) {
     };
 
     if (otherUserData !== undefined) {
-      if (isTypingGameStatisticsShown) {
+      if (otherUserData.error) {
+        return privateProfile();
+      } else if (isTypingGameStatisticsShown) {
         return otherPersonProfileTypingGame();
       } else if (isTyping200StatisticsShown) {
         return otherPersonProfile200();
@@ -1224,8 +1250,10 @@ function Ladderboard(props) {
           return (
             <div
               onClick={() => {
-                getTheOtherUserData(user._id);
-                setUserProfileOpen(!userProfileOpen);
+                if (user.account === false) {
+                  getTheOtherUserData(user._id);
+                  setUserProfileOpen(!userProfileOpen);
+                }
               }}
               key={index}
               className={"ladderboard-row"}
