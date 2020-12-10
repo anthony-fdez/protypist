@@ -126,21 +126,23 @@ const ReplayText = () => {
   };
 
   useEffect(() => {
-    const DATA = { _id: replayData[0].textTypedId };
-    const headers = {
-      Authorization: jwt,
-    };
+    if (replayData !== null) {
+      const DATA = { _id: replayData[0].textTypedId };
+      const headers = {
+        Authorization: jwt,
+      };
 
-    axios
-      .post("https://protypist.herokuapp.com/text/findById", DATA, {
-        headers: headers,
-      })
-      .then((response) => {
-        dispatch({
-          type: "SET_REPLAY_DATA",
-          payload: response.data,
+      axios
+        .post("https://protypist.herokuapp.com/text/findById", DATA, {
+          headers: headers,
+        })
+        .then((response) => {
+          dispatch({
+            type: "SET_REPLAY_DATA",
+            payload: response.data,
+          });
         });
-      });
+    }
   }, [finished, newGame]);
 
   useEffect(() => {
@@ -499,7 +501,7 @@ const ReplayText = () => {
                 : ""}
             </h5>
           </div>
-          <div className="d-flex">
+          <div style={{ marginRight: "4rem" }} className="d-flex">
             <h5 className="mr-2">Acuracy: </h5>
             <h5
               style={
@@ -510,6 +512,23 @@ const ReplayText = () => {
             >
               {accuracy === 0 ? "..." : `${accuracy}%`}
             </h5>
+            <div
+              style={{
+                position: "absolute",
+                top: "20px",
+                right: "20px",
+              }}
+            >
+              <i
+                onClick={() =>
+                  dispatch({
+                    type: "SET_SHOW_REPLAY_COMPONENT",
+                    payload: false,
+                  })
+                }
+                className="close-icon-login fas fa-times fa-2x"
+              ></i>
+            </div>
           </div>
         </div>
       </div>
@@ -544,7 +563,20 @@ const ReplayText = () => {
         }
       >
         <button
-          onClick={() => setFinished(true)}
+          onClick={() => {
+            setSpanArray(blankSpanArray);
+            setInfoAboutCharacter(blankInfoArray);
+            setFinished(true);
+            setSeconds(0);
+            setMinutes(0);
+            setTimeSeconds(0);
+            setCharactersTyped(0);
+            setIsRunning(false);
+            setMistakes(0);
+            setRealMistakes(0);
+            setProgress(1);
+            calculateAccuracy();
+          }}
           className="btn btn-light mr-3"
           style={
             !finished
@@ -564,24 +596,29 @@ const ReplayText = () => {
           Show Statistics
         </button>
         <div>
-          <hr
-            style={
-              finished || !isRunning
-                ? {
-                    width: "100%",
-                    backgroundColor: colorFiles.primaryColor,
-                    margin: 0,
-                    marginBottom: "1rem",
-                  }
-                : {
-                    width: calculateWithOfProgressBar() + "%",
-                    backgroundColor: colorFiles.primaryColor,
-                    margin: 0,
-                    marginBottom: "1rem",
-                  }
-            }
-            className="hr-progress"
-          ></hr>
+          {!finished && (
+            <hr
+              className="hr-progress"
+              style={
+                finished || !isRunning
+                  ? {
+                      width: "100%",
+                      backgroundColor: colorFiles.primaryColor,
+                      margin: 0,
+                      marginBottom: "1rem",
+                      marginTop: 0,
+                    }
+                  : {
+                      width: calculateWithOfProgressBar() + "%",
+                      backgroundColor: colorFiles.primaryColor,
+                      margin: 0,
+                      marginBottom: "1rem",
+                      marginTop: 0,
+                    }
+              }
+            ></hr>
+          )}
+
           {!finished && displayTheStatistics()}
         </div>
         <div
