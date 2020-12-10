@@ -8,7 +8,7 @@ import quotes from "../data/quotes.json";
 import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 
-const ReplayText = (props) => {
+const ReplayText = () => {
   const dispatch = useDispatch();
 
   const theme = useSelector((state) => state.darkModeReducer);
@@ -34,7 +34,7 @@ const ReplayText = (props) => {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
-  const [finished, setFinished] = useState(true);
+  const [finished, setFinished] = useState(false);
 
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
@@ -66,20 +66,21 @@ const ReplayText = (props) => {
   const [wpmAverageLast10races, setWpmAverage10races] = useState();
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
   const [averageMistakes, setAverageMistakes] = useState();
-  const [highestSpeedAllTime, setHighestSpeedOfAllTime] = useState();
   const isReplayComponentShown = useSelector(
     (state) => state.replayComponentShown
   );
   const [fastestRace, setFastestRace] = useState();
 
+  const replayData = useSelector((state) => state.replayDataReducer);
+
   useEffect(() => {
-    if (props.data) {
-      setText(quotes[props.data[0].textTypedId - 1]);
-      setTextTypedId(quotes[props.data[0].textTypedId - 1].id);
+    if (replayData) {
+      setText(quotes[replayData[0].textTypedId - 1]);
+      setTextTypedId(quotes[replayData[0].textTypedId - 1].id);
 
       setIsLoading(false);
     }
-  }, [props]);
+  }, [replayData]);
 
   const getTheDate = () => {
     const date = new Date();
@@ -123,6 +124,25 @@ const ReplayText = (props) => {
         });
     }
   };
+
+  useEffect(() => {
+    const DATA = { _id: replayData[0].textTypedId };
+    const headers = {
+      Authorization: jwt,
+    };
+
+    axios
+      .post("https://protypist.herokuapp.com/text/findById", DATA, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log(response);
+        dispatch({
+          type: "SET_REPLAY_DATA",
+          payload: response.data,
+        });
+      });
+  }, [finished, newGame]);
 
   useEffect(() => {
     if (text !== undefined) {
@@ -498,17 +518,16 @@ const ReplayText = (props) => {
   };
 
   useEffect(() => {
-    if (props.data !== undefined) {
+    if (replayData !== null) {
       let fastestWPM = 0;
-      props.data.map((data, index) => {
+      replayData.map((data, index) => {
         if (data.wpm > fastestWPM) {
           fastestWPM = data.wpm;
-          console.log(data);
           setFastestRace(data);
         }
       });
     }
-  }, [props]);
+  }, [replayData]);
 
   return (
     <div>
@@ -637,35 +656,35 @@ const ReplayText = (props) => {
                   >
                     <h5 className="text-info-race-label">Latest</h5>
                     <h4 style={{ paddingLeft: "1vw" }}>
-                      {props.data !== undefined &&
-                        props.data[props.data.length - 1].raceNumber}
+                      {replayData !== null &&
+                        replayData[replayData.length - 1].raceNumber}
                     </h4>
                     <h4 style={{ position: "absolute", right: "36vw" }}>
-                      {props.data !== undefined &&
-                        props.data[props.data.length - 1].wpm}
+                      {replayData !== null &&
+                        replayData[replayData.length - 1].wpm}
                       wpm
                     </h4>
                     <h4 style={{ position: "absolute", right: "28vw" }}>
-                      {props.data !== undefined &&
-                        props.data[props.data.length - 1].time}
+                      {replayData !== null &&
+                        replayData[replayData.length - 1].time}
                       s
                     </h4>
                     <h4 style={{ position: "absolute", right: "12vw" }}>
                       {" "}
-                      {props.data !== undefined &&
-                        props.data[props.data.length - 1].accuracy}
+                      {replayData !== null &&
+                        replayData[replayData.length - 1].mistakes}
                     </h4>
                     <h4 style={{ position: "absolute", right: "20vw" }}>
                       {" "}
                       {`${
-                        props.data !== undefined &&
-                        props.data[props.data.length - 1].mistakes
+                        replayData !== null &&
+                        replayData[replayData.length - 1].accuracy
                       }%`}
                     </h4>
                     <p style={{ position: "absolute", right: "1vw" }}>
                       {" "}
-                      {props.data !== undefined &&
-                        props.data[props.data.length - 1].date}
+                      {replayData !== null &&
+                        replayData[replayData.length - 1].date}
                     </p>
                   </div>
                   <div
@@ -689,11 +708,11 @@ const ReplayText = (props) => {
                     </h4>
                     <h4 style={{ position: "absolute", right: "12vw" }}>
                       {" "}
-                      {fastestRace !== undefined && fastestRace.accuracy}
+                      {fastestRace !== undefined && fastestRace.mistakes}
                     </h4>
                     <h4 style={{ position: "absolute", right: "20vw" }}>
                       {" "}
-                      {`${fastestRace !== undefined && fastestRace.mistakes}%`}
+                      {`${fastestRace !== undefined && fastestRace.accuracy}%`}
                     </h4>
                     <p style={{ position: "absolute", right: "1vw" }}>
                       {" "}
@@ -704,8 +723,8 @@ const ReplayText = (props) => {
                     History for this race
                   </h4>
                   <hr></hr>
-                  {props.data !== undefined &&
-                    props.data
+                  {replayData !== null &&
+                    replayData
                       .slice(0)
                       .reverse()
                       .map((data, index) => {

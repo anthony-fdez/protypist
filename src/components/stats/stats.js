@@ -23,6 +23,7 @@ function Stats() {
   const isReplayComponentShown = useSelector(
     (state) => state.replayComponentShown
   );
+  const replayDataRedux = useSelector((state) => state.replayDataReducer);
 
   const [totalKeysStrokes, setTotalKeyStrokes] = useState(0);
 
@@ -108,7 +109,7 @@ function Stats() {
           console.log(e);
         });
     }
-  }, [jwt, isLoggedIn]);
+  }, [jwt, isLoggedIn, isReplayComponentShown]);
 
   useEffect(() => {
     if (isLadderBoardMenuOpen) {
@@ -892,7 +893,10 @@ function Stats() {
                             { headers: headers }
                           )
                           .then((response) => {
-                            setReplayData(response.data);
+                            dispatch({
+                              type: "SET_REPLAY_DATA",
+                              payload: response.data,
+                            });
                           })
                           .catch((e) => {
                             console.log(e);
@@ -976,7 +980,7 @@ function Stats() {
         className={"Stats"}
       >
         <Header />
-        <ReplayText data={replayData} />
+        <ReplayText />
         <div
           onClick={() =>
             dispatch({

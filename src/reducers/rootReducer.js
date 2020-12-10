@@ -290,6 +290,15 @@ const replayComponentShown = (state = false, action) => {
   }
 };
 
+const replayDataReducer = (state = null, action) => {
+  switch (action.type) {
+    case "SET_REPLAY_DATA":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allKeysPressed = (
   state = {
     a: 0,
@@ -377,6 +386,7 @@ const allReducers = combineReducers({
   allKeysPressed: allKeysPressed,
   privateAccountReducer: privateAccountReducer,
   replayComponentShown: replayComponentShown,
+  replayDataReducer: replayDataReducer,
 });
 
 export default allReducers;
