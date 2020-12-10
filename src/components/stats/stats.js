@@ -58,6 +58,7 @@ function Stats() {
 
   const [chartData1000, setChartData1000] = useState({});
   const [data1000, setData1000] = useState();
+  const [replayData, setReplayData] = useState();
 
   const [
     isTypingGameStatisticsShown,
@@ -880,12 +881,28 @@ function Stats() {
                       }
                       className="test-history-item"
                       key={index}
-                      onClick={() =>
+                      onClick={() => {
+                        const headers = { Authorization: jwt };
+                        const DATA = { _id: data.textTypedId };
+
+                        axios
+                          .post(
+                            "https://protypist.herokuapp.com/text/findById",
+                            DATA,
+                            { headers: headers }
+                          )
+                          .then((response) => {
+                            setReplayData(response.data);
+                          })
+                          .catch((e) => {
+                            console.log(e);
+                          });
+
                         dispatch({
                           type: "SET_SHOW_REPLAY_COMPONENT",
                           payload: true,
-                        })
-                      }
+                        });
+                      }}
                     >
                       <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
                       <h4 style={{ position: "absolute", right: "36vw" }}>
@@ -959,7 +976,7 @@ function Stats() {
         className={"Stats"}
       >
         <Header />
-        <ReplayText />
+        <ReplayText data={replayData} />
         <div
           onClick={() =>
             dispatch({

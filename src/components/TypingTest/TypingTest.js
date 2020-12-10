@@ -122,7 +122,7 @@ function TypingTest() {
   useEffect(() => {
     const randomNumber = Math.floor(Math.random() * quotes.length);
     setText(quotes[randomNumber]);
-    setTextTypedId(quotes.id);
+    setTextTypedId(quotes[randomNumber].id);
     setIsLoading(false);
   }, [newGame, jwt]);
 
@@ -536,36 +536,6 @@ function TypingTest() {
     );
   };
 
-  const displayTheHistory = () => {
-    if (textTypedHistory !== undefined) {
-      const data = textTypedHistory;
-      return (
-        <div
-          className={"ml-4 mr-4  mt-1 history-div"}
-          style={{
-            backgroundColor: colorFiles.secondaryBackgroundColor,
-            color: colorFiles.fontColor,
-          }}
-        >
-          {data
-            .slice(0)
-            .reverse()
-            .map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className={"d-flex justify-content-between mb-1 p-2"}
-                >
-                  <p>{item.wpm} WPM</p>
-                  <p>Date: {item.date}</p>
-                </div>
-              );
-            })}
-        </div>
-      );
-    }
-  };
-
   const keyboardLayoutSelector = () => {
     if (keyboardLayout === "QWERTY") {
       return <Qwerty />;
@@ -574,36 +544,6 @@ function TypingTest() {
     } else if (keyboardLayout === "COLEMAK") {
       return <Colemak />;
     } else return <Qwerty />;
-  };
-
-  const thisTextInfo = () => {
-    return (
-      <div style={{ color: colorFiles.fontColor }}>
-        <h4 style={{ margin: "2rem", marginBottom: 0 }}>This Text:</h4>
-        <hr
-          style={{
-            marginTop: "1rem",
-            backgroundColor: colorFiles.hrColor,
-            width: "85%",
-          }}
-        ></hr>
-        <h4 style={{ margin: "2rem", marginBottom: 0 }}>Highest</h4>
-        <div
-          style={{
-            backgroundColor: colorFiles.primaryColor,
-            color: colorFiles.contrastFontColor,
-          }}
-          className={" mb-4 mt-1 history-div"}
-        >
-          <div className={"d-flex justify-content-between  p-2"}>
-            <p>{highestSpeed} WPM</p>
-            <p>Date: {highestSpeedDate}</p>
-          </div>
-        </div>
-        <h4 style={{ margin: "2rem", marginBottom: 0 }}>History</h4>
-        {displayTheHistory()}
-      </div>
-    );
   };
 
   const displayTheStatistics = () => {
@@ -717,34 +657,7 @@ function TypingTest() {
           the test won't stop unless you have less than 5 mistakes
         </p>
         <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
-          {isLoading ? (
-            <div
-              style={{ color: colorFiles.fontColor }}
-              className={"loading-div"}
-            >
-              <div className="lds-ellipsis">
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-                <div
-                  style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
-                ></div>
-              </div>
-              <h4 style={{ color: colorFiles.fontColor }}>Loading Text</h4>
-            </div>
-          ) : (
-            spanArray
-          )}
+          {spanArray}
         </div>
         <div
           className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
