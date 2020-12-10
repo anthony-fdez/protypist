@@ -326,16 +326,6 @@ function Stats() {
     return () => clearTimeout(myTimeOut);
   }, []);
 
-  const alert = () => {
-    return (
-      <p className={"alert-warning alert-not-enough-races"}>
-        <strong>Info: </strong>
-        The average Mistakes, and the Average speed for the last 10 races won't
-        show untill you have completed 10 races.
-      </p>
-    );
-  };
-
   const statisticsTypingGameComponent = () => {
     return (
       <div key="statisticsTypingGame">
@@ -428,7 +418,6 @@ function Stats() {
           </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
           {!isLoading && testHistoryQuote(dataTypingGame)}
-          {racesCompleted < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
@@ -527,7 +516,6 @@ function Stats() {
           </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
           {!isLoading && testHistory200(data200)}
-          {racesCompleted200 < 10 && timeIsUp === true && alert()}
         </div>
         <p
           style={{
@@ -642,7 +630,6 @@ function Stats() {
           </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
           {!isLoading && testHistory1000(data1000)}
-          {racesCompleted1000 < 10 && timeIsUp === true && alert()}
         </div>
       </div>
     );
@@ -847,6 +834,17 @@ function Stats() {
       return (
         <div>
           <h3>Tests History</h3>
+          <div
+            style={{
+              padding: 0,
+              width: "80%",
+              margin: "auto",
+            }}
+            class="alert alert-warning"
+            role="alert"
+          >
+            You can click on a test below to replay it!
+          </div>
           <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
           {dataTypingGame !== undefined && dataTypingGame.length !== 0 && (
             <div style={{ position: "relative", width: "80%", margin: "auto" }}>
@@ -880,7 +878,7 @@ function Stats() {
                             }
                           : { position: "relative" }
                       }
-                      className="test-history-item"
+                      className="test-history-item-quote"
                       key={index}
                       onClick={() => {
                         const headers = { Authorization: jwt };

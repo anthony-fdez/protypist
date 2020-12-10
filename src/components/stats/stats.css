@@ -141,6 +141,20 @@ h1 {
   align-content: center;
   align-items: center;
 }
+.test-history-item-quote {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  padding: 0.5rem;
+  align-content: center;
+  align-items: center;
+  transition: 0.1s;
+}
+.test-history-item-quote:hover {
+  border-left: 5px solid rgb(112, 112, 112);
+  cursor: pointer;
+  transition: 0.1s;
+}
 .loading-div-stats {
   position: absolute;
   left: 47%;
