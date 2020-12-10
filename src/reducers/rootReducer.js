@@ -281,6 +281,15 @@ const privateAccountReducer = (state = false, action) => {
   }
 };
 
+const replayComponentShown = (state = false, action) => {
+  switch (action.type) {
+    case "SET_SHOW_REPLAY_COMPONENT":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allKeysPressed = (
   state = {
     a: 0,
@@ -367,6 +376,7 @@ const allReducers = combineReducers({
   fontSizeReducer: fontSizeReducer,
   allKeysPressed: allKeysPressed,
   privateAccountReducer: privateAccountReducer,
+  replayComponentShown: replayComponentShown,
 });
 
 export default allReducers;

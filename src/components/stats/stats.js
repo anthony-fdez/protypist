@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import ReplayText from "../replayText/replayText";
 
 function Stats() {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ function Stats() {
   );
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const isReplayComponentShown = useSelector(
+    (state) => state.replayComponentShown
+  );
 
   const [totalKeysStrokes, setTotalKeyStrokes] = useState(0);
 
@@ -876,6 +880,12 @@ function Stats() {
                       }
                       className="test-history-item"
                       key={index}
+                      onClick={() =>
+                        dispatch({
+                          type: "SET_SHOW_REPLAY_COMPONENT",
+                          payload: true,
+                        })
+                      }
                     >
                       <h4 style={{ paddingLeft: "1vw" }}>{data.raceNumber}</h4>
                       <h4 style={{ position: "absolute", right: "36vw" }}>
@@ -949,6 +959,20 @@ function Stats() {
         className={"Stats"}
       >
         <Header />
+        <ReplayText />
+        <div
+          onClick={() =>
+            dispatch({
+              type: "SET_SHOW_REPLAY_COMPONENT",
+              payload: false,
+            })
+          }
+          className={
+            isReplayComponentShown
+              ? "dark-background-replay-shown"
+              : "dark-background-replay-off"
+          }
+        ></div>
         <div
           style={{
             backgroundColor: colorFiles.backgroundColor,
