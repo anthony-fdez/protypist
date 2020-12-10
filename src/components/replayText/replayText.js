@@ -34,7 +34,7 @@ const ReplayText = (props) => {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
-  const [finished, setFinished] = useState(false);
+  const [finished, setFinished] = useState(true);
 
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
@@ -70,14 +70,16 @@ const ReplayText = (props) => {
   const isReplayComponentShown = useSelector(
     (state) => state.replayComponentShown
   );
+  const [fastestRace, setFastestRace] = useState();
 
   useEffect(() => {
-    if (props.data !== undefined) {
-      setText(quotes[props.data[0].textTypedId]);
-      setTextTypedId(quotes.id);
+    if (props.data) {
+      setText(quotes[props.data[0].textTypedId - 1]);
+      setTextTypedId(quotes[props.data[0].textTypedId - 1].id);
+
       setIsLoading(false);
     }
-  }, [newGame, props]);
+  }, [props]);
 
   const getTheDate = () => {
     const date = new Date();
@@ -106,6 +108,7 @@ const ReplayText = (props) => {
         date: getTheDate(),
         accuracy: calculateAccuracy(),
       };
+
       const headers = {
         Authorization: jwt,
       };
@@ -494,6 +497,19 @@ const ReplayText = (props) => {
     );
   };
 
+  useEffect(() => {
+    if (props.data !== undefined) {
+      let fastestWPM = 0;
+      props.data.map((data, index) => {
+        if (data.wpm > fastestWPM) {
+          fastestWPM = data.wpm;
+          console.log(data);
+          setFastestRace(data);
+        }
+      });
+    }
+  }, [props]);
+
   return (
     <div>
       <div
@@ -524,27 +540,7 @@ const ReplayText = (props) => {
             }
             className="hr-progress"
           ></hr>
-          <p
-            className={
-              isRunning || finished
-                ? "alert-primary alert-hidden"
-                : "alert-primary alert-shown"
-            }
-          >
-            {isUserTyping
-              ? "Start typing... Start to type the text below whenever you are ready :)"
-              : "Click on the input box to start typing."}
-          </p>
-          <p
-            className={
-              mistakesAlert
-                ? "alert-danger alert-warning-shown"
-                : "alert-danger alert-warning-hidden"
-            }
-          >
-            <strong>Slow Down Boy</strong>
-            the test won't stop unless you have less than 5 mistakes
-          </p>
+          {!finished && displayTheStatistics()}
         </div>
         <div
           className={
@@ -568,7 +564,14 @@ const ReplayText = (props) => {
           className={handleThemInTheFinishedPage()}
         >
           <div className="about-text-header">
-            <h4>What you just typed:</h4>
+            <h4
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              This text info
+            </h4>
             <div>
               <button
                 onClick={() => {
@@ -599,20 +602,156 @@ const ReplayText = (props) => {
             <div className="info-about-text-text">
               <hr
                 style={{
-                  marginTop: "1rem",
+                  marginTop: "0rem",
                   backgroundColor: colorFiles.hrColor,
                 }}
               ></hr>
-
-              <br></br>
-              <h5>By: {text && text.by}</h5>
-              <br></br>
-              <h5>
-                Your time:{" "}
-                {seconds < 10
-                  ? `${minutes}:0${seconds}`
-                  : `${minutes}:${seconds}`}
-              </h5>
+              <div>
+                <div
+                  style={{ position: "relative", width: "80%", margin: "auto" }}
+                >
+                  <div className="test-history-item">
+                    <h5 style={{ position: "absolute", left: "0vw" }}>
+                      Test #
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                    <h5 style={{ position: "absolute", right: "28vw" }}>
+                      Time
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "19vw" }}>
+                      Accuracy
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "11vw" }}>
+                      Mistakes
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
+                  </div>
+                </div>
+                <div className="tests-history">
+                  <div
+                    style={{
+                      backgroundColor: colorFiles.primaryColor,
+                      position: "relative",
+                    }}
+                    className="test-history-item"
+                  >
+                    <h5 className="text-info-race-label">Latest</h5>
+                    <h4 style={{ paddingLeft: "1vw" }}>
+                      {props.data !== undefined &&
+                        props.data[props.data.length - 1].raceNumber}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "36vw" }}>
+                      {props.data !== undefined &&
+                        props.data[props.data.length - 1].wpm}
+                      wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "28vw" }}>
+                      {props.data !== undefined &&
+                        props.data[props.data.length - 1].time}
+                      s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "12vw" }}>
+                      {" "}
+                      {props.data !== undefined &&
+                        props.data[props.data.length - 1].accuracy}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "20vw" }}>
+                      {" "}
+                      {`${
+                        props.data !== undefined &&
+                        props.data[props.data.length - 1].mistakes
+                      }%`}
+                    </h4>
+                    <p style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {props.data !== undefined &&
+                        props.data[props.data.length - 1].date}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      backgroundColor: colorFiles.primaryColor,
+                      position: "relative",
+                      marginTop: "1rem",
+                    }}
+                    className="test-history-item"
+                  >
+                    <h5 className="text-info-race-label">Fastest</h5>
+                    <h4 style={{ paddingLeft: "1vw" }}>
+                      {fastestRace !== undefined && fastestRace.raceNumber}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "36vw" }}>
+                      {fastestRace !== undefined && fastestRace.wpm}
+                      wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "28vw" }}>
+                      {fastestRace !== undefined && fastestRace.time}s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "12vw" }}>
+                      {" "}
+                      {fastestRace !== undefined && fastestRace.accuracy}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "20vw" }}>
+                      {" "}
+                      {`${fastestRace !== undefined && fastestRace.mistakes}%`}
+                    </h4>
+                    <p style={{ position: "absolute", right: "1vw" }}>
+                      {" "}
+                      {fastestRace !== undefined && fastestRace.date}
+                    </p>
+                  </div>
+                  <h4 style={{ textAlign: "center", marginTop: "1rem" }}>
+                    History for this race
+                  </h4>
+                  <hr></hr>
+                  {props.data !== undefined &&
+                    props.data
+                      .slice(0)
+                      .reverse()
+                      .map((data, index) => {
+                        return (
+                          <div
+                            style={
+                              index % 2 === 0
+                                ? {
+                                    backgroundColor:
+                                      colorFiles.secondaryBackgroundColor,
+                                    position: "relative",
+                                  }
+                                : {
+                                    position: "relative",
+                                    backgroundColor: colorFiles.backgroundColor,
+                                  }
+                            }
+                            className="test-history-item"
+                            key={index}
+                          >
+                            <h4 style={{ paddingLeft: "1vw" }}>
+                              {data.raceNumber}
+                            </h4>
+                            <h4 style={{ position: "absolute", right: "36vw" }}>
+                              {data.wpm}wpm
+                            </h4>
+                            <h4 style={{ position: "absolute", right: "28vw" }}>
+                              {data.time}s
+                            </h4>
+                            <h4 style={{ position: "absolute", right: "12vw" }}>
+                              {" "}
+                              {data.mistakes}
+                            </h4>
+                            <h4 style={{ position: "absolute", right: "20vw" }}>
+                              {" "}
+                              {`${data.accuracy}%`}
+                            </h4>
+                            <p style={{ position: "absolute", right: "1vw" }}>
+                              {" "}
+                              {data.date}
+                            </p>
+                          </div>
+                        );
+                      })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
