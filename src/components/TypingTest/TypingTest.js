@@ -8,6 +8,7 @@ import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
+import quotes from "../data/quotes.json";
 
 function TypingTest() {
   const dispatch = useDispatch();
@@ -22,7 +23,6 @@ function TypingTest() {
   const latestErrors = useSelector(
     (state) => state.latestErrorsReducerTypingGame
   );
-  const isSideMenuOpen = useSelector((state) => state.openSideMenuReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
@@ -98,7 +98,7 @@ function TypingTest() {
     if (isLoggedIn) {
       const data = {
         wpm: calculateWordsPerMinute(),
-        time: seconds,
+        time: timeSeconds,
         mistakes: realMistakes,
         textTypedId: textTypedId,
         date: getTheDate(),
@@ -120,19 +120,10 @@ function TypingTest() {
   };
 
   useEffect(() => {
-    axios
-      .get("https://protypist.herokuapp.com/texts/getRandom")
-      .then((res) => {
-        setText(res.data[0]);
-        if (isLoggedIn) {
-          setTextTypedId(res.data[0]._id);
-        }
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        setIsLoading(true);
-        console.log(e.response);
-      });
+    const randomNumber = Math.floor(Math.random() * quotes.length);
+    setText(quotes[randomNumber]);
+    setTextTypedId(quotes.id);
+    setIsLoading(false);
   }, [newGame, jwt]);
 
   useEffect(() => {
@@ -202,7 +193,7 @@ function TypingTest() {
           console.log(e.response);
         });
     }
-  }, [isSideMenuOpen, textTypedId]);
+  }, [textTypedId]);
 
   const getTheDate = () => {
     const date = new Date();
@@ -790,90 +781,6 @@ function TypingTest() {
     );
   };
 
-  const sideMenu = () => {
-    if (text !== undefined) {
-      return (
-        <div
-          className={isSideMenuOpen ? "side-menu-open" : "side-menu-closed"}
-          style={{
-            backgroundColor: colorFiles.backgroundColor,
-            color: colorFiles.fontColor,
-          }}
-        >
-          <div>
-            <div className="side-menu-header">
-              <h3>Info About Text</h3>
-              <i
-                onClick={() => {
-                  dispatch({
-                    type: "TOGGLE_OPENING_SIDE_MENU",
-                  });
-                }}
-                className="fas fa-times fa-2x close-icon"
-              ></i>
-            </div>
-
-            <hr
-              style={{
-                marginTop: "1rem",
-                backgroundColor: colorFiles.hrColor,
-              }}
-            ></hr>
-          </div>
-          <div className="side-menu-container">
-            <div className="side-menu-picture-div">
-              <img
-                alt="Current text"
-                className="side-menu-picture"
-                src={text.image}
-              ></img>
-            </div>
-            <hr
-              style={{
-                width: "85%",
-                marginTop: "2rem",
-                backgroundColor: colorFiles.hrColor,
-              }}
-            ></hr>
-          </div>
-          <div className="side-menu-info-container">
-            <h5 className="mb-2">
-              {/* This quote is from the {data.text[selectedRandomTextIndex].type}: */}
-            </h5>
-            <a className="link" target="blank" href={text.linkURL}>
-              <h5
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
-                }}
-                className="link-h5"
-              >
-                "{text.from}"
-              </h5>
-            </a>
-
-            <h5 className="mt-2">By: {text.by}</h5>
-            <div className="d-flex justify-content-center"></div>
-          </div>
-          {isLoggedIn && thisTextInfo()}
-          {/* {isLoggedIn && (
-            <div
-              onClick={() => {
-                setIsSubmitQuoteOpen(!isSubmitQuoteMenuOpen);
-                dispatch({
-                  type: "TOGGLE_OPENING_SIDE_MENU",
-                });
-              }}
-              className="submit-quote-button "
-            >
-              <h5>Submit a Quote</h5>
-            </div>
-          )} */}
-        </div>
-      );
-    }
-  };
-
   const displayTheStatistics = () => {
     return (
       <div className="statistics">
@@ -939,15 +846,7 @@ function TypingTest() {
             type: "TOGGLE_OPENING_SIDE_MENU",
           })
         }
-        className={
-          isSideMenuOpen // isSubmitQuoteMenuOpen
-            ? "darkened-background-on"
-            : "darkened-background-off"
-        }
       ></div>
-
-      {/* {submitQuoteMenu()} */}
-      {sideMenu()}
       <div
         style={{
           backgroundColor: colorFiles.backgroundColor,

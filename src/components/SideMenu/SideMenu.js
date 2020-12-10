@@ -65,21 +65,6 @@ function SideMenu() {
       </div>
 
       <div className="navigation-buttons">
-        {/* <Link className="left-menu-link" to="/10second">
-          <div
-            style={{
-              backgroundColor: checkButtonStyle("/10second"),
-              color: checkButtonStyleColor("/10second"),
-            }}
-            className={checkButtonClass("/10second")}
-          >
-            <i
-              style={{ position: "absolute", left: "20px" }}
-              className="fas fa-clock"
-            ></i>
-            <h5>10second</h5>
-          </div>
-        </Link> */}
         <Link className="left-menu-link" to="/">
           <div
             style={{
@@ -94,24 +79,6 @@ function SideMenu() {
                 className="fas fa-keyboard"
               ></i>
               <h5>Quotes</h5>
-            </div>
-            <div
-              onClick={() => {
-                dispatch({
-                  type: "TOGGLE_OPENING_SIDE_MENU",
-                });
-              }}
-              className="typing-test-bottom-button"
-              style={{
-                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-            >
-              <i
-                style={{ position: "absolute", left: "20px" }}
-                className="fas fa-quote-left"
-              ></i>
-              <h5>Info</h5>
             </div>
           </div>
         </Link>
