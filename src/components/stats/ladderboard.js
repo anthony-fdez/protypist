@@ -17,7 +17,7 @@ function Ladderboard(props) {
   const userId = useSelector((state) => state.userIdReducer);
 
   const [data, setData] = useState([]);
-  const [sortBy, setSortBy] = useState("wpm");
+  const [sortBy, setSortBy] = useState("highest");
   const [isLoading, setIsLoading] = useState(true);
   const [userProfileOpen, setUserProfileOpen] = useState(false);
   const [otherUserData, setOtherUserData] = useState(undefined);
@@ -36,9 +36,6 @@ function Ladderboard(props) {
     isTyping1000StatisticsShown,
     setIsTyping1000StatisticsShown,
   ] = useState(false);
-  const [isKeyboardStatisticsShown, setIsKeyboardStatisticsShown] = useState(
-    false
-  );
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -48,7 +45,7 @@ function Ladderboard(props) {
       const headers = { Authorization: jwt };
       setIsLoading(true);
       axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/wpm", {
+        .get("https://protypist.herokuapp.com/users/ladderboard/highest", {
           headers: headers,
         })
         .then((response) => {
@@ -206,7 +203,6 @@ function Ladderboard(props) {
             setIsTypingGameStatisticsShown(true);
             setIsTyping200StatisticsShown(false);
             setIsTyping1000StatisticsShown(false);
-            setIsKeyboardStatisticsShown(false);
             setSeeAllHistory1000(false);
             setSeeAllHistory200(false);
             setSeeAllHistoryQuote(false);
@@ -232,7 +228,6 @@ function Ladderboard(props) {
             setIsTypingGameStatisticsShown(false);
             setIsTyping200StatisticsShown(true);
             setIsTyping1000StatisticsShown(false);
-            setIsKeyboardStatisticsShown(false);
             setSeeAllHistory1000(false);
             setSeeAllHistory200(false);
             setSeeAllHistoryQuote(false);
@@ -258,7 +253,6 @@ function Ladderboard(props) {
             setIsTypingGameStatisticsShown(false);
             setIsTyping200StatisticsShown(false);
             setIsTyping1000StatisticsShown(true);
-            setIsKeyboardStatisticsShown(false);
             setSeeAllHistory1000(false);
             setSeeAllHistory200(false);
             setSeeAllHistoryQuote(false);
@@ -1167,7 +1161,27 @@ function Ladderboard(props) {
 
         <hr style={{ background: colorFiles.hrColor }}></hr>
         <div className="select-sort-method">
-          <h4 className="mr-5">Sorty by:</h4>
+          <h4 className="mr-5">Sort by:</h4>
+          <button
+            onClick={() => {
+              setSortBy("highest");
+              sortByHighest();
+            }}
+            className={"btn  mr-2"}
+            style={
+              sortBy === "highest"
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    color: colorFiles.contrastFontColor,
+                  }
+                : {
+                    backgroundColor: colorFiles.backgroundColor,
+                    color: colorFiles.fontColor,
+                  }
+            }
+          >
+            Highest
+          </button>
           <button
             onClick={() => {
               setSortBy("wpm");
@@ -1227,26 +1241,6 @@ function Ladderboard(props) {
             }
           >
             Time
-          </button>
-          <button
-            onClick={() => {
-              setSortBy("highest");
-              sortByHighest();
-            }}
-            className={"btn  mr-2"}
-            style={
-              sortBy === "highest"
-                ? {
-                    backgroundColor: colorFiles.primaryColor,
-                    color: colorFiles.contrastFontColor,
-                  }
-                : {
-                    backgroundColor: colorFiles.backgroundColor,
-                    color: colorFiles.fontColor,
-                  }
-            }
-          >
-            Highest
           </button>
         </div>
         <hr style={{ background: colorFiles.hrColor }}></hr>
