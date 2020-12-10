@@ -136,7 +136,6 @@ const ReplayText = () => {
         headers: headers,
       })
       .then((response) => {
-        console.log(response);
         dispatch({
           type: "SET_REPLAY_DATA",
           payload: response.data,
@@ -518,6 +517,10 @@ const ReplayText = () => {
   };
 
   useEffect(() => {
+    setFinished(false);
+  }, [isReplayComponentShown]);
+
+  useEffect(() => {
     if (replayData !== null) {
       let fastestWPM = 0;
       replayData.map((data, index) => {
@@ -540,6 +543,26 @@ const ReplayText = () => {
           isReplayComponentShown ? "replay-text-shown" : "replay-text-hidden"
         }
       >
+        <button
+          onClick={() => setFinished(true)}
+          className="btn btn-light mr-3"
+          style={
+            !finished
+              ? {
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  position: "absolute",
+                  right: "0px",
+                  bottom: "30px",
+                }
+              : {
+                  opacity: 0,
+                  pointerEvents: "none",
+                }
+          }
+        >
+          Show Statistics
+        </button>
         <div>
           <hr
             style={
@@ -568,11 +591,7 @@ const ReplayText = () => {
         >
           {spanArray}
         </div>
-        <div
-          className={
-            finished ? "keyboard-div-hidden-reply" : "keyboard-div-shown-reply"
-          }
-        >
+        <div className={"keyboard-div-shown-reply"}>
           {keyboardOnScreen && keyboardLayoutSelector()}
         </div>
         <div
@@ -582,7 +601,10 @@ const ReplayText = () => {
           }}
           className={handleThemInTheFinishedPage()}
         >
-          <div className="about-text-header">
+          <div
+            style={{ backgroundColor: colorFiles.backgroundColor }}
+            className="about-text-header-replay"
+          >
             <h4
               style={{
                 display: "flex",
@@ -591,7 +613,7 @@ const ReplayText = () => {
             >
               This text info
             </h4>
-            <div>
+            <div style={{ display: "flex" }}>
               <button
                 onClick={() => {
                   setSpanArray(blankSpanArray);
@@ -615,16 +637,14 @@ const ReplayText = () => {
               >
                 Type Again
               </button>
+              <i
+                onClick={() => setFinished(false)}
+                className="close-icon-login fas fa-times fa-2x"
+              ></i>
             </div>
           </div>
           <div className="info-about-text-bottom">
             <div className="info-about-text-text">
-              <hr
-                style={{
-                  marginTop: "0rem",
-                  backgroundColor: colorFiles.hrColor,
-                }}
-              ></hr>
               <div>
                 <div
                   style={{ position: "relative", width: "80%", margin: "auto" }}
