@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Typical from "react-typical";
+import { useSelector } from "react-redux";
 
 import "./input.css";
 
@@ -22,6 +23,9 @@ function Input(props) {
     let randomNewWords = require("random-words");
     return randomNewWords(2000); //2000 words is probably too much but this almost makes the words not repeat
   });
+
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`../themes/${colors}`);
 
   /*================== Select the random words ==================*/
 
@@ -122,7 +126,10 @@ function Input(props) {
           <h3 className="word-to-type">{randomWord.split("").join(" ")}</h3>
 
           <div className="">
-            <h5 className={"time-left text"}>
+            <h5
+              style={{ color: colorFiles.primaryColor }}
+              className={"time-left"}
+            >
               {seconds}:{miliseconds < 10 ? `${miliseconds}0` : miliseconds}
             </h5>
           </div>
@@ -156,13 +163,13 @@ function Input(props) {
   /*================== Show the +1 second  ==================*/
 
   const selectTheAmountOfSecconds = () => {
-    if (props.dificulty === "EZZY") {
+    if (props.dificulty === "EASY") {
       return 2;
     } else if (props.dificulty === "NORMAL") {
       return 1;
     } else if (props.dificulty === "HARD") {
       return 0.5;
-    } else if (props.dificulty === "HARDER") {
+    } else if (props.dificulty === "EPIC") {
       return 0.2;
     }
   };
@@ -184,7 +191,7 @@ function Input(props) {
     if (isRunning) {
       placeholder = `Type: "${randomWord}"`;
     } else if (!isRunning) {
-      placeholder = 'Type "start" to begin';
+      placeholder = 'Type "start"';
     }
     return placeholder;
   };
@@ -241,7 +248,13 @@ function Input(props) {
 
   return (
     <div className="input">
-      <div>{startOfTheGame()}</div>
+      <div
+        className="start-of-game-10seconds"
+        style={{ color: colorFiles.fontColor }}
+      >
+        {startOfTheGame()}
+        <div>{displayAddingSeconds()}</div>
+      </div>
       <div className="input">
         <input
           autoFocus
@@ -252,23 +265,25 @@ function Input(props) {
           onChange={checkForEqualWord}
           placeholder={placeholderChange()}
           type="text"
-          className={
+          className="input-box-10seconds"
+          style={
             seconds < 3 && lost === false
-              ? "transition form-control form-running-out-of-time"
-              : " transition form-control form-input"
+              ? { color: colorFiles.fontColor, borderBottom: `2px solid red` }
+              : {
+                  color: colorFiles.fontColor,
+                  borderBottom: `2px solid ${colorFiles.primaryColor}`,
+                }
           }
         />
       </div>
       <div className="mt-3 ml-2 d-flex justify-content-between">
-        <h4 className={"transition text"}>Score: {addSecond ? "+1" : score}</h4>
-        <div>{displayAddingSeconds()}</div>
+        <h4 style={{ color: colorFiles.fontColor }} className="score-big-text">
+          Score: {score}
+        </h4>
       </div>
       <div>
-        <h5 className={"highest-score"}>Highest Score: {highestScore}</h5>
-        <h5 //this is the words per minute h5, it says highest score but it doesn't matter
-          className={"highest-score"}
-        >
-          WPM: {wpm === NaN ? "0" : wpm.toFixed(1)}
+        <h5 style={{ color: colorFiles.fontColor }} className={"highest-score"}>
+          Highest Score: {highestScore}
         </h5>
       </div>
     </div>

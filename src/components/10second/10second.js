@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 import "./10second.css";
 import Header from "../header/header";
-import Keyboard from "../inScreenKeyboard/keyboard";
+import Qwerty from "../inScreenKeyboard/qwerty";
+import Dvorak from "../inScreenKeyboard/dvorak";
+import Colemak from "../inScreenKeyboard/colemak";
 
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -10,10 +12,12 @@ import { useSpring, animated } from "react-spring";
 import Input from "./input";
 
 function Typing10Second() {
-  const theme = useSelector((state) => state.darkModeReducer);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
+  const colors = useSelector((state) => state.themeReducer);
+  const colorFiles = require(`../themes/${colors}`);
+  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   const [isMenuInScreen, setIsMenuInScreen] = useState(false);
   const [dificulty, setDificulty] = useState("NORMAL");
@@ -23,6 +27,16 @@ function Typing10Second() {
     to: { opacity: 1 },
     config: { duration: 300 },
   });
+
+  const keyboardLayoutSelector = () => {
+    if (keyboardLayout === "QWERTY") {
+      return <Qwerty />;
+    } else if (keyboardLayout === "DVORAK") {
+      return <Dvorak />;
+    } else if (keyboardLayout === "COLEMAK") {
+      return <Colemak />;
+    } else return <Qwerty />;
+  };
 
   return (
     <animated.div style={animation} className={"Typing10Second-page"}>
@@ -40,7 +54,7 @@ function Typing10Second() {
                 }}
               >
                 <div className="container mt-3">
-                  <Input dificulty={dificulty} darkMode={theme} />
+                  <Input dificulty={dificulty} />
                 </div>
               </div>
             </div>
@@ -54,24 +68,44 @@ function Typing10Second() {
           }
         >
           <div className="check-for-small-display">
-            {keyboardOnScreen && <Keyboard />}
+            {keyboardOnScreen && keyboardLayoutSelector()}
           </div>
         </div>
 
         <div className={"settings-10second"}>
-          <div className="d-flex">
-            <h4 className="mr-2">Difficulty: </h4>
+          <div
+            style={{
+              display: "flex",
+              margin: "auto",
+              position: "absolute",
+              bottom: "5px",
+            }}
+          >
             <button
               onClick={() => {
-                setDificulty("EZZY");
+                setDificulty("EASY");
               }}
               className={
-                dificulty === "EZZY"
+                dificulty === "EASY"
                   ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
               }
+              style={
+                dificulty === "EASY"
+                  ? {
+                      backgroundColor: colorFiles.primaryColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
+                  : {
+                      backgroundColor:
+                        colorFiles.secondSecondaryBackgroundColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
+              }
             >
-              Ezzy
+              Easy
             </button>
             <button
               onClick={() => {
@@ -81,6 +115,20 @@ function Typing10Second() {
                 dificulty === "NORMAL"
                   ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
+              }
+              style={
+                dificulty === "NORMAL"
+                  ? {
+                      backgroundColor: colorFiles.primaryColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
+                  : {
+                      backgroundColor:
+                        colorFiles.secondSecondaryBackgroundColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
               }
             >
               Normal
@@ -94,20 +142,48 @@ function Typing10Second() {
                   ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
               }
+              style={
+                dificulty === "HARD"
+                  ? {
+                      backgroundColor: colorFiles.primaryColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
+                  : {
+                      backgroundColor:
+                        colorFiles.secondSecondaryBackgroundColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
+              }
             >
               Hard
             </button>
             <button
               onClick={() => {
-                setDificulty("HARDER");
+                setDificulty("EPIC");
               }}
               className={
-                dificulty === "HARDER"
+                dificulty === "EPIC"
                   ? "difficulty-btn btn btn-light mr-2"
                   : "difficulty-btn btn btn-light mr-2"
               }
+              style={
+                dificulty === "EPIC"
+                  ? {
+                      backgroundColor: colorFiles.primaryColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
+                  : {
+                      backgroundColor:
+                        colorFiles.secondSecondaryBackgroundColor,
+                      border: "none",
+                      color: colorFiles.fontColor,
+                    }
+              }
             >
-              Harder ;)
+              Epic
             </button>
           </div>
         </div>

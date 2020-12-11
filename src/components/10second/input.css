@@ -24,6 +24,11 @@
   margin: 0;
   padding: 0;
 }
+.time-left {
+  font-size: 40px;
+  opacity: 0.7;
+  font-style: italic;
+}
 .word-to-type {
   font-size: 1rem;
   margin: 0;
@@ -44,8 +49,7 @@
   margin-bottom: 1rem;
 }
 
-.highest-score-dark,
-.highest-score-light {
+.highest-score {
   font-style: italic;
   padding-left: 2rem;
 }
@@ -53,4 +57,67 @@
 h3 {
   padding: 0;
   margin: 0;
+}
+.score-big-text {
+  left: 250px;
+
+  opacity: 0.3;
+
+  font-size: 100px;
+}
+
+.add-second {
+  position: absolute;
+  right: 0px;
+}
+
+@media only screen and (min-width: 1501px) {
+  .input-box-10seconds {
+    position: absolute;
+    width: 870px;
+    bottom: 380px;
+    opacity: 1;
+    transition: 0.3s;
+    z-index: 0;
+    background: none;
+    outline: none;
+    padding: 0.5rem;
+    border: none;
+    margin: auto;
+    left: 200px;
+    right: 0;
+  }
+  .start-of-game-10seconds {
+    position: absolute;
+    margin: auto;
+    bottom: 420px;
+    left: 200px;
+    right: 0px;
+    width: 800px;
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .input-box-10seconds {
+    position: absolute;
+    width: 670px;
+    bottom: 320px;
+    opacity: 1;
+    transition: 0.3s;
+    z-index: 0;
+    background: none;
+    outline: none;
+    padding: 0.5rem;
+    border: none;
+    margin: auto;
+    left: 200px;
+    right: 0;
+  }
+  .start-of-game-10seconds {
+    position: absolute;
+    margin: auto;
+    bottom: 350px;
+    left: 200px;
+    right: 0px;
+    width: 600px;
+  }
 }

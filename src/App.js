@@ -4,7 +4,7 @@ import "./App.css";
 
 //components
 import TypingTest from "./components/TypingTest/TypingTest";
-// import Typing10second from "./components/10second/10second";
+import Typing10second from "./components/10second/10second";
 import Common200 from "./components/200/common200";
 import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
@@ -94,9 +94,9 @@ function App() {
           <Route exact path="/">
             <TypingTest />
           </Route>
-          {/* <Route path="/10second">
+          <Route path="/10seconds">
             <Typing10second />
-          </Route> */}
+          </Route>
           <Route path="/200">
             <Common200 />
           </Route>

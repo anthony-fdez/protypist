@@ -82,6 +82,23 @@ function SideMenu() {
             </div>
           </div>
         </Link>
+        <Link className="left-menu-link" to="/10seconds">
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/10seconds"),
+              color: checkButtonStyleColor("/10seconds"),
+            }}
+            className={checkTypingGameClass("/10seconds")}
+          >
+            <div className="typing-test-top-button">
+              <i
+                style={{ position: "absolute", left: "20px" }}
+                className="fas fa-keyboard"
+              ></i>
+              <h5>10Seconds</h5>
+            </div>
+          </div>
+        </Link>
         <hr
           style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
