@@ -248,9 +248,11 @@ const ReplayText = () => {
         setProgress((progress) => progress + 1);
       }
 
-      if (charactersTyped === progress) {
-        if (infoAboutCharacter[charactersTyped - 1] === false) {
-          setRealMistakes((mistake) => (mistake = realMistakes + 1));
+      for (let i = 0; i < progress; i++) {
+        if (charactersTyped === progress) {
+          if (infoAboutCharacter[i] === false) {
+            setRealMistakes((mistake) => (mistake = realMistakes + 1));
+          }
         }
       }
     }
@@ -445,53 +447,14 @@ const ReplayText = () => {
     return (
       <div className="statistics">
         <div className="d-flex">
-          <h5 className="mr-1">
-            WPM: {displayWPM()} {isLoggedIn && "|"}
-          </h5>
-          <h5
-            style={
-              differenceInWPM > 0
-                ? { color: "rgb(41, 230, 50)" }
-                : { color: "rgba(230, 41, 41)" }
-            }
-          >
-            {isLoggedIn
-              ? differenceInWPM > 0
-                ? `+${differenceInWPM}`
-                : differenceInWPM
-              : ""}{" "}
-          </h5>
+          <h5 className="mr-1">WPM: {displayWPM()}</h5>
         </div>
         <div className="d-flex">
           <div className="d-flex mr-5">
-            <h5 className="mr-1">
-              Errors: {latestErrors} {isLoggedIn && "|"}{" "}
-            </h5>
-            <h5
-              style={
-                differenceInErrors < 0
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: "rgba(230, 41, 41)" }
-              }
-            >
-              {isLoggedIn
-                ? differenceInErrors > 0
-                  ? `+${differenceInErrors}`
-                  : differenceInErrors
-                : ""}
-            </h5>
+            <h5 className="mr-1">Errors: {latestErrors}</h5>
           </div>
           <div style={{ marginRight: "4rem" }} className="d-flex">
             <h5 className="mr-2">Acuracy: </h5>
-            <h5
-              style={
-                accuracy > 96
-                  ? { color: "rgb(41, 230, 50)" }
-                  : { color: colorFiles.fontColor }
-              }
-            >
-              {accuracy === 0 ? "..." : `${accuracy}%`}
-            </h5>
             <div
               style={{
                 position: "absolute",
