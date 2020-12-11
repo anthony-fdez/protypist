@@ -59,7 +59,6 @@ function Stats() {
 
   const [chartData1000, setChartData1000] = useState({});
   const [data1000, setData1000] = useState();
-  const [replayData, setReplayData] = useState();
 
   const [
     isTypingGameStatisticsShown,
@@ -974,7 +973,7 @@ function Stats() {
         className={"Stats"}
       >
         <Header />
-        <ReplayText />
+        {isReplayComponentShown && <ReplayText />}
         <div
           onClick={() =>
             dispatch({

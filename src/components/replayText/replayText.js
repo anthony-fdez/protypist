@@ -126,7 +126,8 @@ const ReplayText = () => {
   };
 
   useEffect(() => {
-    if (replayData !== null && replayData !== undefined) {
+    if (finished) {
+      console.log(replayData);
       const DATA = { _id: replayData[0].textTypedId };
       const headers = {
         Authorization: jwt,
@@ -719,7 +720,14 @@ const ReplayText = () => {
                       {fastestRace !== undefined && fastestRace.date}
                     </p>
                   </div>
-                  <h4 style={{ textAlign: "center", marginTop: "1rem" }}>
+                  <h4
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      textAlign: "center",
+                      marginTop: "2rem",
+                    }}
+                  >
                     History for this race
                   </h4>
                   <hr></hr>
