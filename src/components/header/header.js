@@ -352,6 +352,7 @@ function Header(props) {
         });
         setMessage("Logged out, hope to see you again soon :)");
         setIsSuccssWarningShown(true);
+        localStorage.clear();
       })
       .catch((e) => {
         setMessage(

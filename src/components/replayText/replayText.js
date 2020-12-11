@@ -126,7 +126,7 @@ const ReplayText = () => {
   };
 
   useEffect(() => {
-    if (replayData !== null) {
+    if (replayData !== null && replayData !== undefined) {
       const DATA = { _id: replayData[0].textTypedId };
       const headers = {
         Authorization: jwt,
@@ -483,7 +483,7 @@ const ReplayText = () => {
   }, [isReplayComponentShown]);
 
   useEffect(() => {
-    if (replayData !== null) {
+    if (replayData !== null && replayData !== undefined) {
       let fastestWPM = 0;
       replayData.map((data, index) => {
         if (data.wpm > fastestWPM) {
