@@ -246,28 +246,14 @@ function Common200() {
 
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {
-      let errors = 0;
-      for (let i = 0; i < infoAboutCharacter.length; i++) {
-        if (infoAboutCharacter[i] === false) {
-          errors++;
-        }
-      }
-
-      setMistakes(errors);
-    }
-  }, [charactersTyped]);
-
-  useEffect(() => {
-    if (infoAboutCharacter !== undefined) {
       if (progress <= charactersTyped) {
         setProgress((progress) => progress + 1);
       }
 
-      for (let i = 0; i < progress; i++) {
-        if (charactersTyped === progress) {
-          if (infoAboutCharacter[i] === false) {
-            setRealMistakes((mistake) => (mistake = realMistakes + 1));
-          }
+      if (charactersTyped === progress) {
+        if (infoAboutCharacter[charactersTyped - 1] === false) {
+          setRealMistakes((mistake) => (mistake = realMistakes + 1));
+          console.log(realMistakes);
         }
       }
     }

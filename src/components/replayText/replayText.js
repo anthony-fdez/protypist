@@ -248,15 +248,15 @@ const ReplayText = () => {
         setProgress((progress) => progress + 1);
       }
 
-      for (let i = 0; i < progress; i++) {
-        if (charactersTyped === progress) {
-          if (infoAboutCharacter[i] === false) {
-            setRealMistakes((mistake) => (mistake = realMistakes + 1));
-          }
+      if (charactersTyped === progress) {
+        if (infoAboutCharacter[charactersTyped - 1] === false) {
+          setRealMistakes((mistake) => (mistake = realMistakes + 1));
+          console.log(realMistakes);
         }
       }
     }
   }, [charactersTyped]);
+
   const getAndCheckTheInput = (e) => {
     if (realTimeWPM) {
       calculateWordsPerMinute();
