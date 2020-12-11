@@ -641,26 +641,22 @@ function Stats() {
         <div>
           <h3>Tests History</h3>
           <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
-          <div style={{ position: "relative", width: "70%", margin: "auto" }}>
-            {data200 !== undefined && data200.length !== 0 && (
-              <div
-                style={{ position: "relative", width: "80%", margin: "auto" }}
-              >
-                <div className="test-history-item">
-                  <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
-                  <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
-                  <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
-                  <h5 style={{ position: "absolute", right: "19vw" }}>
-                    Accuracy
-                  </h5>
-                  <h5 style={{ position: "absolute", right: "11vw" }}>
-                    Mistakes
-                  </h5>
-                  <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
-                </div>
+          {DATA.length !== 0 && (
+            <div style={{ position: "relative", width: "80%", margin: "auto" }}>
+              <div className="test-history-item">
+                <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
+                <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
+                <h5 style={{ position: "absolute", right: "19vw" }}>
+                  Accuracy
+                </h5>
+                <h5 style={{ position: "absolute", right: "11vw" }}>
+                  Mistakes
+                </h5>
+                <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
               </div>
-            )}
-          </div>
+            </div>
+          )}
           <div className="tests-history">
             {DATA !== undefined &&
               DATA.slice(0)

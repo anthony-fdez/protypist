@@ -426,25 +426,6 @@ const ReplayText = () => {
     }
   };
 
-  const getTheHighestSpeedForARace = (data) => {
-    if (data.length === 0) {
-      setHighestSpeed("No Data");
-      setHighestSpeedDate("No Data");
-      return 0;
-    }
-
-    let speed = 0;
-    let date = "";
-
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].wpm > speed) {
-        speed = data[i].wpm;
-        date = data[i].date;
-      }
-      setHighestSpeed(speed);
-      setHighestSpeedDate(date);
-    }
-  };
   const handleThemInTheFinishedPage = () => {
     if (finished) {
       return "about-the-text-shown-replay";
