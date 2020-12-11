@@ -3,6 +3,7 @@ import Typical from "react-typical";
 import { useSelector } from "react-redux";
 
 import "./input.css";
+import Axios from "axios";
 
 //Add more words and work on making the words not reapeat!
 
@@ -19,6 +20,9 @@ function Input(props) {
   const [wpm, setWPM] = useState(0);
   const [keyPressed, setKeyPressed] = useState(0);
 
+  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  const jwt = useSelector((state) => state.JWTreducer);
+
   const [words] = useState(() => {
     let randomNewWords = require("random-words");
     return randomNewWords(2000); //2000 words is probably too much but this almost makes the words not repeat
@@ -28,6 +32,39 @@ function Input(props) {
   const colorFiles = require(`../themes/${colors}`);
 
   /*================== Select the random words ==================*/
+
+  useEffect(() => {
+    setIsRunning(false);
+    setSeconds(9);
+    setMiliseconds(0);
+    setScore(0);
+  }, [props.dificulty]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const headers = {
+        Authorization: jwt,
+      };
+
+      Axios.get("https://protypist.herokuapp.com/10seconds", {
+        headers: headers,
+      })
+        .then((response) => {
+          if (props.dificulty === "EASY") {
+            setHighestScore(response.data.data.easy.highestScore);
+          } else if (props.dificulty === "NORMAL") {
+            setHighestScore(response.data.data.normal.highestScore);
+          } else if (props.dificulty === "HARD") {
+            setHighestScore(response.data.data.hard.highestScore);
+          } else if (props.dificulty === "EPIC") {
+            setHighestScore(response.data.data.epic.highestScore);
+          }
+        })
+        .catch((e) => {
+          console.log(e.response);
+        });
+    }
+  }, [props.dificulty]);
 
   useEffect(() => {
     if (props.language === false) {
@@ -49,7 +86,7 @@ function Input(props) {
       };
       setRandomWord(seletRandomWord());
     }
-  }, [score, lost, words, props.language]);
+  }, [score, lost, words]);
 
   /*================== Clock countdown ==================*/
 
@@ -109,6 +146,61 @@ function Input(props) {
       }
       if (score > highestScore) {
         setHighestScore(score);
+        if (isLoggedIn) {
+          const headers = {
+            Authorization: jwt,
+          };
+
+          const data = {
+            score: score,
+          };
+
+          if (props.dificulty === "EASY") {
+            Axios.post("https://protypist.herokuapp.com/10seconds/easy", data, {
+              headers: headers,
+            })
+              .then((response) => {
+                console.log(response);
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          } else if (props.dificulty === "NORMAL") {
+            Axios.post(
+              "https://protypist.herokuapp.com/10seconds/normal",
+              data,
+              {
+                headers: headers,
+              }
+            )
+              .then((response) => {
+                console.log(response);
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          } else if (props.dificulty === "HARD") {
+            Axios.post("https://protypist.herokuapp.com/10seconds/hard", data, {
+              headers: headers,
+            })
+              .then((response) => {
+                console.log(response);
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          } else if (props.dificulty === "EPIC") {
+            Axios.post("https://protypist.herokuapp.com/10seconds/epic", data, {
+              headers: headers,
+            })
+              .then((response) => {
+                console.log(response);
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          }
+        }
       }
       if (isRunning === false && lost === true) {
         setCountingUpSeconds(0);
@@ -206,16 +298,18 @@ function Input(props) {
       if (e.target.value === randomWord) {
         e.target.value = "";
         setScore((score) => score + 1);
-        if (props.dificulty === "NORMAL" || props.dificulty === "EZZY") {
-          setSeconds((seconds) => seconds + selectTheAmountOfSecconds());
+        if (props.dificulty === "EASY") {
+          setSeconds((seconds) => seconds + 2);
+        } else if (props.dificulty === "NORMAL") {
+          setSeconds((seconds) => seconds + 1);
         } else if (props.dificulty === "HARD") {
           setMiliseconds((miliseconds) => miliseconds + 5);
-        } else if (props.dificulty === "HARDER") {
+        } else if (props.dificulty === "EPIC") {
           setMiliseconds((miliseconds) => miliseconds + 2);
         }
       }
     } else if (isRunning === false) {
-      if (e.target.value === "start" || e.target.value === "vamo a darle") {
+      if (e.target.value === "start" || e.target.value === "let's go") {
         setSeconds(9);
         setMiliseconds(9);
         setLost(false);
