@@ -1,1 +1,1 @@
-Check out the live site here https://protypist.netlify.app
+Feel free to contribute to this project :)
