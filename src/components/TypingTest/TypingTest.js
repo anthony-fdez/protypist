@@ -70,16 +70,7 @@ function TypingTest() {
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
   const [averageMistakes, setAverageMistakes] = useState();
   const [highestSpeedAllTime, setHighestSpeedOfAllTime] = useState();
-
-  //submit a quote info
-
-  // const [quoteTitle, setQuoteTitle] = useState();
-  // const [quoteText, setQuoteText] = useState();
-  // const [quoteFrom, setQuoteFrom] = useState();
-  // const [quoteBy, setQuoteBy] = useState();
-  // const [quoteImageUrl, setQuoteImageUrl] = useState();
-  // const [quoteLinkUrl, setQuoteLinkUrl] = useState();
-  // const [quoteType, setQuoteType] = useState("Song");
+  const [quoteSource, setQuoteSource] = useState();
 
   useEffect(() => {
     let myTimeout;
@@ -119,11 +110,17 @@ function TypingTest() {
     }
   };
 
-  useEffect(() => {
+  const selectNewRandomText = () => {
     const randomNumber = Math.floor(Math.random() * quotes.length);
     setText(quotes[randomNumber]);
     setTextTypedId(quotes[randomNumber].id);
+    setQuoteSource(quotes[randomNumber].source);
+
     setIsLoading(false);
+  };
+
+  useEffect(() => {
+    selectNewRandomText();
   }, [newGame, jwt]);
 
   useEffect(() => {
@@ -670,7 +667,9 @@ function TypingTest() {
           className={handleThemInTheFinishedPage()}
         >
           <div className="about-text-header">
-            <h4>What you just typed:</h4>
+            <h4 style={{ display: "flex", alignItems: "center" }}>
+              What you just typed:
+            </h4>
             <div>
               <button
                 onClick={() => {
@@ -691,6 +690,7 @@ function TypingTest() {
                 style={{
                   backgroundColor: colorFiles.primaryColor,
                   color: colorFiles.contrastFontColor,
+                  border: "none",
                 }}
               >
                 Type Again
@@ -708,6 +708,7 @@ function TypingTest() {
                 style={{
                   backgroundColor: colorFiles.primaryColor,
                   color: colorFiles.contrastFontColor,
+                  border: "none",
                 }}
               >
                 New Text
@@ -715,39 +716,96 @@ function TypingTest() {
             </div>
           </div>
           <div className="info-about-text-bottom">
-            <div className="picture-div">
-              <img className="picture-image" src={text && text.image}></img>
-            </div>
             <div className="info-about-text-text">
               <hr
                 style={{
-                  marginTop: "1rem",
+                  marginTop: "0rem",
                   backgroundColor: colorFiles.hrColor,
                 }}
               ></hr>
-              <h5>
-                This quote is from the {text && text.type}:{" "}
-                <a
-                  className={"linkURL"}
-                  style={{ color: colorFiles.fontColor }}
-                  target="blank"
-                  href={text && text.linkURL}
+              <div>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    margin: "auto",
+                  }}
                 >
-                  {text && text.from}
-                </a>
-              </h5>
-              <br></br>
-              <h5>By: {text && text.by}</h5>
-              <br></br>
-              <h5>
-                Your time:{" "}
-                {seconds < 10
-                  ? `${minutes}:0${seconds}`
-                  : `${minutes}:${seconds}`}
-              </h5>
+                  <div className="test-history-item">
+                    <h5 style={{ position: "absolute", left: "0vw" }}>
+                      Test #
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                    <h5 style={{ position: "absolute", right: "28vw" }}>
+                      Time
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "19vw" }}>
+                      Accuracy
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "11vw" }}>
+                      Mistakes
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
+                  </div>
+                </div>
+                <div className="tests-history">
+                  <div
+                    style={{
+                      backgroundColor: colorFiles.primaryColor,
+                      width: "100%",
+                      position: "relative",
+                      padding: "1rem",
+                    }}
+                    className="test-history-item"
+                  >
+                    <h4 style={{ paddingLeft: "1vw" }}></h4>
+                    <h4 style={{ position: "absolute", right: "36vw" }}>
+                      {wpm}wpm
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "28vw" }}>
+                      {seconds}s
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "12vw" }}>
+                      {realMistakes}
+                    </h4>
+                    <h4 style={{ position: "absolute", right: "20vw" }}>
+                      {accuracy}%
+                    </h4>
+                    <p style={{ position: "absolute", right: "1vw" }}>
+                      Just Now
+                    </p>
+                  </div>
+                  <h4 style={{ marginTop: "1rem" }}>Source: {quoteSource}</h4>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <button
+          onClick={() => {
+            selectNewRandomText();
+          }}
+          className="btn btn-light"
+          style={
+            isRunning || finished
+              ? {
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  border: "none",
+                  opacity: 0,
+                  transition: "0.3s",
+                }
+              : {
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.contrastFontColor,
+                  border: "none",
+                  transition: "0.3s",
+                  transform: "translatey(-30px)",
+                }
+          }
+        >
+          Type A Different Text
+        </button>
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}
