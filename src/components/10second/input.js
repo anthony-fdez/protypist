@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Typical from "react-typical";
 import { useSelector } from "react-redux";
-
+import TenSecondsLeaderboard from "./10secondsLeaderboard";
 import "./input.css";
 import Axios from "axios";
 
@@ -19,6 +19,7 @@ function Input(props) {
   const [countingUpSeconds, setCountingUpSeconds] = useState(0); //the counting up seconds are to calculate the words per minut
   const [wpm, setWPM] = useState(0);
   const [keyPressed, setKeyPressed] = useState(0);
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(true);
 
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
@@ -342,6 +343,15 @@ function Input(props) {
 
   return (
     <div className="input">
+      <TenSecondsLeaderboard isOpen={isLeaderboardOpen} />
+      <div
+        onClick={() => setIsLeaderboardOpen(false)}
+        className={
+          isLeaderboardOpen
+            ? "darkened-background-10seconds-on"
+            : "darkened-background-10seconds-off"
+        }
+      ></div>
       <div
         className="start-of-game-10seconds"
         style={{ color: colorFiles.fontColor }}
