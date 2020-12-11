@@ -423,6 +423,7 @@ function Header(props) {
                   backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
+                placeholder="robertjr@example.mail"
               ></input>
             </div>
             <div>
@@ -440,6 +441,7 @@ function Header(props) {
                   backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
+                placeholder="********"
               ></input>
             </div>
           </form>
@@ -483,15 +485,17 @@ function Header(props) {
         style={{ backgroundColor: colorFiles.secondSecondaryBackgroundColor }}
       >
         <div className="signUp-header">
-          <h2>Sign Up</h2>
+          <h2>Welcome!</h2>
           <i
             onClick={() => setIsSignUpMenuOpen(false)}
             className="close-icon-login fas fa-times fa-2x"
           ></i>
         </div>
+        <p style={{ textAlign: "left", marginLeft: "1rem" }}>
+          Let's create you an account
+        </p>
         <hr
-          style={{ marginTop: "2rem" }}
-          className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
+          style={{ marginTop: "1rem", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <div>
           <form>
@@ -508,6 +512,7 @@ function Header(props) {
                   backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
+                placeholder="Eg: Robert Junior"
               ></input>
             </div>
             <div>
@@ -521,6 +526,7 @@ function Header(props) {
                   backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
+                placeholder="robertjr@example.mail"
               ></input>
             </div>
             <div>
@@ -535,6 +541,7 @@ function Header(props) {
                   backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
+                placeholder="**********"
               ></input>
             </div>
           </form>

@@ -32,7 +32,7 @@
     padding: 1rem;
     border-radius: 5px;
     z-index: 21;
-    transform: translateY(-50px);
+    transform: scale(0.9);
     pointer-events: none;
     opacity: 0;
     transition: 0.3s;
@@ -42,7 +42,7 @@
     right: 1rem;
     top: 1rem;
     width: 350px;
-    height: 480px;
+    height: 510px;
     padding: 1rem;
     border-radius: 5px;
     z-index: 51;
@@ -57,7 +57,7 @@
     padding: 1rem;
     border-radius: 5px;
     z-index: 21;
-    transform: translateY(50px);
+    transform: scale(0.9);
     pointer-events: none;
     opacity: 0;
     transition: 0.3s;
