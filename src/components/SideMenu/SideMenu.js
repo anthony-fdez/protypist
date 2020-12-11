@@ -93,7 +93,7 @@ function SideMenu() {
             <div className="typing-test-top-button">
               <i
                 style={{ position: "absolute", left: "20px" }}
-                className="fas fa-keyboard"
+                className="far fa-clock"
               ></i>
               <h5>10Seconds</h5>
             </div>
