@@ -284,7 +284,6 @@ function TypingTest() {
       if (charactersTyped === progress) {
         if (infoAboutCharacter[charactersTyped - 1] === false) {
           setRealMistakes((mistake) => (mistake = realMistakes + 1));
-          console.log(realMistakes);
         }
       }
     }
