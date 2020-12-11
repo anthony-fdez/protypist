@@ -97,6 +97,9 @@ function Colemak() {
   const [pressed_Comma_Count, setPressed_Comma_Count] = useState(
     ALL_KEYS_PRESSED.Comma
   );
+  const [pressed_BackSpace_Count, setPressed_BackSpace_Count] = useState(
+    ALL_KEYS_PRESSED.BackSpace
+  );
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -147,6 +150,7 @@ function Colemak() {
           setPressed_Shift_Count(response.data.Shift);
           setPressed_Comma_Count(response.data.Comma);
           setPressed_Dot_Count(response.data.Dot);
+          setPressed_BackSpace_Count(response.data.BackSpace);
         })
         .catch((e) => {
           console.log(e);
@@ -194,6 +198,7 @@ function Colemak() {
   const [hoveredShift, setHoveredShift] = useState(false);
   const [hoveredDot, setHoveredDot] = useState(false);
   const [hoveredComma, setHoveredComma] = useState(false);
+  const [hoveredBackSpace, setHoveredBackSpace] = useState(false);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -376,6 +381,10 @@ function Colemak() {
       setPressed_Dot_Count((pressed) => (pressed = pressed_Dot_Count + 1));
     } else if (pressedComma) {
       setPressed_Comma_Count((pressed) => (pressed = pressed_Comma_Count + 1));
+    } else if (pressedBackSpace) {
+      setPressed_BackSpace_Count(
+        (pressed) => (pressed = pressed_BackSpace_Count + 1)
+      );
     }
   }, [
     pressedA,
@@ -444,6 +453,7 @@ function Colemak() {
     pressedSpace,
     pressedComma,
     pressedDot,
+    pressedBackSpace,
   ]);
 
   useEffect(() => {
@@ -492,6 +502,7 @@ function Colemak() {
           Shift: pressed_Shift_Count,
           Dot: pressed_Dot_Count,
           Comma: pressed_Comma_Count,
+          BackSpace: pressed_BackSpace_Count,
         },
       };
 
@@ -547,6 +558,7 @@ function Colemak() {
         Shift: pressed_Shift_Count,
         Dot: pressed_Dot_Count,
         Comma: pressed_Comma_Count,
+        BackSpace: pressed_BackSpace_Count,
       },
     });
   }, [pressedSpace]);
@@ -833,14 +845,26 @@ function Colemak() {
             style={{
               backgroundColor: colorFiles.secondSecondaryBackgroundColor,
               color: colorFiles.fontColor,
+              cursor: "pointer",
             }}
             className={
               pressedBackSpace
                 ? "keyboard-backspace-pressed"
                 : "keyboard-backspace"
             }
+            onMouseOver={() => setHoveredBackSpace(true)}
+            onMouseOut={() => setHoveredBackSpace(false)}
           >
-            Backspace
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredBackSpace ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.BackSpace}x
+            </div>
+            BackSpace
           </div>
         </div>
         <div className="forth-row">

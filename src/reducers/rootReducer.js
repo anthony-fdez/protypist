@@ -341,6 +341,7 @@ const allKeysPressed = (
     Shift: 0,
     Dot: 0,
     Comma: 0,
+    BackSpace: 0,
   },
   action
 ) => {
