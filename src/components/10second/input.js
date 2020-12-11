@@ -341,9 +341,16 @@ function Input(props) {
 
   /*================== Render section ==================*/
 
+  const onLeaderboardChange = () => {
+    setIsLeaderboardOpen(false);
+  };
+
   return (
     <div className="input">
-      <TenSecondsLeaderboard isOpen={isLeaderboardOpen} />
+      <TenSecondsLeaderboard
+        isOpen={isLeaderboardOpen}
+        onChange={onLeaderboardChange}
+      />
       <div
         onClick={() => setIsLeaderboardOpen(false)}
         className={
@@ -388,6 +395,23 @@ function Input(props) {
       <div>
         <h5 style={{ color: colorFiles.fontColor }} className={"highest-score"}>
           Highest Score: {highestScore}
+        </h5>
+        <h5
+          style={{ color: colorFiles.fontColor, display: "flex" }}
+          className={"highest-score"}
+        >
+          {isLoggedIn && `Rank: Top ${highestScore}`}
+          <h5
+            onClick={() => {
+              isLoggedIn && setIsLeaderboardOpen(true);
+            }}
+            style={{ color: colorFiles.primaryColor }}
+            className="leaderboard-link"
+          >
+            {isLoggedIn
+              ? "Open Leaderboard"
+              : "Log In to see your rank and the leaderboard"}
+          </h5>
         </h5>
       </div>
     </div>

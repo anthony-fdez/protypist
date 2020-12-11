@@ -121,3 +121,9 @@ h3 {
     width: 600px;
   }
 }
+.leaderboard-link {
+  margin-left: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  z-index: 1;
+}
