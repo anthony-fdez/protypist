@@ -299,6 +299,15 @@ const replayDataReducer = (state = null, action) => {
   }
 };
 
+const logInMenuOpenReducer = (state = false, action) => {
+  switch (action.type) {
+    case "SET_OPEN_LOGIN_MENU":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allKeysPressed = (
   state = {
     a: 0,
@@ -388,6 +397,7 @@ const allReducers = combineReducers({
   privateAccountReducer: privateAccountReducer,
   replayComponentShown: replayComponentShown,
   replayDataReducer: replayDataReducer,
+  logInMenuOpenReducer: logInMenuOpenReducer,
 });
 
 export default allReducers;

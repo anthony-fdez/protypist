@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { animated } from "react-spring/renderprops-universal";
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -13,8 +12,10 @@ function Header(props) {
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestWPM200 = useSelector((state) => state.latestWPMReducer200);
   const latestWPM1000 = useSelector((state) => state.latestWPMReducer1000);
+  const isLogInMenuOpenReducer = useSelector(
+    (state) => state.logInMenuOpenReducer
+  );
 
-  const [isLogInMenuOpen, setIsLoginMenuOpen] = useState(false);
   const [isSignUpMenuOpen, setIsSignUpMenuOpen] = useState(false);
   const [isLogOutMenuOpen, setIsLogOutMenuOpen] = useState(false);
 
@@ -250,7 +251,10 @@ function Header(props) {
               payload: response.data.token,
             });
             setIsSignUpMenuOpen(false);
-            setIsLoginMenuOpen(false);
+            dispatch({
+              type: "SET_OPEN_LOGIN_MENU",
+              payload: false,
+            });
 
             setMessage(
               "Glad to see you again " + response.data.user.name + ". Have fun!"
@@ -304,7 +308,10 @@ function Header(props) {
               payload: response.data.token,
             });
             setIsSignUpMenuOpen(false);
-            setIsLoginMenuOpen(false);
+            dispatch({
+              type: "SET_OPEN_LOGIN_MENU",
+              payload: false,
+            });
           }
           setMessage(
             "Hey there " + response.data.user.name + ". Welcome to ProTypist!"
@@ -338,7 +345,10 @@ function Header(props) {
       })
       .then(() => {
         setIsSignUpMenuOpen(false);
-        setIsLoginMenuOpen(false);
+        dispatch({
+          type: "SET_OPEN_LOGIN_MENU",
+          payload: false,
+        });
         setIsLogOutMenuOpen(false);
 
         dispatch({
@@ -373,7 +383,10 @@ function Header(props) {
       })
       .then(() => {
         setIsSignUpMenuOpen(false);
-        setIsLoginMenuOpen(false);
+        dispatch({
+          type: "SET_OPEN_LOGIN_MENU",
+          payload: false,
+        });
         setIsLogOutMenuOpen(false);
 
         dispatch({
@@ -397,13 +410,20 @@ function Header(props) {
   const logInMenu = () => {
     return (
       <div
-        className={isLogInMenuOpen ? "login-menu-open" : "login-menu-closed"}
+        className={
+          isLogInMenuOpenReducer ? "login-menu-open" : "login-menu-closed"
+        }
         style={{ backgroundColor: colorFiles.secondSecondaryBackgroundColor }}
       >
         <div className="log-in-header">
           <h2>Log in</h2>
           <i
-            onClick={() => setIsLoginMenuOpen(!isLogInMenuOpen)}
+            onClick={() => {
+              dispatch({
+                type: "SET_OPEN_LOGIN_MENU",
+                payload: false,
+              });
+            }}
             className="close-icon-login fas fa-times fa-2x"
           ></i>
         </div>
@@ -463,7 +483,10 @@ function Header(props) {
             <p>Don't have an account?</p>
             <div
               onClick={() => {
-                setIsLoginMenuOpen(false);
+                dispatch({
+                  type: "SET_OPEN_LOGIN_MENU",
+                  payload: false,
+                });
                 setIsSignUpMenuOpen(true);
               }}
               className="sign-up-login-button-menu"
@@ -567,7 +590,10 @@ function Header(props) {
             <h5
               onClick={() => {
                 setIsSignUpMenuOpen(false);
-                setIsLoginMenuOpen(true);
+                dispatch({
+                  type: "SET_OPEN_LOGIN_MENU",
+                  payload: true,
+                });
               }}
               style={{
                 width: "6rem",
@@ -652,7 +678,12 @@ function Header(props) {
     return (
       <div className="log-in-button">
         <button
-          onClick={() => setIsLoginMenuOpen(!isLogInMenuOpen)}
+          onClick={() => {
+            dispatch({
+              type: "SET_OPEN_LOGIN_MENU",
+              payload: true,
+            });
+          }}
           className="btn btn-light"
           style={{
             backgroundColor: colorFiles.primaryColor,
@@ -761,12 +792,15 @@ function Header(props) {
         <h2>{props.text}</h2>
         <div
           onClick={() => {
-            setIsLoginMenuOpen(false);
+            dispatch({
+              type: "SET_OPEN_LOGIN_MENU",
+              payload: false,
+            });
             setIsSignUpMenuOpen(false);
             setIsLogOutMenuOpen(false);
           }}
           className={
-            isLogOutMenuOpen || isSignUpMenuOpen || isLogInMenuOpen // isSubmitQuoteMenuOpen
+            isLogOutMenuOpen || isSignUpMenuOpen || isLogInMenuOpenReducer // isSubmitQuoteMenuOpen
               ? "darkened-background-header-on"
               : "darkened-background-header-off"
           }
@@ -799,7 +833,7 @@ function Header(props) {
       </div>
       <div
         className={
-          isLogInMenuOpen || isSignUpMenuOpen || isLogOutMenuOpen
+          isLogInMenuOpenReducer || isSignUpMenuOpen || isLogOutMenuOpen
             ? "darkned-background-active"
             : "darkned-background-off"
         }

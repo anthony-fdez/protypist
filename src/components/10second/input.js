@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Typical from "react-typical";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import TenSecondsLeaderboard from "./10secondsLeaderboard";
 import "./input.css";
 import Axios from "axios";
@@ -8,6 +8,8 @@ import Axios from "axios";
 //Add more words and work on making the words not reapeat!
 
 function Input(props) {
+  const dispatch = useDispatch();
+
   const [lost, setLost] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [randomWord, setRandomWord] = useState("");
@@ -19,15 +21,18 @@ function Input(props) {
   const [countingUpSeconds, setCountingUpSeconds] = useState(0); //the counting up seconds are to calculate the words per minut
   const [wpm, setWPM] = useState(0);
   const [keyPressed, setKeyPressed] = useState(0);
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(true);
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
 
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
+  const myUserId = useSelector((state) => state.userIdReducer);
 
   const [words] = useState(() => {
     let randomNewWords = require("random-words");
     return randomNewWords(2000); //2000 words is probably too much but this almost makes the words not repeat
   });
+
+  const [myRank, setMyRank] = useState(0);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -64,8 +69,70 @@ function Input(props) {
         .catch((e) => {
           console.log(e.response);
         });
+
+      if (props.dificulty === "EASY") {
+        Axios.get(
+          "https://protypist.herokuapp.com/10seconds/leaderboard/easy",
+          {
+            headers: headers,
+          }
+        )
+          .then((response) => {
+            findRanking(response.data.leaderboard_easy);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else if (props.dificulty === "NORMAL") {
+        Axios.get(
+          "https://protypist.herokuapp.com/10seconds/leaderboard/normal",
+          {
+            headers: headers,
+          }
+        )
+          .then((response) => {
+            findRanking(response.data.leaderboard_normal);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else if (props.dificulty === "HARD") {
+        Axios.get(
+          "https://protypist.herokuapp.com/10seconds/leaderboard/hard",
+          {
+            headers: headers,
+          }
+        )
+          .then((response) => {
+            findRanking(response.data.leaderboard_hard);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else if (props.dificulty === "EPIC") {
+        Axios.get(
+          "https://protypist.herokuapp.com/10seconds/leaderboard/epic",
+          {
+            headers: headers,
+          }
+        )
+          .then((response) => {
+            findRanking(response.data.leaderboard_epic);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
     }
-  }, [props.dificulty]);
+  }, [props.dificulty, jwt, isLoggedIn]);
+
+  const findRanking = (DATA) => {
+    DATA.map((data, index) => {
+      if (data.id === myUserId) {
+        setMyRank(index + 1);
+      }
+    });
+  };
 
   useEffect(() => {
     if (props.language === false) {
@@ -400,10 +467,15 @@ function Input(props) {
           style={{ color: colorFiles.fontColor, display: "flex" }}
           className={"highest-score"}
         >
-          {isLoggedIn && `Rank: Top ${highestScore}`}
+          {isLoggedIn && `Rank: Top ${myRank}`}
           <h5
             onClick={() => {
-              isLoggedIn && setIsLeaderboardOpen(true);
+              isLoggedIn
+                ? setIsLeaderboardOpen(true)
+                : dispatch({
+                    type: "SET_OPEN_LOGIN_MENU",
+                    payload: true,
+                  });
             }}
             style={{ color: colorFiles.primaryColor }}
             className="leaderboard-link"
