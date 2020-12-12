@@ -135,25 +135,15 @@ function Input(props) {
   };
 
   useEffect(() => {
-    if (props.language === false) {
-      const seletRandomWord = () => {
-        let json = require("./palabras.json");
-        let random = Math.floor(
-          Math.random() * Math.floor(json.palabras.length)
-        );
-        let randomWord = json.palabras[random];
-        return randomWord;
-      };
-      setRandomWord(seletRandomWord());
-    } else {
-      const seletRandomWord = () => {
-        let random = Math.floor(Math.random() * Math.floor(words.length));
-
-        let randomWord = words[random];
-        return randomWord;
-      };
-      setRandomWord(seletRandomWord());
-    }
+    const seletRandomWord = () => {
+      let json = require("../data/words.json");
+      let random = Math.floor(
+        Math.random() * Math.floor(json.english_expanded.length)
+      );
+      let randomWord = json.english_expanded[random];
+      return randomWord;
+    };
+    setRandomWord(seletRandomWord());
   }, [score, lost, words]);
 
   /*================== Clock countdown ==================*/
