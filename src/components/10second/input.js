@@ -124,7 +124,7 @@ function Input(props) {
           });
       }
     }
-  }, [props.dificulty, jwt, isLoggedIn]);
+  }, [props.dificulty, jwt, isLoggedIn, isLeaderboardOpen]);
 
   const findRanking = (DATA) => {
     DATA.map((data, index) => {

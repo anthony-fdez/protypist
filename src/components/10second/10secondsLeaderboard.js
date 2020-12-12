@@ -70,7 +70,7 @@ const TenSecondsLeaderboard = (props) => {
           });
       }
     }
-  }, [difficulty]);
+  }, [difficulty, props.isOpen]);
 
   return (
     <div
@@ -206,7 +206,7 @@ const TenSecondsLeaderboard = (props) => {
             <h5 style={{ position: "absolute", right: "0vw" }}>Score</h5>
           </div>
         </div>
-        <div className="tests-history">
+        <div className="test-history-10seconds">
           {leaderboardData !== null &&
             leaderboardData.map((data, index) => {
               return (
