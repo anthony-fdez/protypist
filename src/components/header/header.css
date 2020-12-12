@@ -82,7 +82,7 @@
     padding: 1rem;
     border-radius: 5px;
     z-index: 21;
-    transform: translateY(-50px);
+    transform: scale(0.9);
     pointer-events: none;
     opacity: 0;
     transition: 0.3s;
@@ -334,7 +334,7 @@
     padding: 1rem;
     border-radius: 5px;
     z-index: 21;
-    transform: translateY(-50px);
+    transform: scale(0.9);
     pointer-events: none;
     opacity: 0;
     transition: 0.3s;
@@ -359,7 +359,7 @@
     padding: 1rem;
     border-radius: 5px;
     z-index: 21;
-    transform: translateY(50px);
+    transform: scale(0.9);
     pointer-events: none;
     opacity: 0;
     transition: 0.3s;
@@ -384,7 +384,7 @@
     padding: 1rem;
     border-radius: 5px;
     z-index: 21;
-    transform: translateY(-50px);
+    transform: scale(0.9);
     pointer-events: none;
     opacity: 0;
     transition: 0.3s;
