@@ -127,7 +127,6 @@ const ReplayText = () => {
 
   useEffect(() => {
     if (finished) {
-      console.log(replayData);
       const DATA = { _id: replayData[0].textTypedId };
       const headers = {
         Authorization: jwt,

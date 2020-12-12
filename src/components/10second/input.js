@@ -217,9 +217,7 @@ function Input(props) {
             Axios.post("https://protypist.herokuapp.com/10seconds/easy", data, {
               headers: headers,
             })
-              .then((response) => {
-                console.log(response);
-              })
+              .then((response) => {})
               .catch((e) => {
                 console.log(e);
               });
@@ -231,9 +229,7 @@ function Input(props) {
                 headers: headers,
               }
             )
-              .then((response) => {
-                console.log(response);
-              })
+              .then((response) => {})
               .catch((e) => {
                 console.log(e);
               });
@@ -241,9 +237,7 @@ function Input(props) {
             Axios.post("https://protypist.herokuapp.com/10seconds/hard", data, {
               headers: headers,
             })
-              .then((response) => {
-                console.log(response);
-              })
+              .then((response) => {})
               .catch((e) => {
                 console.log(e);
               });
@@ -251,9 +245,7 @@ function Input(props) {
             Axios.post("https://protypist.herokuapp.com/10seconds/epic", data, {
               headers: headers,
             })
-              .then((response) => {
-                console.log(response);
-              })
+              .then((response) => {})
               .catch((e) => {
                 console.log(e);
               });

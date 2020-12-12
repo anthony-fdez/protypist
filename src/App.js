@@ -22,65 +22,6 @@ function App() {
   const colorFiles = require(`./components/themes/${colors}`);
   const fontSize = useSelector((state) => state.fontSizeReducer);
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     const headers = {
-  //       Authorization: jwt,
-  //     };
-
-  //     axios
-  //       .get("https://protypist.herokuapp.com/users/me/settings", {
-  //         headers: headers,
-  //       })
-  //       .then((response) => {
-  //         console.log(response);
-  //         dispatch({
-  //           type: "SELECT_THEME",
-  //           payload: response.data.theme,
-  //         });
-  //       })
-  //       .then((e) => {
-  //         console.log(e);
-  //       });
-  //   }
-  // }, [jwt]);
-
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     const data = {
-  //       theme: colors,
-  //       language: testLanguage,
-  //       testLenghtAdvanced: lenghtAdvanced,
-  //       testLenght: length,
-  //       onScreenKeyboard: keyboardOnScreen,
-  //       fontFamily: fontFamily,
-  //       realTimeWpm: realTimeWPM,
-  //       instaDeathMode: instaDeath,
-  //     };
-  //     const headers = {
-  //       Authorization: jwt,
-  //     };
-
-  //     axios
-  //       .patch("https://protypist.herokuapp.com/users/me/settings", data, {
-  //         headers: headers,
-  //       })
-  //       .then((response) => {})
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
-  // }, [
-  //   fontFamily,
-  //   colors,
-  //   length,
-  //   lenghtAdvanced,
-  //   realTimeWPM,
-  //   keyboardOnScreen,
-  //   instaDeath,
-  //   testLanguage,
-  // ]);
-
   return (
     <div
       style={{

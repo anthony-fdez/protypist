@@ -467,7 +467,6 @@ function Ladderboard(props) {
   const testHistoryQuote = () => {
     if (otherUserData !== undefined) {
       const DATA = otherUserData.typingGameStatistics;
-      console.log(DATA);
 
       return (
         <div>
