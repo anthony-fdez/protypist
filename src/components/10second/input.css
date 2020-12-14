@@ -60,10 +60,8 @@ h3 {
 }
 .score-big-text {
   left: 250px;
-
   opacity: 0.3;
-
-  font-size: 100px;
+  font-size: 80px;
 }
 
 .add-second {
