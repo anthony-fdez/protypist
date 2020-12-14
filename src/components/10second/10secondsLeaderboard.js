@@ -73,10 +73,17 @@ const TenSecondsLeaderboard = (props) => {
   }, [difficulty, props.isOpen]);
 
   const formateSeconds = (s) => {
+    const hours = Math.floor(s / 3600);
     const minutes = Math.floor(s / 60);
     const seconds = s - minutes * 60;
 
-    return minutes + ":" + seconds;
+    const formatedTime = `${
+      hours === 0 ? "" : hours < 10 ? "0:" + hours : hours + ":"
+    }${minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes}:${
+      seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds
+    }`;
+
+    return formatedTime;
   };
 
   return (
@@ -216,7 +223,8 @@ const TenSecondsLeaderboard = (props) => {
           <div className="test-history-item">
             <h5 style={{ position: "absolute", left: "0vw" }}>Rank</h5>
             <h5 style={{ position: "absolute", left: "5vw" }}>Name</h5>
-            <h5 style={{ position: "absolute", right: "8vw" }}>Score</h5>
+            <h5 style={{ position: "absolute", right: "16vw" }}>Score</h5>
+            <h5 style={{ position: "absolute", right: "8vw" }}>Longest</h5>
             <h5 style={{ position: "absolute", right: "1vw" }}>Time</h5>
           </div>
         </div>
@@ -243,8 +251,11 @@ const TenSecondsLeaderboard = (props) => {
                   <h5 style={{ position: "absolute", left: "4vw" }}>
                     {data.name}
                   </h5>
-                  <h5 style={{ position: "absolute", right: "8vw" }}>
+                  <h5 style={{ position: "absolute", right: "16vw" }}>
                     {data.score}
+                  </h5>
+                  <h5 style={{ position: "absolute", right: "8vw" }}>
+                    {formateSeconds(data.longestTime)}
                   </h5>
                   <h5 style={{ position: "absolute", right: "1vw" }}>
                     {formateSeconds(data.totalTime)}
