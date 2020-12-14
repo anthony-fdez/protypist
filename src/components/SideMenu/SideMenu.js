@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./SideMenu.css";
 import { useDispatch, useSelector } from "react-redux";
 import Typical from "react-typical";
 
 import { useLocation } from "react-router-dom";
+import Multiplayer from "../multiplayer/multiplayer";
 
 function SideMenu() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function SideMenu() {
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const [isMultiplayerMenuOpen, setIsMultiplayerMenuOpen] = useState(false);
 
   let location = useLocation();
   location = location.pathname;
@@ -48,6 +50,10 @@ function SideMenu() {
     } else return "stats-button";
   };
 
+  const closeTheComponentCallback = () => {
+    setIsMultiplayerMenuOpen(false);
+  };
+
   return (
     <div
       style={{
@@ -56,6 +62,17 @@ function SideMenu() {
       }}
       className={"SideMenu"}
     >
+      <div
+        onClick={() => setIsMultiplayerMenuOpen(false)}
+        className={
+          isMultiplayerMenuOpen
+            ? "darkened-background-on"
+            : "darkened-background-off"
+        }
+      ></div>
+      {isMultiplayerMenuOpen && (
+        <Multiplayer isOpen={closeTheComponentCallback} />
+      )}
       <div className="d-flex justify-content-center">
         <h3 style={{ color: colorFiles.primaryColor }}>Pro</h3>
         <h3 style={{ color: colorFiles.fontColor }}>
@@ -70,14 +87,25 @@ function SideMenu() {
               backgroundColor: checkButtonStyle("/"),
               color: checkButtonStyleColor("/"),
             }}
-            className={checkTypingGameClass("/")}
+            className={checkStatisticsClass("/")}
           >
             <div className="typing-test-top-button">
               <i
                 style={{ position: "absolute", left: "20px" }}
-                className="fas fa-keyboard"
+                className="far fa-chart-bar"
               ></i>
               <h5>Quotes</h5>
+            </div>
+
+            <div
+              onClick={() => setIsMultiplayerMenuOpen(true)}
+              className="typing-test-bottom-button"
+              style={{
+                backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+            >
+              <h5>Multiplayer</h5>
             </div>
           </div>
         </Link>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
@@ -13,6 +13,10 @@ import CustomText from "./components/customText/customText";
 import SelectText from "./components/customText/selectText";
 // import axios from "axios";
 import { useSelector } from "react-redux";
+
+import socketClient from "socket.io-client";
+const server = "http://localhost:5000";
+const socket = socketClient(server);
 
 function App() {
   // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
