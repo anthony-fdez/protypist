@@ -14,7 +14,6 @@ function TypingTest() {
   const dispatch = useDispatch();
 
   //redux reducers
-  const theme = useSelector((state) => state.darkModeReducer);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
@@ -630,7 +629,7 @@ function TypingTest() {
           }
           className="hr-progress"
         ></hr>
-        <p
+        {/* <p
           className={
             isRunning || finished
               ? "alert-primary alert-hidden"
@@ -640,7 +639,7 @@ function TypingTest() {
           {isUserTyping
             ? "Start typing... Start to type the text below whenever you are ready :)"
             : "Click on the input box to start typing."}
-        </p>
+        </p> */}
         <p
           className={
             mistakesAlert
@@ -648,8 +647,8 @@ function TypingTest() {
               : "alert-danger alert-warning-hidden"
           }
         >
-          <strong>Slow Down Boy</strong>
-          the test won't stop unless you have less than 5 mistakes
+          <strong>Slow Down...</strong>
+          the test won't stop unless you have less than 10 mistakes
         </p>
         <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
           {spanArray}
