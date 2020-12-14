@@ -308,6 +308,15 @@ const logInMenuOpenReducer = (state = false, action) => {
   }
 };
 
+const tenSecondsDifficultyReducer = (state = "NORMAL", action) => {
+  switch (action.type) {
+    case "SET_10SECONDS_MODE":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allKeysPressed = (
   state = {
     a: 0,
@@ -398,6 +407,7 @@ const allReducers = combineReducers({
   replayComponentShown: replayComponentShown,
   replayDataReducer: replayDataReducer,
   logInMenuOpenReducer: logInMenuOpenReducer,
+  tenSecondsDifficultyReducer: tenSecondsDifficultyReducer,
 });
 
 export default allReducers;

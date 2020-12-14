@@ -6,21 +6,25 @@ import Qwerty from "../inScreenKeyboard/qwerty";
 import Dvorak from "../inScreenKeyboard/dvorak";
 import Colemak from "../inScreenKeyboard/colemak";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 import Input from "./input";
 
 function Typing10Second() {
+  const dispatch = useDispatch();
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
+  );
+  const difficultyReducer = useSelector(
+    (state) => state.tenSecondsDifficultyReducer
   );
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
   const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   const [isMenuInScreen, setIsMenuInScreen] = useState(false);
-  const [dificulty, setDificulty] = useState("NORMAL");
+  const [dificulty, setDificulty] = useState(difficultyReducer);
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -84,6 +88,10 @@ function Typing10Second() {
             <button
               onClick={() => {
                 setDificulty("EASY");
+                dispatch({
+                  type: "SET_10SECONDS_MODE",
+                  payload: "EASY",
+                });
               }}
               className={
                 dificulty === "EASY"
@@ -110,6 +118,10 @@ function Typing10Second() {
             <button
               onClick={() => {
                 setDificulty("NORMAL");
+                dispatch({
+                  type: "SET_10SECONDS_MODE",
+                  payload: "NORMAL",
+                });
               }}
               className={
                 dificulty === "NORMAL"
@@ -136,6 +148,10 @@ function Typing10Second() {
             <button
               onClick={() => {
                 setDificulty("HARD");
+                dispatch({
+                  type: "SET_10SECONDS_MODE",
+                  payload: "HARD",
+                });
               }}
               className={
                 dificulty === "HARD"
@@ -162,6 +178,10 @@ function Typing10Second() {
             <button
               onClick={() => {
                 setDificulty("EPIC");
+                dispatch({
+                  type: "SET_10SECONDS_MODE",
+                  payload: "EPIC",
+                });
               }}
               className={
                 dificulty === "EPIC"
