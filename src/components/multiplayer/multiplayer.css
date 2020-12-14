@@ -1,31 +1,17 @@
-.multiplayer-text-shown {
+.multiplayer-text {
   position: fixed;
   z-index: 100;
   margin: auto;
-  top: 50px;
-  left: 10%;
-  height: calc(100% - 100px);
-  min-width: 80%;
+  top: 0px;
+  height: 100%;
+  width: calc(100%);
   padding: 0rem;
   border-radius: 5px;
   opacity: 1;
   transition: 0.3s;
+  padding-left: 300px;
 }
-.multiplayer-text-hidden {
-  position: fixed;
-  z-index: 100;
-  margin: auto;
-  top: 50px;
-  left: 10%;
-  height: calc(100% - 100px);
-  min-width: 80%;
-  padding: 0rem;
-  border-radius: 5px;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s;
-  transform: scale(0.98);
-}
+
 .dark-background-multiplayer-shown {
   position: fixed;
   top: 0;
@@ -215,21 +201,21 @@
   width: 100%;
 }
 
-.chat-room-shown {
-  width: 100%;
+.chat-room {
+  width: 300px;
   position: absolute;
   z-index: 100;
-  color: black;
   height: 100%;
-  overflow-y: scroll;
   padding: 1rem;
-}
-.chat-room-hidden {
+  top: 0;
+  left: 0px;
 }
 .input-form-chat {
-  position: sticky;
-  width: 80%;
+  width: 270px;
+  position: fixed;
   display: flex;
+  left: 15px;
+  z-index: 40;
 }
 .input-field-chat {
   width: 100%;
@@ -237,6 +223,22 @@
 }
 .input-form-chat-div {
   position: fixed;
-  width: 100;
-  bottom: 10px;
+  width: 300px;
+  left: 15px;
+  right: 0;
+  bottom: 50px;
+}
+.messages-div {
+  margin-bottom: 50px;
+  position: absolute;
+  width: 300px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: auto;
+  overflow-y: scroll;
+  height: calc(100% - 150px);
+  left: 0;
+  right: 0;
+  bottom: 80px;
+  overflow-x: hidden;
 }

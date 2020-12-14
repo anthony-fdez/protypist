@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Typical from "react-typical";
 
 import { useLocation } from "react-router-dom";
-import Multiplayer from "../multiplayer/multiplayer";
+// import Multiplayer from "../multiplayer/multiplayer";
 
 function SideMenu() {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ function SideMenu() {
       }}
       className={"SideMenu"}
     >
-      <div
+      {/* <div
         onClick={() => setIsMultiplayerMenuOpen(false)}
         className={
           isMultiplayerMenuOpen
@@ -72,7 +72,7 @@ function SideMenu() {
       ></div>
       {isMultiplayerMenuOpen && (
         <Multiplayer isOpen={closeTheComponentCallback} />
-      )}
+      )} */}
       <div className="d-flex justify-content-center">
         <h3 style={{ color: colorFiles.primaryColor }}>Pro</h3>
         <h3 style={{ color: colorFiles.fontColor }}>
@@ -81,7 +81,7 @@ function SideMenu() {
       </div>
 
       <div className="navigation-buttons">
-        <Link className="left-menu-link" to="/">
+        {/* <Link className="left-menu-link" to="/">
           <div
             style={{
               backgroundColor: checkButtonStyle("/"),
@@ -106,6 +106,23 @@ function SideMenu() {
               }}
             >
               <h5>Multiplayer</h5>
+            </div>
+          </div>
+        </Link> */}
+        <Link className="left-menu-link" to="/">
+          <div
+            style={{
+              backgroundColor: checkButtonStyle("/"),
+              color: checkButtonStyleColor("/"),
+            }}
+            className={checkTypingGameClass("/")}
+          >
+            <div className="typing-test-top-button">
+              <i
+                style={{ position: "absolute", left: "20px" }}
+                className="fas fa-quote-left"
+              ></i>
+              <h5>Quotes</h5>
             </div>
           </div>
         </Link>

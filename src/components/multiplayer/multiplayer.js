@@ -153,9 +153,15 @@ const Multiplayer = (props) => {
           backgroundColor: colorFiles.secondaryBackgroundColor,
           color: colorFiles.fontColor,
         }}
-        className={isChatRoomOpen ? "chat-room-shown" : "chat-room-hidden"}
+        className="chat-room"
       >
-        <div></div>
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <h2 style={{ marginLeft: "1rem" }}>Chat</h2>
+          </div>
+
+          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+        </div>
         <div className="messages-div">
           {messages.map((message, index) => {
             return (
@@ -665,10 +671,10 @@ const Multiplayer = (props) => {
     <div>
       <div
         style={{
-          backgroundColor: colorFiles.secondaryBackgroundColor,
+          backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className={"multiplayer-text-shown"}
+        className="multiplayer-text"
       >
         <div>
           <div
