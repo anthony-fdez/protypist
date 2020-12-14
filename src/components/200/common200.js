@@ -292,8 +292,6 @@ function Common200() {
       calculateWordsPerMinute();
     }
 
-    console.log(mistakes);
-
     if (mistakes > 10) {
       setMistakesAlert(true);
     } else if (mistakes < 10) {

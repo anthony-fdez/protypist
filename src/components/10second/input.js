@@ -22,7 +22,7 @@ function Input(props) {
   const [wpm, setWPM] = useState(0);
   const [keyPressed, setKeyPressed] = useState(0);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-
+  const [timePlaying, setTimePlaying] = useState(0);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const myUserId = useSelector((state) => state.userIdReducer);
@@ -44,6 +44,7 @@ function Input(props) {
     setSeconds(9);
     setMiliseconds(0);
     setScore(0);
+    setTimePlaying(0);
   }, [props.dificulty]);
 
   useEffect(() => {
@@ -135,6 +136,16 @@ function Input(props) {
   };
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      if (isRunning) {
+        setTimePlaying((timePlaying) => timePlaying + 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isRunning, timePlaying]);
+
+  useEffect(() => {
     const seletRandomWord = () => {
       let json = require("../data/words.json");
       let random = Math.floor(
@@ -202,54 +213,49 @@ function Input(props) {
         let wordsPerMinute = (score / countingUpSeconds) * 60;
         setWPM(wordsPerMinute);
       }
-      if (score > highestScore) {
-        setHighestScore(score);
-        if (isLoggedIn) {
-          const headers = {
-            Authorization: jwt,
-          };
 
-          const data = {
-            score: score,
-          };
+      if (isLoggedIn && isRunning) {
+        const headers = {
+          Authorization: jwt,
+        };
 
-          if (props.dificulty === "EASY") {
-            Axios.post("https://protypist.herokuapp.com/10seconds/easy", data, {
-              headers: headers,
-            })
-              .then((response) => {})
-              .catch((e) => {
-                console.log(e);
-              });
-          } else if (props.dificulty === "NORMAL") {
-            Axios.post(
-              "https://protypist.herokuapp.com/10seconds/normal",
-              data,
-              {
-                headers: headers,
-              }
-            )
-              .then((response) => {})
-              .catch((e) => {
-                console.log(e);
-              });
-          } else if (props.dificulty === "HARD") {
-            Axios.post("https://protypist.herokuapp.com/10seconds/hard", data, {
-              headers: headers,
-            })
-              .then((response) => {})
-              .catch((e) => {
-                console.log(e);
-              });
-          } else if (props.dificulty === "EPIC") {
-            Axios.post("https://protypist.herokuapp.com/10seconds/epic", data, {
-              headers: headers,
-            })
-              .then((response) => {})
-              .catch((e) => {
-                console.log(e);
-              });
-          }
+        const data = {
+          score: score,
+          time: timePlaying,
+        };
+
+        if (props.dificulty === "EASY") {
+          Axios.post("https://protypist.herokuapp.com/10seconds/easy", data, {
+            headers: headers,
+          })
+            .then((response) => {})
+            .catch((e) => {
+              console.log(e);
+            });
+        } else if (props.dificulty === "NORMAL") {
+          Axios.post("https://protypist.herokuapp.com/10seconds/normal", data, {
+            headers: headers,
+          })
+            .then((response) => {})
+            .catch((e) => {
+              console.log(e);
+            });
+        } else if (props.dificulty === "HARD") {
+          Axios.post("https://protypist.herokuapp.com/10seconds/hard", data, {
+            headers: headers,
+          })
+            .then((response) => {})
+            .catch((e) => {
+              console.log(e);
+            });
+        } else if (props.dificulty === "EPIC") {
+          Axios.post("https://protypist.herokuapp.com/10seconds/epic", data, {
+            headers: headers,
+          })
+            .then((response) => {})
+            .catch((e) => {
+              console.log(e);
+            });
         }
       }
       if (isRunning === false && lost === true) {
@@ -257,7 +263,7 @@ function Input(props) {
       }
     };
     calculateWordPerMinute();
-  }, [score, isRunning, keyPressed]);
+  }, [isRunning, timePlaying]);
 
   /*================== Select the text to display at the befining of the game ==================*/
 
@@ -365,6 +371,7 @@ function Input(props) {
         setLost(false);
         setIsRunning(true);
         setScore(0);
+        setTimePlaying(0);
         setWPM(0);
         e.target.value = "";
       }
