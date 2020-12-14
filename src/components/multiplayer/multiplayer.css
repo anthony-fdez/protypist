@@ -1,4 +1,4 @@
-.replay-text-shown {
+.multiplayer-text-shown {
   position: fixed;
   z-index: 100;
   margin: auto;
@@ -11,7 +11,7 @@
   opacity: 1;
   transition: 0.3s;
 }
-.replay-text-hidden {
+.multiplayer-text-hidden {
   position: fixed;
   z-index: 100;
   margin: auto;
@@ -26,7 +26,7 @@
   transition: 0.3s;
   transform: scale(0.98);
 }
-.dark-background-replay-shown {
+.dark-background-multiplayer-shown {
   position: fixed;
   top: 0;
   left: 0;
@@ -36,7 +36,7 @@
   z-index: 90;
   transition: 0.3s;
 }
-.dark-background-replay-off {
+.dark-background-multiplayer-off {
   position: fixed;
   top: 0;
   left: 0;
@@ -46,10 +46,10 @@
   z-index: 0;
   transition: 0.3s;
 }
-.keyboard-replay-div {
+.keyboard-multiplayer-div {
   position: absolute;
 }
-.text-to-type-reply {
+.text-to-type-multiplayer {
   position: absolute;
   padding: 1rem;
   display: flex;
@@ -61,7 +61,7 @@
   padding: 3rem;
   padding-top: 1rem;
 }
-.text-to-type-dark-reply {
+.text-to-type-dark-multiplayer {
   position: absolute;
   padding: 1rem;
   display: flex;
@@ -75,7 +75,7 @@
   opacity: 0.2;
 }
 
-.about-the-text-shown-replay {
+.about-the-text-shown-multiplayer {
   transition: 0.7s;
   border-radius: 5px;
   position: absolute;
@@ -91,7 +91,7 @@
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   overflow-y: scroll;
 }
-.about-the-text-hidden-replay {
+.about-the-text-hidden-multiplayer {
   transition: 0.3s;
   border-radius: 5px;
   position: absolute;
@@ -109,7 +109,7 @@
   transform: scale(0.95);
   overflow-y: scroll;
 }
-.about-text-header-replay {
+.about-text-header-multiplayer {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -122,7 +122,7 @@
   margin-bottom: 1rem;
 }
 @media only screen and (min-width: 1501px) {
-  .keyboard-div-shown-reply {
+  .keyboard-div-shown-multiplayer {
     opacity: 1;
     transition: 0.2s;
     position: absolute;
@@ -131,13 +131,13 @@
     left: -160px;
     right: 0;
   }
-  .keyboard-div-hidden-reply {
+  .keyboard-div-hidden-multiplayer {
     opacity: 0;
     transition: 0.2s;
     position: absolute;
     bottom: -50px;
   }
-  .input-zone-reply {
+  .input-zone-multiplayer {
     margin-top: 10rem;
     display: flex;
     justify-content: center;
@@ -150,7 +150,7 @@
 }
 
 @media only screen and (max-width: 1501px) {
-  .keyboard-div-shown-reply {
+  .keyboard-div-shown-multiplayer {
     opacity: 1;
     transition: 0.2s;
     position: absolute;
@@ -159,13 +159,13 @@
     left: -160px;
     right: 0;
   }
-  .keyboard-div-hidden-reply {
+  .keyboard-div-hidden-multiplayer {
     opacity: 0;
     transition: 0.2s;
     position: absolute;
     bottom: -50px;
   }
-  .input-zone-reply {
+  .input-zone-multiplayer {
     margin-top: 10rem;
     display: flex;
     justify-content: center;
@@ -179,4 +179,64 @@
 .text-info-race-label {
   position: absolute;
   left: -75px;
+}
+.join-room-open {
+  width: 400px;
+  height: 170px;
+  position: fixed;
+  z-index: 50;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 200px;
+  transition: 0.3s;
+}
+.join-room-closed {
+  width: 400px;
+  height: 170px;
+  position: fixed;
+  z-index: 50;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 200px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+  transition: 0.3s;
+}
+.join-room-input {
+  width: 100%;
+}
+
+.chat-room-shown {
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  color: black;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+.chat-room-hidden {
+}
+.input-form-chat {
+  position: sticky;
+  width: 80%;
+  display: flex;
+}
+.input-field-chat {
+  width: 100%;
+  padding: 5px;
+}
+.input-form-chat-div {
+  position: fixed;
+  width: 100;
+  bottom: 10px;
 }

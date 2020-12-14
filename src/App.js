@@ -14,10 +14,6 @@ import SelectText from "./components/customText/selectText";
 // import axios from "axios";
 import { useSelector } from "react-redux";
 
-import socketClient from "socket.io-client";
-const server = "http://localhost:5000";
-const socket = socketClient(server);
-
 function App() {
   // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   // const jwt = useSelector((state) => state.JWTreducer);
