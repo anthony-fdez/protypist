@@ -99,9 +99,7 @@ function SideMenu() {
             </div>
           </div>
         </Link>
-        <hr
-          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
-        ></hr>
+
         <Link className="left-menu-link" to="/200">
           <div
             style={{
@@ -156,6 +154,15 @@ function SideMenu() {
         <hr
           style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
+        <p
+          style={{
+            color: colorFiles.fontColor,
+            textAlign: "center",
+            fontStyle: "italic",
+          }}
+        >
+          Stats & Leaderboard
+        </p>
         <Link className="left-menu-link" to="/stats">
           <div
             style={{

@@ -22,8 +22,9 @@ h5 {
 }
 
 .navigation-buttons {
-  margin-top: 30px;
+  margin-top: 0px;
 }
+
 .navigation-button {
   display: flex;
   justify-content: center;
