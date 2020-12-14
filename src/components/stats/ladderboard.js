@@ -11,7 +11,6 @@ import { Line } from "react-chartjs-2";
 function Ladderboard(props) {
   const dispatch = useDispatch();
 
-  const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const userId = useSelector((state) => state.userIdReducer);
@@ -1139,19 +1138,19 @@ function Ladderboard(props) {
               <div className="lds-ellipsis">
                 <div
                   style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                  className="loading-dot-dark"
                 ></div>
                 <div
                   style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                  className="loading-dot-dark"
                 ></div>
                 <div
                   style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                  className="loading-dot-dark"
                 ></div>
                 <div
                   style={{ background: colorFiles.fontColor }}
-                  className={theme ? "loading-dot-dark" : "loading-dot-light"}
+                  className="loading-dot-dark"
                 ></div>
               </div>
             </div>

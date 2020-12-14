@@ -11,7 +11,6 @@ import axios from "axios";
 const ReplayText = () => {
   const dispatch = useDispatch();
 
-  const theme = useSelector((state) => state.darkModeReducer);
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );

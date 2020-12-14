@@ -10,7 +10,6 @@ function SideMenu() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
-
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
 

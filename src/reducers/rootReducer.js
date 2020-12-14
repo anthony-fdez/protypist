@@ -1,14 +1,5 @@
 import { combineReducers } from "redux";
 
-const darkModeReducer = (state = true, action) => {
-  switch (action.type) {
-    case "CHANGE_THEME":
-      return !state;
-    default:
-      return state;
-  }
-};
-
 const themeReducer = (state = "dark.json", action) => {
   switch (action.type) {
     case "SELECT_THEME":
@@ -374,7 +365,6 @@ const allKeysPressed = (
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
-  darkModeReducer: darkModeReducer,
   lengthReducerNormal: lengthReducerNormal,
   realTimeWPMReducer: realTimeWPMReducer,
   latestWPMReducer200: latestWPMReducer200,

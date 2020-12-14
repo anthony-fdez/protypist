@@ -13,7 +13,6 @@ function Common200() {
   const dispatch = useDispatch();
 
   //redux reducers
-  const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducerNormal);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM200 = useSelector((state) => state.latestWPMReducer200);
@@ -423,18 +422,6 @@ function Common200() {
     config: { duration: 200 },
   });
 
-  const changeTextToTypeClassname = () => {
-    if (theme) {
-      if (isUserTyping) {
-        return "text-to-type";
-      } else return "text-to-type-dark";
-    } else {
-      if (isUserTyping) {
-        return "text-to-type";
-      } else return "text-to-type-light";
-    }
-  };
-
   const displayWPM = () => {
     if (realTimeWPM) {
       if (isRunning) {
@@ -569,7 +556,7 @@ function Common200() {
           <strong>Slow Down Boy</strong>
           the test won't stop unless you have less than 5 mistakes
         </p>
-        <div className={changeTextToTypeClassname()}>{spanArray}</div>
+        <div className="text-to-type">{spanArray}</div>
         {keyboardOnScreen && keyboardLayoutSelector()}
         <div className="input-zone">
           <input

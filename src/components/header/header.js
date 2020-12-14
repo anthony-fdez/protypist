@@ -6,7 +6,6 @@ import axios from "axios";
 function Header(props) {
   const dispatch = useDispatch();
 
-  const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
@@ -601,7 +600,7 @@ function Header(props) {
                 backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
-              className={theme ? "linkURL" : "linkURLlight"}
+              className="linkURL"
             >
               Log In
             </h5>
@@ -764,10 +763,7 @@ function Header(props) {
         }}
       >
         <h4>Skill Level</h4>
-        <hr
-          style={{ marginTop: "2rem" }}
-          className={theme ? "white-hr mt-2" : "dark-hr mt-1"}
-        ></hr>
+        <hr style={{ marginTop: "2rem" }} className="white-hr mt-2"></hr>
         <h5 className="mt-2">00 - 20 -{">"} Beginer</h5>
         <h5 className="mt-2">21 - 40 -{">"} Average</h5>
         <h5 className="mt-2">41 - 60 -{">"} Intermidiate</h5>

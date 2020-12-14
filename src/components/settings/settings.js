@@ -12,7 +12,6 @@ import { useSpring, animated } from "react-spring";
 import axios from "axios";
 
 function Settings() {
-  const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducerNormal);
   const lenghtAdvanced = useSelector((state) => state.lengthReducerAdvanced);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
@@ -72,7 +71,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-light" : "btn btn-dark"}
+                className="btn btn-light"
               >
                 25
               </button>
@@ -101,7 +100,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-light" : "btn btn-dark"}
+                className="btn btn-light"
               >
                 75
               </button>
@@ -130,7 +129,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-light" : "btn btn-dark"}
+                className="btn btn-light"
               >
                 25
               </button>
@@ -144,7 +143,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-light" : "btn btn-dark"}
+                className="btn btn-light"
               >
                 50
               </button>
@@ -159,7 +158,7 @@ function Settings() {
                   color: colorFiles.contrastFontColor,
                   border: "none",
                 }}
-                className={theme ? "btn btn-light" : "btn btn-dark"}
+                className="btn btn-light"
               >
                 75
               </button>

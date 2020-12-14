@@ -12,7 +12,6 @@ import axios from "axios";
 function Common1000() {
   const dispatch = useDispatch();
 
-  const theme = useSelector((state) => state.darkModeReducer);
   const length = useSelector((state) => state.lengthReducerAdvanced);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM1000 = useSelector((state) => state.latestWPMReducer1000);
@@ -385,18 +384,6 @@ function Common1000() {
     config: { duration: 200 },
   });
 
-  const changeTextToTypeClassname = () => {
-    if (theme) {
-      if (isUserTyping) {
-        return "text-to-type";
-      } else return "text-to-type-dark";
-    } else {
-      if (isUserTyping) {
-        return "text-to-type";
-      } else return "text-to-type-light";
-    }
-  };
-
   const displayWPM = () => {
     if (realTimeWPM) {
       if (isRunning) {
@@ -532,7 +519,7 @@ function Common1000() {
           <strong>Slow Down Boy</strong>
           the test won't stop unless you have less than 5 mistakes
         </p>
-        <div className={changeTextToTypeClassname()}>{spanArray}</div>
+        <div className={"text-to-type"}>{spanArray}</div>
         {keyboardOnScreen && keyboardLayoutSelector()}
         <div className="input-zone">
           <input

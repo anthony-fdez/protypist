@@ -12,7 +12,6 @@ import ReplayText from "../replayText/replayText";
 function Stats() {
   const dispatch = useDispatch();
 
-  const theme = useSelector((state) => state.darkModeReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const isLadderBoardMenuOpen = useSelector(
@@ -23,7 +22,6 @@ function Stats() {
   const isReplayComponentShown = useSelector(
     (state) => state.replayComponentShown
   );
-  const replayDataRedux = useSelector((state) => state.replayDataReducer);
 
   const [totalKeysStrokes, setTotalKeyStrokes] = useState(0);
 
@@ -71,8 +69,6 @@ function Stats() {
     isTyping1000StatisticsShown,
     setIsTyping1000StatisticsShown,
   ] = useState(false);
-
-  const [timeIsUp, setTimeIsUp] = useState(false);
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -228,19 +224,19 @@ function Stats() {
         <div className="lds-ellipsis">
           <div
             style={{ background: colorFiles.fontColor }}
-            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+            className="loading-dot-dark"
           ></div>
           <div
             style={{ background: colorFiles.fontColor }}
-            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+            className="loading-dot-dark"
           ></div>
           <div
             style={{ background: colorFiles.fontColor }}
-            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+            className="loading-dot-dark"
           ></div>
           <div
             style={{ background: colorFiles.fontColor }}
-            className={theme ? "loading-dot-dark" : "loading-dot-light"}
+            className="loading-dot-dark"
           ></div>
         </div>
       </div>
@@ -317,13 +313,6 @@ function Stats() {
       setIsLoading(false);
     }
   }, [jwt]);
-
-  useEffect(() => {
-    const myTimeOut = setTimeout(() => {
-      setTimeIsUp(true);
-    }, 1000);
-    return () => clearTimeout(myTimeOut);
-  }, []);
 
   const statisticsTypingGameComponent = () => {
     return (
