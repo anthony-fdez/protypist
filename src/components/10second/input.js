@@ -449,7 +449,7 @@ function Input(props) {
           style={{ color: colorFiles.fontColor, display: "flex" }}
           className={"highest-score"}
         >
-          {isLoggedIn && `Rank: Top ${myRank}`}
+          {isLoggedIn && `Rank: #${myRank}`}
           <h5
             onClick={() => {
               isLoggedIn
