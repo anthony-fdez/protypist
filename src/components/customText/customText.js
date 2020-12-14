@@ -327,8 +327,8 @@ const CustomText = () => {
               : "alert-danger alert-warning-hidden"
           }
         >
-          <strong>Slow Down Boy</strong>
-          the test won't stop unless you have less than 5 mistakes
+          <strong>Slow Down...</strong>
+          the test won't stop unless you have less than 10 mistakes
         </p>
         <div className={"text-to-type"}>{spanArray}</div>
         {keyboardOnScreen && <Qwerty />}

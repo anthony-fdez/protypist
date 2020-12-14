@@ -128,7 +128,8 @@
     width: 60vw;
     transition: 0.5s;
   }
-  .alert-warning-shown {
+  .alert-warning-shown,
+  .alert-warning-shown-replay {
     position: fixed;
     padding: 5px;
     top: 50px;
@@ -143,8 +144,12 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.404);
+    z-index: 10;
   }
-  .alert-warning-hidden {
+
+  .alert-warning-hidden,
+  .alert-warning-hidden-replay {
     transform: translateY(-50px);
     position: fixed;
     opacity: 0;
@@ -159,6 +164,13 @@
     margin-left: auto;
     margin-right: auto;
     transition: 0.5s;
+    z-index: 0;
+  }
+  .alert-warning-hidden-replay {
+    left: 0px;
+  }
+  .alert-warning-shown-replay {
+    left: 0px;
   }
   .alert-tip {
     position: fixed;

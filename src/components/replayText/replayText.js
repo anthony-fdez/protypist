@@ -243,6 +243,18 @@ const ReplayText = () => {
 
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {
+      let errors = 0;
+      for (let i = 0; i < infoAboutCharacter.length; i++) {
+        if (infoAboutCharacter[i] === false) {
+          errors++;
+        }
+      }
+      setMistakes(errors);
+    }
+  }, [charactersTyped]);
+
+  useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
       if (progress <= charactersTyped) {
         setProgress((progress) => progress + 1);
       }
@@ -294,7 +306,7 @@ const ReplayText = () => {
       });
     } else if (
       e.target.value.length === textArrayCharacters.length &&
-      mistakes < 5
+      mistakes < 10
     ) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
@@ -560,7 +572,16 @@ const ReplayText = () => {
               }
             ></hr>
           )}
-
+          <p
+            className={
+              mistakesAlert
+                ? "alert-danger alert-warning-shown-replay"
+                : "alert-danger alert-warning-hidden-replay"
+            }
+          >
+            <strong>Slow Down...</strong>
+            the test won't stop unless you have less than 10 mistakes
+          </p>
           {!finished && displayTheStatistics()}
         </div>
         <div
