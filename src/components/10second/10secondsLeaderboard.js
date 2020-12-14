@@ -84,14 +84,20 @@ const TenSecondsLeaderboard = (props) => {
           : "ten-seconds-leaderboard-closed"
       }
     >
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        className="ten-seconds-leaderboard-header"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          backgroundColor: colorFiles.secondaryBackgroundColor,
+        }}
+      >
         <h2>10 Seconds Leaderboard</h2>
         <i
           onClick={() => props.onChange()}
           className="close-icon-login fas fa-times fa-2x"
         ></i>
       </div>
-      <hr style={{ background: colorFiles.hrColor }}></hr>
       <div style={{ textAlign: "center" }}>
         <h3>Rank by mode</h3>
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
