@@ -19,8 +19,6 @@ const TenSecondsLeaderboard = (props) => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
 
-      setDifficulty(difficultyReducer);
-
       if (difficulty === "EASY") {
         Axios.get(
           "https://protypist.herokuapp.com/10seconds/leaderboard/easy",
