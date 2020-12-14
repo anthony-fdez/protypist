@@ -115,8 +115,8 @@ function Header(props) {
         .catch((e) => {
           setUserName("Guest");
         });
-    }
-  }, [jwt]);
+    } else setUserName("Guest");
+  }, [jwt, isLoggedIn]);
 
   useEffect(() => {
     if (isLoggedIn) {
