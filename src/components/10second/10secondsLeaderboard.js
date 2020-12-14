@@ -6,15 +6,20 @@ import Axios from "axios";
 const TenSecondsLeaderboard = (props) => {
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const difficultyReducer = useSelector(
+    (state) => state.tenSecondsDifficultyReducer
+  );
 
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const [leaderboardData, setLeaderboardData] = useState(null);
-  const [difficulty, setDifficulty] = useState("NORMAL");
+  const [difficulty, setDifficulty] = useState(difficultyReducer);
 
   useEffect(() => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
+
+      setDifficulty(difficultyReducer);
 
       if (difficulty === "EASY") {
         Axios.get(
@@ -70,7 +75,7 @@ const TenSecondsLeaderboard = (props) => {
           });
       }
     }
-  }, [difficulty, props.isOpen]);
+  }, [difficulty, difficultyReducer, props.isOpen]);
 
   const formateSeconds = (s) => {
     const hours = Math.floor(s / 3600);
