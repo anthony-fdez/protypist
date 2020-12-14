@@ -53,7 +53,7 @@ function Typing10Second() {
                   setIsMenuInScreen(false);
                 }}
               >
-                <div className="container mt-3">
+                <div className="container">
                   <Input dificulty={dificulty} />
                 </div>
               </div>

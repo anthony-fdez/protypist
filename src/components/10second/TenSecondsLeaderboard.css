@@ -6,10 +6,10 @@
   right: 0;
   top: 50px;
   z-index: 30;
-  padding: 1rem;
   border-radius: 5px;
   height: calc(100% - 100px);
   transition: 0.3s;
+  overflow-y: scroll;
 }
 .ten-seconds-leaderboard-closed {
   position: fixed;
@@ -19,7 +19,6 @@
   right: 0;
   top: 50px;
   z-index: 0;
-  padding: 1rem;
   border-radius: 5px;
   height: calc(100% - 100px);
   opacity: 0;
@@ -50,4 +49,10 @@
 .test-history-10seconds {
   overflow-y: scroll;
   margin-top: 1rem;
+}
+.ten-seconds-leaderboard-header {
+  position: sticky;
+  top: 0px;
+  padding: 1rem;
+  border-bottom: 1px solid rgb(129, 129, 129);
 }
