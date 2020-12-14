@@ -79,6 +79,18 @@ function Common200() {
   };
 
   useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
+      let errors = 0;
+      for (let i = 0; i < infoAboutCharacter.length; i++) {
+        if (infoAboutCharacter[i] === false) {
+          errors++;
+        }
+      }
+      setMistakes(errors);
+    }
+  }, [charactersTyped]);
+
+  useEffect(() => {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
 
@@ -280,6 +292,8 @@ function Common200() {
       calculateWordsPerMinute();
     }
 
+    console.log(mistakes);
+
     if (mistakes > 10) {
       setMistakesAlert(true);
     } else if (mistakes < 10) {
@@ -311,8 +325,9 @@ function Common200() {
       });
     } else if (
       e.target.value.length === textArrayCharacters.length &&
-      mistakes < 5
+      mistakes < 10
     ) {
+      console.log(mistakes);
       calculateWordsPerMinute();
       setTimeSeconds(0);
       e.target.value = "";
@@ -535,7 +550,7 @@ function Common200() {
           }
           className="hr-progress"
         ></hr>
-        <p
+        {/* <p
           className={
             isRunning
               ? "alert-primary alert-hidden"
@@ -545,7 +560,7 @@ function Common200() {
           {isUserTyping
             ? "Start typing... Start to type the text below whenever you are ready :)"
             : "Click on the input box to start typing."}
-        </p>
+        </p> */}
         <p
           className={
             mistakesAlert

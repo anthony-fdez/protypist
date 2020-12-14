@@ -319,17 +319,7 @@ const CustomText = () => {
           }
           className="hr-progress"
         ></hr>
-        <p
-          className={
-            isRunning
-              ? "alert-primary alert-hidden"
-              : "alert-primary alert-shown"
-          }
-        >
-          {isUserTyping
-            ? "Start typing... Start to type the text below whenever you are ready :)"
-            : "Click on the input box to start typing."}
-        </p>
+
         <p
           className={
             mistakesAlert

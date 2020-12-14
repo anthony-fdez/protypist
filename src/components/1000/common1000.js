@@ -99,6 +99,18 @@ function Common1000() {
     }
   }, [jwt]);
 
+  useEffect(() => {
+    if (infoAboutCharacter !== undefined) {
+      let errors = 0;
+      for (let i = 0; i < infoAboutCharacter.length; i++) {
+        if (infoAboutCharacter[i] === false) {
+          errors++;
+        }
+      }
+      setMistakes(errors);
+    }
+  }, [charactersTyped]);
+
   const getTheDate = () => {
     const date = new Date();
     const year = date.getFullYear();
@@ -499,7 +511,7 @@ function Common1000() {
           }
           className="hr-progress"
         ></hr>
-        <p
+        {/* <p
           className={
             isRunning
               ? "alert-primary alert-hidden"
@@ -509,7 +521,7 @@ function Common1000() {
           {isUserTyping
             ? "Start typing... Start to type the text below whenever you are ready :)"
             : "Click on the input box to start typing."}
-        </p>
+        </p> */}
         <p
           className={
             mistakesAlert

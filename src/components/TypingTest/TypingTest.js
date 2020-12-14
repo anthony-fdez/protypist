@@ -333,7 +333,7 @@ function TypingTest() {
       });
     } else if (
       e.target.value.length === textArrayCharacters.length &&
-      mistakes < 5
+      mistakes < 10
     ) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
