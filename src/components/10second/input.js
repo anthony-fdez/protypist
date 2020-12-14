@@ -436,7 +436,7 @@ function Input(props) {
           }
         />
       </div>
-      <div className="mt-3 ml-2 d-flex justify-content-between">
+      <div className="mt ml-1 d-flex justify-content-between">
         <h4 style={{ color: colorFiles.fontColor }} className="score-big-text">
           Score: {score}
         </h4>
