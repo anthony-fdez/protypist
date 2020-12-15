@@ -72,8 +72,7 @@ const Multiplayer = (props) => {
   const isReplayComponentShown = useSelector(
     (state) => state.replayComponentShown
   );
-  const [isChatRoomOpen, setIsChatRoomOpen] = useState(true);
-  const [isJoinRoomOpen, setIsJoinRoomOpen] = useState(true);
+  const [isJoinRoomOpen, setIsJoinRoomOpen] = useState(false);
 
   const [fastestRace, setFastestRace] = useState();
   const [roomToJoin, setRoomToJoin] = useState("default");
@@ -89,6 +88,7 @@ const Multiplayer = (props) => {
         setPeopleInRoom(data);
       }
     });
+    setIsJoinRoomOpen(true);
   }, []);
 
   useEffect(() => {
@@ -576,28 +576,7 @@ const Multiplayer = (props) => {
             }
           ></div>
           {joinRoomComponent()}
-          {!finished && (
-            <hr
-              className="hr-progress"
-              style={
-                finished || !isRunning
-                  ? {
-                      width: "100%",
-                      backgroundColor: colorFiles.primaryColor,
-                      margin: 0,
-                      marginBottom: "1rem",
-                      marginTop: 0,
-                    }
-                  : {
-                      width: calculateWithOfProgressBar() + "%",
-                      backgroundColor: colorFiles.primaryColor,
-                      margin: 0,
-                      marginBottom: "1rem",
-                      marginTop: 0,
-                    }
-              }
-            ></hr>
-          )}
+
           <p
             className={
               mistakesAlert
