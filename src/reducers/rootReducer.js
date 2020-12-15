@@ -308,6 +308,15 @@ const tenSecondsDifficultyReducer = (state = "NORMAL", action) => {
   }
 };
 
+const setUserNameReducer = (state = "Guest", action) => {
+  switch (action.type) {
+    case "SET_USER_NAME":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allKeysPressed = (
   state = {
     a: 0,
@@ -398,6 +407,7 @@ const allReducers = combineReducers({
   replayDataReducer: replayDataReducer,
   logInMenuOpenReducer: logInMenuOpenReducer,
   tenSecondsDifficultyReducer: tenSecondsDifficultyReducer,
+  setUserNameReducer: setUserNameReducer,
 });
 
 export default allReducers;

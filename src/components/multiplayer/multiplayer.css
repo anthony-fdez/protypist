@@ -2,14 +2,14 @@
   position: fixed;
   z-index: 100;
   margin: auto;
-  top: 0px;
-  height: 100%;
-  width: calc(100%);
+  top: 50px;
+  left: 50px;
+  height: calc(100% - 100px);
+  width: calc(100% - 100px);
   padding: 0rem;
   border-radius: 5px;
   opacity: 1;
   transition: 0.3s;
-  padding-left: 300px;
 }
 
 .dark-background-multiplayer-shown {
@@ -36,13 +36,12 @@
   position: absolute;
 }
 .text-to-type-multiplayer {
-  position: absolute;
+  position: relative;
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
   transition: 0.3s;
   border-radius: 5px;
-  width: 100%;
   margin: 0;
   padding: 3rem;
   padding-top: 1rem;
@@ -133,6 +132,35 @@
     left: 25px;
     right: 0;
   }
+  .players-progress {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 370px;
+    width: 95%;
+    padding: 1rem;
+    height: 200px;
+    margin: auto;
+  }
+  .players-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+  .ready-icon {
+    position: absolute;
+    left: 0;
+  }
+  .multiplayer-progress-hr {
+    height: 3px;
+    border-radius: 5px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0px;
+  }
 }
 
 @media only screen and (max-width: 1501px) {
@@ -161,14 +189,29 @@
     left: 25px;
     right: 0;
   }
+  .players-progress {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 280px;
+    width: 95%;
+    padding: 1rem;
+    height: 200px;
+    margin: auto;
+    overflow-y: scroll;
+  }
+  .room-to-join-text {
+    font-style: italic;
+  }
 }
 .text-info-race-label {
   position: absolute;
   left: -75px;
 }
 .join-room-open {
-  width: 400px;
-  height: 170px;
+  width: 500px;
+  height: 200px;
   position: fixed;
   z-index: 50;
   padding: 1rem;
@@ -181,8 +224,8 @@
   transition: 0.3s;
 }
 .join-room-closed {
-  width: 400px;
-  height: 170px;
+  width: 500px;
+  height: 200px;
   position: fixed;
   z-index: 50;
   padding: 1rem;
@@ -199,6 +242,12 @@
 }
 .join-room-input {
   width: 100%;
+  padding: 5px;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 5px;
 }
 
 .chat-room {
@@ -241,4 +290,8 @@
   right: 0;
   bottom: 80px;
   overflow-x: hidden;
+}
+
+.btn {
+  border: none;
 }

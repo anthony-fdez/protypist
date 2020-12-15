@@ -301,6 +301,7 @@
     transition: 0.3s;
     background-color: rgba(0, 0, 0, 0.603);
     top: 0;
+    left: 0;
   }
   .darkened-background-off {
     pointer-events: none;

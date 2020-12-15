@@ -107,6 +107,10 @@ function Header(props) {
         .then((response) => {
           setUserName(response.data.name);
           dispatch({
+            type: "SET_USER_NAME",
+            payload: response.data.name,
+          });
+          dispatch({
             type: "SET_USER_ID",
             payload: response.data._id,
           });
@@ -114,7 +118,13 @@ function Header(props) {
         .catch((e) => {
           setUserName("Guest");
         });
-    } else setUserName("Guest");
+    } else {
+      dispatch({
+        type: "SET_USER_NAME",
+        payload: "Guest",
+      });
+      setUserName("Guest");
+    }
   }, [jwt, isLoggedIn]);
 
   useEffect(() => {
