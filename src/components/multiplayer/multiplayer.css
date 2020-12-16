@@ -149,17 +149,15 @@
     position: relative;
     width: 100%;
   }
-  .ready-icon {
-    position: absolute;
-    left: 0;
-  }
+
   .multiplayer-progress-hr {
     height: 3px;
     border-radius: 5px;
     position: absolute;
     width: 100%;
-    top: 0;
+    top: 10px;
     left: 0px;
+    transition: 0.2s;
   }
 }
 
@@ -204,6 +202,26 @@
   .room-to-join-text {
     font-style: italic;
   }
+  .multiplayer-progress-hr {
+    height: 3px;
+    border-radius: 5px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: -15px;
+    transition: 0.2s;
+    z-index: 0;
+  }
+  .players-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+}
+.ready-icon {
+  position: absolute;
+  left: 0;
 }
 .text-info-race-label {
   position: absolute;

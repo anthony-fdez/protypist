@@ -9,7 +9,7 @@ import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 
 import socketClient from "socket.io-client";
-const server = "https://protypist.herokuapp.com";
+const server = "http://localhost:5000";
 const socket = socketClient(server);
 
 const Multiplayer = (props) => {
@@ -80,14 +80,15 @@ const Multiplayer = (props) => {
   const [progressData, setProgressData] = useState();
   const [isReady, setIsReady] = useState(false);
   const [isEveryoneReady, setIsEveryoneReady] = useState(false);
+  const [isEveryOneFinished, setIsEveryOneFinished] = useState(false);
   const [countDownTimer, setCountDownTimer] = useState(null);
+  const [countDownTimerNewText, setCountDownTimerNewText] = useState(null);
   const [userCanStartTyping, setUserCanStartTyping] = useState(false);
-
-  const replayData = useSelector((state) => state.replayDataReducer);
 
   useEffect(() => {
     socket.on("roomData", (data) => {
       if (data !== undefined) {
+        console.log(data);
         setPeopleInRoom(data);
       }
     });
@@ -112,23 +113,6 @@ const Multiplayer = (props) => {
       }
     }
   }, [peopleInRoom]);
-
-  const getTheDate = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-
-    const formatedTime = `${
-      hour === 0 ? "00" : hour < 10 ? "0" + hour : hour
-    }:${minute === 0 ? "00" : minute < 10 ? "0" + minute : minute} - ${
-      month === 0 ? "00" : month < 10 ? "0" + month : month
-    }/${day === 0 ? "00" : day < 10 ? "0" + day : day}/${year}`;
-
-    return formatedTime;
-  };
 
   useEffect(() => {
     if (text !== undefined) {
@@ -299,6 +283,7 @@ const Multiplayer = (props) => {
       e.target.value = "";
       setIsRunning(false);
       setFinished(true);
+      socket.emit("finished", { room: roomToJoin, isFinished: true });
       calculateAccuracy();
       dispatch({
         type: "SET_LATEST_WPM",
@@ -318,23 +303,6 @@ const Multiplayer = (props) => {
     }
 
     let inputArray = e.target.value.split(" ");
-    for (let i = 0; i < inputArray.length; i++) {
-      if (inputArray[i].search("//f") !== -1) {
-        e.target.value = "";
-        setSpanArray(blankSpanArray);
-        setInfoAboutCharacter(blankInfoArray);
-        setFinished(true);
-        setSeconds(0);
-        setMinutes(0);
-        setTimeSeconds(0);
-        setCharactersTyped(0);
-        setIsRunning(false);
-        setMistakes(0);
-        setRealMistakes(0);
-        setProgress(1);
-        calculateAccuracy();
-      }
-    }
 
     setCharactersTyped(e.target.value.length);
 
@@ -466,12 +434,27 @@ const Multiplayer = (props) => {
 
   useEffect(() => {
     if (peopleInRoom) {
-      let allReady = peopleInRoom.users.every((user) => user.ready === true);
+      const allReady = peopleInRoom.users.every((user) => user.ready === true);
 
       if (allReady) {
         setCountDownTimer(5);
       }
+
       setIsEveryoneReady(allReady);
+    }
+  }, [peopleInRoom, isEveryoneReady]);
+
+  useEffect(() => {
+    if (peopleInRoom) {
+      const allFinished = peopleInRoom.users.every(
+        (user) => user.finished === true
+      );
+
+      if (allFinished) {
+        setCountDownTimerNewText(5);
+      }
+
+      setIsEveryOneFinished(allFinished);
     }
   }, [peopleInRoom]);
 
@@ -491,6 +474,36 @@ const Multiplayer = (props) => {
       return () => clearInterval(interval);
     }
   }, [countDownTimer, isEveryoneReady]);
+
+  useEffect(() => {
+    if (isEveryOneFinished) {
+      socket.emit("setProgress", { progress: 0, room: roomToJoin });
+      socket.emit("finished", { room: roomToJoin, isFinished: false });
+      setIsReady((isReady) => !isReady);
+      socket.emit("setReady", { room: roomToJoin });
+      socket.emit("selectNewText", { room: roomToJoin });
+
+      setIsEveryoneReady(false);
+      setCountDownTimer(null);
+      setCountDownTimerNewText(null);
+      setIsEveryOneFinished(false);
+      setFinished(false);
+      setProgress(0);
+
+      // if (countDownTimerNewText === 0) {
+      //   return;
+      // }
+
+      // const interval = setInterval(() => {
+      //   setCountDownTimerNewText(
+      //     (countDownTimerNewText) =>
+      //       (countDownTimerNewText = countDownTimerNewText - 1)
+      //   );
+      // }, 1000);
+
+      // return () => clearInterval(interval);
+    }
+  }, [countDownTimerNewText, isEveryOneFinished, peopleInRoom]);
 
   const joinRoomComponent = () => {
     return (
@@ -650,6 +663,7 @@ const Multiplayer = (props) => {
             >
               {isReady ? "Ready" : "Not Ready"}
             </button>
+            {isEveryOneFinished && <h4>New text in {countDownTimerNewText}</h4>}
           </div>
           <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
           {peopleInRoom !== undefined &&
@@ -663,20 +677,29 @@ const Multiplayer = (props) => {
                         className="fas fa-check-circle ready-icon"
                       ></i>
                     )}
-                    <h4 style={{ marginLeft: "25px", zIndex: 5 }}>
-                      {user.userName}
-                    </h4>
-                    <hr
+                    <h4
                       style={{
-                        backgroundColor: colorFiles.primaryColor,
-                        width: `${calculateWithOfProgressBarMultiplayer(
-                          progressData &&
-                            progressData[index] &&
-                            progressData[index].progress
-                        )}%`,
+                        position: "relative",
+                        marginLeft: "25px",
+                        width: "100%",
+                        zIndex: 5,
                       }}
-                      className="multiplayer-progress-hr"
-                    ></hr>
+                    >
+                      {user.userName}
+                      <hr
+                        style={{
+                          backgroundColor: colorFiles.primaryColor,
+                          width: `${calculateWithOfProgressBarMultiplayer(
+                            progressData
+                              ? progressData[index]
+                                ? progressData[index].progress
+                                : 0
+                              : 0
+                          )}%`,
+                        }}
+                        className="multiplayer-progress-hr"
+                      ></hr>
+                    </h4>
                   </div>
                 </div>
               );
@@ -689,7 +712,7 @@ const Multiplayer = (props) => {
         <div className="input-zone-multiplayer">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}
-            autoFocus="true"
+            autoFocus
             onFocus={(e) => {
               setIsUserTyping(true);
             }}
