@@ -79,6 +79,9 @@ const Multiplayer = (props) => {
   const [peopleInRoom, setPeopleInRoom] = useState();
   const [progressData, setProgressData] = useState();
   const [isReady, setIsReady] = useState(false);
+  const [isEveryoneReady, setIsEveryoneReady] = useState(false);
+  const [countDownTimer, setCountDownTimer] = useState(null);
+  const [userCanStartTyping, setUserCanStartTyping] = useState(false);
 
   const replayData = useSelector((state) => state.replayDataReducer);
 
@@ -462,20 +465,32 @@ const Multiplayer = (props) => {
   };
 
   useEffect(() => {
-    setFinished(false);
-  }, [isReplayComponentShown]);
+    if (peopleInRoom) {
+      let allReady = peopleInRoom.users.every((user) => user.ready === true);
+
+      if (allReady) {
+        setCountDownTimer(5);
+      }
+      setIsEveryoneReady(allReady);
+    }
+  }, [peopleInRoom]);
 
   useEffect(() => {
-    if (replayData !== null && replayData !== undefined) {
-      let fastestWPM = 0;
-      replayData.map((data, index) => {
-        if (data.wpm > fastestWPM) {
-          fastestWPM = data.wpm;
-          setFastestRace(data);
-        }
-      });
+    if (isEveryoneReady) {
+      if (countDownTimer === 0) {
+        setUserCanStartTyping(true);
+        return;
+      }
+
+      const interval = setInterval(() => {
+        setCountDownTimer(
+          (countDownTimer) => (countDownTimer = countDownTimer - 1)
+        );
+      }, 1000);
+
+      return () => clearInterval(interval);
     }
-  }, [replayData]);
+  }, [countDownTimer, isEveryoneReady]);
 
   const joinRoomComponent = () => {
     return (
@@ -498,6 +513,7 @@ const Multiplayer = (props) => {
             onChange={(e) => {
               setRoomToJoin(e.target.value);
             }}
+            value="default"
             placeholder="Type nothing to join the default room"
             className="join-room-input"
             style={{
@@ -531,13 +547,6 @@ const Multiplayer = (props) => {
         </div>
       </div>
     );
-  };
-
-  const calculateWithOfProgressBar = () => {
-    if (textArrayCharacters !== undefined) {
-      let percent = (charactersTyped / textArrayCharacters.length) * 100;
-      return percent;
-    }
   };
 
   const calculateWithOfProgressBarMultiplayer = (p) => {
@@ -680,17 +689,24 @@ const Multiplayer = (props) => {
         <div className="input-zone-multiplayer">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}
-            autoFocus
+            autoFocus="true"
             onFocus={(e) => {
               setIsUserTyping(true);
             }}
             onBlur={(e) => {
               setIsUserTyping(false);
             }}
+            disabled={userCanStartTyping ? "" : "true"}
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}
-            placeholder="The test will begin when you start typing!"
+            placeholder={
+              isEveryoneReady
+                ? userCanStartTyping
+                  ? "Start typing!"
+                  : `The test will start in ${countDownTimer}s`
+                : "The test will start when everyone is ready!"
+            }
             className={"input-box-shown"}
             style={{
               color: colorFiles.fontColor,
