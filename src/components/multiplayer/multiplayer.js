@@ -9,7 +9,7 @@ import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 
 import socketClient from "socket.io-client";
-const server = "http://localhost:5000";
+const server = "https://protypist.herokuapp.com";
 const socket = socketClient(server);
 
 const Multiplayer = (props) => {
