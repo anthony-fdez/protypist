@@ -64,6 +64,8 @@ const Multiplayer = (props) => {
   const isReplayComponentShown = useSelector(
     (state) => state.replayComponentShown
   );
+
+  const [isChatRoomOpen, setIsChatRoomOpen] = useState(true);
   const [isJoinRoomOpen, setIsJoinRoomOpen] = useState(false);
 
   const [fastestRace, setFastestRace] = useState();
@@ -77,13 +79,18 @@ const Multiplayer = (props) => {
   const [countDownTimerNewText, setCountDownTimerNewText] = useState(null);
   const [userCanStartTyping, setUserCanStartTyping] = useState(false);
 
+  const [someoneIsTyping, setSomeoneIsTyping] = useState();
+  const [messagesEnd, setMessagesEnd] = useState();
+  const [textMessages, setTextMessages] = useState("");
+  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
     socket.on("roomData", (data) => {
       if (data !== undefined) {
         setPeopleInRoom(data);
       }
     });
-    setIsJoinRoomOpen(true);
+    setIsJoinRoomOpen(false);
   }, []);
 
   useEffect(() => {
@@ -562,6 +569,126 @@ const Multiplayer = (props) => {
     }
   };
 
+  useEffect(() => {
+    socket.on("message", (data) => {
+      const dataWithLocalTime = {
+        message: data.message,
+        name: data.name,
+        time: getTheCurrentTime(),
+      };
+
+      setMessages((messages) => [...messages, dataWithLocalTime]);
+    });
+
+    socket.on("typing", (data) => {
+      if (data.isTyping === true) {
+        setSomeoneIsTyping(data.name + " is typing...");
+      } else setSomeoneIsTyping(false);
+    });
+  }, []);
+
+  const sendMessage = () => {
+    const data = { message: textMessages, name: userNameRedux };
+    socket.emit("sendMessage", data, (callback_data) => {
+      console.log(callback_data.data);
+    });
+  };
+
+  useEffect(() => {
+    if (textMessages !== "") {
+      socket.emit("typing", true);
+    } else socket.emit("typing", false);
+  }, [textMessages]);
+
+  const getTheCurrentTime = () => {
+    const date = new Date();
+    const minutes = date.getMinutes();
+    const hours = date.getHours();
+
+    let formatedTime = "";
+
+    if (minutes < 10 && hours < 10) {
+      formatedTime = "0" + hours + ":0" + minutes;
+    } else if (minutes < 10) {
+      formatedTime = hours + ":0" + minutes;
+    } else if (hours < 10) {
+      formatedTime = "0" + hours + ":" + minutes;
+    } else {
+      formatedTime = hours + ":" + minutes;
+    }
+
+    return formatedTime;
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messagesEnd]);
+
+  const scrollToBottom = () => {
+    setMessagesEnd((messagesEnd) =>
+      messagesEnd.scrollIntoView({ behavior: "smooth" })
+    );
+  };
+
+  const roomChatComponent = () => {
+    return (
+      <div
+        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+        className={
+          isChatRoomOpen ? "room-chat-div-open" : "room-chat-div-closed"
+        }
+      >
+        <div>
+          <h3>Chat</h3>
+          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          <div className="messages-div">
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <p>this is a message</p>
+            <div
+              style={{ float: "left", clear: "both" }}
+              ref={(el) => setMessagesEnd((messagesEnd) => (messagesEnd = el))}
+            ></div>
+          </div>
+          <form className="input-form">
+            <input
+              className="input-field-form"
+              type="input"
+              onChange={(e) => {
+                setTextMessages(e.target.value);
+              }}
+              value={textMessages}
+              placeholder="Send a message"
+            ></input>
+            <button
+              className="input-button"
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                if (textMessages !== "") {
+                  sendMessage();
+                  setTextMessages("");
+                }
+              }}
+            >
+              send
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <div
@@ -574,23 +701,16 @@ const Multiplayer = (props) => {
         <div>
           <div
             onClick={() => {
-              socket.emit(
-                "join",
-                {
-                  userName: userNameRedux,
-                  room: roomToJoin,
-                },
-                (error) => {}
-              );
-              setIsJoinRoomOpen(false);
+              setIsChatRoomOpen(false);
             }}
             className={
-              isJoinRoomOpen
+              isJoinRoomOpen || isChatRoomOpen
                 ? "darkened-background-on"
                 : "darkened-background-off"
             }
           ></div>
           {joinRoomComponent()}
+          {roomChatComponent()}
 
           <p
             className={
@@ -659,7 +779,18 @@ const Multiplayer = (props) => {
             >
               {isReady ? "Ready" : "Not Ready"}
             </button>
-            {isEveryOneFinished && <h4>New text in {countDownTimerNewText}</h4>}
+            <button
+              onClick={() => setIsChatRoomOpen(true)}
+              style={{
+                right: "20px",
+                position: "absolute",
+                backgroundColor: colorFiles.primaryColor,
+                color: colorFiles.fontColor,
+              }}
+              className="btn btn-light"
+            >
+              Messages
+            </button>
           </div>
           <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
           {peopleInRoom !== undefined &&

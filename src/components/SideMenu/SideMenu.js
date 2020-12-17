@@ -13,7 +13,7 @@ function SideMenu() {
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-  const [isMultiplayerMenuOpen, setIsMultiplayerMenuOpen] = useState(false);
+  const [isMultiplayerMenuOpen, setIsMultiplayerMenuOpen] = useState(true);
 
   let location = useLocation();
   location = location.pathname;

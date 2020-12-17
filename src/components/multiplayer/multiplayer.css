@@ -307,21 +307,34 @@
   right: 0;
   bottom: 50px;
 }
-.messages-div {
-  margin-bottom: 50px;
-  position: absolute;
-  width: 300px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin: auto;
-  overflow-y: scroll;
-  height: calc(100% - 150px);
-  left: 0;
-  right: 0;
-  bottom: 80px;
-  overflow-x: hidden;
-}
 
 .btn {
   border: none;
+}
+.room-chat-div-open {
+  position: absolute;
+  z-index: 50;
+  width: 400px;
+  height: calc(100% - 40px);
+  margin: 0;
+  top: 20px;
+  right: 20px;
+  border-radius: 5px;
+  padding: 1rem;
+  transition: 0.3s;
+}
+.room-chat-div-closed {
+  position: absolute;
+  z-index: 50;
+  width: 400px;
+  height: calc(100% - 40px);
+  margin: 0;
+  top: 20px;
+  right: 20px;
+  border-radius: 5px;
+  padding: 1rem;
+  transform: scale(0.9);
+  transition: 0.3s;
+  opacity: 0;
+  pointer-events: none;
 }
