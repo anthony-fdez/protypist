@@ -18,7 +18,7 @@ const Multiplayer = (props) => {
   const keyboardOnScreen = useSelector(
     (state) => state.keyboardOnScreenReducer
   );
-  const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
+  const realTimeWPM = true;
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestErrors = useSelector(
     (state) => state.latestErrorsReducerTypingGame
@@ -88,7 +88,6 @@ const Multiplayer = (props) => {
   useEffect(() => {
     socket.on("roomData", (data) => {
       if (data !== undefined) {
-        console.log(data);
         setPeopleInRoom(data);
       }
     });
@@ -102,7 +101,11 @@ const Multiplayer = (props) => {
   }, []);
 
   useEffect(() => {
-    socket.emit("setProgress", { progress: progress, room: roomToJoin });
+    socket.emit("setProgress", {
+      progress: progress,
+      room: roomToJoin,
+      wpm: displayWPM(),
+    });
   }, [progress]);
 
   useEffect(() => {
@@ -369,7 +372,9 @@ const Multiplayer = (props) => {
   const displayWPM = () => {
     if (realTimeWPM) {
       if (isRunning) {
-        return wpm;
+        if (wpm == Infinity) {
+          return 0;
+        } else return wpm;
       } else return latestWPM;
     } else return latestWPM;
   };
@@ -462,6 +467,7 @@ const Multiplayer = (props) => {
     if (isEveryoneReady) {
       if (countDownTimer === 0) {
         setUserCanStartTyping(true);
+        setIsRunning(true);
         return;
       }
 
@@ -477,7 +483,11 @@ const Multiplayer = (props) => {
 
   useEffect(() => {
     if (isEveryOneFinished) {
-      socket.emit("setProgress", { progress: 0, room: roomToJoin });
+      socket.emit("setProgress", {
+        progress: 0,
+        room: roomToJoin,
+        wpm: latestWPM,
+      });
       socket.emit("finished", { room: roomToJoin, isFinished: false });
       setIsReady((isReady) => !isReady);
       socket.emit("setReady", { room: roomToJoin });
@@ -489,6 +499,7 @@ const Multiplayer = (props) => {
       setIsEveryOneFinished(false);
       setFinished(false);
       setProgress(0);
+      setUserCanStartTyping(false);
 
       // if (countDownTimerNewText === 0) {
       //   return;
@@ -699,6 +710,14 @@ const Multiplayer = (props) => {
                         }}
                         className="multiplayer-progress-hr"
                       ></hr>
+                    </h4>
+                    <h4>
+                      {progressData
+                        ? progressData[index]
+                          ? progressData[index].wpm
+                          : 0
+                        : 0}
+                      wpm
                     </h4>
                   </div>
                 </div>
