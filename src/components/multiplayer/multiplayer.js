@@ -3,10 +3,10 @@ import "./multiplayer.css";
 import { useSelector, useDispatch } from "react-redux";
 import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
-
 import socketClient from "socket.io-client";
-// const server = "https://protypist.herokuapp.com";
-const server = "http://localhost:5000";
+
+const server = "https://protypist.herokuapp.com";
+// const server = "http://localhost:5000";
 const socket = socketClient(server);
 
 const Multiplayer = (props) => {
@@ -62,14 +62,10 @@ const Multiplayer = (props) => {
   const [wpmAverageLast10races, setWpmAverage10races] = useState();
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
   const [averageMistakes, setAverageMistakes] = useState();
-  const isReplayComponentShown = useSelector(
-    (state) => state.replayComponentShown
-  );
 
   const [isChatRoomOpen, setIsChatRoomOpen] = useState(false);
   const [isJoinRoomOpen, setIsJoinRoomOpen] = useState(false);
 
-  const [fastestRace, setFastestRace] = useState();
   const [roomToJoin, setRoomToJoin] = useState("default");
   const [peopleInRoom, setPeopleInRoom] = useState();
   const [progressData, setProgressData] = useState();
