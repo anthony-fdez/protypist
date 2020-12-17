@@ -524,6 +524,7 @@ const Multiplayer = (props) => {
             onChange={(e) => {
               setRoomToJoin(e.target.value);
             }}
+            type="text"
             placeholder="Type nothing to join the default room"
             className="join-room-input"
             style={{
