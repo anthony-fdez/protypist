@@ -345,7 +345,7 @@
 
 .messages-div {
   position: absolute;
-  max-height: calc(100% - 160px);
+  max-height: calc(100% - 150px);
   min-height: 50px;
   bottom: 75px;
   width: calc(100% - 30px);

@@ -652,8 +652,23 @@ const Multiplayer = (props) => {
         }
       >
         <div>
-          <h3>Chat </h3>
-          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h3 style={{ padding: 0 }}>Chat</h3>
+            <i
+              onClick={() => {
+                setIsChatRoomOpen(false);
+              }}
+              className="close-icon-login fas fa-times fa-2x"
+            ></i>
+          </div>
+          <hr style={{ backgroundColor: colorFiles.hrColor, zIndex: 50 }}></hr>
           <div className="messages-div">
             {messages.map((message, index) => {
               return (
