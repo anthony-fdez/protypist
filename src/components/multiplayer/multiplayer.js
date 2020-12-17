@@ -790,30 +790,33 @@ const Multiplayer = (props) => {
             >
               Change Room
             </button>
-            <button
-              onClick={() => {
-                setIsReady((isReady) => !isReady);
-                socket.emit("setReady", { room: roomToJoin });
-              }}
-              className="btn btn-light"
-              style={
-                isReady
-                  ? {
-                      backgroundColor: "rgb(106,220,153)",
-                      color: colorFiles.fontColor,
-                      marginRight: "1rem",
-                      width: "100px",
-                    }
-                  : {
-                      backgroundColor: "rgb(223, 71, 89)",
-                      color: colorFiles.fontColor,
-                      marginRight: "1rem",
-                      width: "100px",
-                    }
-              }
-            >
-              {isReady ? "Ready" : "Not Ready"}
-            </button>
+            {!isRunning && (
+              <button
+                onClick={() => {
+                  setIsReady((isReady) => !isReady);
+                  socket.emit("setReady", { room: roomToJoin });
+                }}
+                className="btn btn-light"
+                style={
+                  isReady
+                    ? {
+                        backgroundColor: "rgb(106,220,153)",
+                        color: colorFiles.fontColor,
+                        marginRight: "1rem",
+                        width: "110px",
+                      }
+                    : {
+                        backgroundColor: "rgb(223, 71, 89)",
+                        color: colorFiles.fontColor,
+                        marginRight: "1rem",
+                        width: "110px",
+                      }
+                }
+              >
+                {isReady ? "Ready" : "Get Ready"}
+              </button>
+            )}
+
             <button
               onClick={() => setIsChatRoomOpen(true)}
               style={{

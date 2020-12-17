@@ -331,7 +331,7 @@
   right: 20px;
   border-radius: 5px;
   padding: 1rem;
-  transform: scale(0.9);
+  transform: scale(0.95);
   transition: 0.3s;
   opacity: 0;
   pointer-events: none;
