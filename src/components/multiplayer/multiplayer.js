@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./multiplayer.css";
 import { useSelector, useDispatch } from "react-redux";
-import Qwerty from "../inScreenKeyboard/qwerty";
-import Dvorak from "../inScreenKeyboard/dvorak";
-import Colemak from "../inScreenKeyboard/colemak";
-import quotes from "../data/quotes.json";
 import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 
@@ -15,9 +11,6 @@ const socket = socketClient(server);
 const Multiplayer = (props) => {
   const dispatch = useDispatch();
 
-  const keyboardOnScreen = useSelector(
-    (state) => state.keyboardOnScreenReducer
-  );
   const realTimeWPM = true;
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestErrors = useSelector(
@@ -28,7 +21,6 @@ const Multiplayer = (props) => {
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
   const userNameRedux = useSelector((state) => state.setUserNameReducer);
 
   //state
@@ -391,16 +383,6 @@ const Multiplayer = (props) => {
     }
   };
 
-  const keyboardLayoutSelector = () => {
-    if (keyboardLayout === "QWERTY") {
-      return <Qwerty />;
-    } else if (keyboardLayout === "DVORAK") {
-      return <Dvorak />;
-    } else if (keyboardLayout === "COLEMAK") {
-      return <Colemak />;
-    } else return <Qwerty />;
-  };
-
   const displayTheStatistics = () => {
     return (
       <div className="statistics">
@@ -631,7 +613,10 @@ const Multiplayer = (props) => {
         >
           {spanArray}
         </div>
-        <div className="players-progress">
+        <div
+          style={{ backgroundColor: colorFiles.secondSecondaryBackgroundColor }}
+          className="players-progress"
+        >
           <div style={{ display: "flex" }}>
             <h4 style={{ marginRight: "2rem" }} className="room-to-join-text">
               Room: {roomToJoin}
@@ -723,9 +708,6 @@ const Multiplayer = (props) => {
                 </div>
               );
             })}
-        </div>
-        <div className={"keyboard-div-shown-multiplayer"}>
-          {keyboardOnScreen && keyboardLayoutSelector()}
         </div>
 
         <div className="input-zone-multiplayer">

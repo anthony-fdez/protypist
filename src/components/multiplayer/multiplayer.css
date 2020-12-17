@@ -115,19 +115,23 @@
     margin: 0;
     left: -160px;
     right: 0;
+    opacity: 0;
+    pointer-events: none;
   }
   .keyboard-div-hidden-multiplayer {
     opacity: 0;
     transition: 0.2s;
     position: absolute;
     bottom: -50px;
+    opacity: 0;
+    pointer-events: none;
   }
   .input-zone-multiplayer {
     margin-top: 10rem;
     display: flex;
     justify-content: center;
     position: absolute;
-    bottom: -60px;
+    bottom: 0px;
     margin: auto;
     left: 25px;
     right: 0;
@@ -137,11 +141,13 @@
     margin: auto;
     left: 0;
     right: 0;
-    bottom: 370px;
+    bottom: 0px;
     width: 95%;
     padding: 1rem;
-    height: 200px;
+    height: 350px;
     margin: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
   }
   .players-info {
     display: flex;
@@ -170,19 +176,23 @@
     margin: 0;
     left: -160px;
     right: 0;
+    opacity: 0;
+    pointer-events: none;
   }
   .keyboard-div-hidden-multiplayer {
     opacity: 0;
     transition: 0.2s;
     position: absolute;
     bottom: -50px;
+    opacity: 0;
+    pointer-events: none;
   }
   .input-zone-multiplayer {
     margin-top: 10rem;
     display: flex;
     justify-content: center;
     position: absolute;
-    bottom: -10px;
+    bottom: 30px;
     margin: auto;
     left: 25px;
     right: 0;
@@ -192,12 +202,14 @@
     margin: auto;
     left: 0;
     right: 0;
-    bottom: 280px;
+    bottom: 0px;
     width: 95%;
     padding: 1rem;
-    height: 200px;
+    height: 250px;
     margin: auto;
     overflow-y: scroll;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
   .room-to-join-text {
     font-style: italic;
