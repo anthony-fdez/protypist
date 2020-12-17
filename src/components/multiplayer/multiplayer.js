@@ -5,7 +5,8 @@ import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 
 import socketClient from "socket.io-client";
-const server = "https://protypist.herokuapp.com";
+// const server = "https://protypist.herokuapp.com";
+const server = "http://localhost:5000";
 const socket = socketClient(server);
 
 const Multiplayer = (props) => {
@@ -16,8 +17,8 @@ const Multiplayer = (props) => {
   const latestErrors = useSelector(
     (state) => state.latestErrorsReducerTypingGame
   );
-  const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
-  const jwt = useSelector((state) => state.JWTreducer);
+  // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
+  // const jwt = useSelector((state) => state.JWTreducer);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -49,14 +50,14 @@ const Multiplayer = (props) => {
   const [realMistakes, setRealMistakes] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
   const [textTypedId, setTextTypedId] = useState();
-  const [textTypedHistory, setTextTypedHistory] = useState([]);
-  const [highestSpeed, setHighestSpeed] = useState();
-  const [highestSpeedDate, setHighestSpeedDate] = useState();
+  // const [textTypedHistory, setTextTypedHistory] = useState([]);
+  // const [highestSpeed, setHighestSpeed] = useState();
+  // const [highestSpeedDate, setHighestSpeedDate] = useState();
 
   // const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
-  const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
-  const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
+  // const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
   const [instaDeathFail, setInstaDeathFail] = useState(false);
   const [wpmAverageLast10races, setWpmAverage10races] = useState();
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
@@ -65,7 +66,7 @@ const Multiplayer = (props) => {
     (state) => state.replayComponentShown
   );
 
-  const [isChatRoomOpen, setIsChatRoomOpen] = useState(true);
+  const [isChatRoomOpen, setIsChatRoomOpen] = useState(false);
   const [isJoinRoomOpen, setIsJoinRoomOpen] = useState(false);
 
   const [fastestRace, setFastestRace] = useState();
@@ -80,8 +81,9 @@ const Multiplayer = (props) => {
   const [userCanStartTyping, setUserCanStartTyping] = useState(false);
 
   const [someoneIsTyping, setSomeoneIsTyping] = useState();
+  const [personTypingData, setPersonDataTyping] = useState();
   const [messagesEnd, setMessagesEnd] = useState();
-  const [textMessages, setTextMessages] = useState("");
+  const [textMessage, setTextMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -90,7 +92,7 @@ const Multiplayer = (props) => {
         setPeopleInRoom(data);
       }
     });
-    setIsJoinRoomOpen(false);
+    setIsJoinRoomOpen(true);
   }, []);
 
   useEffect(() => {
@@ -526,7 +528,6 @@ const Multiplayer = (props) => {
             onChange={(e) => {
               setRoomToJoin(e.target.value);
             }}
-            value="default"
             placeholder="Type nothing to join the default room"
             className="join-room-input"
             style={{
@@ -581,24 +582,36 @@ const Multiplayer = (props) => {
     });
 
     socket.on("typing", (data) => {
+      setPersonDataTyping(data);
       if (data.isTyping === true) {
-        setSomeoneIsTyping(data.name + " is typing...");
+        setSomeoneIsTyping(true);
       } else setSomeoneIsTyping(false);
     });
   }, []);
 
   const sendMessage = () => {
-    const data = { message: textMessages, name: userNameRedux };
-    socket.emit("sendMessage", data, (callback_data) => {
-      console.log(callback_data.data);
-    });
+    const data = {
+      message: textMessage,
+      name: userNameRedux,
+      room: roomToJoin,
+    };
+    socket.emit("sendMessage", data, (callback_data) => {});
   };
 
   useEffect(() => {
-    if (textMessages !== "") {
-      socket.emit("typing", true);
-    } else socket.emit("typing", false);
-  }, [textMessages]);
+    if (textMessage !== "") {
+      socket.emit("typing", {
+        isTyping: true,
+        room: roomToJoin,
+        name: userNameRedux,
+      });
+    } else
+      socket.emit("typing", {
+        isTyping: false,
+        room: roomToJoin,
+        name: userNameRedux,
+      });
+  }, [textMessage]);
 
   const getTheCurrentTime = () => {
     const date = new Date();
@@ -639,22 +652,33 @@ const Multiplayer = (props) => {
         }
       >
         <div>
-          <h3>Chat</h3>
+          <h3>Chat </h3>
           <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
           <div className="messages-div">
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
-            <p>this is a message</p>
+            {messages.map((message, index) => {
+              return (
+                <div className="chat-message" key={index}>
+                  <div>
+                    <p
+                      style={{
+                        marginTop: "5px",
+                        marginBottom: "0px",
+                      }}
+                    >
+                      {message.name} - {message.time}
+                    </p>
+                    <h5 style={{ marginTop: "0px", marginBottom: "0px" }}>
+                      {message.message}
+                    </h5>
+                  </div>
+                </div>
+              );
+            })}
+            <p className="someone-is-typing">
+              {someoneIsTyping &&
+                personTypingData &&
+                personTypingData.name + " is typing..."}
+            </p>
             <div
               style={{ float: "left", clear: "both" }}
               ref={(el) => setMessagesEnd((messagesEnd) => (messagesEnd = el))}
@@ -665,19 +689,19 @@ const Multiplayer = (props) => {
               className="input-field-form"
               type="input"
               onChange={(e) => {
-                setTextMessages(e.target.value);
+                setTextMessage(e.target.value);
               }}
-              value={textMessages}
+              value={textMessage}
               placeholder="Send a message"
             ></input>
             <button
-              className="input-button"
+              className="btn btn-light input-button"
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                if (textMessages !== "") {
+                if (textMessage !== "") {
                   sendMessage();
-                  setTextMessages("");
+                  setTextMessage("");
                 }
               }}
             >

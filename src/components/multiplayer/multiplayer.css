@@ -211,9 +211,7 @@
     border-radius: 5px;
     margin-bottom: 10px;
   }
-  .room-to-join-text {
-    font-style: italic;
-  }
+
   .multiplayer-progress-hr {
     height: 3px;
     border-radius: 5px;
@@ -337,4 +335,40 @@
   transition: 0.3s;
   opacity: 0;
   pointer-events: none;
+}
+.input-form {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  display: flex;
+}
+
+.messages-div {
+  position: absolute;
+  max-height: calc(100% - 160px);
+  min-height: 50px;
+  bottom: 75px;
+  width: calc(100% - 30px);
+  overflow-y: scroll;
+}
+.input-field-form {
+  background: none;
+  border: none;
+  outline: none;
+  width: 310px;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 5px 0px 0px 5px;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.274);
+}
+.input-field-form:focus {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+.input-button {
+  padding: 10px;
+  width: 60px;
+  border-radius: 0px 5px 5px 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.274);
 }
