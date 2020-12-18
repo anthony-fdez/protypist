@@ -33,6 +33,7 @@ function Header(props) {
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
   const [isSkillLevelMenuShown, setIsSkillMenuShown] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [message, setMessage] = useState("");
 
@@ -87,12 +88,14 @@ function Header(props) {
           type: "LOG_IN_OUT",
           payload: true,
         });
+        setIsLoading(false);
       })
       .catch((e) => {
         dispatch({
           type: "LOG_IN_OUT",
           payload: false,
         });
+        setIsLoading(false);
       });
   }, []);
 
@@ -787,6 +790,7 @@ function Header(props) {
     <div>
       {errorWarning()}
       {successWarning()}
+
       <div
         style={{
           backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -794,7 +798,27 @@ function Header(props) {
         }}
         className={"Header"}
       >
-        <h2 className="user-name">{userName}</h2>
+        <h2 className="user-name">
+          {!isLoading ? (
+            userName
+          ) : (
+            <div class="sk-circle">
+              <div class="sk-circle1 sk-child"></div>
+              <div class="sk-circle2 sk-child"></div>
+              <div class="sk-circle3 sk-child"></div>
+              <div class="sk-circle4 sk-child"></div>
+              <div class="sk-circle5 sk-child"></div>
+              <div class="sk-circle6 sk-child"></div>
+              <div class="sk-circle7 sk-child"></div>
+              <div class="sk-circle8 sk-child"></div>
+              <div class="sk-circle9 sk-child"></div>
+              <div class="sk-circle10 sk-child"></div>
+              <div class="sk-circle11 sk-child"></div>
+              <div class="sk-circle12 sk-child"></div>
+            </div>
+          )}
+        </h2>
+
         <h2>{props.text}</h2>
         <div
           onClick={() => {
