@@ -372,3 +372,34 @@
   border-radius: 0px 5px 5px 0px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.274);
 }
+.unread-message-bubble-shown {
+  width: 18px;
+  height: 18px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.unread-message-bubble-hidden {
+  width: 0px;
+  height: 0px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  opacity: 0;
+}

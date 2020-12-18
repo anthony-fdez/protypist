@@ -81,6 +81,7 @@ const Multiplayer = (props) => {
   const [messagesEnd, setMessagesEnd] = useState();
   const [textMessage, setTextMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [unreadMessages, setUnreadMessages] = useState(0);
 
   useEffect(() => {
     socket.on("roomData", (data) => {
@@ -575,6 +576,8 @@ const Multiplayer = (props) => {
         time: getTheCurrentTime(),
       };
 
+      setUnreadMessages((unreadMessages) => unreadMessages + 1);
+
       setMessages((messages) => [...messages, dataWithLocalTime]);
     });
 
@@ -661,6 +664,7 @@ const Multiplayer = (props) => {
             <i
               onClick={() => {
                 setIsChatRoomOpen(false);
+                setUnreadMessages(0);
               }}
               className="close-icon-login fas fa-times fa-2x"
             ></i>
@@ -819,7 +823,10 @@ const Multiplayer = (props) => {
             )}
 
             <button
-              onClick={() => setIsChatRoomOpen(true)}
+              onClick={() => {
+                setUnreadMessages(0);
+                setIsChatRoomOpen(true);
+              }}
               style={{
                 right: "20px",
                 position: "absolute",
@@ -828,6 +835,15 @@ const Multiplayer = (props) => {
               }}
               className="btn btn-light"
             >
+              <div
+                className={
+                  unreadMessages !== 0
+                    ? "unread-message-bubble-shown"
+                    : "unread-message-bubble-hidden"
+                }
+              >
+                {unreadMessages}
+              </div>
               Messages
             </button>
           </div>
