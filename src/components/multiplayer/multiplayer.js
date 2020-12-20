@@ -5,6 +5,8 @@ import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 import socketClient from "socket.io-client";
 
+import { IconMessages, IconSend } from "@tabler/icons";
+
 const server = "https://protypist.herokuapp.com";
 // const server = "http://localhost:5000";
 const socket = socketClient(server);
@@ -721,7 +723,7 @@ const Multiplayer = (props) => {
                 }
               }}
             >
-              send
+              <IconSend />
             </button>
           </form>
         </div>
@@ -787,7 +789,7 @@ const Multiplayer = (props) => {
               }}
               style={{
                 backgroundColor: colorFiles.primaryColor,
-                color: colorFiles.fontColor,
+                color: "white",
                 marginRight: "1rem",
                 width: "150px",
               }}
@@ -831,7 +833,7 @@ const Multiplayer = (props) => {
                 right: "20px",
                 position: "absolute",
                 backgroundColor: colorFiles.primaryColor,
-                color: colorFiles.fontColor,
+                color: "white",
               }}
               className="btn btn-light"
             >
@@ -844,6 +846,7 @@ const Multiplayer = (props) => {
               >
                 {unreadMessages}
               </div>
+              <IconMessages style={{ marginRight: "10px" }} />
               Messages
             </button>
           </div>

@@ -96,6 +96,7 @@ h1 {
   cursor: pointer;
   transition: 0.1s;
   transform: scale(1.1);
+  color: white;
 }
 .typing-game-inactive,
 .top-200-inactive,

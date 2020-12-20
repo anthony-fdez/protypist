@@ -789,14 +789,14 @@ function TypingTest() {
             isRunning || finished
               ? {
                   backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
+                  color: "white",
                   border: "none",
                   opacity: 0,
                   transition: "0.3s",
                 }
               : {
                   backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
+                  color: "white",
                   border: "none",
                   transition: "0.3s",
                   transform: "translatey(-30px)",

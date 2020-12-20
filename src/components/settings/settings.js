@@ -303,12 +303,12 @@ function Settings() {
         <div
           style={{
             backgroundColor: colorFiles.primaryColor,
-            color: colorFiles.fontColor,
+            color: "white",
           }}
           className="gitHub-link-div"
         >
           <a
-            style={{ color: colorFiles.contrastFontColor }}
+            style={{ color: "white" }}
             className="gitHub-link"
             href="https://github.com/anthony-fdez/protypist"
             target="blank"

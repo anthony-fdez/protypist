@@ -3,7 +3,12 @@ import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-import { IconLogin, IconLogout, IconUserPlus } from "@tabler/icons";
+import {
+  IconLogin,
+  IconLogout,
+  IconUserPlus,
+  IconAlertTriangle,
+} from "@tabler/icons";
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -489,7 +494,7 @@ function Header(props) {
             style={{
               display: "flex",
               backgroundColor: colorFiles.primaryColor,
-              color: colorFiles.fontColor,
+              color: "white",
             }}
           >
             <IconLogin style={{ marginRight: "90px" }} />
@@ -596,7 +601,7 @@ function Header(props) {
             style={{
               display: "flex",
               backgroundColor: colorFiles.primaryColor,
-              color: colorFiles.fontColor,
+              color: "white",
             }}
           >
             <IconUserPlus style={{ marginRight: "50px" }} />
@@ -713,6 +718,7 @@ function Header(props) {
             backgroundColor: colorFiles.primaryColor,
             color: colorFiles.contrastFontColor,
             border: "none",
+            color: "white",
           }}
         >
           <IconLogin />
@@ -736,6 +742,7 @@ function Header(props) {
             backgroundColor: colorFiles.primaryColor,
             color: colorFiles.contrastFontColor,
             border: "none",
+            color: "white",
           }}
           className="btn btn-light"
         >
@@ -763,12 +770,14 @@ function Header(props) {
   const errorWarning = () => {
     return (
       <div
+        style={{ color: "white" }}
         className={
           isErrorWarningShown
             ? "error-warning-shown bg-danger"
             : "error-warning-hidden bg-danger"
         }
       >
+        <IconAlertTriangle style={{ position: "absolute", left: "20px" }} />
         <h4 style={{ marginRight: "10px" }}>
           <strong>Error: </strong>
         </h4>

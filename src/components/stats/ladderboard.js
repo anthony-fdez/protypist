@@ -1170,7 +1170,7 @@ function Ladderboard(props) {
               sortBy === "highest"
                 ? {
                     backgroundColor: colorFiles.primaryColor,
-                    color: colorFiles.contrastFontColor,
+                    color: "white",
                   }
                 : {
                     backgroundColor: colorFiles.backgroundColor,
@@ -1190,7 +1190,7 @@ function Ladderboard(props) {
               sortBy === "wpm"
                 ? {
                     backgroundColor: colorFiles.primaryColor,
-                    color: colorFiles.contrastFontColor,
+                    color: "white",
                   }
                 : {
                     backgroundColor: colorFiles.backgroundColor,
@@ -1210,7 +1210,7 @@ function Ladderboard(props) {
               sortBy === "races"
                 ? {
                     backgroundColor: colorFiles.primaryColor,
-                    color: colorFiles.contrastFontColor,
+                    color: "white",
                   }
                 : {
                     backgroundColor: colorFiles.backgroundColor,
@@ -1230,7 +1230,7 @@ function Ladderboard(props) {
               sortBy === "time"
                 ? {
                     backgroundColor: colorFiles.primaryColor,
-                    color: colorFiles.contrastFontColor,
+                    color: "white",
                   }
                 : {
                     backgroundColor: colorFiles.backgroundColor,
@@ -1275,7 +1275,7 @@ function Ladderboard(props) {
                 userId === user._id
                   ? {
                       backgroundColor: colorFiles.primaryColor,
-                      color: colorFiles.contrastFontColor,
+                      color: "white",
                     }
                   : {
                       backgroundColor: colorFiles.backgroundColor,

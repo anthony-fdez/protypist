@@ -32,7 +32,7 @@ function SideMenu() {
 
   const checkButtonStyleColor = (path) => {
     if (location === path) {
-      return colorFiles.contrastFontColor;
+      return "white";
     } else return colorFiles.fontColor;
   };
 
