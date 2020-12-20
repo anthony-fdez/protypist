@@ -3,6 +3,8 @@ import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
+import { IconLogin, IconLogout, IconUserPlus } from "@tabler/icons";
+
 function Header(props) {
   const dispatch = useDispatch();
 
@@ -485,10 +487,12 @@ function Header(props) {
             }}
             className="log-in-button-menu"
             style={{
+              display: "flex",
               backgroundColor: colorFiles.primaryColor,
-              color: "black",
+              color: colorFiles.fontColor,
             }}
           >
+            <IconLogin style={{ marginRight: "90px" }} />
             <h5>Log In</h5>
           </div>
           <div style={{ marginTop: "3rem" }}>
@@ -503,10 +507,13 @@ function Header(props) {
               }}
               className="sign-up-login-button-menu"
               style={{
+                display: "flex",
+                justifyContent: "left",
                 backgroundColor: colorFiles.secondaryBackgroundColor,
               }}
             >
-              <h5>Create Account</h5>
+              <IconUserPlus style={{ marginRight: "45px" }} />
+              <h5>Create one now!</h5>
             </div>
           </div>
         </div>
@@ -587,10 +594,13 @@ function Header(props) {
             }}
             className="log-in-button-menu mt-5"
             style={{
+              display: "flex",
               backgroundColor: colorFiles.primaryColor,
               color: colorFiles.fontColor,
             }}
           >
+            <IconUserPlus style={{ marginRight: "50px" }} />
+
             <h5>Create Account</h5>
           </div>
           <div
@@ -677,9 +687,10 @@ function Header(props) {
           onClick={() => {
             logOutAll();
           }}
-          style={{ color: "white" }}
+          style={{ color: "white", display: "flex" }}
           className="log-out-all-button-menu bg-danger"
         >
+          <IconLogout style={{ marginRight: "70px" }} />
           <h5>Log Out All</h5>
         </div>
       </div>
@@ -698,11 +709,13 @@ function Header(props) {
           }}
           className="btn btn-light"
           style={{
+            display: "flex",
             backgroundColor: colorFiles.primaryColor,
             color: colorFiles.contrastFontColor,
             border: "none",
           }}
         >
+          <IconLogin />
           Login
         </button>
       </div>
@@ -719,12 +732,14 @@ function Header(props) {
       >
         <button
           style={{
+            display: "flex",
             backgroundColor: colorFiles.primaryColor,
             color: colorFiles.contrastFontColor,
             border: "none",
           }}
           className="btn btn-light"
         >
+          <IconLogout />
           Logout
         </button>
       </div>
