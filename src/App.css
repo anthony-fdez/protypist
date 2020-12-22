@@ -32,5 +32,6 @@ html {
 .fake-loading-spinner {
   position: absolute;
   margin-left: 30px;
-  top: -3px;
+  top: -118px;
+  margin: 0;
 }

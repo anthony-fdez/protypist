@@ -74,8 +74,10 @@ const ReplayText = () => {
 
   useEffect(() => {
     if (replayData) {
-      setText(quotes[replayData[0].textTypedId - 1]);
-      setTextTypedId(quotes[replayData[0].textTypedId - 1].id);
+      if (replayData[0].textTypedId - 1 < 3000) {
+        setText(quotes[replayData[0].textTypedId - 1]);
+        setTextTypedId(quotes[replayData[0].textTypedId - 1].id);
+      } else;
 
       setIsLoading(false);
     }
