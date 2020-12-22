@@ -61,50 +61,36 @@ function App() {
       }}
     >
       <div>
-        <Switch>
-          <Route exact path="/">
-            <Suspense fallback={loadingFallbackComponent()}>
+        <Suspense fallback={loadingFallbackComponent()}>
+          <Switch>
+            <Route exact path="/">
               <TypingTest />
-            </Suspense>
-          </Route>
-          <Route path="/10seconds">
-            <Suspense fallback={loadingFallbackComponent()}>
+            </Route>
+            <Route path="/10seconds">
               <Typing10second />
-            </Suspense>
-          </Route>
-          <Route path="/200">
-            <Suspense fallback={loadingFallbackComponent()}>
+            </Route>
+            <Route path="/200">
               <Common200 />
-            </Suspense>
-          </Route>
-          <Route path="/1000">
-            <Suspense fallback={loadingFallbackComponent()}>
+            </Route>
+            <Route path="/1000">
               <Common1000 />
-            </Suspense>
-          </Route>
-          <Route exact path="/custom">
-            <Suspense fallback={loadingFallbackComponent()}>
+            </Route>
+            <Route exact path="/custom">
               <CustomText />
-            </Suspense>
-          </Route>
-          <Route exact path="/custom/text">
-            <Suspense fallback={loadingFallbackComponent()}>
+            </Route>
+            <Route exact path="/custom/text">
               <SelectText />
-            </Suspense>
-          </Route>
-          <Route path="/settings">
-            <Suspense fallback={loadingFallbackComponent()}>
+            </Route>
+            <Route path="/settings">
               <Settings />
-            </Suspense>
-          </Route>
-          <Route path="/stats">
-            <Suspense fallback={loadingFallbackComponent()}>
+            </Route>
+            <Route path="/stats">
               <Stats />
-            </Suspense>
-          </Route>
-          <Route render={() => <Redirect to="/" />} />{" "}
-          {/*  Redirect if no match */}
-        </Switch>
+            </Route>
+            <Route render={() => <Redirect to="/" />} />{" "}
+            {/*  Redirect if no match */}
+          </Switch>
+        </Suspense>
       </div>
     </div>
   );

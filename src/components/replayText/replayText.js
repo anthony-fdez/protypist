@@ -46,25 +46,13 @@ const ReplayText = () => {
   const [wpm, setWPM] = useState(0);
   const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
-  const [differenceInWPM, setDifferenceInWPM] = useState(0);
-  const [differenceInErrors, setDIfferenceInErrors] = useState(0);
+
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
-  const [accuracy, setAccuracy] = useState(0);
   const [textTypedId, setTextTypedId] = useState();
-  const [textTypedHistory, setTextTypedHistory] = useState([]);
-  const [highestSpeed, setHighestSpeed] = useState();
-  const [highestSpeedDate, setHighestSpeedDate] = useState();
 
-  // const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
-  const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
-  const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
-  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [instaDeathFail, setInstaDeathFail] = useState(false);
-  const [wpmAverageLast10races, setWpmAverage10races] = useState();
-  const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
-  const [averageMistakes, setAverageMistakes] = useState();
   const isReplayComponentShown = useSelector(
     (state) => state.replayComponentShown
   );
@@ -195,27 +183,6 @@ const ReplayText = () => {
       );
     }
   }, [charactersTyped, textArrayCharacters, finished, instaDeathFail]);
-
-  useEffect(() => {
-    if (isRunning === true) {
-      dispatch({
-        type: "SET_PREVIOUS_ERRORS_TYPING_GAME",
-        payload: latestErrors,
-      });
-    }
-
-    const last10races = parseInt(wpmAverageLast10races);
-
-    const valueToCompare =
-      wpmAverageLast10races === 0 ? wpmAverageAllTime : last10races;
-
-    const differenceWPM = Math.round((latestWPM - valueToCompare) * 100) / 100;
-    const differenceErrors =
-      Math.round((latestErrors - averageMistakes) * 100) / 100;
-
-    setDIfferenceInErrors(differenceErrors);
-    setDifferenceInWPM(differenceWPM);
-  }, [isRunning, wpmAverageAllTime, averageMistakes]);
 
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {
@@ -435,7 +402,6 @@ const ReplayText = () => {
         (caractersRight / textArrayCharacters.length) * 100
       );
 
-      setAccuracy(accuracy);
       return accuracy;
     }
   };

@@ -51,10 +51,8 @@ function Stats() {
   const [isLoading, setIsLoading] = useState(true);
   const [chartData200, setChartData200] = useState({});
   const [data200, setData200] = useState();
-
   const [chartDataTypingGame, setChartDataTypingGame] = useState([]);
   const [dataTypingGame, setDataTypingGame] = useState();
-
   const [chartData1000, setChartData1000] = useState({});
   const [data1000, setData1000] = useState();
 
