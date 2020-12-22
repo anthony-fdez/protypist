@@ -22,7 +22,6 @@ const SelectText = () => {
     textArr = textArr.split("");
 
     let Words = 0;
-    let Chars = 0;
 
     for (let i = 0; i < textArr.length; i++) {
       if (textArr[i] === " ") {

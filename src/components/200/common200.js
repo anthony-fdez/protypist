@@ -41,7 +41,6 @@ function Common200() {
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
-  const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
   const [differenceInErrors, setDIfferenceInErrors] = useState(0);
@@ -51,7 +50,6 @@ function Common200() {
   const [wpmAverageLast10races, setWpmAverage10races] = useState();
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
   const [averageMistakes, setAverageMistakes] = useState();
-  const [highestSpeedAllTime, setHighestSpeedOfAllTime] = useState();
 
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
@@ -101,7 +99,6 @@ function Common200() {
           setWpmAverage10races(response.data.wpmAverageLast10Races200);
           setWpmAverageAllTime(response.data.wpmAverageAllTime200);
           setAverageMistakes(response.data.averageMistakes200);
-          setHighestSpeedOfAllTime(response.data.highestSpeedAllTime200);
         })
         .catch((e) => {
           console.log(e.response);
@@ -562,12 +559,6 @@ function Common200() {
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}
             autoFocus
-            onFocus={(e) => {
-              setIsUserTyping(true);
-            }}
-            onBlur={(e) => {
-              setIsUserTyping(false);
-            }}
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}

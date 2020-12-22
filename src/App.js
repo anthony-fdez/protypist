@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
 //components
 import TypingTest from "./components/TypingTest/TypingTest";
-import Typing10second from "./components/10second/10second";
+// import Typing10second from "./components/10second/10second";
 import Common200 from "./components/200/common200";
 import Common1000 from "./components/1000/common1000";
 import Settings from "./components/settings/settings";
@@ -14,6 +14,8 @@ import SelectText from "./components/customText/selectText";
 // import axios from "axios";
 import { useSelector } from "react-redux";
 
+const Typing10second = lazy(() => import("./components/10second/10second"));
+
 function App() {
   // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   // const jwt = useSelector((state) => state.JWTreducer);
@@ -21,6 +23,14 @@ function App() {
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`./components/themes/${colors}`);
   const fontSize = useSelector((state) => state.fontSizeReducer);
+
+  const loadingFallbackComponent = () => {
+    return (
+      <div>
+        <p>Loading</p>
+      </div>
+    );
+  };
 
   return (
     <div
@@ -36,7 +46,9 @@ function App() {
             <TypingTest />
           </Route>
           <Route path="/10seconds">
-            <Typing10second />
+            <Suspense fallback={loadingFallbackComponent()}>
+              <Typing10second />
+            </Suspense>
           </Route>
           <Route path="/200">
             <Common200 />

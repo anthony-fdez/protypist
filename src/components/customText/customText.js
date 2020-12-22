@@ -35,7 +35,6 @@ const CustomText = () => {
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
-  const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
@@ -336,12 +335,6 @@ const CustomText = () => {
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}
             autoFocus
-            onFocus={(e) => {
-              setIsUserTyping(true);
-            }}
-            onBlur={(e) => {
-              setIsUserTyping(false);
-            }}
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}

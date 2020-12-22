@@ -41,7 +41,6 @@ function Common1000() {
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
   const [wpm, setWPM] = useState(0);
-  const [isUserTyping, setIsUserTyping] = useState(true);
   const [mistakesAlert, setMistakesAlert] = useState(false);
   const [differenceInWPM, setDifferenceInWPM] = useState(0);
   const [differenceInErrors, setDIfferenceInErrors] = useState(0);
@@ -52,7 +51,6 @@ function Common1000() {
   const [wpmAverageLast10races, setWpmAverage10races] = useState();
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
   const [averageMistakes, setAverageMistakes] = useState();
-  const [highestSpeedAllTime, setHighestSpeedOfAllTime] = useState();
 
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
@@ -90,7 +88,6 @@ function Common1000() {
           setWpmAverage10races(response.data.wpmAverageLast10Races1000);
           setWpmAverageAllTime(response.data.wpmAverageAllTime1000);
           setAverageMistakes(response.data.averageMistakes1000);
-          setHighestSpeedOfAllTime(response.data.highestSpeedAllTime1000);
         })
         .catch((e) => {
           console.log(e.response);
@@ -524,12 +521,6 @@ function Common1000() {
         <div className="input-zone">
           <input
             autoFocus
-            onFocus={(e) => {
-              setIsUserTyping(true);
-            }}
-            onBlur={(e) => {
-              setIsUserTyping(false);
-            }}
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}
