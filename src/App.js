@@ -3,20 +3,16 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import "./components/TypingTest/TypingTest.css";
 
-//components
-// import TypingTest from "./components/TypingTest/TypingTest";
-// import Typing10second from "./components/10second/10second";
-import Common200 from "./components/200/common200";
-import Common1000 from "./components/1000/common1000";
-import Settings from "./components/settings/settings";
-import Stats from "./components/stats/stats";
-import CustomText from "./components/customText/customText";
-import SelectText from "./components/customText/selectText";
-// import axios from "axios";
 import { useSelector } from "react-redux";
 
 const Typing10second = lazy(() => import("./components/10second/10second"));
 const TypingTest = lazy(() => import("./components/TypingTest/TypingTest"));
+const Common200 = lazy(() => import("./components/200/common200"));
+const Common1000 = lazy(() => import("./components/1000/common1000"));
+const Settings = lazy(() => import("./components/settings/settings"));
+const Stats = lazy(() => import("./components/stats/stats"));
+const CustomText = lazy(() => import("./components/customText/customText"));
+const SelectText = lazy(() => import("./components/customText/selectText"));
 
 function App() {
   // const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
@@ -77,22 +73,34 @@ function App() {
             </Suspense>
           </Route>
           <Route path="/200">
-            <Common200 />
+            <Suspense fallback={loadingFallbackComponent()}>
+              <Common200 />
+            </Suspense>
           </Route>
           <Route path="/1000">
-            <Common1000 />
+            <Suspense fallback={loadingFallbackComponent()}>
+              <Common1000 />
+            </Suspense>
           </Route>
           <Route exact path="/custom">
-            <CustomText />
+            <Suspense fallback={loadingFallbackComponent()}>
+              <CustomText />
+            </Suspense>
           </Route>
           <Route exact path="/custom/text">
-            <SelectText />
+            <Suspense fallback={loadingFallbackComponent()}>
+              <SelectText />
+            </Suspense>
           </Route>
           <Route path="/settings">
-            <Settings />
+            <Suspense fallback={loadingFallbackComponent()}>
+              <Settings />
+            </Suspense>
           </Route>
           <Route path="/stats">
-            <Stats />
+            <Suspense fallback={loadingFallbackComponent()}>
+              <Stats />
+            </Suspense>
           </Route>
           <Route render={() => <Redirect to="/" />} />{" "}
           {/*  Redirect if no match */}
