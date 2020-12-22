@@ -98,7 +98,7 @@ h3 {
   .input-box-10seconds {
     position: absolute;
     width: 670px;
-    bottom: 320px;
+    bottom: 280px;
     opacity: 1;
     transition: 0.3s;
     z-index: 0;
@@ -113,7 +113,7 @@ h3 {
   .start-of-game-10seconds {
     position: absolute;
     margin: auto;
-    bottom: 350px;
+    bottom: 310px;
     left: 200px;
     right: 0px;
     width: 600px;

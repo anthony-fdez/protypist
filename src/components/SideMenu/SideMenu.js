@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./SideMenu.css";
+import "../10second/input.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import Typical from "react-typical";
 
@@ -78,10 +80,10 @@ function SideMenu() {
       {isMultiplayerMenuOpen && (
         <Multiplayer isOpen={closeTheComponentCallback} />
       )}
-      <div className="d-flex justify-content-center">
+      <div className="app-name">
         <h3 style={{ color: colorFiles.primaryColor }}>Pro</h3>
         <h3 style={{ color: colorFiles.fontColor }}>
-          <Typical steps={["Typist"]} />
+          <Typical wraper="b" steps={["Typist"]} />
         </h3>
       </div>
 

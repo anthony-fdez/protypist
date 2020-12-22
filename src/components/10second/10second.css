@@ -33,7 +33,7 @@ h4 {
   .check-for-small-display {
     transition: 0.3s;
     position: absolute;
-    bottom: 5rem;
+    bottom: 3rem;
     margin: auto;
     left: 0;
     right: 0;

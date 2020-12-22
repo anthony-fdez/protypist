@@ -6,6 +6,13 @@ h2,
 h5 {
   margin: 0;
 }
+.app-name {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  padding: 0;
+  display: flex;
+}
 .left-menu-link {
   text-decoration: none;
 }
@@ -20,11 +27,9 @@ h5 {
   transition: 0.3s;
   z-index: 3;
 }
-
 .navigation-buttons {
-  margin-top: 0px;
+  margin-top: 70px;
 }
-
 .navigation-button {
   display: flex;
   justify-content: center;
@@ -37,7 +42,6 @@ h5 {
   height: 2.5rem;
   transition: 0.3s;
 }
-
 .navigation-button-active {
   align-items: center;
   height: 2.5rem;
