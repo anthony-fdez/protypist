@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./TypingTest.css";
 import Header from "../header/header";
 import Qwerty from "../inScreenKeyboard/qwerty";
 import Dvorak from "../inScreenKeyboard/dvorak";

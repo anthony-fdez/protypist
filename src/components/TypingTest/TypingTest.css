@@ -4,7 +4,6 @@
     height: 100vh;
     transition: 0.3s;
   }
-
   .TypingTest {
     padding: 1rem;
     text-align: center;
@@ -393,6 +392,7 @@
     text-align: center;
     margin-left: 200px;
     height: 100vh;
+    padding: 1rem;
   }
   .input-zone {
     margin-top: 10rem;
