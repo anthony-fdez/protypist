@@ -43,7 +43,7 @@ function Settings() {
           transition: "0.3s",
         }}
       >
-        <Header text="Settings" />
+        <Header />
         <ThemesCard />
         <LanguageCard />
 
@@ -251,7 +251,7 @@ function Settings() {
           </div>
         )}
 
-        <h3>Ui settings</h3>
+        <h3 className="mt-5">Ui settings</h3>
         <FontFamilyCard />
         <FontSizeCard />
         <div style={{ cursor: "pointer" }} className="container">

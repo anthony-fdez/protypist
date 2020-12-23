@@ -13,12 +13,12 @@ h2 {
   display: flex;
 }
 .home-page {
-  overflow: hidden;
   overflow-y: scroll;
   margin-bottom: 5rem;
   width: 100vw;
   height: 100vh;
-  padding-left: 200px;
+  padding: 1rem;
+  padding-left: 220px;
 }
 .home-page {
   color: white;
