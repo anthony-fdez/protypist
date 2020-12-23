@@ -19,14 +19,9 @@ h2 {
   height: 100vh;
   padding: 1rem;
   padding-left: 220px;
-}
-.home-page {
-  color: white;
   transition: 0.3s;
 }
-.home-page {
-  transition: 0.3s;
-}
+
 .settings-card,
 .settings-card-words {
   border-radius: 5px;
@@ -170,15 +165,6 @@ h2 {
     margin-top: 2rem;
     border-radius: 5px;
     border: none;
-  }
-  .home-page-dark,
-  .home-page-light {
-    overflow: hidden;
-    overflow-y: scroll;
-    padding-bottom: 3rem;
-    width: 100vw;
-    height: 100vh;
-    padding-left: 200px;
   }
   p {
     margin: 0;

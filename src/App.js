@@ -58,6 +58,7 @@ function App() {
         backgroundColor: colorFiles.backgroundColor,
         fontFamily: fontFamily,
         fontSize: fontSize,
+        transition: "0.3s",
       }}
     >
       <div>
