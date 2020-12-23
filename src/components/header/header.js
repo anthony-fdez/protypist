@@ -462,6 +462,9 @@ function Header(props) {
                   backgroundColor: colorFiles.secondaryBackgroundColor,
                   color: colorFiles.fontColor,
                 }}
+                onChange={(e) => {
+                  setEmailLogIn(e.target.value);
+                }}
                 placeholder="robertjr@example.mail"
               ></input>
             </div>
@@ -470,6 +473,9 @@ function Header(props) {
               <input
                 autoComplete="off"
                 type="password"
+                onChange={(e) => {
+                  setPasswordLogIn(e.target.value);
+                }}
                 className="login-input"
                 style={{
                   backgroundColor: colorFiles.secondaryBackgroundColor,
