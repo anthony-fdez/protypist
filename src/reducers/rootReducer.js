@@ -317,6 +317,14 @@ const setUserNameReducer = (state = "Guest", action) => {
   }
 };
 
+const countryReducer = (state = "US", action) => {
+  switch (action.type) {
+    case "SET_COUNTRY":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 const allKeysPressed = (
   state = {
     a: 0,
@@ -408,6 +416,7 @@ const allReducers = combineReducers({
   logInMenuOpenReducer: logInMenuOpenReducer,
   tenSecondsDifficultyReducer: tenSecondsDifficultyReducer,
   setUserNameReducer: setUserNameReducer,
+  countryReducer: countryReducer,
 });
 
 export default allReducers;

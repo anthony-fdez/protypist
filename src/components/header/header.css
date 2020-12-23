@@ -41,7 +41,7 @@
   right: 1rem;
   top: 1rem;
   width: 350px;
-  height: 510px;
+  height: 490px;
   padding: 1rem;
   border-radius: 5px;
   z-index: 51;
@@ -189,8 +189,8 @@
   transition: 0.2s;
 }
 .close-icon-login:hover {
-  background-color: red;
-  box-shadow: 0px 0px 0px 5px red;
+  background-color: rgb(224, 52, 52);
+  box-shadow: 0px 0px 0px 5px rgb(224, 52, 52);
 }
 .user-name {
   position: absolute;
@@ -296,7 +296,29 @@
   height: 10px;
   overflow: hidden;
 }
+.flag-1x1 {
+  border-radius: 50%;
+  height: 30px;
+}
+.select-country-div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 0rem;
+}
+.select-country-button {
+  padding: 1rem;
+  border-radius: 5px;
+  transition: 0.3s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.158);
+}
 
+.select-country-button:hover {
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.329);
+  transition: 0.3s;
+}
 /* @media only screen and (max-width: 1500px) {
   .Header {
     padding: 1rem;

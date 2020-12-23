@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import CountrySelector from "./countrySelector";
+import Flags from "country-flag-icons/react/3x2";
 
 import {
   IconLogin,
@@ -21,6 +23,7 @@ function Header(props) {
   const isLogInMenuOpenReducer = useSelector(
     (state) => state.logInMenuOpenReducer
   );
+  const countryRedux = useSelector((state) => state.countryReducer);
 
   const [isSignUpMenuOpen, setIsSignUpMenuOpen] = useState(false);
   const [isLogOutMenuOpen, setIsLogOutMenuOpen] = useState(false);
@@ -40,6 +43,7 @@ function Header(props) {
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
   const [isSkillLevelMenuShown, setIsSkillMenuShown] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
 
   const [message, setMessage] = useState("");
 
@@ -526,6 +530,27 @@ function Header(props) {
     );
   };
 
+  const handleOpeningCountryMenu = () => {
+    console.log("helo");
+    setIsCountrySelectorOpen(!isCountrySelectorOpen);
+  };
+
+  const getCurrentCountry = () => {
+    return (
+      <div
+        onClick={() => setIsCountrySelectorOpen(true)}
+        className="select-country-div"
+      >
+        <img
+          className="flag-1x1"
+          alt="United States"
+          src={`http://purecatamphetamine.github.io/country-flag-icons/1x1/${countryRedux}.svg`}
+        />
+        <h5 style={{ marginLeft: "1rem" }}>United states</h5>
+      </div>
+    );
+  };
+
   const signUpMenu = () => {
     return (
       <div
@@ -593,11 +618,18 @@ function Header(props) {
               ></input>
             </div>
           </form>
+          {/* <div className="mt-3 select-country-button">
+            <CountrySelector
+              isOpen={isCountrySelectorOpen}
+              closeMenu={handleOpeningCountryMenu}
+            />
+            {getCurrentCountry()}
+          </div> */}
           <div
             onClick={() => {
               signUp();
             }}
-            className="log-in-button-menu mt-5"
+            className="log-in-button-menu mt-4"
             style={{
               display: "flex",
               backgroundColor: colorFiles.primaryColor,
