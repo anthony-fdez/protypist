@@ -44,6 +44,7 @@ function Settings() {
         }}
       >
         <Header />
+        <h3 className="mt-5">Settings</h3>
         <ThemesCard />
         <LanguageCard />
 
