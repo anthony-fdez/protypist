@@ -1004,7 +1004,11 @@ function Stats() {
                   }
             }
           >
-            <h4 style={{ pointerEvents: "none" }}>TypingGame</h4>
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              className="fas fa-quote-left"
+            ></i>
+            <h4 style={{ pointerEvents: "none" }}>Quotes</h4>
           </div>
           <div
             onClick={() => {
@@ -1029,6 +1033,10 @@ function Stats() {
                   }
             }
           >
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              className="fas fa-biking"
+            ></i>
             <h4 style={{ pointerEvents: "none" }}>Top 200</h4>
           </div>
           <div
@@ -1054,6 +1062,10 @@ function Stats() {
                   }
             }
           >
+            <i
+              style={{ position: "absolute", left: "20px" }}
+              className="fas fa-car-side"
+            ></i>
             <h4 style={{ pointerEvents: "none" }}>Top 1000</h4>
           </div>
           {/* <div className="vl"></div>

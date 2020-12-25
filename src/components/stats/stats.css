@@ -86,6 +86,7 @@ h1 {
 .typing-game-button-active,
 .top-200-button-active,
 .top-1000-button-active {
+  position: relative;
   padding: 10px;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -93,6 +94,7 @@ h1 {
   width: 200px;
   display: flex;
   justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: 0.1s;
   transform: scale(1.1);
@@ -101,6 +103,7 @@ h1 {
 .typing-game-inactive,
 .top-200-inactive,
 .top-1000-inactive {
+  position: relative;
   padding: 10px;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -108,6 +111,7 @@ h1 {
   width: 200px;
   display: flex;
   justify-content: center;
+  align-items: center;
   cursor: pointer;
   z-index: 0;
   transition: 0.1s;
