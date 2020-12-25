@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import CountrySelector from "./countrySelector";
-import Flags from "country-flag-icons/react/3x2";
 
 import {
   IconLogin,

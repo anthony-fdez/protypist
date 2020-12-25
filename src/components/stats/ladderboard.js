@@ -672,6 +672,11 @@ function Ladderboard(props) {
                   <h5 style={{ marginTop: "1rem" }}>0</h5>
                 </div>
               </div>
+              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+              <div>
+                <h4>Total Keystrokes: 123134</h4>
+              </div>
+              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
               {selectGameModeToShowComponent()}
               <div className="chart">
                 <Line
@@ -799,6 +804,12 @@ function Ladderboard(props) {
                     </h5>
                   </div>
                 </div>
+                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <div>
+                  <h4>Total Keystrokes: {otherUserData.total_key_strokes}</h4>
+                </div>
+                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+
                 {selectGameModeToShowComponent()}
                 <div className="chart">
                   <Line
@@ -932,6 +943,11 @@ function Ladderboard(props) {
                     </h5>
                   </div>
                 </div>
+                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <div>
+                  <h4>Total Keystrokes: {otherUserData.total_key_strokes}</h4>
+                </div>
+                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
                 {selectGameModeToShowComponent()}
                 <div className="chart">
                   <Line
@@ -1066,6 +1082,11 @@ function Ladderboard(props) {
                     </h5>
                   </div>
                 </div>
+                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <div>
+                  <h4>Total Keystrokes: {otherUserData.total_key_strokes}</h4>
+                </div>
+                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
                 {selectGameModeToShowComponent()}
                 <div className="chart">
                   <Line
@@ -1177,7 +1198,7 @@ function Ladderboard(props) {
               setSortBy("highest");
               sortByHighest();
             }}
-            className={"btn  mr-2"}
+            className={"btn mr-2 sort-button"}
             style={
               sortBy === "highest"
                 ? {
@@ -1190,6 +1211,7 @@ function Ladderboard(props) {
                   }
             }
           >
+            <i className="fas fa-chart-line sort-button-icon"></i>
             Highest
           </button>
           <button
@@ -1197,7 +1219,7 @@ function Ladderboard(props) {
               setSortBy("wpm");
               sortByWpm();
             }}
-            className={"btn  mr-2"}
+            className={"btn mr-2 sort-button"}
             style={
               sortBy === "wpm"
                 ? {
@@ -1210,14 +1232,15 @@ function Ladderboard(props) {
                   }
             }
           >
-            WPM
+            <i className="fas fa-chart-area sort-button-icon"></i>
+            Average
           </button>
           <button
             onClick={() => {
               setSortBy("races");
               sortByRaces();
             }}
-            className={"btn  mr-2"}
+            className={"btn mr-2 sort-button"}
             style={
               sortBy === "races"
                 ? {
@@ -1230,6 +1253,7 @@ function Ladderboard(props) {
                   }
             }
           >
+            <i className="fas fa-flag-checkered sort-button-icon"></i>
             Races
           </button>
           <button
@@ -1237,7 +1261,7 @@ function Ladderboard(props) {
               setSortBy("time");
               sortByTime();
             }}
-            className={"btn  mr-2"}
+            className={"btn mr-2 sort-button"}
             style={
               sortBy === "time"
                 ? {
@@ -1250,6 +1274,7 @@ function Ladderboard(props) {
                   }
             }
           >
+            <i className="fas fa-stopwatch sort-button-icon"></i>
             Time
           </button>
         </div>

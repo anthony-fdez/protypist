@@ -137,3 +137,14 @@
   top: 15px;
   left: 270px;
 }
+
+.sort-button {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  position: relative;
+}
+.sort-button-icon {
+  margin-right: 10px;
+}
