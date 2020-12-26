@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "@material-ui/core";
+
 import axios from "axios";
 
 import {
@@ -687,19 +689,28 @@ function Header(props) {
           style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <h5 className="text-left mt-3 ml-3">Are you sure?</h5>
-        <div className="d-flex justify-content-between">
-          <button
+        <div className="d-flex justify-content-between mt-3 mb-3">
+          <Button
+            variant="contained"
+            style={{
+              color: colorFiles.fontColor,
+              backgroundColor: colorFiles.backgroundColor,
+            }}
             onClick={() => setIsLogOutMenuOpen(false)}
-            className="log-out-buttons btn btn-light"
+            className="log-out-buttons ml-3"
           >
             No
-          </button>
-          <button
+          </Button>
+          <Button
+            style={{
+              color: "white",
+            }}
+            variant="contained"
             onClick={() => logOut()}
-            className="log-out-buttons btn btn-danger"
+            className="log-out-buttons bg-danger mr-3"
           >
             Yes
-          </button>
+          </Button>
         </div>
         <hr
           style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
@@ -735,25 +746,25 @@ function Header(props) {
   const logInButton = () => {
     return (
       <div className="log-in-button">
-        <button
+        <Button
+          variant="contained"
+          style={{
+            display: "flex",
+            backgroundColor: colorFiles.primaryColor,
+            color: "white",
+          }}
           onClick={() => {
             dispatch({
               type: "SET_OPEN_LOGIN_MENU",
               payload: true,
             });
           }}
-          className="btn btn-light"
-          style={{
-            display: "flex",
-            backgroundColor: colorFiles.primaryColor,
-            color: colorFiles.contrastFontColor,
-            border: "none",
-            color: "white",
-          }}
         >
-          <IconLogin />
-          Login
-        </button>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <IconLogin />
+            Login
+          </div>
+        </Button>
       </div>
     );
   };
@@ -766,7 +777,8 @@ function Header(props) {
         }}
         className="log-in-button"
       >
-        <button
+        <Button
+          variant="contained"
           style={{
             display: "flex",
             backgroundColor: colorFiles.primaryColor,
@@ -778,7 +790,7 @@ function Header(props) {
         >
           <IconLogout />
           Logout
-        </button>
+        </Button>
       </div>
     );
   };
