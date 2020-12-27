@@ -80,12 +80,12 @@ function SideMenu() {
       {isMultiplayerMenuOpen && (
         <Multiplayer isOpen={closeTheComponentCallback} />
       )}
-      <div className="app-name">
+      <a href="https://protypist.app" className="app-name">
         <h3 style={{ color: colorFiles.primaryColor }}>Pro</h3>
         <h3 style={{ color: colorFiles.fontColor }}>
           <Typical wraper="b" steps={["Typist"]} />
         </h3>
-      </div>
+      </a>
 
       <div className="navigation-buttons">
         <Link className="left-menu-link" to="/">
