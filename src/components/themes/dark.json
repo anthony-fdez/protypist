@@ -1,12 +1,12 @@
 {
   "backgroundColor": "rgb(10,10,10)",
-  "secondaryBackgroundColor": "rgb(30,30,30)",
-  "secondSecondaryBackgroundColor": "rgb(40,40,40)",
-  "primaryColor": "rgb(0,100,255)",
+  "secondaryBackgroundColor": "rgb(25,25,25)",
+  "secondSecondaryBackgroundColor": "rgb(35,35,35)",
+  "primaryColor": "rgb(0,140,255)",
   "contrastFontColor": "rgb(250,250,250)",
   "fontColor": "rgb(255,255,255)",
   "hrColor": "rgb(255,255,255)",
   "correctColor": "rgb(255,255,255)",
-  "noneColor": "rgb(130,130,130)",
-  "wrongColor": "rgb(255, 0, 0)"
+  "noneColor": "rgb(100,100,100)",
+  "wrongColor": "rgb(255, 70, 70)"
 }

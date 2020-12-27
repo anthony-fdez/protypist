@@ -6,6 +6,7 @@ import axios from "axios";
 import socketClient from "socket.io-client";
 
 import { IconMessages, IconSend } from "@tabler/icons";
+import { Button } from "@material-ui/core";
 
 const server = "https://protypist.herokuapp.com";
 // const server = "http://localhost:5000";
@@ -535,7 +536,8 @@ const Multiplayer = (props) => {
               border: `1px solid ${colorFiles.hrColor}`,
             }}
           ></input>
-          <button
+          <Button
+            variant="contained"
             onClick={() => {
               setIsJoinRoomOpen(false);
               socket.emit(
@@ -552,12 +554,11 @@ const Multiplayer = (props) => {
               right: "15px",
               bottom: "10px",
               backgroundColor: colorFiles.primaryColor,
-              color: colorFiles.fontColor,
+              color: "white",
             }}
-            className="btn btn-light"
           >
             Join Room
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -712,8 +713,8 @@ const Multiplayer = (props) => {
               value={textMessage}
               placeholder="Send a message"
             ></input>
-            <button
-              className="btn btn-light input-button"
+            <Button
+              className="input-button"
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
@@ -724,7 +725,7 @@ const Multiplayer = (props) => {
               }}
             >
               <IconSend />
-            </button>
+            </Button>
           </form>
         </div>
       </div>
@@ -783,7 +784,8 @@ const Multiplayer = (props) => {
             <h4 style={{ marginRight: "2rem" }} className="room-to-join-text">
               Room: {roomToJoin}
             </h4>
-            <button
+            <Button
+              variant="contained"
               onClick={() => {
                 setIsJoinRoomOpen(true);
               }}
@@ -796,9 +798,10 @@ const Multiplayer = (props) => {
               className="btn btn-light"
             >
               Change Room
-            </button>
+            </Button>
             {!isRunning && (
-              <button
+              <Button
+                variant="contained"
                 onClick={() => {
                   setIsReady((isReady) => !isReady);
                   socket.emit("setReady", { room: roomToJoin });
@@ -810,21 +813,22 @@ const Multiplayer = (props) => {
                         backgroundColor: "rgb(106,220,153)",
                         color: colorFiles.fontColor,
                         marginRight: "1rem",
-                        width: "110px",
+                        width: "130px",
                       }
                     : {
                         backgroundColor: "rgb(223, 71, 89)",
-                        color: colorFiles.fontColor,
+                        color: "white",
                         marginRight: "1rem",
-                        width: "110px",
+                        width: "130px",
                       }
                 }
               >
                 {isReady ? "Ready" : "Get Ready"}
-              </button>
+              </Button>
             )}
 
-            <button
+            <Button
+              variant="contained"
               onClick={() => {
                 setUnreadMessages(0);
                 setIsChatRoomOpen(true);
@@ -848,7 +852,7 @@ const Multiplayer = (props) => {
               </div>
               <IconMessages style={{ marginRight: "10px" }} />
               Messages
-            </button>
+            </Button>
           </div>
           <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
           {peopleInRoom !== undefined &&

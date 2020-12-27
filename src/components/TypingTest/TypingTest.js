@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import quotes from "../data/quotes.json";
+import { Button } from "@material-ui/core";
+import "../stats/stats.css";
 
 function TypingTest() {
   const dispatch = useDispatch();
@@ -669,7 +671,8 @@ function TypingTest() {
               What you just typed:
             </h4>
             <div>
-              <button
+              <Button
+                variant="contained"
                 onClick={() => {
                   setSpanArray(blankSpanArray);
                   setInfoAboutCharacter(blankInfoArray);
@@ -684,16 +687,17 @@ function TypingTest() {
                   setProgress(1);
                   calculateAccuracy();
                 }}
-                className="btn btn-light mr-3"
+                className="mr-3"
                 style={{
                   backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
+                  color: "white",
                   border: "none",
                 }}
               >
                 Type Again
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="contained"
                 onClick={() => {
                   setSpanArray(blankSpanArray);
                   setInfoAboutCharacter(blankInfoArray);
@@ -702,15 +706,14 @@ function TypingTest() {
                   setRealMistakes(0);
                   calculateAccuracy();
                 }}
-                className="btn btn-light"
                 style={{
                   backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
+                  color: "white",
                   border: "none",
                 }}
               >
                 New Text
-              </button>
+              </Button>
             </div>
           </div>
           <div className="info-about-text-bottom">
@@ -779,11 +782,11 @@ function TypingTest() {
             </div>
           </div>
         </div>
-        <button
+        <Button
+          variant="contained"
           onClick={() => {
             selectNewRandomText();
           }}
-          className="btn btn-light"
           style={
             isRunning || finished
               ? {
@@ -803,7 +806,7 @@ function TypingTest() {
           }
         >
           Type A Different Text
-        </button>
+        </Button>
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}
