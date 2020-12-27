@@ -5,6 +5,7 @@ import Header from "../header/header";
 import Qwerty from "../inScreenKeyboard/qwerty";
 import Dvorak from "../inScreenKeyboard/dvorak";
 import Colemak from "../inScreenKeyboard/colemak";
+import { Button } from "@material-ui/core";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -85,7 +86,8 @@ function Typing10Second() {
               bottom: "5px",
             }}
           >
-            <button
+            <Button
+              variant="contained"
               onClick={() => {
                 setDificulty("EASY");
                 dispatch({
@@ -95,27 +97,26 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "EASY"
-                  ? "difficulty-btn btn btn-light mr-2"
-                  : "difficulty-btn btn btn-light mr-2"
+                  ? "difficulty-btn mr-2"
+                  : "difficulty-btn mr-2"
               }
               style={
                 dificulty === "EASY"
                   ? {
                       backgroundColor: colorFiles.primaryColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
                   : {
                       backgroundColor:
                         colorFiles.secondSecondaryBackgroundColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
               }
             >
               Easy
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               onClick={() => {
                 setDificulty("NORMAL");
                 dispatch({
@@ -125,27 +126,26 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "NORMAL"
-                  ? "difficulty-btn btn btn-light mr-2"
-                  : "difficulty-btn btn btn-light mr-2"
+                  ? "difficulty-btn mr-2"
+                  : "difficulty-btn mr-2"
               }
               style={
                 dificulty === "NORMAL"
                   ? {
                       backgroundColor: colorFiles.primaryColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
                   : {
                       backgroundColor:
                         colorFiles.secondSecondaryBackgroundColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
               }
             >
               Normal
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               onClick={() => {
                 setDificulty("HARD");
                 dispatch({
@@ -155,27 +155,26 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "HARD"
-                  ? "difficulty-btn btn btn-light mr-2"
-                  : "difficulty-btn btn btn-light mr-2"
+                  ? "difficulty-btn mr-2"
+                  : "difficulty-btn mr-2"
               }
               style={
                 dificulty === "HARD"
                   ? {
                       backgroundColor: colorFiles.primaryColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
                   : {
                       backgroundColor:
                         colorFiles.secondSecondaryBackgroundColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
               }
             >
               Hard
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               onClick={() => {
                 setDificulty("EPIC");
                 dispatch({
@@ -185,26 +184,24 @@ function Typing10Second() {
               }}
               className={
                 dificulty === "EPIC"
-                  ? "difficulty-btn btn btn-light mr-2"
-                  : "difficulty-btn btn btn-light mr-2"
+                  ? "difficulty-btn mr-2"
+                  : "difficulty-btn mr-2"
               }
               style={
                 dificulty === "EPIC"
                   ? {
                       backgroundColor: colorFiles.primaryColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
                   : {
                       backgroundColor:
                         colorFiles.secondSecondaryBackgroundColor,
-                      border: "none",
                       color: colorFiles.fontColor,
                     }
               }
             >
               Epic
-            </button>
+            </Button>
           </div>
         </div>
       </div>
