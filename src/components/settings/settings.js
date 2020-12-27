@@ -10,6 +10,7 @@ import FontSizeCard from "./fontSize";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
+import { Button } from "@material-ui/core";
 
 function Settings() {
   const length = useSelector((state) => state.lengthReducerNormal);
@@ -62,7 +63,7 @@ function Settings() {
               <p>Change how many word to type in the normal test.</p>
             </div>
             <div>
-              <button
+              <Button
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT", payload: 25 });
                 }}
@@ -75,8 +76,8 @@ function Settings() {
                 className="btn btn-light"
               >
                 25
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT", payload: 50 });
                 }}
@@ -89,8 +90,8 @@ function Settings() {
                 className={"btn btn-light"}
               >
                 50
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT", payload: 75 });
                 }}
@@ -104,7 +105,7 @@ function Settings() {
                 className="btn btn-light"
               >
                 75
-              </button>
+              </Button>
             </div>
             <h1 className="text">{length}</h1>
           </div>
@@ -120,7 +121,7 @@ function Settings() {
               <p>Change how many word to type in the advanced test.</p>
             </div>
             <div>
-              <button
+              <Button
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 25 });
                 }}
@@ -133,8 +134,8 @@ function Settings() {
                 className="btn btn-light"
               >
                 25
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 50 });
                 }}
@@ -147,8 +148,8 @@ function Settings() {
                 className="btn btn-light"
               >
                 50
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => {
                   dispatch({ type: "SET_TEXT_LENGHT_ADVANCED", payload: 75 });
                 }}
@@ -162,36 +163,48 @@ function Settings() {
                 className="btn btn-light"
               >
                 75
-              </button>
+              </Button>
             </div>
             <h1 className="text">{lenghtAdvanced}</h1>
           </div>
-          <div
-            className={"settings-card-words"}
-            style={
-              instaDeath
-                ? {
-                    backgroundColor: "rgb(235, 64, 52)",
-                    color: "white",
-                  }
-                : {
-                    backgroundColor: colorFiles.secondaryBackgroundColor,
-                    color: colorFiles.fontColor,
-                  }
-            }
-            onClick={() => {
-              dispatch({ type: "ACTIVATE_INSTA_DEATH!" });
-            }}
-          >
-            <div style={{ textAlign: "left" }}>
-              <h2>Instant Death Mode</h2>
-              <p>
-                This is for those who want to take their accuracy to the next
-                level. If you make an error you lose. And no data will be saved
-                if you lose
-              </p>
-            </div>
-            <h1 className="text">{instaDeath ? "ON" : "OFF"}</h1>
+          <div style={{ cursor: "pointer" }}>
+            <Button
+              className={"settings-card-words"}
+              style={
+                instaDeath
+                  ? {
+                      backgroundColor: "rgb(235, 64, 52)",
+                      color: "white",
+                      width: "100%",
+                      padding: "2rem",
+                      marginTop: "1rem",
+                      marginButtom: "1rem",
+                      transition: "0.3s",
+                    }
+                  : {
+                      backgroundColor: colorFiles.secondaryBackgroundColor,
+                      color: colorFiles.fontColor,
+                      width: "100%",
+                      padding: "2rem",
+                      marginTop: "1rem",
+                      marginButtom: "1rem",
+                      transition: "0.3s",
+                    }
+              }
+              onClick={() => {
+                dispatch({ type: "ACTIVATE_INSTA_DEATH!" });
+              }}
+            >
+              <div style={{ textAlign: "left" }}>
+                <h2>Instant Death Mode</h2>
+                <p>
+                  This is for those who want to take their accuracy to the next
+                  level. If you make an error you lose. And no data will be
+                  saved if you lose
+                </p>
+              </div>
+              <h1 className="text">{instaDeath ? "ON" : "OFF"}</h1>
+            </Button>
           </div>
         </div>
         {isLoggedIn && (
@@ -256,39 +269,49 @@ function Settings() {
         <FontFamilyCard />
         <FontSizeCard />
         <div style={{ cursor: "pointer" }} className="container">
-          <div
+          <Button
             onClick={() => {
               dispatch({ type: "SET_KEYBOARD_ON_SCREEN" });
             }}
             className={"settings-card-words"}
             style={{
+              width: "100%",
+              padding: "2rem",
+              marginTop: "1rem",
+              marginButtom: "1rem",
+              transition: "0.3s",
               backgroundColor: colorFiles.secondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
           >
-            <div style={{ textAlign: "left" }}>
+            <div style={{ textAlign: "left", width: "100%" }}>
               <h2>On Screen Keyboard</h2>
               <p>Hide or show the Keyboard on the screen.</p>
             </div>
             <h1 className="text">{keyboardOnScreen ? "ON" : "OFF"}</h1>
-          </div>
+          </Button>
         </div>
         <KeyboardLayout />
         <div
           style={{ cursor: "pointer", paddingBottom: "6rem" }}
           className="container"
         >
-          <div
+          <Button
             onClick={() => {
               dispatch({ type: "REAL_TIME_WPM" });
             }}
             className={"settings-card-words"}
             style={{
+              width: "100%",
+              padding: "2rem",
+              marginTop: "1rem",
+              marginButtom: "1rem",
+              transition: "0.3s",
               backgroundColor: colorFiles.secondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
           >
-            <div style={{ textAlign: "left" }}>
+            <div style={{ textAlign: "left", width: "100%" }}>
               <h2>Real Time WPM</h2>
               <p>
                 Choose whether you want to see your speed as you type or not.
@@ -299,7 +322,7 @@ function Settings() {
               </p>
             </div>
             <h1 className="text">{realTimeWPM ? "ON" : "OFF"}</h1>
-          </div>
+          </Button>
         </div>
         <div
           style={{
