@@ -689,7 +689,7 @@ function Header(props) {
           style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
         ></hr>
         <h5 className="text-left mt-3 ml-3">Are you sure?</h5>
-        <div className="d-flex justify-content-between mt-3 mb-3">
+        <div className="d-flex justify-content-between">
           <Button
             variant="contained"
             style={{
