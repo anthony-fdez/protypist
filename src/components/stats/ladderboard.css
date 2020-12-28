@@ -13,6 +13,7 @@
 }
 .ladderboard-header {
   display: flex;
+  align-items: center;
 }
 .Ladderboard-hidden {
   margin: auto;

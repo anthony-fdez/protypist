@@ -1160,6 +1160,7 @@ function Ladderboard(props) {
       ></div>
       <div>
         <div className="ladderboard-header">
+          <i className="fas fa-medal fa-2x mr-3"></i>
           <h2>Leaderboard</h2>
           {isLoading && (
             <div
@@ -1320,7 +1321,9 @@ function Ladderboard(props) {
                     }
               }
             >
-              <h4 className="ladderboard-number-item">{index + 1}</h4>
+              <h4 className="ladderboard-number-item">
+                {index === 0 ? <i class="fas fa-trophy"></i> : index + 1}
+              </h4>
               <h4 className="ladderboard-name-item">
                 {user.name}
                 {user.account === true && (

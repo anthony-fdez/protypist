@@ -8,6 +8,7 @@ import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import ReplayText from "../replayText/replayText";
+import { Button } from "@material-ui/core";
 
 function Stats() {
   const dispatch = useDispatch();
@@ -981,7 +982,8 @@ function Stats() {
           }}
           className="statistics-select-buttons"
         >
-          <div
+          <Button
+            variant="contained"
             onClick={() => {
               setIsTypingGameStatisticsShown(true);
               setIsTyping200StatisticsShown(false);
@@ -997,10 +999,19 @@ function Stats() {
             }
             style={
               isTypingGameStatisticsShown
-                ? { backgroundColor: colorFiles.primaryColor }
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    transition: "0.2s",
+                    marginRight: "1rem",
+                    padding: "10px",
+                    color: "white",
+                  }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
                     color: colorFiles.fontColor,
+                    transition: "0.2s",
+                    marginRight: "1rem",
+                    padding: "10px",
                   }
             }
           >
@@ -1008,9 +1019,10 @@ function Stats() {
               style={{ position: "absolute", left: "20px" }}
               className="fas fa-quote-left"
             ></i>
-            <h4 style={{ pointerEvents: "none" }}>Quotes</h4>
-          </div>
-          <div
+            <h5 style={{ pointerEvents: "none" }}>Quotes</h5>
+          </Button>
+          <Button
+            variant="contained"
             onClick={() => {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(true);
@@ -1026,10 +1038,19 @@ function Stats() {
             }
             style={
               isTyping200StatisticsShown
-                ? { backgroundColor: colorFiles.primaryColor }
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    transition: "0.2s",
+                    marginRight: "1rem",
+                    padding: "10px",
+                    color: "white",
+                  }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
                     color: colorFiles.fontColor,
+                    transition: "0.2s",
+                    marginRight: "1rem",
+                    padding: "10px",
                   }
             }
           >
@@ -1037,9 +1058,10 @@ function Stats() {
               style={{ position: "absolute", left: "20px" }}
               className="fas fa-biking"
             ></i>
-            <h4 style={{ pointerEvents: "none" }}>Top 200</h4>
-          </div>
-          <div
+            <h5 style={{ pointerEvents: "none" }}>Top 200</h5>
+          </Button>
+          <Button
+            variant="contained"
             onClick={() => {
               setIsTypingGameStatisticsShown(false);
               setIsTyping200StatisticsShown(false);
@@ -1055,10 +1077,17 @@ function Stats() {
             }
             style={
               isTyping1000StatisticsShown
-                ? { backgroundColor: colorFiles.primaryColor }
+                ? {
+                    backgroundColor: colorFiles.primaryColor,
+                    transition: "0.2s",
+                    padding: "10px",
+                    color: "white",
+                  }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
                     color: colorFiles.fontColor,
+                    transition: "0.2s",
+                    padding: "10px",
                   }
             }
           >
@@ -1066,8 +1095,8 @@ function Stats() {
               style={{ position: "absolute", left: "20px" }}
               className="fas fa-car-side"
             ></i>
-            <h4 style={{ pointerEvents: "none" }}>Top 1000</h4>
-          </div>
+            <h5 style={{ pointerEvents: "none" }}>Top 1000</h5>
+          </Button>
           {/* <div className="vl"></div>
           <div
             onClick={() => {

@@ -8,6 +8,7 @@ import Typical from "react-typical";
 
 import { useLocation } from "react-router-dom";
 import Multiplayer from "../multiplayer/multiplayer";
+import { Button } from "@material-ui/core";
 
 function SideMenu() {
   const dispatch = useDispatch();
@@ -218,7 +219,7 @@ function SideMenu() {
               ></i>
               <h5>Stats</h5>
             </div>
-            <div
+            <Button
               onClick={() => {
                 dispatch({
                   type: "TOGGLE_OPENING_LADDERBOARD_MENU",
@@ -228,10 +229,16 @@ function SideMenu() {
               style={{
                 backgroundColor: colorFiles.secondSecondaryBackgroundColor,
                 color: colorFiles.fontColor,
+                padding: "10px",
+                transition: "0.2s",
               }}
             >
-              <h5>Leaderboard</h5>
-            </div>
+              <i
+                style={{ position: "absolute", left: "15px" }}
+                className="fas fa-medal"
+              ></i>
+              <p style={{ margin: 0 }}>Leaderboard</p>
+            </Button>
           </div>
         </Link>
         <Link

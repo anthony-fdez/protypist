@@ -140,7 +140,7 @@ h5 {
   transition: 0.3s;
 }
 .typing-test-bottom-button:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
 }
 .navigation-button-active {
   align-items: center;

@@ -33,6 +33,7 @@ h2 {
   align-items: center;
   overflow: hidden;
   transition: 0.3s;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 .settings-card-words:hover {
   transform: translateY(-3px);
@@ -51,6 +52,7 @@ h2 {
   cursor: pointer;
   height: 8rem;
   position: relative;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 .settings-card-themes-open {
   border-radius: 5px;
@@ -65,6 +67,7 @@ h2 {
   cursor: pointer;
   height: 18rem;
   position: relative;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 .theme-card-info {
   position: absolute;
