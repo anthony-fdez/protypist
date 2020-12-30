@@ -31,15 +31,16 @@ const Mobile = () => {
   return (
     <div className="mobile-warning">
       <div>
-        <h1 style={{ fontSize: "70px" }}>Sorry :(</h1>
-        <h4 style={{ fontSize: "35px" }}>
-          This website wasn't made for mobile.
+        <h1 style={{ fontSize: "90px" }}>Sorry :(</h1>
+        <h4 style={{ fontSize: "40px", fontStyle: "italic" }}>
+          This website is not meant to use on mobile.
         </h4>
         <p className="info-text">
           This is a website to practice typing, and since the most people type
           in their computers it wouldn't make sense to make the site mobile
           compatible. If you want to check out the source code{" "}
           <a
+            target="blank"
             style={{ fontStyle: "italic" }}
             href="https://github.com/anthony-fdez/protypist"
           >
