@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import SideMenu from "./components/SideMenu/SideMenu";
 import { BrowserRouter as Router } from "react-router-dom";
 import allReducers from "./reducers/rootReducer";
+import { isMobile } from "react-device-detect";
 
 const persistedState = localStorage.getItem("reduxState")
   ? JSON.parse(localStorage.getItem("reduxState"))
@@ -26,6 +27,30 @@ store.subscribe(() => {
 
 //action
 
+const Mobile = () => {
+  return (
+    <div className="mobile-warning">
+      <div>
+        <h1 style={{ fontSize: "70px" }}>Sorry :(</h1>
+        <h4 style={{ fontSize: "35px" }}>
+          This website wasn't made for mobile.
+        </h4>
+        <p className="info-text">
+          This is a website to practice typing, and since the most people type
+          in their computers it wouldn't make sense to make the site mobile
+          compatible. If you want to check out the source code{" "}
+          <a
+            style={{ fontStyle: "italic" }}
+            href="https://github.com/anthony-fdez/protypist"
+          >
+            take a look at it here!
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const Index = () => {
   const [openAnimation, setOpenAnimation] = useState(false);
 
@@ -33,24 +58,21 @@ const Index = () => {
     setOpenAnimation(true);
   }, []);
 
-  return (
-    <div className={openAnimation ? "index" : "index-loading"}>
-      <Provider store={store}>
-        <div className="mobile-warning">
-          <div>
-            <h1>Sorry :(</h1>
-            <h4>This website wasn't made for mobile.</h4>
-          </div>
-        </div>
-        <Router>
-          <div style={{ display: "flex" }}>
-            <SideMenu />
-            <App />
-          </div>
-        </Router>
-      </Provider>
-    </div>
-  );
+  if (isMobile) {
+    return <Mobile />;
+  } else
+    return (
+      <div className={openAnimation ? "index" : "index-loading"}>
+        <Provider store={store}>
+          <Router>
+            <div style={{ display: "flex" }}>
+              <SideMenu />
+              <App />
+            </div>
+          </Router>
+        </Provider>
+      </div>
+    );
 };
 
 ReactDOM.render(

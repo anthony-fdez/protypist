@@ -13,31 +13,30 @@ code {
     monospace;
 }
 
-@media only screen and (max-width: 800px) {
-  .mobile-warning {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background-color: rgb(31, 31, 31);
-    color: white;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    padding: 2rem;
-    padding-bottom: 200px;
-  }
+.mobile-warning {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(10, 10, 10);
+  color: white;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 2rem;
+  padding-bottom: 200px;
+  font-size: 30px;
 }
-@media only screen and (min-width: 801px) {
-  .mobile-warning {
-    z-index: -1;
-    pointer-events: none;
-    position: absolute;
-    opacity: 0;
-  }
+.info-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 4rem;
+  text-align: center;
 }
 
 .index {
