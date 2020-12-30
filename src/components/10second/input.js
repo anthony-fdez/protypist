@@ -19,8 +19,6 @@ function Input(props) {
   const [addSecond, setAddSecond] = useState(false);
   const [highestScore, setHighestScore] = useState(0);
   const [countingUpSeconds, setCountingUpSeconds] = useState(0); //the counting up seconds are to calculate the words per minut
-  const [wpm, setWPM] = useState(0);
-  const [keyPressed, setKeyPressed] = useState(0);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [timePlaying, setTimePlaying] = useState(0);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
@@ -209,11 +207,6 @@ function Input(props) {
 
   useEffect(() => {
     const calculateWordPerMinute = () => {
-      if (isRunning) {
-        let wordsPerMinute = (score / countingUpSeconds) * 60;
-        setWPM(wordsPerMinute);
-      }
-
       if (isLoggedIn && isRunning) {
         const headers = {
           Authorization: jwt,
@@ -347,9 +340,6 @@ function Input(props) {
   /*================== Check for equal word ==================*/
 
   const checkForEqualWord = (e) => {
-    setKeyPressed((keyPressed) => {
-      return keyPressed + 1;
-    });
     if (isRunning) {
       if (e.target.value === randomWord) {
         e.target.value = "";
@@ -372,7 +362,6 @@ function Input(props) {
         setIsRunning(true);
         setScore(0);
         setTimePlaying(0);
-        setWPM(0);
         e.target.value = "";
       }
     }

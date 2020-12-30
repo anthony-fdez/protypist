@@ -90,7 +90,6 @@ function SideMenu() {
 
       <div className="navigation-buttons">
         <Link className="left-menu-link" to="/">
-          <a href="/"></a>
           <div
             style={{
               backgroundColor: checkButtonStyle("/"),
@@ -119,7 +118,6 @@ function SideMenu() {
           </div>
         </Link>
         <Link className="left-menu-link" to="/10seconds">
-          <a href="/10seconds"></a>
           <div
             style={{
               backgroundColor: checkButtonStyle("/10seconds"),
@@ -137,7 +135,6 @@ function SideMenu() {
           </div>
         </Link>
         <Link className="left-menu-link" to="/200">
-          <a href="/200"></a>
           <div
             style={{
               backgroundColor: checkButtonStyle("/200"),
@@ -153,7 +150,6 @@ function SideMenu() {
           </div>
         </Link>
         <Link className="left-menu-link" to="/1000">
-          <a href="/1000"></a>
           <div
             style={{
               backgroundColor: checkButtonStyle("/1000"),
@@ -169,7 +165,6 @@ function SideMenu() {
           </div>
         </Link>
         <Link className="left-menu-link" to="/custom">
-          <a href="/custom"></a>
           <div
             onClick={() => {
               dispatch({
@@ -203,8 +198,6 @@ function SideMenu() {
           Stats & Leaderboard
         </p>
         <Link className="left-menu-link" to="/stats">
-          <a href="/stats"></a>
-
           <div
             style={{
               backgroundColor: checkButtonStyle("/stats"),
@@ -246,7 +239,6 @@ function SideMenu() {
           to="/settings"
           style={{ position: "absolute", width: "200px", bottom: "2rem" }}
         >
-          <a href="/settings"></a>
           <div
             style={{
               backgroundColor: checkButtonStyle("/settings"),
