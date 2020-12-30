@@ -39,3 +39,13 @@ code {
     opacity: 0;
   }
 }
+
+.index {
+  transform: scale(1);
+  transition: 600ms ease-out;
+}
+.index-loading {
+  transform: scale(1.1);
+  transition: 600ms ease-out;
+  filter: brightness(40%);
+}

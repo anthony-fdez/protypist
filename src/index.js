@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -26,22 +26,36 @@ store.subscribe(() => {
 
 //action
 
+const Index = () => {
+  const [openAnimation, setOpenAnimation] = useState(false);
+
+  useEffect(() => {
+    setOpenAnimation(true);
+  }, []);
+
+  return (
+    <div className={openAnimation ? "index" : "index-loading"}>
+      <Provider store={store}>
+        <div className="mobile-warning">
+          <div>
+            <h1>Sorry :(</h1>
+            <h4>This website wasn't made for mobile.</h4>
+          </div>
+        </div>
+        <Router>
+          <div style={{ display: "flex" }}>
+            <SideMenu />
+            <App />
+          </div>
+        </Router>
+      </Provider>
+    </div>
+  );
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <div className="mobile-warning">
-        <div>
-          <h1>Sorry :(</h1>
-          <h4>This website wasn't made for mobile.</h4>
-        </div>
-      </div>
-      <Router>
-        <div style={{ display: "flex" }}>
-          <SideMenu />
-          <App />
-        </div>
-      </Router>
-    </Provider>
+    <Index />
   </React.StrictMode>,
   document.getElementById("root")
 );
