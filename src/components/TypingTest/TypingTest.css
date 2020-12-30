@@ -237,9 +237,10 @@
     margin-right: auto;
     height: 303px;
     pointer-events: none;
-    transition: 0.6s;
+    transition: 0.3s;
     z-index: 2;
-    transform: translateY(400px);
+    transform: scale(0.8);
+    opacity: 0;
   }
   .about-the-text-shown {
     transition: 0.6s;
@@ -591,11 +592,11 @@
     margin-left: auto;
     margin-right: auto;
     height: 303px;
-    opacity: 1;
     pointer-events: none;
-    transition: 0.6s;
-    transform: translateY(500px);
+    transition: 0.3s;
     z-index: 4;
+    transform: scale(0.8);
+    opacity: 0;
   }
   .about-the-text-shown {
     transition: 0.6s;
