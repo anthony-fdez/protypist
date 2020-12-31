@@ -27,31 +27,6 @@ store.subscribe(() => {
 
 //action
 
-const Mobile = () => {
-  return (
-    <div className="mobile-warning">
-      <div>
-        <h1 style={{ fontSize: "90px" }}>Sorry :(</h1>
-        <h4 style={{ fontSize: "40px", fontStyle: "italic" }}>
-          This website is not meant to use on mobile.
-        </h4>
-        <p className="info-text">
-          This is a website to practice typing, and since the most people type
-          in their computers it wouldn't make sense to make the site mobile
-          compatible. If you want to check out the source code{" "}
-          <a
-            target="blank"
-            style={{ fontStyle: "italic" }}
-            href="https://github.com/anthony-fdez/protypist"
-          >
-            take a look at it here!
-          </a>
-        </p>
-      </div>
-    </div>
-  );
-};
-
 const Index = () => {
   const [openAnimation, setOpenAnimation] = useState(false);
 
@@ -59,8 +34,35 @@ const Index = () => {
     setOpenAnimation(true);
   }, []);
 
+  const mobile = () => {
+    return (
+      <div
+        className={openAnimation ? "mobile-warning" : "mobile-warning-loading"}
+      >
+        <div>
+          <h1 style={{ fontSize: "90px" }}>Sorry :(</h1>
+          <h4 style={{ fontSize: "40px", fontStyle: "italic" }}>
+            This website was not meant to be used on mobile.
+          </h4>
+          <p className="info-text">
+            This is a website to practice typing, and since the most people type
+            in their computers it wouldn't make sense to make the site mobile
+            compatible. If you want to check out the source code{" "}
+            <a
+              target="blank"
+              style={{ fontStyle: "italic", textDecoration: "underline" }}
+              href="https://github.com/anthony-fdez/protypist"
+            >
+              take a look at it here!
+            </a>
+          </p>
+        </div>
+      </div>
+    );
+  };
+
   if (isMobile) {
-    return <Mobile />;
+    return mobile();
   } else
     return (
       <div className={openAnimation ? "index" : "index-loading"}>

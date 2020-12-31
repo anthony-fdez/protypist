@@ -29,7 +29,29 @@ code {
   padding: 2rem;
   padding-bottom: 300px;
   font-size: 30px;
+  transition: 600ms;
 }
+
+.mobile-warning-loading {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(10, 10, 10);
+  color: white;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 2rem;
+  padding-bottom: 300px;
+  font-size: 30px;
+  transition: 600ms;
+  transform: scale(1.4);
+}
+
 .info-text {
   position: absolute;
   bottom: 0;
