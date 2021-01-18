@@ -699,7 +699,7 @@ function TypingTest() {
           />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h4 style={{ display: "flex", alignItems: "center" }}>
-              {quoteSource}
+              Source: {quoteSource}
             </h4>
             <div>
               <Button
