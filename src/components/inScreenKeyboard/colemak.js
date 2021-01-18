@@ -1,39 +1,10 @@
 import React from "react";
 import "./keyboard.css";
 import axios from "axios";
+import useKeyPress from "../functions/useKeyPress";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-function useKeyPress(targetKey) {
-  const [keyPressed, setKeyPressed] = useState(false);
-
-  function downHandler({ key }) {
-    if (key === targetKey) {
-      setKeyPressed(true);
-    }
-  }
-  const upHandler = ({ key }) => {
-    if (key === targetKey) {
-      setKeyPressed(false);
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("keydown", downHandler);
-    window.addEventListener("keyup", upHandler);
-    setTimeout(() => {
-      if (keyPressed === true) {
-        setKeyPressed(false);
-      }
-    }, 300);
-    return () => {
-      window.removeEventListener("keydown", downHandler);
-      window.removeEventListener("keyup", upHandler);
-    };
-  }, [keyPressed]);
-
-  return keyPressed;
-}
 
 function Colemak() {
   const dispatch = useDispatch();

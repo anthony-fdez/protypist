@@ -10,6 +10,8 @@ import axios from "axios";
 import quotes from "../data/quotes.json";
 import { Button } from "@material-ui/core";
 import "../stats/stats.css";
+import "../200/statsMenu.css";
+import { Line } from "react-chartjs-2";
 
 function TypingTest() {
   const dispatch = useDispatch();
@@ -40,6 +42,8 @@ function TypingTest() {
   const [finished, setFinished] = useState(false);
 
   //-----------------------------------------------
+  const [isFinished, setIsFinished] = useState(false);
+
   const [isRunning, setIsRunning] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -59,7 +63,8 @@ function TypingTest() {
   const [textTypedHistory, setTextTypedHistory] = useState([]);
   const [highestSpeed, setHighestSpeed] = useState();
   const [highestSpeedDate, setHighestSpeedDate] = useState();
-
+  const [rawWpm, setRawWpm] = useState();
+  const [chartData, setChartData] = useState();
   // const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
@@ -82,6 +87,43 @@ function TypingTest() {
     }
     return () => clearTimeout(myTimeout);
   }, [isErrorWarningShown, isSuccessWarningShown]);
+
+  const [
+    charactersTyped_raceHistory,
+    setCharactersTyped_raceHistory,
+  ] = useState(0);
+  const [time_raceHistory, setTime_raceHistory] = useState(0);
+  const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
+  const [mistakes_raceHistory, setMistakes_raceHistory] = useState(0);
+
+  useEffect(() => {
+    if (isRunning) {
+      setWpm_raceHistory(
+        wpm_raceHistory.concat({
+          wpm: calculateWordsPerMinute_raceHistory(),
+          time: time_raceHistory,
+        })
+      );
+      setCharactersTyped_raceHistory(0);
+    }
+  }, [time_raceHistory]);
+
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setTime_raceHistory((time_raceHistory) => time_raceHistory + 3);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
+
+  const calculateWordsPerMinute_raceHistory = () => {
+    let charactersPerSecond = charactersTyped_raceHistory / 3;
+    let wordsPerMinute = (charactersPerSecond * 60) / 5;
+    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
+
+    return wordsPerMinute;
+  };
 
   //========================================================
 
@@ -341,6 +383,7 @@ function TypingTest() {
       e.target.value = "";
       setIsRunning(false);
       setFinished(true);
+      setIsFinished(true);
       calculateAccuracy();
       dispatch({
         type: "SET_LATEST_WPM",
@@ -366,6 +409,7 @@ function TypingTest() {
         setSpanArray(blankSpanArray);
         setInfoAboutCharacter(blankInfoArray);
         setFinished(true);
+        setIsFinished(true);
         setSeconds(0);
         setMinutes(0);
         setTimeSeconds(0);
@@ -417,7 +461,7 @@ function TypingTest() {
         setTimeSeconds((seconds) => seconds + 1);
       }, 1000);
       return () => clearInterval(interval);
-    } else if (isRunning === false) {
+    } else if (isRunning === false && isFinished === false) {
       let time = timeSeconds;
       setTimeSeconds(time);
     }
@@ -541,6 +585,222 @@ function TypingTest() {
     } else return <Qwerty />;
   };
 
+  const resetData = () => {
+    setWpm_raceHistory([]);
+    setTime_raceHistory(0);
+    setCharactersTyped_raceHistory(0);
+
+    setSpanArray(blankSpanArray);
+    setInfoAboutCharacter(blankInfoArray);
+    setFinished(false);
+    setIsFinished(false);
+    setSeconds(0);
+    setMinutes(0);
+    setTimeSeconds(0);
+    setCharactersTyped(0);
+    setIsRunning(false);
+    setMistakes(0);
+    setRealMistakes(0);
+    setProgress(1);
+    calculateAccuracy();
+  };
+
+  useEffect(() => {
+    if (wpm_raceHistory.length !== 0) {
+      let wpm = [];
+      let time = [];
+
+      for (let i = 0; i < wpm_raceHistory.length; i++) {
+        wpm.push(wpm_raceHistory[i].wpm);
+        time.push(wpm_raceHistory[i].time);
+      }
+
+      let wpmCount = 0;
+      for (let i = 0; i < wpm.length; i++) {
+        wpmCount = wpmCount + wpm[i];
+      }
+
+      const raw = wpmCount / wpm.length;
+
+      setRawWpm(raw);
+
+      const data = {
+        labels: time,
+        datasets: [
+          {
+            label: "Raw WPM",
+            data: wpm,
+            borderWidth: 5,
+            backgroundColor: colorFiles.primaryColor,
+          },
+        ],
+      };
+
+      setChartData(data);
+    }
+  }, [isFinished]);
+
+  const statsMenu = () => {
+    return (
+      <div
+        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+        className={isFinished ? "stats-menu-shown" : "stats-menu-hidden"}
+      >
+        <h2>Results</h2>
+        <i
+          onClick={() => resetData()}
+          style={{ position: "absolute", top: "20px", right: "30px" }}
+          className="close-icon-login fas fa-times fa-2x"
+        ></i>
+        <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+        <div
+          style={{
+            padding: "0rem 2rem 2rem 2rem",
+            height: "60%",
+            width: "100%",
+            position: "relative",
+          }}
+        >
+          <Line
+            position={"absolute"}
+            width={100}
+            height={100}
+            options={{
+              maintainAspectRatio: false,
+              title: { text: "Words per minute over time", display: true },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 10,
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      display: true,
+                    },
+                  },
+                ],
+                xAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 15,
+                    },
+
+                    gridLines: {
+                      display: true,
+                    },
+                  },
+                ],
+              },
+            }}
+            data={chartData}
+          />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <h4 style={{ display: "flex", alignItems: "center" }}>
+              {quoteSource}
+            </h4>
+            <div>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setWpm_raceHistory([]);
+                  setTime_raceHistory(0);
+                  setCharactersTyped_raceHistory(0);
+                  setSpanArray(blankSpanArray);
+                  setInfoAboutCharacter(blankInfoArray);
+                  setFinished(false);
+                  setIsFinished(false);
+                  setSeconds(0);
+                  setMinutes(0);
+                  setTimeSeconds(0);
+                  setCharactersTyped(0);
+                  setIsRunning(false);
+                  setMistakes(0);
+                  setRealMistakes(0);
+                  setProgress(1);
+                  calculateAccuracy();
+                }}
+                className="mr-3"
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: "white",
+                  border: "none",
+                }}
+              >
+                Type Again
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setWpm_raceHistory([]);
+                  setTime_raceHistory(0);
+                  setCharactersTyped_raceHistory(0);
+                  setSpanArray(blankSpanArray);
+                  setInfoAboutCharacter(blankInfoArray);
+                  setFinished(false);
+                  setNewGame(true);
+                  setRealMistakes(0);
+                  calculateAccuracy();
+                  setIsFinished(false);
+                }}
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: "white",
+                  border: "none",
+                }}
+              >
+                New Text
+              </Button>
+            </div>
+          </div>
+          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "1rem",
+            }}
+          >
+            <h5>Time: {timeSeconds}s</h5>
+            <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
+            <h5>WPM: {wpm}</h5>
+            <h5>Mistakes: {latestErrors}</h5>
+            <h5>Accuracy: {accuracy}%</h5>
+          </div>
+          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          {!isLoggedIn && (
+            <h5
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <h5
+                style={{
+                  color: colorFiles.primaryColor,
+                  marginRight: "5px",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                }}
+                onClick={() => {
+                  dispatch({
+                    type: "SET_OPEN_LOGIN_MENU",
+                    payload: true,
+                  });
+                }}
+              >
+                Log in
+              </h5>
+              to save your results
+            </h5>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   const displayTheStatistics = () => {
     return (
       <div className="statistics">
@@ -614,11 +874,20 @@ function TypingTest() {
         }}
         className="TypingTest"
       >
+        {" "}
+        <div
+          onClick={() => resetData()}
+          className={
+            isFinished
+              ? "darkened-background-shown"
+              : "darkened-background-hidden"
+          }
+        ></div>
+        {statsMenu()}
         <Header />
         {displayTheStatistics()}
         {errorWarning()}
         {successWarning()}
-
         <hr
           style={
             finished || !isRunning
@@ -659,129 +928,6 @@ function TypingTest() {
         >
           {keyboardOnScreen && keyboardLayoutSelector()}
         </div>
-        <div
-          style={{
-            backgroundColor: colorFiles.secondaryBackgroundColor,
-            color: colorFiles.fontColor,
-          }}
-          className={handleThemInTheFinishedPage()}
-        >
-          <div className="about-text-header">
-            <h4 style={{ display: "flex", alignItems: "center" }}>
-              What you just typed:
-            </h4>
-            <div>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setSpanArray(blankSpanArray);
-                  setInfoAboutCharacter(blankInfoArray);
-                  setFinished(false);
-                  setSeconds(0);
-                  setMinutes(0);
-                  setTimeSeconds(0);
-                  setCharactersTyped(0);
-                  setIsRunning(false);
-                  setMistakes(0);
-                  setRealMistakes(0);
-                  setProgress(1);
-                  calculateAccuracy();
-                }}
-                className="mr-3"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: "white",
-                  border: "none",
-                }}
-              >
-                Type Again
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setSpanArray(blankSpanArray);
-                  setInfoAboutCharacter(blankInfoArray);
-                  setFinished(false);
-                  setNewGame(true);
-                  setRealMistakes(0);
-                  calculateAccuracy();
-                }}
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: "white",
-                  border: "none",
-                }}
-              >
-                New Text
-              </Button>
-            </div>
-          </div>
-          <div className="info-about-text-bottom">
-            <div className="info-about-text-text">
-              <hr
-                style={{
-                  marginTop: "0rem",
-                  backgroundColor: colorFiles.hrColor,
-                }}
-              ></hr>
-              <div>
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    margin: "auto",
-                  }}
-                >
-                  <div className="test-history-item">
-                    <h5 style={{ position: "absolute", left: "0vw" }}>
-                      Test #
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
-                    <h5 style={{ position: "absolute", right: "28vw" }}>
-                      Time
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "19vw" }}>
-                      Accuracy
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "11vw" }}>
-                      Mistakes
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
-                  </div>
-                </div>
-                <div className="tests-history">
-                  <div
-                    style={{
-                      backgroundColor: colorFiles.primaryColor,
-                      width: "100%",
-                      position: "relative",
-                      padding: "1rem",
-                    }}
-                    className="test-history-item"
-                  >
-                    <h4 style={{ paddingLeft: "1vw" }}></h4>
-                    <h4 style={{ position: "absolute", right: "36vw" }}>
-                      {wpm}wpm
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "28vw" }}>
-                      {seconds}s
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "12vw" }}>
-                      {realMistakes}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "20vw" }}>
-                      {accuracy}%
-                    </h4>
-                    <p style={{ position: "absolute", right: "1vw" }}>
-                      Just Now
-                    </p>
-                  </div>
-                  <h4 style={{ marginTop: "1rem" }}>Source: {quoteSource}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <Button
           variant="contained"
           onClick={() => {
@@ -819,6 +965,9 @@ function TypingTest() {
             }}
             onChange={(e) => {
               getAndCheckTheInput(e);
+              setCharactersTyped_raceHistory(
+                (charactersTyped_raceHistory) => charactersTyped_raceHistory + 1
+              );
             }}
             placeholder="The test will begin when you start typing!"
             className={finished ? "input-box-hidden" : "input-box-shown"}

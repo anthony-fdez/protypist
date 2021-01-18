@@ -17,7 +17,7 @@ const TenSecondsLeaderboard = (props) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      const headers = { Authorization: jwt };
+      const headers = { Authorizaticon: jwt };
 
       if (difficulty === "EASY") {
         Axios.get(

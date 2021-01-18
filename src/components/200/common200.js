@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./common200.css";
+import "./statsMenu.css";
 import Header from "../header/header";
 import Qwerty from "../inScreenKeyboard/qwerty";
 import Dvorak from "../inScreenKeyboard/dvorak";
@@ -8,6 +9,7 @@ import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
+import { Line } from "react-chartjs-2";
 
 function Common200() {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ function Common200() {
   const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   //state
+  const [isFinished, setIsFinished] = useState(false);
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
   const [charactersTyped, setCharactersTyped] = useState(0);
@@ -50,6 +53,28 @@ function Common200() {
   const [wpmAverageLast10races, setWpmAverage10races] = useState();
   const [wpmAverageAllTime, setWpmAverageAllTime] = useState();
   const [averageMistakes, setAverageMistakes] = useState();
+  const [rawWpm, setRawWpm] = useState();
+  const [chartData, setChartData] = useState();
+
+  const [
+    charactersTyped_raceHistory,
+    setCharactersTyped_raceHistory,
+  ] = useState(0);
+  const [time_raceHistory, setTime_raceHistory] = useState(0);
+  const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
+  const [mistakes_raceHistory, setMistakes_raceHistory] = useState(0);
+
+  useEffect(() => {
+    if (isRunning) {
+      setWpm_raceHistory(
+        wpm_raceHistory.concat({
+          wpm: calculateWordsPerMinute_raceHistory(),
+          time: time_raceHistory,
+        })
+      );
+      setCharactersTyped_raceHistory(0);
+    }
+  }, [time_raceHistory]);
 
   const postTheDataToTheServer = () => {
     if (isLoggedIn) {
@@ -128,6 +153,15 @@ function Common200() {
       let interval = setInterval(() => {
         setSeconds((seconds) => seconds + 1);
       }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setTime_raceHistory((time_raceHistory) => time_raceHistory + 3);
+      }, 3000);
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -281,6 +315,14 @@ function Common200() {
     return wordsPerMinute;
   };
 
+  const calculateWordsPerMinute_raceHistory = () => {
+    let charactersPerSecond = charactersTyped_raceHistory / 3;
+    let wordsPerMinute = (charactersPerSecond * 60) / 5;
+    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
+
+    return wordsPerMinute;
+  };
+
   //========= Check input //
 
   const getAndCheckTheInput = (e) => {
@@ -327,6 +369,7 @@ function Common200() {
       e.target.value = "";
       setIsRunning(false);
       setNewGame(true);
+      setIsFinished(true);
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
       setRealMistakes(0);
@@ -407,7 +450,7 @@ function Common200() {
         setTimeSeconds((seconds) => seconds + 1);
       }, 1000);
       return () => clearInterval(interval);
-    } else if (isRunning === false) {
+    } else if (isRunning === false && isFinished === false) {
       let time = timeSeconds;
       setTimeSeconds(time);
     }
@@ -459,6 +502,161 @@ function Common200() {
     } else return <Qwerty />;
   };
 
+  const resetData = () => {
+    setWpm_raceHistory([]);
+    setTime_raceHistory(0);
+    setCharactersTyped_raceHistory(0);
+    setIsRunning(false);
+    setNewGame(true);
+    setSpanArray(blankSpanArray);
+    setInfoAboutCharacter(blankInfoArray);
+    setCharactersTyped(0);
+    setMistakes(0);
+    setRealMistakes(0);
+    setProgress(1);
+    calculateAccuracy();
+    setSeconds(0);
+    setIsFinished(false);
+  };
+
+  useEffect(() => {
+    if (wpm_raceHistory.length !== 0) {
+      let wpm = [];
+      let time = [];
+
+      for (let i = 0; i < wpm_raceHistory.length; i++) {
+        wpm.push(wpm_raceHistory[i].wpm);
+        time.push(wpm_raceHistory[i].time);
+      }
+
+      let wpmCount = 0;
+      for (let i = 0; i < wpm.length; i++) {
+        wpmCount = wpmCount + wpm[i];
+      }
+
+      const raw = wpmCount / wpm.length;
+
+      setRawWpm(raw);
+
+      const data = {
+        labels: time,
+        datasets: [
+          {
+            label: "Raw WPM",
+            data: wpm,
+            borderWidth: 5,
+            backgroundColor: colorFiles.primaryColor,
+          },
+        ],
+      };
+
+      setChartData(data);
+    }
+  }, [isFinished]);
+
+  const statsMenu = () => {
+    return (
+      <div
+        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+        className={isFinished ? "stats-menu-shown" : "stats-menu-hidden"}
+      >
+        <h2>Results</h2>
+        <i
+          onClick={() => resetData()}
+          style={{ position: "absolute", top: "20px", right: "30px" }}
+          className="close-icon-login fas fa-times fa-2x"
+        ></i>
+        <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+        <div
+          style={{
+            padding: "0rem 2rem 2rem 2rem",
+            height: "60%",
+            width: "100%",
+            position: "relative",
+          }}
+        >
+          <Line
+            position={"absolute"}
+            width={100}
+            height={100}
+            options={{
+              maintainAspectRatio: false,
+              title: { text: "Words per minute over time", display: true },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 10,
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      display: true,
+                    },
+                  },
+                ],
+                xAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 15,
+                    },
+
+                    gridLines: {
+                      display: true,
+                    },
+                  },
+                ],
+              },
+            }}
+            data={chartData}
+          />
+          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "1rem",
+            }}
+          >
+            <h5>Time: {timeSeconds}s</h5>
+            <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
+            <h5>WPM: {wpm}</h5>
+            <h5>Mistakes: {latestErrors}</h5>
+            <h5>Accuracy: {accuracy}%</h5>
+          </div>
+          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          {!isLoggedIn && (
+            <h5
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <h5
+                style={{
+                  color: colorFiles.primaryColor,
+                  marginRight: "5px",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                }}
+                onClick={() => {
+                  dispatch({
+                    type: "SET_OPEN_LOGIN_MENU",
+                    payload: true,
+                  });
+                }}
+              >
+                Log in
+              </h5>
+              to save your results
+            </h5>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
       <div
@@ -468,6 +666,15 @@ function Common200() {
         }}
         className="TypingTest"
       >
+        <div
+          onClick={() => resetData()}
+          className={
+            isFinished
+              ? "darkened-background-shown"
+              : "darkened-background-hidden"
+          }
+        ></div>
+        {statsMenu()}
         <Header />
         <div className="statistics">
           <div className="d-flex">
@@ -561,6 +768,9 @@ function Common200() {
             autoFocus
             onChange={(e) => {
               getAndCheckTheInput(e);
+              setCharactersTyped_raceHistory(
+                (charactersTyped_raceHistory) => charactersTyped_raceHistory + 1
+              );
             }}
             placeholder="The test will begin when you start typing!"
             className="input-box-shown"

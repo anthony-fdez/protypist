@@ -187,6 +187,7 @@ function Stats() {
   const chartTypingGame = () => {
     if (dataTypingGame !== undefined) {
       const data = getTheDataForTheChart(dataTypingGame);
+      console.log(data);
       const wpm = data.wpm;
       const races = data.races;
       const mistakes = data.mistakes;
@@ -373,7 +374,7 @@ function Stats() {
             <Line
               options={{
                 responsive: true,
-                title: { text: "Words Per Minute ", display: true },
+                title: { text: "Words Per Minute", display: true },
                 scales: {
                   yAxes: [
                     {
