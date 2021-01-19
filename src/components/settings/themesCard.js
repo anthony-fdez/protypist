@@ -7,6 +7,8 @@ const ThemesCard = () => {
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
 
+  const currentTheme = useSelector((state) => state.currentThemeReducer);
+
   const [isThemesCardOpen, setIsThemesCardOpen] = useState(false);
 
   const [hoverDarkBlue, setHoverDarkBlue] = useState(false);
@@ -68,203 +70,227 @@ const ThemesCard = () => {
             <h4 style={{ marginRight: "1rem" }}>Dark: </h4>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkBlue
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(0, 100, 255)",
-                      color: "white",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "dark.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "dark.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkBlue(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "dark.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkBlue(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Blue
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkRed
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 0, 0)",
-                      color: "white",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "darkRed.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "darkRed.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkRed(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "darkRed.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkRed(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Red
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkGreen
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(0, 255, 0)",
-                      color: "black",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "green.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "green.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkGreen(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "green.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkGreen(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Green
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkPink
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 77, 210)",
-                      color: "black",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "pink.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "pink.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkPink(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "pink.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkPink(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Pink
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkOrange
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 85, 0)",
-                      color: "black",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "orange.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "orange.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkOrange(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "orange.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkOrange(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Orange
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkWhite
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(10, 10, 10)",
-                      color: "white",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "white.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "white.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkWhite(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "white.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkWhite(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               White
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkTerminal
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(0, 255, 0)",
-                      color: "black",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({
                   type: "SELECT_THEME",
                   payload: "terminal.json",
                 });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "terminal.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkTerminal(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "terminal.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkTerminal(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Terminal
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkDarker
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(0, 50, 255)",
-                      color: "black",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "darker.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "darker.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkDarker(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "darker.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkDarker(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Darker
@@ -272,25 +298,28 @@ const ThemesCard = () => {
 
             <button
               className="btn btn-themes"
-              style={
-                !hoverDarkAmoled
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(100, 100, 100)",
-                      color: "white",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "amoled.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "amoled.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverDarkAmoled(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "amoled.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverDarkAmoled(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Amoled
@@ -301,252 +330,270 @@ const ThemesCard = () => {
             <h4 style={{ marginRight: "0.8rem" }}>Light: </h4>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightBlue
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "rgb(0,100,255)",
-                      border: "1px solid rgb(0,100,255)",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({
                   type: "SELECT_THEME",
                   payload: "blueLght.json",
                 });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "blueLght.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightBLue(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "blueLght.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightBLue(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Blue
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightRed
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "rgb(255,30,0)",
-                      border: "1px solid rgb(255,30,0)",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "redLght.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "redLght.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightRed(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "redLght.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightRed(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Red
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightGreen
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "rgb(0, 255, 0)",
-                      border: "1px solid rgb(0, 255, 0)",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({
                   type: "SELECT_THEME",
                   payload: "greenLght.json",
                 });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "greenLght.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightGreen(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "greenLght.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightGreen(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Green
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightPink
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "rgb(255, 77, 210)",
-                      border: "1px solid rgb(255, 77, 210)",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({
                   type: "SELECT_THEME",
                   payload: "pinkLght.json",
                 });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "pinkLght.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightPink(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "pinkLght.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightPink(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Pink
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightOrange
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "rgb(255, 85, 0)",
-                      border: "1px solid rgb(255, 85, 0)",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({
                   type: "SELECT_THEME",
                   payload: "orangeLght.json",
                 });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "orangeLght.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverlightOrange(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "orangeLght.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverlightOrange(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Orange
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightBlack
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "black",
-                      border: "1px solid black",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "black.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "black.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightBlack(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "black.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightBlack(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Black
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightTerminal
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "rgb(0,255,0)",
-                      border: "1px solid rgb(0,255,0)",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({
                   type: "SELECT_THEME",
                   payload: "terminalLght.json",
                 });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "terminalLght.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightTerminal(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "terminalLght.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightTerminal(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Terminal
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightGray
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(255, 255, 255)",
-                      color: "rgb(50,50,50)",
-                      border: "1px solid rgb(50,50,50)",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({ type: "SELECT_THEME", payload: "gray.json" });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "gray.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightGray(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "gray.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightGray(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               Gray
             </button>
             <button
               className="btn btn-themes"
-              style={
-                !hoverLightWhite
-                  ? {
-                      backgroundColor: colorFiles.backgroundColor,
-                      color: colorFiles.fontColor,
-                    }
-                  : {
-                      backgroundColor: "rgb(200, 200, 200)",
-                      color: "rgb(0,0,0)",
-                      border: "1px solid black",
-                    }
-              }
+              style={{
+                backgroundColor: colorFiles.backgroundColor,
+                color: colorFiles.fontColor,
+              }}
               onClick={() => {
                 dispatch({
                   type: "SELECT_THEME",
                   payload: "whiteLght.json",
                 });
+                dispatch({
+                  type: "SET_CURRENT_THEME",
+                  payload: "whiteLght.json",
+                });
               }}
               onMouseEnter={() => {
-                setHoverLightWhite(true);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: "whiteLght.json",
+                });
               }}
               onMouseLeave={() => {
-                setHoverLightWhite(false);
+                dispatch({
+                  type: "SELECT_THEME",
+                  payload: currentTheme,
+                });
               }}
             >
               White

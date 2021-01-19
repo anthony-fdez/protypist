@@ -9,6 +9,15 @@ const themeReducer = (state = "dark.json", action) => {
   }
 };
 
+const currentThemeReducer = (state = "dark.json", action) => {
+  switch (action.type) {
+    case "SET_CURRENT_THEME":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const lengthReducerNormal = (state = 25, action) => {
   switch (action.type) {
     case "SET_TEXT_LENGHT":
@@ -382,6 +391,7 @@ const allKeysPressed = (
 const allReducers = combineReducers({
   lengthReducerAdvanced: lengthReducerAdvanced,
   themeReducer: themeReducer,
+  currentThemeReducer: currentThemeReducer,
   lengthReducerNormal: lengthReducerNormal,
   realTimeWPMReducer: realTimeWPMReducer,
   latestWPMReducer200: latestWPMReducer200,
