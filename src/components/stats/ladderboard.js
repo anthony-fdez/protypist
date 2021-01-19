@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import { Button } from "@material-ui/core";
 
 function Ladderboard(props) {
   const dispatch = useDispatch();
@@ -1194,12 +1195,13 @@ function Ladderboard(props) {
         <hr style={{ background: colorFiles.hrColor }}></hr>
         <div className="select-sort-method">
           <h4 className="mr-5">Sort by:</h4>
-          <button
+          <Button
+            variant="contained"
             onClick={() => {
               setSortBy("highest");
               sortByHighest();
             }}
-            className={"btn mr-2 sort-button"}
+            className={"mr-2 sort-button"}
             style={
               sortBy === "highest"
                 ? {
@@ -1214,13 +1216,14 @@ function Ladderboard(props) {
           >
             <i className="fas fa-chart-line sort-button-icon"></i>
             Highest
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="contained"
             onClick={() => {
               setSortBy("wpm");
               sortByWpm();
             }}
-            className={"btn mr-2 sort-button"}
+            className={"mr-2 sort-button"}
             style={
               sortBy === "wpm"
                 ? {
@@ -1235,13 +1238,14 @@ function Ladderboard(props) {
           >
             <i className="fas fa-chart-area sort-button-icon"></i>
             Average
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="contained"
             onClick={() => {
               setSortBy("races");
               sortByRaces();
             }}
-            className={"btn mr-2 sort-button"}
+            className={"mr-2 sort-button"}
             style={
               sortBy === "races"
                 ? {
@@ -1256,13 +1260,14 @@ function Ladderboard(props) {
           >
             <i className="fas fa-flag-checkered sort-button-icon"></i>
             Races
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="contained"
             onClick={() => {
               setSortBy("time");
               sortByTime();
             }}
-            className={"btn mr-2 sort-button"}
+            className={"mr-2 sort-button"}
             style={
               sortBy === "time"
                 ? {
@@ -1277,7 +1282,7 @@ function Ladderboard(props) {
           >
             <i className="fas fa-stopwatch sort-button-icon"></i>
             Time
-          </button>
+          </Button>
         </div>
         <hr style={{ background: colorFiles.hrColor }}></hr>
 

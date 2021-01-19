@@ -70,3 +70,7 @@ code {
   transition: 600ms ease-out;
   filter: brightness(40%);
 }
+
+p {
+  margin: 0;
+}
