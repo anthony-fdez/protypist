@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -68,7 +69,8 @@ const ThemesCard = () => {
         <div className="themes-buttons">
           <div className="dark-themes">
             <h4 style={{ marginRight: "1rem" }}>Dark: </h4>
-            <button
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -95,8 +97,9 @@ const ThemesCard = () => {
               }}
             >
               Blue
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -123,8 +126,9 @@ const ThemesCard = () => {
               }}
             >
               Red
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -151,8 +155,9 @@ const ThemesCard = () => {
               }}
             >
               Green
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -179,8 +184,9 @@ const ThemesCard = () => {
               }}
             >
               Pink
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -207,8 +213,9 @@ const ThemesCard = () => {
               }}
             >
               Orange
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -235,8 +242,9 @@ const ThemesCard = () => {
               }}
             >
               White
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -266,8 +274,9 @@ const ThemesCard = () => {
               }}
             >
               Terminal
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -294,9 +303,10 @@ const ThemesCard = () => {
               }}
             >
               Darker
-            </button>
+            </Button>
 
-            <button
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -323,12 +333,13 @@ const ThemesCard = () => {
               }}
             >
               Amoled
-            </button>
+            </Button>
           </div>
           <hr style={{ background: colorFiles.hrColor }}></hr>
           <div className="light-themes">
             <h4 style={{ marginRight: "0.8rem" }}>Light: </h4>
-            <button
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -358,8 +369,9 @@ const ThemesCard = () => {
               }}
             >
               Blue
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -386,8 +398,9 @@ const ThemesCard = () => {
               }}
             >
               Red
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -417,8 +430,9 @@ const ThemesCard = () => {
               }}
             >
               Green
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -448,8 +462,9 @@ const ThemesCard = () => {
               }}
             >
               Pink
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -479,8 +494,9 @@ const ThemesCard = () => {
               }}
             >
               Orange
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -507,8 +523,9 @@ const ThemesCard = () => {
               }}
             >
               Black
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -538,8 +555,9 @@ const ThemesCard = () => {
               }}
             >
               Terminal
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -566,8 +584,9 @@ const ThemesCard = () => {
               }}
             >
               Gray
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
               className="btn btn-themes"
               style={{
                 backgroundColor: colorFiles.backgroundColor,
@@ -597,7 +616,7 @@ const ThemesCard = () => {
               }}
             >
               White
-            </button>
+            </Button>
           </div>
         </div>
       </div>
