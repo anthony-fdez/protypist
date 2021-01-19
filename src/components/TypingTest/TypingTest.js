@@ -78,6 +78,7 @@ function TypingTest() {
   const [quoteSource, setQuoteSource] = useState();
   const [highestWpm, setHighestWpm] = useState(0);
   const [lowestWpm, setLowestWpm] = useState(0);
+  const [inputText, setInputText] = useState();
 
   useEffect(() => {
     let myTimeout;
@@ -346,7 +347,7 @@ function TypingTest() {
       calculateWordsPerMinute();
     }
     if (finished) {
-      e.target.value = "";
+      e = "";
     }
     if (mistakes > 10) {
       setMistakesAlert(true);
@@ -366,7 +367,7 @@ function TypingTest() {
       setProgress(1);
       calculateAccuracy();
       setInstaDeathFail(true);
-      e.target.value = "";
+      e = "";
 
       dispatch({
         type: "SET_LATEST_WPM",
@@ -376,13 +377,10 @@ function TypingTest() {
         type: "SET_LATEST_ERRORS_TYPING_GAME",
         payload: realMistakes,
       });
-    } else if (
-      e.target.value.length === textArrayCharacters.length &&
-      mistakes < 10
-    ) {
+    } else if (e.length === textArrayCharacters.length && mistakes < 10) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
-      e.target.value = "";
+      e = "";
       setIsRunning(false);
       setFinished(true);
       setIsFinished(true);
@@ -404,10 +402,10 @@ function TypingTest() {
       setIsRunning(true);
     }
 
-    let inputArray = e.target.value.split(" ");
+    let inputArray = e.split(" ");
     for (let i = 0; i < inputArray.length; i++) {
       if (inputArray[i].search("//f") !== -1) {
-        e.target.value = "";
+        e = "";
         setSpanArray(blankSpanArray);
         setInfoAboutCharacter(blankInfoArray);
         setFinished(true);
@@ -424,34 +422,28 @@ function TypingTest() {
       }
     }
 
-    setCharactersTyped(e.target.value.length);
+    setCharactersTyped(e.length);
     if (textArrayCharacters !== undefined) {
       if (
-        infoAboutCharacter[e.target.value.length] === false ||
-        infoAboutCharacter[e.target.value.length] === true
+        infoAboutCharacter[e.length] === false ||
+        infoAboutCharacter[e.length] === true
       ) {
         let array = [...infoAboutCharacter];
-        let arrayItem = array[e.target.value.length - 1];
+        let arrayItem = array[e.length - 1];
         arrayItem = null;
-        array[e.target.value.length] = arrayItem;
+        array[e.length] = arrayItem;
         setInfoAboutCharacter(array);
-      } else if (
-        e.target.value[e.target.value.length - 1] ===
-        textArrayCharacters[e.target.value.length - 1]
-      ) {
+      } else if (e[e.length - 1] === textArrayCharacters[e.length - 1]) {
         let array = [...infoAboutCharacter];
-        let arrayItem = array[e.target.value.length - 1];
+        let arrayItem = array[e.length - 1];
         arrayItem = true;
-        array[e.target.value.length - 1] = arrayItem;
+        array[e.length - 1] = arrayItem;
         setInfoAboutCharacter(array);
-      } else if (
-        e.target.value[e.target.value.length - 1] !==
-        textArrayCharacters[e.target.value.length - 1]
-      ) {
+      } else if (e[e.length - 1] !== textArrayCharacters[e.length - 1]) {
         let array = [...infoAboutCharacter];
-        let arrayItem = array[e.target.value.length - 1];
+        let arrayItem = array[e.length - 1];
         arrayItem = false;
-        array[e.target.value.length - 1] = arrayItem;
+        array[e.length - 1] = arrayItem;
         setInfoAboutCharacter(array);
       }
     }
@@ -879,6 +871,27 @@ function TypingTest() {
     );
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setWpm_raceHistory([]);
+    setTime_raceHistory(0);
+    setCharactersTyped_raceHistory(0);
+    setSpanArray(blankSpanArray);
+    setInfoAboutCharacter(blankInfoArray);
+    setFinished(false);
+    setIsFinished(false);
+    setSeconds(0);
+    setMinutes(0);
+    setTimeSeconds(0);
+    setCharactersTyped(0);
+    setIsRunning(false);
+    setMistakes(0);
+    setRealMistakes(0);
+    setProgress(1);
+    calculateAccuracy();
+    setInputText("");
+  };
+
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
       <div
@@ -920,17 +933,6 @@ function TypingTest() {
           }
           className="hr-progress"
         ></hr>
-        {/* <p
-          className={
-            isRunning || finished
-              ? "alert-primary alert-hidden"
-              : "alert-primary alert-shown"
-          }
-        >
-          {isUserTyping
-            ? "Start typing... Start to type the text below whenever you are ready :)"
-            : "Click on the input box to start typing."}
-        </p> */}
         <p
           className={
             mistakesAlert
@@ -975,28 +977,53 @@ function TypingTest() {
           Type A Different Text
         </Button>
         <div className="input-zone">
-          <input
-            maxLength={textArrayCharacters && textArrayCharacters.length}
-            autoFocus
-            onFocus={(e) => {
-              setIsUserTyping(true);
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
             }}
-            onBlur={(e) => {
-              setIsUserTyping(false);
-            }}
-            onChange={(e) => {
-              getAndCheckTheInput(e);
-              setCharactersTyped_raceHistory(
-                (charactersTyped_raceHistory) => charactersTyped_raceHistory + 1
-              );
-            }}
-            placeholder="The test will begin when you start typing!"
-            className={finished ? "input-box-hidden" : "input-box-shown"}
-            style={{
-              color: colorFiles.fontColor,
-              borderBottom: `2px solid ${colorFiles.primaryColor}`,
-            }}
-          ></input>
+            className="input-zone-form"
+          >
+            <input
+              maxLength={textArrayCharacters && textArrayCharacters.length}
+              autoFocus
+              onFocus={() => {
+                setIsUserTyping(true);
+              }}
+              onBlur={() => {
+                setIsUserTyping(false);
+              }}
+              onChange={(e) => {
+                setInputText(e.target.value);
+                getAndCheckTheInput(e.target.value);
+                setCharactersTyped_raceHistory(
+                  (charactersTyped_raceHistory) =>
+                    charactersTyped_raceHistory + 1
+                );
+              }}
+              value={inputText}
+              placeholder="The test will begin when you start typing!"
+              className={finished ? "input-box-hidden" : "input-box-shown"}
+              style={{
+                color: colorFiles.fontColor,
+                borderBottom: `2px solid ${colorFiles.primaryColor}`,
+              }}
+            ></input>
+            <Button
+              type="button"
+              onClick={(e) => handleSubmit(e)}
+              variant="contained"
+              style={{
+                backgroundColor: colorFiles.primaryColor,
+                color: "white",
+                border: "none",
+                transition: "0.3s",
+                marginLeft: "1rem",
+              }}
+            >
+              Restart
+            </Button>
+          </form>
+
           <p className="alert-warning alert-tip">
             <strong>Tip:</strong> you can type //f to finish the current game.
           </p>

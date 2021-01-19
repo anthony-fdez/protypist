@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import { Button } from "@material-ui/core";
 
 function Common200() {
   const dispatch = useDispatch();
@@ -57,6 +58,8 @@ function Common200() {
   const [chartData, setChartData] = useState();
   const [highestWpm, setHighestWpm] = useState(0);
   const [lowestWpm, setLowestWpm] = useState(0);
+  const [inputText, setInputText] = useState();
+  const [isUserTyping, setIsUserTyping] = useState(true);
 
   const [
     charactersTyped_raceHistory,
@@ -341,7 +344,7 @@ function Common200() {
     if (realMistakes === 1 && instaDeath) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
-      e.target.value = "";
+      e = "";
       setIsRunning(false);
       setNewGame(true);
       setSpanArray(blankSpanArray);
@@ -361,13 +364,10 @@ function Common200() {
         type: "SET_LATEST_ERRORS_200",
         payload: realMistakes,
       });
-    } else if (
-      e.target.value.length === textArrayCharacters.length &&
-      mistakes < 10
-    ) {
+    } else if (e.length === textArrayCharacters.length && mistakes < 10) {
       calculateWordsPerMinute();
       setTimeSeconds(0);
-      e.target.value = "";
+      e = "";
       setIsRunning(false);
       setNewGame(true);
       setIsFinished(true);
@@ -395,10 +395,10 @@ function Common200() {
       setIsRunning(true);
     }
 
-    let inputArray = e.target.value.split(" ");
+    let inputArray = e.split(" ");
     for (let i = 0; i < inputArray.length; i++) {
       if (inputArray[i].search("//f") !== -1) {
-        e.target.value = "";
+        e = "";
         setIsRunning(false);
         setNewGame(true);
         setSpanArray(blankSpanArray);
@@ -412,34 +412,28 @@ function Common200() {
       }
     }
 
-    setCharactersTyped(e.target.value.length);
+    setCharactersTyped(e.length);
     if (textArrayCharacters !== undefined) {
       if (
-        infoAboutCharacter[e.target.value.length] === false ||
-        infoAboutCharacter[e.target.value.length] === true
+        infoAboutCharacter[e.length] === false ||
+        infoAboutCharacter[e.length] === true
       ) {
         let array = [...infoAboutCharacter];
-        let arrayItem = array[e.target.value.length - 1];
+        let arrayItem = array[e.length - 1];
         arrayItem = null;
-        array[e.target.value.length] = arrayItem;
+        array[e.length] = arrayItem;
         setInfoAboutCharacter(array);
-      } else if (
-        e.target.value[e.target.value.length - 1] ===
-        textArrayCharacters[e.target.value.length - 1]
-      ) {
+      } else if (e[e.length - 1] === textArrayCharacters[e.length - 1]) {
         let array = [...infoAboutCharacter];
-        let arrayItem = array[e.target.value.length - 1];
+        let arrayItem = array[e.length - 1];
         arrayItem = true;
-        array[e.target.value.length - 1] = arrayItem;
+        array[e.length - 1] = arrayItem;
         setInfoAboutCharacter(array);
-      } else if (
-        e.target.value[e.target.value.length - 1] !==
-        textArrayCharacters[e.target.value.length - 1]
-      ) {
+      } else if (e[e.length - 1] !== textArrayCharacters[e.length - 1]) {
         let array = [...infoAboutCharacter];
-        let arrayItem = array[e.target.value.length - 1];
+        let arrayItem = array[e.length - 1];
         arrayItem = false;
-        array[e.target.value.length - 1] = arrayItem;
+        array[e.length - 1] = arrayItem;
         setInfoAboutCharacter(array);
       }
     }
@@ -518,6 +512,25 @@ function Common200() {
     calculateAccuracy();
     setSeconds(0);
     setIsFinished(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setWpm_raceHistory([]);
+    setTime_raceHistory(0);
+    setCharactersTyped_raceHistory(0);
+    setSpanArray(blankSpanArray);
+    setInfoAboutCharacter(blankInfoArray);
+    setIsFinished(false);
+    setSeconds(0);
+    setTimeSeconds(0);
+    setCharactersTyped(0);
+    setIsRunning(false);
+    setMistakes(0);
+    setRealMistakes(0);
+    setProgress(1);
+    calculateAccuracy();
+    setInputText("");
   };
 
   useEffect(() => {
@@ -780,25 +793,57 @@ function Common200() {
           <strong>Slow Down...</strong>
           the test won't stop unless you have less than 10 mistakes
         </p>
-        <div className="text-to-type">{spanArray}</div>
+        <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
+          {spanArray}
+        </div>
         {keyboardOnScreen && keyboardLayoutSelector()}
         <div className="input-zone">
-          <input
-            maxLength={textArrayCharacters && textArrayCharacters.length}
-            autoFocus
-            onChange={(e) => {
-              getAndCheckTheInput(e);
-              setCharactersTyped_raceHistory(
-                (charactersTyped_raceHistory) => charactersTyped_raceHistory + 1
-              );
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
             }}
-            placeholder="The test will begin when you start typing!"
-            className="input-box-shown"
-            style={{
-              color: colorFiles.fontColor,
-              borderBottom: `2px solid ${colorFiles.primaryColor}`,
-            }}
-          ></input>
+            className="input-zone-form"
+          >
+            <input
+              maxLength={textArrayCharacters && textArrayCharacters.length}
+              autoFocus
+              onFocus={() => {
+                setIsUserTyping(true);
+              }}
+              onBlur={() => {
+                setIsUserTyping(false);
+              }}
+              onChange={(e) => {
+                setInputText(e.target.value);
+                getAndCheckTheInput(e.target.value);
+                setCharactersTyped_raceHistory(
+                  (charactersTyped_raceHistory) =>
+                    charactersTyped_raceHistory + 1
+                );
+              }}
+              value={inputText}
+              placeholder="The test will begin when you start typing!"
+              className={isFinished ? "input-box-hidden" : "input-box-shown"}
+              style={{
+                color: colorFiles.fontColor,
+                borderBottom: `2px solid ${colorFiles.primaryColor}`,
+              }}
+            ></input>
+            <Button
+              type="button"
+              onClick={(e) => handleSubmit(e)}
+              variant="contained"
+              style={{
+                backgroundColor: colorFiles.primaryColor,
+                color: "white",
+                border: "none",
+                transition: "0.3s",
+                marginLeft: "1rem",
+              }}
+            >
+              Restart
+            </Button>
+          </form>
           <p className="alert-warning alert-tip">
             <strong>Tip:</strong> you can type " //f" any time you want to
             restart the test. Or press F5, that will do too.
