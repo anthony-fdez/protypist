@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./TenSecondsLeaderboard.css";
 import { useSelector } from "react-redux";
 import Axios from "axios";
+import { Button } from "@material-ui/core";
 
 const TenSecondsLeaderboard = (props) => {
   const colors = useSelector((state) => state.themeReducer);
@@ -17,7 +18,9 @@ const TenSecondsLeaderboard = (props) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      const headers = { Authorizaticon: jwt };
+      const headers = {
+        Authorization: jwt,
+      };
 
       if (difficulty === "EASY") {
         Axios.get(
@@ -30,7 +33,7 @@ const TenSecondsLeaderboard = (props) => {
             setLeaderboardData(response.data.leaderboard_easy);
           })
           .catch((e) => {
-            console.log(e);
+            console.log(e.response);
           });
       } else if (difficulty === "NORMAL") {
         Axios.get(
@@ -116,9 +119,10 @@ const TenSecondsLeaderboard = (props) => {
         ></i>
       </div>
       <div style={{ textAlign: "center" }}>
-        <h3>Rank by mode</h3>
+        <h3 style={{ marginTop: "2rem" }}>Rank by mode</h3>
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-          <button
+          <Button
+            variant="contained"
             style={
               difficulty === "EASY"
                 ? {
@@ -138,12 +142,13 @@ const TenSecondsLeaderboard = (props) => {
                     border: "none",
                   }
             }
-            className="btn btn-light select-difficulty-button"
+            className="select-difficulty-button"
             onClick={() => setDifficulty("EASY")}
           >
             Easy
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="contained"
             style={
               difficulty === "NORMAL"
                 ? {
@@ -163,12 +168,13 @@ const TenSecondsLeaderboard = (props) => {
                     border: "none",
                   }
             }
-            className="btn btn-light select-difficulty-button"
+            className="select-difficulty-button"
             onClick={() => setDifficulty("NORMAL")}
           >
             Normal
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="contained"
             style={
               difficulty === "HARD"
                 ? {
@@ -188,12 +194,13 @@ const TenSecondsLeaderboard = (props) => {
                     border: "none",
                   }
             }
-            className="btn btn-light select-difficulty-button"
+            className="select-difficulty-button"
             onClick={() => setDifficulty("HARD")}
           >
             Hard
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="contained"
             style={
               difficulty === "EPIC"
                 ? {
@@ -213,24 +220,24 @@ const TenSecondsLeaderboard = (props) => {
                     border: "none",
                   }
             }
-            className="btn btn-light select-difficulty-button"
+            className="select-difficulty-button"
             onClick={() => setDifficulty("EPIC")}
           >
             Epic
-          </button>
+          </Button>
         </div>
       </div>
       <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
-      <div>
-        <div style={{ position: "relative", width: "80%", margin: "auto" }}>
-          <div className="test-history-item">
-            <h5 style={{ position: "absolute", left: "0vw" }}>Rank</h5>
-            <h5 style={{ position: "absolute", left: "5vw" }}>Name</h5>
-            <h5 style={{ position: "absolute", right: "16vw" }}>Score</h5>
-            <h5 style={{ position: "absolute", right: "8vw" }}>Longest</h5>
-            <h5 style={{ position: "absolute", right: "1vw" }}>Time</h5>
-          </div>
+
+      <div style={{ position: "relative", width: "80%", margin: "auto" }}>
+        <div className="test-history-item">
+          <h5 style={{ position: "absolute", left: "0vw" }}>Rank</h5>
+          <h5 style={{ position: "absolute", left: "5vw" }}>Name</h5>
+          <h5 style={{ position: "absolute", right: "16vw" }}>Score</h5>
+          <h5 style={{ position: "absolute", right: "8vw" }}>Longest</h5>
+          <h5 style={{ position: "absolute", right: "1vw" }}>Time</h5>
         </div>
+
         <div className="test-history-10seconds">
           {leaderboardData !== null &&
             leaderboardData.map((data, index) => {
@@ -241,9 +248,16 @@ const TenSecondsLeaderboard = (props) => {
                       ? {
                           backgroundColor: colorFiles.backgroundColor,
                           position: "relative",
-                          padding: "1rem",
+                          padding: "1.5rem",
+                          display: "flex",
+                          alignItems: "center",
                         }
-                      : { position: "relative", padding: "1rem" }
+                      : {
+                          position: "relative",
+                          padding: "1.5rem",
+                          display: "flex",
+                          alignItems: "center",
+                        }
                   }
                   className="test-history-item"
                   key={index}
