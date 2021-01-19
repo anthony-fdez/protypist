@@ -365,7 +365,6 @@ function Common200() {
       e.target.value.length === textArrayCharacters.length &&
       mistakes < 10
     ) {
-      console.log(mistakes);
       calculateWordsPerMinute();
       setTimeSeconds(0);
       e.target.value = "";

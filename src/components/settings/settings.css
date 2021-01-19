@@ -256,17 +256,18 @@ h2 {
   align-items: center;
 }
 .gitHub-link-div {
-  width: 200px;
+  width: 500px;
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
   align-items: center;
-  position: fixed;
+  margin: auto;
   left: 200px;
-  bottom: 16px;
+  right: 0px;
   padding: 5px;
+  margin-top: 2rem;
   text-decoration: none;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px;
   transition: 0.3s;
 }
 .gitHub-link {

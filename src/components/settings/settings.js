@@ -48,6 +48,23 @@ function Settings() {
         <h3 className="mt-5">Settings</h3>
         <ThemesCard />
         <LanguageCard />
+        <div
+          style={{
+            backgroundColor: colorFiles.primaryColor,
+            color: "white",
+          }}
+          className="gitHub-link-div"
+        >
+          <a
+            style={{ color: "white" }}
+            className="gitHub-link"
+            href="https://github.com/anthony-fdez/protypist"
+            target="blank"
+          >
+            <i className="fab fa-github gitHub-icon"></i>
+            GitHub Repo
+          </a>
+        </div>
 
         <div className="container mt-5">
           <h3>Typing Settings</h3>
@@ -323,23 +340,6 @@ function Settings() {
             </div>
             <h1 className="text">{realTimeWPM ? "ON" : "OFF"}</h1>
           </Button>
-        </div>
-        <div
-          style={{
-            backgroundColor: colorFiles.primaryColor,
-            color: "white",
-          }}
-          className="gitHub-link-div"
-        >
-          <a
-            style={{ color: "white" }}
-            className="gitHub-link"
-            href="https://github.com/anthony-fdez/protypist"
-            target="blank"
-          >
-            <i className="fab fa-github gitHub-icon"></i>
-            GitHub Repo
-          </a>
         </div>
       </div>
     </animated.div>
