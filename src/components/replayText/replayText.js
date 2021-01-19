@@ -7,6 +7,7 @@ import Colemak from "../inScreenKeyboard/colemak";
 import quotes from "../data/quotes.json";
 import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
+import { Button } from "@material-ui/core";
 
 const ReplayText = () => {
   const dispatch = useDispatch();
@@ -484,7 +485,8 @@ const ReplayText = () => {
           isReplayComponentShown ? "replay-text-shown" : "replay-text-hidden"
         }
       >
-        <button
+        <Button
+          variant="contained"
           onClick={() => {
             setSpanArray(blankSpanArray);
             setInfoAboutCharacter(blankInfoArray);
@@ -504,7 +506,7 @@ const ReplayText = () => {
             !finished
               ? {
                   backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
+                  color: colorFiles.backgroundColor,
                   position: "absolute",
                   right: "0px",
                   bottom: "30px",
@@ -516,7 +518,7 @@ const ReplayText = () => {
           }
         >
           Show Statistics
-        </button>
+        </Button>
         <div>
           {!finished && (
             <hr
@@ -582,7 +584,8 @@ const ReplayText = () => {
               This text info
             </h4>
             <div style={{ display: "flex" }}>
-              <button
+              <Button
+                variant="contained"
                 onClick={() => {
                   setSpanArray(blankSpanArray);
                   setInfoAboutCharacter(blankInfoArray);
@@ -600,11 +603,11 @@ const ReplayText = () => {
                 className="btn btn-light mr-3"
                 style={{
                   backgroundColor: colorFiles.primaryColor,
-                  color: colorFiles.contrastFontColor,
+                  color: colorFiles.backgroundColor,
                 }}
               >
                 Type Again
-              </button>
+              </Button>
               <i
                 onClick={() => setFinished(false)}
                 className="close-icon-login fas fa-times fa-2x"
@@ -638,11 +641,17 @@ const ReplayText = () => {
                   <div
                     style={{
                       backgroundColor: colorFiles.primaryColor,
+                      color: colorFiles.backgroundColor,
                       position: "relative",
                     }}
                     className="test-history-item"
                   >
-                    <h5 className="text-info-race-label">Latest</h5>
+                    <h5
+                      style={{ color: colorFiles.fontColor }}
+                      className="text-info-race-label"
+                    >
+                      Latest
+                    </h5>
                     <h4 style={{ paddingLeft: "1vw" }}>
                       {replayData !== null &&
                         replayData[replayData.length - 1].raceNumber}
@@ -669,7 +678,9 @@ const ReplayText = () => {
                         replayData[replayData.length - 1].accuracy
                       }%`}
                     </h4>
-                    <p style={{ position: "absolute", right: "1vw" }}>
+                    <p
+                      style={{ position: "absolute", right: "1vw", margin: 0 }}
+                    >
                       {" "}
                       {replayData !== null &&
                         replayData[replayData.length - 1].date}
@@ -678,12 +689,20 @@ const ReplayText = () => {
                   <div
                     style={{
                       backgroundColor: colorFiles.primaryColor,
+                      color: colorFiles.backgroundColor,
+                      display: "flex",
+                      alignItems: "center",
                       position: "relative",
                       marginTop: "1rem",
                     }}
                     className="test-history-item"
                   >
-                    <h5 className="text-info-race-label">Fastest</h5>
+                    <h5
+                      style={{ color: colorFiles.fontColor }}
+                      className="text-info-race-label"
+                    >
+                      Fastest
+                    </h5>
                     <h4 style={{ paddingLeft: "1vw" }}>
                       {fastestRace !== undefined && fastestRace.raceNumber}
                     </h4>
@@ -702,7 +721,9 @@ const ReplayText = () => {
                       {" "}
                       {`${fastestRace !== undefined && fastestRace.accuracy}%`}
                     </h4>
-                    <p style={{ position: "absolute", right: "1vw" }}>
+                    <p
+                      style={{ position: "absolute", right: "1vw", margin: 0 }}
+                    >
                       {" "}
                       {fastestRace !== undefined && fastestRace.date}
                     </p>
@@ -757,7 +778,13 @@ const ReplayText = () => {
                               {" "}
                               {`${data.accuracy}%`}
                             </h4>
-                            <p style={{ position: "absolute", right: "1vw" }}>
+                            <p
+                              style={{
+                                position: "absolute",
+                                right: "1vw",
+                                margin: 0,
+                              }}
+                            >
                               {" "}
                               {data.date}
                             </p>
