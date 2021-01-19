@@ -227,17 +227,29 @@ const TenSecondsLeaderboard = (props) => {
           </Button>
         </div>
       </div>
-      <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+      <hr
+        style={{
+          background: colorFiles.hrColor,
+          width: "80%",
+          marginBottom: 0,
+        }}
+      ></hr>
+
+      <div
+        className="info-10-seconds-leaderboard"
+        style={{
+          backgroundColor: colorFiles.secondaryBackgroundColor,
+          borderBottom: `1px solid ${colorFiles.hrColor}`,
+        }}
+      >
+        <h5 style={{ position: "absolute", left: "0vw" }}>Rank</h5>
+        <h5 style={{ position: "absolute", left: "5vw" }}>Name</h5>
+        <h5 style={{ position: "absolute", right: "16vw" }}>Score</h5>
+        <h5 style={{ position: "absolute", right: "8vw" }}>Longest</h5>
+        <h5 style={{ position: "absolute", right: "1vw" }}>Time</h5>
+      </div>
 
       <div style={{ position: "relative", width: "80%", margin: "auto" }}>
-        <div className="test-history-item">
-          <h5 style={{ position: "absolute", left: "0vw" }}>Rank</h5>
-          <h5 style={{ position: "absolute", left: "5vw" }}>Name</h5>
-          <h5 style={{ position: "absolute", right: "16vw" }}>Score</h5>
-          <h5 style={{ position: "absolute", right: "8vw" }}>Longest</h5>
-          <h5 style={{ position: "absolute", right: "1vw" }}>Time</h5>
-        </div>
-
         <div className="test-history-10seconds">
           {leaderboardData !== null &&
             leaderboardData.map((data, index) => {

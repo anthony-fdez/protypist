@@ -48,10 +48,29 @@
 }
 .test-history-10seconds {
   margin-top: 1rem;
+  margin-bottom: 5rem;
+  position: relative;
 }
 .ten-seconds-leaderboard-header {
   position: sticky;
   top: 0px;
   padding: 1rem;
   border-bottom: 1px solid rgb(129, 129, 129);
+}
+.ten-seconds-leaderboard-header {
+  z-index: 20;
+}
+.info-10-seconds-leaderboard {
+  position: sticky;
+  top: 80px;
+  width: 80%;
+  margin: auto;
+  z-index: 20;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+}
+.test-history-10seconds {
+  margin-top: 1rem;
 }
