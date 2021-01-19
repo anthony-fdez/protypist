@@ -55,6 +55,8 @@ function Common200() {
   const [averageMistakes, setAverageMistakes] = useState();
   const [rawWpm, setRawWpm] = useState();
   const [chartData, setChartData] = useState();
+  const [highestWpm, setHighestWpm] = useState(0);
+  const [lowestWpm, setLowestWpm] = useState(0);
 
   const [
     charactersTyped_raceHistory,
@@ -534,6 +536,22 @@ function Common200() {
         wpmCount = wpmCount + wpm[i];
       }
 
+      let highest = 0;
+      let lowest = 1000;
+
+      for (let i = 0; i < wpm.length; i++) {
+        if (wpm[i] > highest) {
+          highest = wpm[i];
+        }
+
+        if (wpm[i] < lowest) {
+          lowest = wpm[i];
+        }
+      }
+
+      setHighestWpm(highest);
+      setLowestWpm(lowest);
+
       const raw = wpmCount / wpm.length;
 
       setRawWpm(raw);
@@ -619,9 +637,12 @@ function Common200() {
               padding: "1rem",
             }}
           >
-            <h5>Time: {timeSeconds}s</h5>
             <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
             <h5>WPM: {wpm}</h5>
+            <h5>|</h5>
+            <h5>Highest: {highestWpm}</h5>
+            <h5>Lowest: {lowestWpm}</h5>
+            <h5>|</h5>
             <h5>Mistakes: {latestErrors}</h5>
             <h5>Accuracy: {accuracy}%</h5>
           </div>
