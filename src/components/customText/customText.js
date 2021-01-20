@@ -224,8 +224,8 @@ const CustomText = () => {
   useEffect(() => {
     if (isRunning) {
       let interval = setInterval(() => {
-        setTimeSeconds((seconds) => seconds + 1);
-      }, 1000);
+        setTimeSeconds((seconds) => seconds + 0.1);
+      }, 100);
       return () => clearInterval(interval);
     } else if (isRunning === false) {
       let time = timeSeconds;

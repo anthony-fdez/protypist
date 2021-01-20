@@ -356,7 +356,7 @@ const ReplayText = () => {
   useEffect(() => {
     if (isRunning) {
       let interval = setInterval(() => {
-        setTimeSeconds((seconds) => seconds + 1);
+        setTimeSeconds((seconds) => seconds + 0.1);
       }, 1000);
       return () => clearInterval(interval);
     } else if (isRunning === false) {
@@ -368,7 +368,7 @@ const ReplayText = () => {
   useEffect(() => {
     if (isRunning) {
       let interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
+        setSeconds((seconds) => seconds + 0.1);
       }, 1000);
       return () => clearInterval(interval);
     }

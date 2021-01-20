@@ -134,7 +134,7 @@ function TypingTest() {
     if (isLoggedIn) {
       const data = {
         wpm: calculateWordsPerMinute(),
-        time: timeSeconds,
+        time: Math.round(seconds * 100) / 100,
         mistakes: realMistakes,
         textTypedId: textTypedId,
         date: getTheDate(),
@@ -452,8 +452,8 @@ function TypingTest() {
   useEffect(() => {
     if (isRunning) {
       let interval = setInterval(() => {
-        setTimeSeconds((seconds) => seconds + 1);
-      }, 1000);
+        setTimeSeconds((seconds) => seconds + 0.1);
+      }, 100);
       return () => clearInterval(interval);
     } else if (isRunning === false && isFinished === false) {
       let time = timeSeconds;
@@ -464,8 +464,8 @@ function TypingTest() {
   useEffect(() => {
     if (isRunning) {
       let interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
-      }, 1000);
+        setSeconds((seconds) => seconds + 0.1);
+      }, 100);
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -731,6 +731,7 @@ function TypingTest() {
                   setRealMistakes(0);
                   setProgress(1);
                   calculateAccuracy();
+                  setInputText("");
                 }}
                 className="mr-3"
                 style={{
@@ -754,6 +755,7 @@ function TypingTest() {
                   setRealMistakes(0);
                   calculateAccuracy();
                   setIsFinished(false);
+                  setInputText("");
                 }}
                 style={{
                   backgroundColor: colorFiles.primaryColor,

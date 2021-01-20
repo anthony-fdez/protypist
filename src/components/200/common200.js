@@ -85,7 +85,7 @@ function Common200() {
     if (isLoggedIn) {
       const data = {
         wpm: calculateWordsPerMinute(),
-        time: seconds,
+        time: Math.round(seconds * 100) / 100,
         mistakes: realMistakes,
         date: getTheDate(),
         accuracy: calculateAccuracy(),
@@ -156,8 +156,8 @@ function Common200() {
   useEffect(() => {
     if (isRunning) {
       let interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
-      }, 1000);
+        setSeconds((seconds) => seconds + 0.1);
+      }, 100);
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -442,8 +442,8 @@ function Common200() {
   useEffect(() => {
     if (isRunning) {
       let interval = setInterval(() => {
-        setTimeSeconds((seconds) => seconds + 1);
-      }, 1000);
+        setTimeSeconds((seconds) => seconds + 0.1);
+      }, 100);
       return () => clearInterval(interval);
     } else if (isRunning === false && isFinished === false) {
       let time = timeSeconds;
