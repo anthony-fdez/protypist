@@ -16,19 +16,19 @@
 }
 .login-menu-open {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
   width: 350px;
   height: 500px;
   padding: 1rem;
   border-radius: 5px;
   z-index: 50;
   transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 200px;
+  top: 8vh;
 }
 .login-menu-closed {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
   width: 350px;
   height: 500px;
   padding: 1rem;
@@ -38,22 +38,26 @@
   pointer-events: none;
   opacity: 0;
   transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 200px;
+  top: 8vh;
 }
 .signUp-menu-open {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
   width: 350px;
   height: 490px;
   padding: 1rem;
   border-radius: 5px;
   z-index: 51;
   transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 200px;
+  top: 8vh;
 }
 .signUp-menu-closed {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
   width: 350px;
   height: 500px;
   padding: 1rem;
@@ -63,22 +67,26 @@
   pointer-events: none;
   opacity: 0;
   transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 200px;
+  top: 8vh;
 }
 .log-out-menu-open {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
   width: 350px;
   height: 385px;
   padding: 1rem;
   border-radius: 5px;
   z-index: 51;
   transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 200px;
+  top: 8vh;
 }
 .log-out-menu-closed {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
   width: 350px;
   height: 385px;
   padding: 1rem;
@@ -88,6 +96,10 @@
   pointer-events: none;
   opacity: 0;
   transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 200px;
+  top: 8vh;
 }
 .log-out-buttons {
   width: 100px;
@@ -331,7 +343,7 @@
   top: 0;
   left: 0;
   transition: 0.3s;
-  background-color: rgba(0, 0, 0, 0.603);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 .darkened-background-header-off {
   pointer-events: none;
