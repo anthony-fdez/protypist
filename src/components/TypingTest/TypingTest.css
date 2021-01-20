@@ -885,3 +885,18 @@
   align-items: center;
   position: relative;
 }
+.log-in-to-save-results {
+  width: 400px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.295);
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.log-in-to-save-results:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.495);
+  transition: 0.1s;
+  transform: translateY(-3px);
+}

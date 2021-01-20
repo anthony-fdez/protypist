@@ -665,25 +665,18 @@ function Common200() {
               style={{
                 display: "flex",
                 justifyContent: "center",
+                backgroundColor: colorFiles.primaryColor,
+                color: colorFiles.backgroundColor,
+              }}
+              className="log-in-to-save-results"
+              onClick={() => {
+                dispatch({
+                  type: "SET_OPEN_LOGIN_MENU",
+                  payload: true,
+                });
               }}
             >
-              <h5
-                style={{
-                  color: colorFiles.primaryColor,
-                  marginRight: "5px",
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                }}
-                onClick={() => {
-                  dispatch({
-                    type: "SET_OPEN_LOGIN_MENU",
-                    payload: true,
-                  });
-                }}
-              >
-                Log in
-              </h5>
-              to save your results
+              Log in to save your results
             </h5>
           )}
         </div>
