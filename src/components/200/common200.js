@@ -67,7 +67,6 @@ function Common200() {
   ] = useState(0);
   const [time_raceHistory, setTime_raceHistory] = useState(0);
   const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
-  const [mistakes_raceHistory, setMistakes_raceHistory] = useState(0);
 
   useEffect(() => {
     if (isRunning) {
@@ -354,6 +353,7 @@ function Common200() {
       calculateAccuracy();
       setCharactersTyped(0);
       setSeconds(0);
+      setInputText("");
 
       dispatch({
         type: "SET_LATEST_WPM_200",
@@ -377,7 +377,6 @@ function Common200() {
       setProgress(1);
       calculateAccuracy();
       setCharactersTyped(0);
-      setSeconds(0);
       dispatch({
         type: "SET_LATEST_WPM_200",
         payload: calculateWordsPerMinute(),
@@ -653,6 +652,9 @@ function Common200() {
             <h5>WPM: {wpm}</h5>
             <h5>|</h5>
             <h5>Highest: {highestWpm}</h5>
+            <h5>|</h5>
+            <h5>Time: {seconds}</h5>
+            <h5>|</h5>
             <h5>Lowest: {lowestWpm}</h5>
             <h5>|</h5>
             <h5>Mistakes: {latestErrors}</h5>

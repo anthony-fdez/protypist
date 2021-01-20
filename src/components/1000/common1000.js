@@ -318,6 +318,7 @@ function Common1000() {
       calculateAccuracy();
       setCharactersTyped(0);
       setSeconds(0);
+      setInputText("");
 
       dispatch({
         type: "SET_LATEST_WPM_1000",

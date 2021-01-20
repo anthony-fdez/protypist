@@ -367,6 +367,7 @@ function TypingTest() {
       setProgress(1);
       calculateAccuracy();
       setInstaDeathFail(true);
+      setInputText("");
       e = "";
 
       dispatch({
