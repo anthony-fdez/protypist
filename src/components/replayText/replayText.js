@@ -34,7 +34,7 @@ const ReplayText = () => {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
-  const [finished, setFinished] = useState(true);
+  const [finished, setFinished] = useState(false);
 
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
