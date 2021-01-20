@@ -377,6 +377,8 @@ function Common200() {
       setProgress(1);
       calculateAccuracy();
       setCharactersTyped(0);
+      setInputText("");
+
       dispatch({
         type: "SET_LATEST_WPM_200",
         payload: calculateWordsPerMinute(),

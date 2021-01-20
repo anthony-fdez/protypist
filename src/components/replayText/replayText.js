@@ -8,6 +8,7 @@ import quotes from "../data/quotes.json";
 import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 import { Button } from "@material-ui/core";
+import { Line } from "react-chartjs-2";
 
 const ReplayText = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,6 @@ const ReplayText = () => {
   const [charactersTyped, setCharactersTyped] = useState(0);
   const [spanArray, setSpanArray] = useState();
   const [blankInfoArray, setBlankInfoArray] = useState([]);
-  const [finished, setFinished] = useState(false);
 
   //-----------------------------------------------
   const [isRunning, setIsRunning] = useState(false);
@@ -51,6 +51,20 @@ const ReplayText = () => {
   const [progress, setProgress] = useState(1);
   const [realMistakes, setRealMistakes] = useState(0);
   const [textTypedId, setTextTypedId] = useState();
+  const [accuracy, setAccuracy] = useState(0);
+
+  const [isFinished, setIsFinished] = useState(false);
+  const [rawWpm, setRawWpm] = useState();
+  const [chartData, setChartData] = useState();
+  const [highestWpm, setHighestWpm] = useState(0);
+  const [lowestWpm, setLowestWpm] = useState(0);
+  const [inputText, setInputText] = useState();
+  const [
+    charactersTyped_raceHistory,
+    setCharactersTyped_raceHistory,
+  ] = useState(0);
+  const [time_raceHistory, setTime_raceHistory] = useState(0);
+  const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [instaDeathFail, setInstaDeathFail] = useState(false);
@@ -71,6 +85,35 @@ const ReplayText = () => {
       setIsLoading(false);
     }
   }, [replayData]);
+
+  useEffect(() => {
+    if (isRunning) {
+      setWpm_raceHistory(
+        wpm_raceHistory.concat({
+          wpm: calculateWordsPerMinute_raceHistory(),
+          time: time_raceHistory,
+        })
+      );
+      setCharactersTyped_raceHistory(0);
+    }
+  }, [time_raceHistory]);
+
+  const calculateWordsPerMinute_raceHistory = () => {
+    let charactersPerSecond = charactersTyped_raceHistory / 3;
+    let wordsPerMinute = (charactersPerSecond * 60) / 5;
+    wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
+
+    return wordsPerMinute;
+  };
+
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setTime_raceHistory((time_raceHistory) => time_raceHistory + 3);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
 
   const getTheDate = () => {
     const date = new Date();
@@ -93,7 +136,7 @@ const ReplayText = () => {
     if (isLoggedIn) {
       const data = {
         wpm: calculateWordsPerMinute(),
-        time: timeSeconds,
+        time: Math.round(seconds * 100) / 100,
         mistakes: realMistakes,
         textTypedId: textTypedId,
         date: getTheDate(),
@@ -116,7 +159,7 @@ const ReplayText = () => {
   };
 
   useEffect(() => {
-    if (finished) {
+    if (isFinished) {
       const DATA = { _id: replayData[0].textTypedId };
       const headers = {
         Authorization: jwt,
@@ -133,7 +176,7 @@ const ReplayText = () => {
           });
         });
     }
-  }, [finished, newGame]);
+  }, [isFinished, newGame]);
 
   useEffect(() => {
     if (text !== undefined) {
@@ -168,10 +211,10 @@ const ReplayText = () => {
       }
       setInfoAboutCharacter(spanArray);
     }
-  }, [newGame, finished, instaDeathFail]);
+  }, [newGame, isFinished, instaDeathFail]);
 
   useEffect(() => {
-    if (finished === true) {
+    if (isFinished === true) {
       setSpanArray(blankSpanArray);
     } else {
       setSpanArray(
@@ -183,7 +226,7 @@ const ReplayText = () => {
         )
       );
     }
-  }, [charactersTyped, textArrayCharacters, finished, instaDeathFail]);
+  }, [charactersTyped, textArrayCharacters, isFinished, instaDeathFail]);
 
   useEffect(() => {
     if (infoAboutCharacter !== undefined) {
@@ -243,7 +286,7 @@ const ReplayText = () => {
     if (realTimeWPM) {
       calculateWordsPerMinute();
     }
-    if (finished) {
+    if (isFinished) {
       e.target.value = "";
     }
     if (mistakes > 10) {
@@ -253,18 +296,19 @@ const ReplayText = () => {
     }
 
     if (realMistakes === 1 && instaDeath) {
+      calculateWordsPerMinute();
+      setTimeSeconds(0);
+      e.target.value = "";
+      setIsRunning(false);
+      setNewGame(true);
+      setIsFinished(true);
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
-      setSeconds(0);
-      setMinutes(0);
-      setTimeSeconds(0);
-      setCharactersTyped(0);
-      setMistakes(0);
       setRealMistakes(0);
       setProgress(1);
       calculateAccuracy();
-      setInstaDeathFail(true);
-      e.target.value = "";
+      setCharactersTyped(0);
+      setInputText("");
 
       dispatch({
         type: "SET_LATEST_WPM",
@@ -282,8 +326,16 @@ const ReplayText = () => {
       setTimeSeconds(0);
       e.target.value = "";
       setIsRunning(false);
-      setFinished(true);
+      setNewGame(true);
+      setIsFinished(true);
+      setSpanArray(blankSpanArray);
+      setInfoAboutCharacter(blankInfoArray);
+      setRealMistakes(0);
+      setProgress(1);
       calculateAccuracy();
+      setCharactersTyped(0);
+      setInputText("");
+
       dispatch({
         type: "SET_LATEST_WPM",
         payload: calculateWordsPerMinute(),
@@ -307,7 +359,7 @@ const ReplayText = () => {
         e.target.value = "";
         setSpanArray(blankSpanArray);
         setInfoAboutCharacter(blankInfoArray);
-        setFinished(true);
+        setIsFinished(true);
         setSeconds(0);
         setMinutes(0);
         setTimeSeconds(0);
@@ -357,7 +409,7 @@ const ReplayText = () => {
     if (isRunning) {
       let interval = setInterval(() => {
         setTimeSeconds((seconds) => seconds + 0.1);
-      }, 1000);
+      }, 100);
       return () => clearInterval(interval);
     } else if (isRunning === false) {
       let time = timeSeconds;
@@ -369,7 +421,7 @@ const ReplayText = () => {
     if (isRunning) {
       let interval = setInterval(() => {
         setSeconds((seconds) => seconds + 0.1);
-      }, 1000);
+      }, 100);
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -408,7 +460,7 @@ const ReplayText = () => {
   };
 
   const handleThemInTheFinishedPage = () => {
-    if (finished) {
+    if (isFinished) {
       return "about-the-text-shown-replay";
     } else return "about-the-text-hidden-replay";
   };
@@ -422,6 +474,145 @@ const ReplayText = () => {
       return <Colemak />;
     } else return <Qwerty />;
   };
+
+  const resetData = () => {
+    setWpm_raceHistory([]);
+    setTime_raceHistory(0);
+    setCharactersTyped_raceHistory(0);
+    setIsRunning(false);
+    setNewGame(true);
+    setSpanArray(blankSpanArray);
+    setInfoAboutCharacter(blankInfoArray);
+    setCharactersTyped(0);
+    setMistakes(0);
+    setRealMistakes(0);
+    setProgress(1);
+    calculateAccuracy();
+    setSeconds(0);
+    setIsFinished(false);
+    setInputText("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setWpm_raceHistory([]);
+    setTime_raceHistory(0);
+    setCharactersTyped_raceHistory(0);
+    setSpanArray(blankSpanArray);
+    setInfoAboutCharacter(blankInfoArray);
+    setIsFinished(false);
+    setSeconds(0);
+    setTimeSeconds(0);
+    setCharactersTyped(0);
+    setIsRunning(false);
+    setMistakes(0);
+    setRealMistakes(0);
+    setProgress(1);
+    calculateAccuracy();
+    setInputText("");
+  };
+
+  useEffect(() => {
+    if (wpm_raceHistory.length !== 0) {
+      let wpm = [];
+      let time = [];
+
+      for (let i = 0; i < wpm_raceHistory.length; i++) {
+        wpm.push(wpm_raceHistory[i].wpm);
+        time.push(wpm_raceHistory[i].time);
+      }
+
+      let wpmCount = 0;
+      for (let i = 0; i < wpm.length; i++) {
+        wpmCount = wpmCount + wpm[i];
+      }
+
+      let highest = 0;
+      let lowest = 1000;
+
+      for (let i = 0; i < wpm.length; i++) {
+        if (wpm[i] > highest) {
+          highest = wpm[i];
+        }
+
+        if (wpm[i] < lowest) {
+          lowest = wpm[i];
+        }
+      }
+
+      setHighestWpm(highest);
+      setLowestWpm(lowest);
+
+      const raw = wpmCount / wpm.length;
+
+      setRawWpm(raw);
+
+      const data = {
+        labels: time,
+        datasets: [
+          {
+            label: "Raw WPM",
+            data: wpm,
+            borderWidth: 5,
+            backgroundColor: colorFiles.primaryColor,
+          },
+        ],
+      };
+
+      setChartData(data);
+    }
+  }, [isFinished]);
+
+  useEffect(() => {
+    if (wpm_raceHistory.length !== 0) {
+      let wpm = [];
+      let time = [];
+
+      for (let i = 0; i < wpm_raceHistory.length; i++) {
+        wpm.push(wpm_raceHistory[i].wpm);
+        time.push(wpm_raceHistory[i].time);
+      }
+
+      let wpmCount = 0;
+      for (let i = 0; i < wpm.length; i++) {
+        wpmCount = wpmCount + wpm[i];
+      }
+
+      let highest = 0;
+      let lowest = 1000;
+
+      for (let i = 0; i < wpm.length; i++) {
+        if (wpm[i] > highest) {
+          highest = wpm[i];
+        }
+
+        if (wpm[i] < lowest) {
+          lowest = wpm[i];
+        }
+      }
+
+      setHighestWpm(highest);
+      setLowestWpm(lowest);
+
+      const raw = wpmCount / wpm.length;
+
+      setRawWpm(raw);
+
+      const data = {
+        labels: time,
+        datasets: [
+          {
+            label: "Raw WPM",
+            data: wpm,
+            borderWidth: 5,
+            backgroundColor: colorFiles.primaryColor,
+          },
+        ],
+      };
+
+      setChartData(data);
+    }
+  }, [isFinished]);
 
   const displayTheStatistics = () => {
     return (
@@ -459,7 +650,7 @@ const ReplayText = () => {
   };
 
   useEffect(() => {
-    setFinished(false);
+    setIsFinished(false);
   }, [isReplayComponentShown]);
 
   useEffect(() => {
@@ -473,6 +664,220 @@ const ReplayText = () => {
       });
     }
   }, [replayData]);
+
+  const testHistory = () => {
+    return (
+      <div className="info-about-text-bottom">
+        <div className="info-about-text-text">
+          <div
+            style={{
+              padding: "0rem 2rem 2rem 2rem",
+              height: "350px",
+              width: "100%",
+              position: "relative",
+            }}
+          >
+            <Line
+              position={"absolute"}
+              width={100}
+              height={100}
+              options={{
+                maintainAspectRatio: false,
+                title: { text: "Words per minute over time", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                      },
+
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                },
+              }}
+              data={chartData}
+            />
+            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "1rem",
+              }}
+            >
+              <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
+              <h5>WPM: {wpm}</h5>
+              <h5>|</h5>
+              <h5>Time: {Math.round(seconds * 100) / 100}s</h5>
+              <h5>Highest: {highestWpm}</h5>
+              <h5>Lowest: {lowestWpm}</h5>
+              <h5>|</h5>
+              <h5>Mistakes: {latestErrors}</h5>
+              <h5>Accuracy: {accuracy}%</h5>
+            </div>
+            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            {!isLoggedIn && (
+              <h5
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.backgroundColor,
+                }}
+                className="log-in-to-save-results"
+                onClick={() => {
+                  dispatch({
+                    type: "SET_OPEN_LOGIN_MENU",
+                    payload: true,
+                  });
+                }}
+              >
+                Log in to save your results
+              </h5>
+            )}
+          </div>
+
+          <div style={{ marginTop: "100px" }}>
+            <h4 style={{ textAlign: "center" }}>Fastest Race</h4>
+            <hr
+              style={{ width: "80%", backgroundColor: colorFiles.hrColor }}
+            ></hr>
+            <div style={{ position: "relative", width: "80%", margin: "auto" }}>
+              <div className="test-history-item">
+                <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
+                <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
+                <h5 style={{ position: "absolute", right: "28vw" }}>Time</h5>
+                <h5 style={{ position: "absolute", right: "19vw" }}>
+                  Accuracy
+                </h5>
+                <h5 style={{ position: "absolute", right: "11vw" }}>
+                  Mistakes
+                </h5>
+                <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
+              </div>
+            </div>
+            <div className="tests-history">
+              <div
+                style={{
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.fontColor,
+                  display: "flex",
+                  alignItems: "center",
+                  position: "relative",
+                  marginTop: "1rem",
+                }}
+                className="test-history-item"
+              >
+                <h4 style={{ paddingLeft: "1vw" }}>
+                  {fastestRace !== undefined && fastestRace.raceNumber}
+                </h4>
+                <h4 style={{ position: "absolute", right: "36vw" }}>
+                  {fastestRace !== undefined && fastestRace.wpm}
+                  wpm
+                </h4>
+                <h4 style={{ position: "absolute", right: "28vw" }}>
+                  {fastestRace !== undefined && fastestRace.time}s
+                </h4>
+                <h4 style={{ position: "absolute", right: "12vw" }}>
+                  {" "}
+                  {fastestRace !== undefined && fastestRace.mistakes}
+                </h4>
+                <h4 style={{ position: "absolute", right: "20vw" }}>
+                  {" "}
+                  {`${fastestRace !== undefined && fastestRace.accuracy}%`}
+                </h4>
+                <p style={{ position: "absolute", right: "1vw", margin: 0 }}>
+                  {" "}
+                  {fastestRace !== undefined && fastestRace.date}
+                </p>
+              </div>
+              <h4
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  marginTop: "2rem",
+                }}
+              >
+                History for this race
+              </h4>
+              <hr></hr>
+              <div style={{ marginBottom: "70px" }}>
+                {replayData !== null &&
+                  replayData
+                    .slice(0)
+                    .reverse()
+                    .map((data, index) => {
+                      return (
+                        <div
+                          style={
+                            index % 2 === 0
+                              ? {
+                                  backgroundColor:
+                                    colorFiles.secondaryBackgroundColor,
+                                  position: "relative",
+                                }
+                              : {
+                                  position: "relative",
+                                  backgroundColor: colorFiles.backgroundColor,
+                                }
+                          }
+                          className="test-history-item"
+                          key={index}
+                        >
+                          <h4 style={{ paddingLeft: "1vw" }}>
+                            {data.raceNumber}
+                          </h4>
+                          <h4 style={{ position: "absolute", right: "36vw" }}>
+                            {data.wpm}wpm
+                          </h4>
+                          <h4 style={{ position: "absolute", right: "28vw" }}>
+                            {data.time}s
+                          </h4>
+                          <h4 style={{ position: "absolute", right: "12vw" }}>
+                            {" "}
+                            {data.mistakes}
+                          </h4>
+                          <h4 style={{ position: "absolute", right: "20vw" }}>
+                            {" "}
+                            {`${data.accuracy}%`}
+                          </h4>
+                          <p
+                            style={{
+                              position: "absolute",
+                              right: "1vw",
+                              margin: 0,
+                            }}
+                          >
+                            {" "}
+                            {data.date}
+                          </p>
+                        </div>
+                      );
+                    })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -490,7 +895,7 @@ const ReplayText = () => {
           onClick={() => {
             setSpanArray(blankSpanArray);
             setInfoAboutCharacter(blankInfoArray);
-            setFinished(true);
+            setIsFinished(true);
             setSeconds(0);
             setMinutes(0);
             setTimeSeconds(0);
@@ -503,7 +908,7 @@ const ReplayText = () => {
           }}
           className="btn btn-light mr-3"
           style={
-            !finished
+            !isFinished
               ? {
                   backgroundColor: colorFiles.primaryColor,
                   color: colorFiles.backgroundColor,
@@ -520,11 +925,11 @@ const ReplayText = () => {
           Show Statistics
         </Button>
         <div>
-          {!finished && (
+          {!isFinished && (
             <hr
               className="hr-progress"
               style={
-                finished || !isRunning
+                isFinished || !isRunning
                   ? {
                       width: "100%",
                       backgroundColor: colorFiles.primaryColor,
@@ -552,7 +957,7 @@ const ReplayText = () => {
             <strong>Slow Down...</strong>
             the test won't stop unless you have less than 10 mistakes
           </p>
-          {!finished && displayTheStatistics()}
+          {!isFinished && displayTheStatistics()}
         </div>
         <div
           className={
@@ -581,7 +986,7 @@ const ReplayText = () => {
                 alignItems: "center",
               }}
             >
-              This text info
+              Results
             </h4>
             <div style={{ display: "flex" }}>
               <Button
@@ -589,7 +994,7 @@ const ReplayText = () => {
                 onClick={() => {
                   setSpanArray(blankSpanArray);
                   setInfoAboutCharacter(blankInfoArray);
-                  setFinished(false);
+                  setIsFinished(false);
                   setSeconds(0);
                   setMinutes(0);
                   setTimeSeconds(0);
@@ -609,213 +1014,60 @@ const ReplayText = () => {
                 Type Again
               </Button>
               <i
-                onClick={() => setFinished(false)}
+                onClick={() => setIsFinished(false)}
                 className="close-icon-login fas fa-times fa-2x"
               ></i>
             </div>
           </div>
-          <div className="info-about-text-bottom">
-            <div className="info-about-text-text">
-              <div>
-                <div
-                  style={{ position: "relative", width: "80%", margin: "auto" }}
-                >
-                  <div className="test-history-item">
-                    <h5 style={{ position: "absolute", left: "0vw" }}>
-                      Test #
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "37vw" }}>wpm</h5>
-                    <h5 style={{ position: "absolute", right: "28vw" }}>
-                      Time
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "19vw" }}>
-                      Accuracy
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "11vw" }}>
-                      Mistakes
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "2vw" }}>Date</h5>
-                  </div>
-                </div>
-                <div className="tests-history">
-                  <div
-                    style={{
-                      backgroundColor: colorFiles.primaryColor,
-                      color: colorFiles.backgroundColor,
-                      position: "relative",
-                    }}
-                    className="test-history-item"
-                  >
-                    <h5
-                      style={{ color: colorFiles.fontColor }}
-                      className="text-info-race-label"
-                    >
-                      Latest
-                    </h5>
-                    <h4 style={{ paddingLeft: "1vw" }}>
-                      {replayData !== null &&
-                        replayData[replayData.length - 1].raceNumber}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "36vw" }}>
-                      {replayData !== null &&
-                        replayData[replayData.length - 1].wpm}
-                      wpm
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "28vw" }}>
-                      {replayData !== null &&
-                        replayData[replayData.length - 1].time}
-                      s
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "12vw" }}>
-                      {" "}
-                      {replayData !== null &&
-                        replayData[replayData.length - 1].mistakes}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "20vw" }}>
-                      {" "}
-                      {`${
-                        replayData !== null &&
-                        replayData[replayData.length - 1].accuracy
-                      }%`}
-                    </h4>
-                    <p
-                      style={{ position: "absolute", right: "1vw", margin: 0 }}
-                    >
-                      {" "}
-                      {replayData !== null &&
-                        replayData[replayData.length - 1].date}
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      backgroundColor: colorFiles.primaryColor,
-                      color: colorFiles.backgroundColor,
-                      display: "flex",
-                      alignItems: "center",
-                      position: "relative",
-                      marginTop: "1rem",
-                    }}
-                    className="test-history-item"
-                  >
-                    <h5
-                      style={{ color: colorFiles.fontColor }}
-                      className="text-info-race-label"
-                    >
-                      Fastest
-                    </h5>
-                    <h4 style={{ paddingLeft: "1vw" }}>
-                      {fastestRace !== undefined && fastestRace.raceNumber}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "36vw" }}>
-                      {fastestRace !== undefined && fastestRace.wpm}
-                      wpm
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "28vw" }}>
-                      {fastestRace !== undefined && fastestRace.time}s
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "12vw" }}>
-                      {" "}
-                      {fastestRace !== undefined && fastestRace.mistakes}
-                    </h4>
-                    <h4 style={{ position: "absolute", right: "20vw" }}>
-                      {" "}
-                      {`${fastestRace !== undefined && fastestRace.accuracy}%`}
-                    </h4>
-                    <p
-                      style={{ position: "absolute", right: "1vw", margin: 0 }}
-                    >
-                      {" "}
-                      {fastestRace !== undefined && fastestRace.date}
-                    </p>
-                  </div>
-                  <h4
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      textAlign: "center",
-                      marginTop: "2rem",
-                    }}
-                  >
-                    History for this race
-                  </h4>
-                  <hr></hr>
-                  {replayData !== null &&
-                    replayData
-                      .slice(0)
-                      .reverse()
-                      .map((data, index) => {
-                        return (
-                          <div
-                            style={
-                              index % 2 === 0
-                                ? {
-                                    backgroundColor:
-                                      colorFiles.secondaryBackgroundColor,
-                                    position: "relative",
-                                  }
-                                : {
-                                    position: "relative",
-                                    backgroundColor: colorFiles.backgroundColor,
-                                  }
-                            }
-                            className="test-history-item"
-                            key={index}
-                          >
-                            <h4 style={{ paddingLeft: "1vw" }}>
-                              {data.raceNumber}
-                            </h4>
-                            <h4 style={{ position: "absolute", right: "36vw" }}>
-                              {data.wpm}wpm
-                            </h4>
-                            <h4 style={{ position: "absolute", right: "28vw" }}>
-                              {data.time}s
-                            </h4>
-                            <h4 style={{ position: "absolute", right: "12vw" }}>
-                              {" "}
-                              {data.mistakes}
-                            </h4>
-                            <h4 style={{ position: "absolute", right: "20vw" }}>
-                              {" "}
-                              {`${data.accuracy}%`}
-                            </h4>
-                            <p
-                              style={{
-                                position: "absolute",
-                                right: "1vw",
-                                margin: 0,
-                              }}
-                            >
-                              {" "}
-                              {data.date}
-                            </p>
-                          </div>
-                        );
-                      })}
-                </div>
-              </div>
-            </div>
-          </div>
+          {testHistory()}
         </div>
         <div className="input-zone-reply">
-          <input
-            maxLength={textArrayCharacters && textArrayCharacters.length}
-            autoFocus
-            onFocus={(e) => {
-              setIsUserTyping(true);
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
             }}
-            onBlur={(e) => {
-              setIsUserTyping(false);
-            }}
-            onChange={(e) => {
-              getAndCheckTheInput(e);
-            }}
-            placeholder="The test will begin when you start typing!"
-            className={finished ? "input-box-hidden" : "input-box-shown"}
-            style={{
-              color: colorFiles.fontColor,
-              borderBottom: `2px solid ${colorFiles.primaryColor}`,
-            }}
-          ></input>
+            className="input-zone-form"
+          >
+            <input
+              maxLength={textArrayCharacters && textArrayCharacters.length}
+              autoFocus
+              onFocus={() => {
+                setIsUserTyping(true);
+              }}
+              onBlur={() => {
+                setIsUserTyping(false);
+              }}
+              onChange={(e) => {
+                setInputText(e.target.value);
+                getAndCheckTheInput(e);
+                setCharactersTyped_raceHistory(
+                  (charactersTyped_raceHistory) =>
+                    charactersTyped_raceHistory + 1
+                );
+              }}
+              value={inputText}
+              placeholder="The test will begin when you start typing!"
+              className={isFinished ? "input-box-hidden" : "input-box-shown"}
+              style={{
+                color: colorFiles.fontColor,
+                borderBottom: `2px solid ${colorFiles.primaryColor}`,
+              }}
+            ></input>
+            <Button
+              type="button"
+              onClick={(e) => handleSubmit(e)}
+              variant="contained"
+              style={{
+                backgroundColor: colorFiles.primaryColor,
+                color: "white",
+                border: "none",
+                transition: "0.3s",
+                marginLeft: "1rem",
+              }}
+            >
+              Restart
+            </Button>
+          </form>
         </div>
       </div>
     </div>
