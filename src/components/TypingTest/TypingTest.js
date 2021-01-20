@@ -584,7 +584,6 @@ function TypingTest() {
     setWpm_raceHistory([]);
     setTime_raceHistory(0);
     setCharactersTyped_raceHistory(0);
-
     setSpanArray(blankSpanArray);
     setInfoAboutCharacter(blankInfoArray);
     setFinished(false);
@@ -598,6 +597,7 @@ function TypingTest() {
     setRealMistakes(0);
     setProgress(1);
     calculateAccuracy();
+    setInputText("");
   };
 
   useEffect(() => {
@@ -779,6 +779,7 @@ function TypingTest() {
             <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
             <h5>WPM: {wpm}</h5>
             <h5>|</h5>
+            <h5>Time: {Math.round(seconds * 100) / 100}s</h5>
             <h5>Highest: {highestWpm}</h5>
             <h5>Lowest: {lowestWpm}</h5>
             <h5>|</h5>
@@ -911,7 +912,7 @@ function TypingTest() {
         }}
         className="TypingTest"
       >
-        {" "}
+        {statsMenu()}
         <div
           onClick={() => resetData()}
           className={
@@ -920,7 +921,6 @@ function TypingTest() {
               : "darkened-background-hidden"
           }
         ></div>
-        {statsMenu()}
         <Header />
         {displayTheStatistics()}
         {errorWarning()}

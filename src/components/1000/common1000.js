@@ -475,6 +475,7 @@ function Common1000() {
     calculateAccuracy();
     setSeconds(0);
     setIsFinished(false);
+    setInputText("");
   };
 
   const handleSubmit = (e) => {
@@ -615,6 +616,7 @@ function Common1000() {
             <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
             <h5>WPM: {wpm}</h5>
             <h5>|</h5>
+            <h5>Time: {Math.round(seconds * 100) / 100}s</h5>
             <h5>Highest: {highestWpm}</h5>
             <h5>Lowest: {lowestWpm}</h5>
             <h5>|</h5>
@@ -662,7 +664,7 @@ function Common1000() {
         }}
         className="TypingTest"
       >
-        {" "}
+        {statsMenu()}
         <div
           onClick={() => resetData()}
           className={
@@ -671,7 +673,6 @@ function Common1000() {
               : "darkened-background-hidden"
           }
         ></div>
-        {statsMenu()}
         <Header />
         <div className="statistics">
           <div className="d-flex">
