@@ -795,15 +795,12 @@ const ReplayText = () => {
                   {fastestRace !== undefined && fastestRace.time}s
                 </h4>
                 <h4 style={{ position: "absolute", right: "12vw" }}>
-                  {" "}
                   {fastestRace !== undefined && fastestRace.mistakes}
                 </h4>
                 <h4 style={{ position: "absolute", right: "20vw" }}>
-                  {" "}
                   {`${fastestRace !== undefined && fastestRace.accuracy}%`}
                 </h4>
                 <p style={{ position: "absolute", right: "1vw", margin: 0 }}>
-                  {" "}
                   {fastestRace !== undefined && fastestRace.date}
                 </p>
               </div>

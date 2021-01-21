@@ -39,7 +39,7 @@
   top: 0;
   left: 0;
   z-index: 20;
-  background-color: rgba(0, 0, 0, 0.705);
+  background-color: rgba(0, 0, 0, 0.75);
   transition: 0.3s;
 }
 .darkened-background-hidden {
