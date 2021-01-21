@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://protypist.netlify.app/"
+  from = "/"
   to = "https://protypist.app/"
   status = 301
   force = false
