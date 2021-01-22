@@ -345,10 +345,6 @@ const CustomText = () => {
               borderBottom: `2px solid ${colorFiles.primaryColor}`,
             }}
           ></input>
-          <p className="alert-warning alert-tip">
-            <strong>Tip:</strong> you can type " //f" any time you want to
-            restart the test. Or press F5, that will do too.
-          </p>
         </div>
       </div>
     </animated.div>

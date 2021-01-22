@@ -1019,10 +1019,6 @@ function TypingTest() {
               Restart
             </Button>
           </form>
-
-          <p className="alert-warning alert-tip">
-            <strong>Tip:</strong> you can type //f to finish the current game.
-          </p>
         </div>
       </div>
     </animated.div>
