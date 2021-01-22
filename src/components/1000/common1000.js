@@ -41,6 +41,7 @@ function Common1000() {
   const [isRunning, setIsRunning] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [secondsStats, setSecondsStats] = useState(0);
   const [newGame, setNewGame] = useState(false);
   const [blankSpanArray] = useState([]);
   const [mistakes, setMistakes] = useState(0);
@@ -102,7 +103,7 @@ function Common1000() {
     if (isLoggedIn) {
       const data = {
         wpm: calculateWordsPerMinute(),
-        time: Math.round(seconds * 100) / 100,
+        time: secondsStats,
         mistakes: realMistakes,
         date: getTheDate(),
         accuracy: calculateAccuracy(),
@@ -175,6 +176,15 @@ function Common1000() {
       let interval = setInterval(() => {
         setSeconds((seconds) => seconds + 0.1);
       }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setSecondsStats((seconds) => seconds + 1);
+      }, 1000);
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -319,6 +329,7 @@ function Common1000() {
       setCharactersTyped(0);
       setSeconds(0);
       setInputText("");
+      setSecondsStats(0);
 
       dispatch({
         type: "SET_LATEST_WPM_1000",
@@ -340,7 +351,6 @@ function Common1000() {
       setRealMistakes(0);
       setProgress(1);
       setCharactersTyped(0);
-      setSeconds(0);
       calculateAccuracy();
       dispatch({
         type: "SET_LATEST_WPM_1000",
@@ -372,6 +382,7 @@ function Common1000() {
         setProgress(1);
         calculateAccuracy();
         setSeconds(0);
+        setSecondsStats(0);
       }
     }
 
@@ -476,6 +487,7 @@ function Common1000() {
     setSeconds(0);
     setIsFinished(false);
     setInputText("");
+    setSecondsStats(0);
   };
 
   const handleSubmit = (e) => {
@@ -495,6 +507,7 @@ function Common1000() {
     setProgress(1);
     calculateAccuracy();
     setInputText("");
+    setSecondsStats(0);
   };
 
   useEffect(() => {

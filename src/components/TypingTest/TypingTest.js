@@ -47,6 +47,7 @@ function TypingTest() {
   const [isRunning, setIsRunning] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [secondsStats, setSecondsStats] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [newGame, setNewGame] = useState(false);
   const [blankSpanArray] = useState([]);
@@ -134,12 +135,14 @@ function TypingTest() {
     if (isLoggedIn) {
       const data = {
         wpm: calculateWordsPerMinute(),
-        time: Math.round(seconds * 100) / 100,
+        time: secondsStats,
         mistakes: realMistakes,
         textTypedId: textTypedId,
         date: getTheDate(),
         accuracy: calculateAccuracy(),
       };
+
+      console.log(data);
       const headers = {
         Authorization: jwt,
       };
@@ -359,6 +362,7 @@ function TypingTest() {
       setSpanArray(blankSpanArray);
       setInfoAboutCharacter(blankInfoArray);
       setSeconds(0);
+      setSecondsStats(0);
       setMinutes(0);
       setTimeSeconds(0);
       setCharactersTyped(0);
@@ -412,6 +416,7 @@ function TypingTest() {
         setFinished(true);
         setIsFinished(true);
         setSeconds(0);
+        setSecondsStats(0);
         setMinutes(0);
         setTimeSeconds(0);
         setCharactersTyped(0);
@@ -467,6 +472,15 @@ function TypingTest() {
       let interval = setInterval(() => {
         setSeconds((seconds) => seconds + 0.1);
       }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setSecondsStats((seconds) => seconds + 1);
+      }, 1000);
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -589,6 +603,7 @@ function TypingTest() {
     setFinished(false);
     setIsFinished(false);
     setSeconds(0);
+    setSecondsStats(0);
     setMinutes(0);
     setTimeSeconds(0);
     setCharactersTyped(0);
@@ -724,6 +739,7 @@ function TypingTest() {
                   setFinished(false);
                   setIsFinished(false);
                   setSeconds(0);
+                  setSecondsStats(0);
                   setMinutes(0);
                   setTimeSeconds(0);
                   setCharactersTyped(0);

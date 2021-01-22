@@ -131,10 +131,11 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    bottom: 0px;
+    bottom: 380px;
     margin: auto;
     left: 25px;
     right: 0;
+    z-index: 20;
   }
   .players-progress {
     position: absolute;
@@ -196,6 +197,7 @@
     margin: auto;
     left: 25px;
     right: 0;
+    bottom: 270px;
   }
   .players-progress {
     position: absolute;

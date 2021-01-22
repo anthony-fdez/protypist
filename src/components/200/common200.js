@@ -40,6 +40,7 @@ function Common200() {
   const [blankInfoArray, setBlankInfoArray] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
   const [seconds, setSeconds] = useState(0);
+  const [secondsStats, setSecondsStats] = useState(0);
   const [timeSeconds, setTimeSeconds] = useState(0);
   const [newGame, setNewGame] = useState(false);
   const [blankSpanArray] = useState([]);
@@ -84,7 +85,7 @@ function Common200() {
     if (isLoggedIn) {
       const data = {
         wpm: calculateWordsPerMinute(),
-        time: Math.round(seconds * 100) / 100,
+        time: secondsStats,
         mistakes: realMistakes,
         date: getTheDate(),
         accuracy: calculateAccuracy(),
@@ -157,6 +158,15 @@ function Common200() {
       let interval = setInterval(() => {
         setSeconds((seconds) => seconds + 0.1);
       }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (isRunning) {
+      let interval = setInterval(() => {
+        setSecondsStats((seconds) => seconds + 1);
+      }, 1000);
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -353,6 +363,7 @@ function Common200() {
       calculateAccuracy();
       setCharactersTyped(0);
       setSeconds(0);
+      setSecondsStats(0);
       setInputText("");
 
       dispatch({
@@ -378,7 +389,6 @@ function Common200() {
       calculateAccuracy();
       setCharactersTyped(0);
       setInputText("");
-
       dispatch({
         type: "SET_LATEST_WPM_200",
         payload: calculateWordsPerMinute(),
@@ -410,6 +420,7 @@ function Common200() {
         setProgress(1);
         calculateAccuracy();
         setSeconds(0);
+        setSecondsStats(0);
       }
     }
 
@@ -512,6 +523,7 @@ function Common200() {
     setProgress(1);
     calculateAccuracy();
     setSeconds(0);
+    setSecondsStats(0);
     setIsFinished(false);
     setInputText("");
   };
@@ -525,6 +537,7 @@ function Common200() {
     setInfoAboutCharacter(blankInfoArray);
     setIsFinished(false);
     setSeconds(0);
+    setSecondsStats(0);
     setTimeSeconds(0);
     setCharactersTyped(0);
     setIsRunning(false);
