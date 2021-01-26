@@ -3,7 +3,7 @@
   "secondaryBackgroundColor": "rgb(240,240,240)",
   "secondSecondaryBackgroundColor": "rgb(230,230,230)",
   "primaryColor": "rgb(255, 96, 23)",
-  "contrastFontColor": "rgb(0,0,0)",
+  "contrastFontColor": "rgb(255,255,255)",
   "fontColor": "rgb(50,50,50)",
   "hrColor": "rgb(100,100,100)",
   "correctColor": "rgb(10,10,10)",
