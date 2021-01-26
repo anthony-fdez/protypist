@@ -142,7 +142,6 @@ function TypingTest() {
         accuracy: calculateAccuracy(),
       };
 
-      console.log(data);
       const headers = {
         Authorization: jwt,
       };

@@ -530,27 +530,6 @@ function Header(props) {
     );
   };
 
-  const handleOpeningCountryMenu = () => {
-    console.log("helo");
-    setIsCountrySelectorOpen(!isCountrySelectorOpen);
-  };
-
-  const getCurrentCountry = () => {
-    return (
-      <div
-        onClick={() => setIsCountrySelectorOpen(true)}
-        className="select-country-div"
-      >
-        <img
-          className="flag-1x1"
-          alt="United States"
-          src={`http://purecatamphetamine.github.io/country-flag-icons/1x1/${countryRedux}.svg`}
-        />
-        <h5 style={{ marginLeft: "1rem" }}>United states</h5>
-      </div>
-    );
-  };
-
   const signUpMenu = () => {
     return (
       <div

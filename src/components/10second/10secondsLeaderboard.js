@@ -10,6 +10,7 @@ const TenSecondsLeaderboard = (props) => {
   const difficultyReducer = useSelector(
     (state) => state.tenSecondsDifficultyReducer
   );
+  const userIdReducer = useSelector((state) => state.userIdReducer);
 
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
@@ -253,44 +254,57 @@ const TenSecondsLeaderboard = (props) => {
         <div className="test-history-10seconds">
           {leaderboardData !== null &&
             leaderboardData.map((data, index) => {
-              return (
-                <div
-                  style={
-                    index % 2 === 0
-                      ? {
-                          backgroundColor: colorFiles.backgroundColor,
-                          position: "relative",
-                          padding: "1.5rem",
-                          display: "flex",
-                          alignItems: "center",
-                        }
-                      : {
-                          position: "relative",
-                          padding: "1.5rem",
-                          display: "flex",
-                          alignItems: "center",
-                        }
-                  }
-                  className="test-history-item"
-                  key={index}
-                >
-                  <h5 style={{ position: "absolute", left: "1vw" }}>
-                    {index + 1}
-                  </h5>
-                  <h5 style={{ position: "absolute", left: "4vw" }}>
-                    {data.name}
-                  </h5>
-                  <h5 style={{ position: "absolute", right: "16vw" }}>
-                    {data.score}
-                  </h5>
-                  <h5 style={{ position: "absolute", right: "8vw" }}>
-                    {formateSeconds(data.longestTime)}
-                  </h5>
-                  <h5 style={{ position: "absolute", right: "1vw" }}>
-                    {formateSeconds(data.totalTime)}
-                  </h5>
-                </div>
-              );
+              if (data.score !== 0) {
+                return (
+                  <div
+                    style={
+                      data.id === userIdReducer
+                        ? {
+                            backgroundColor: colorFiles.primaryColor,
+                            color: colorFiles.contrastFontColor,
+                            position: "relative",
+                            padding: "1.5rem",
+                            display: "flex",
+                            alignItems: "center",
+                          }
+                        : index % 2 === 0
+                        ? {
+                            backgroundColor: colorFiles.backgroundColor,
+                            position: "relative",
+                            padding: "1.5rem",
+                            display: "flex",
+                            alignItems: "center",
+                          }
+                        : {
+                            position: "relative",
+                            padding: "1.5rem",
+                            display: "flex",
+                            alignItems: "center",
+                          }
+                    }
+                    className="test-history-item-10-seconds"
+                    key={index}
+                  >
+                    <h5 style={{ position: "absolute", left: "1vw" }}>
+                      {index + 1}
+                    </h5>
+                    <h5 style={{ position: "absolute", left: "4vw" }}>
+                      {data.id === userIdReducer
+                        ? `You (${data.name})`
+                        : data.name}
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "16vw" }}>
+                      {data.score}
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "8vw" }}>
+                      {formateSeconds(data.longestTime)}
+                    </h5>
+                    <h5 style={{ position: "absolute", right: "1vw" }}>
+                      {formateSeconds(data.totalTime)}
+                    </h5>
+                  </div>
+                );
+              }
             })}
         </div>
       </div>
