@@ -756,6 +756,7 @@ function TypingTest() {
                   border: "none",
                 }}
               >
+                <i className="fas fa-reply mr-2"></i>
                 Type Again
               </Button>
               <Button
@@ -779,6 +780,7 @@ function TypingTest() {
                   border: "none",
                 }}
               >
+                <i className="fas fa-arrow-right mr-2"></i>
                 New Text
               </Button>
             </div>

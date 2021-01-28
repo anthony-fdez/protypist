@@ -1023,6 +1023,7 @@ const ReplayText = () => {
                   color: colorFiles.backgroundColor,
                 }}
               >
+                <i className="fas fa-reply mr-2"></i>
                 Type Again
               </Button>
               <i
