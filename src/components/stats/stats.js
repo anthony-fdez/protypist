@@ -332,6 +332,9 @@ function Stats() {
             <div className="loading-div-stats">
               {isLoading && loadingComponent()}
             </div>
+            <div style={{ position: "absolute", right: "350px" }}>
+              <h4>Total Words: {Math.round((totalKeysStrokes / 5) * 1) / 1}</h4>
+            </div>
             <div style={{ position: "absolute", right: "50px" }}>
               <h4>Total Keystrokes: {totalKeysStrokes}</h4>
             </div>
@@ -428,6 +431,9 @@ function Stats() {
             <h4>200 Common Statistics:</h4>
             <div className="loading-div-stats">
               {isLoading && loadingComponent()}
+            </div>
+            <div style={{ position: "absolute", right: "350px" }}>
+              <h4>Total Words: {Math.round((totalKeysStrokes / 5) * 1) / 1}</h4>
             </div>
             <div style={{ position: "absolute", right: "50px" }}>
               <h4>Total Keystrokes: {totalKeysStrokes}</h4>
@@ -542,6 +548,9 @@ function Stats() {
             <h4>1000 Common Statistics:</h4>
             <div className="loading-div-stats">
               {isLoading && loadingComponent()}
+            </div>
+            <div style={{ position: "absolute", right: "350px" }}>
+              <h4>Total Words: {Math.round((totalKeysStrokes / 5) * 1) / 1}</h4>
             </div>
             <div style={{ position: "absolute", right: "50px" }}>
               <h4>Total Keystrokes: {totalKeysStrokes}</h4>
