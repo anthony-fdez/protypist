@@ -15,7 +15,7 @@
   right: 20px;
 }
 .login-menu-open {
-  position: absolute;
+  position: fixed;
   width: 350px;
   height: 500px;
   padding: 1rem;
@@ -24,11 +24,11 @@
   transition: 0.3s;
   margin: auto;
   left: 0;
-  right: 200px;
+  right: 0px;
   top: 8vh;
 }
 .login-menu-closed {
-  position: absolute;
+  position: fixed;
   width: 350px;
   height: 500px;
   padding: 1rem;
@@ -40,11 +40,11 @@
   transition: 0.3s;
   margin: auto;
   left: 0;
-  right: 200px;
+  right: 0px;
   top: 8vh;
 }
 .signUp-menu-open {
-  position: absolute;
+  position: fixed;
   width: 350px;
   height: 490px;
   padding: 1rem;
@@ -53,11 +53,11 @@
   transition: 0.3s;
   margin: auto;
   left: 0;
-  right: 200px;
+  right: 0px;
   top: 8vh;
 }
 .signUp-menu-closed {
-  position: absolute;
+  position: fixed;
   width: 350px;
   height: 500px;
   padding: 1rem;
@@ -69,11 +69,11 @@
   transition: 0.3s;
   margin: auto;
   left: 0;
-  right: 200px;
+  right: 0px;
   top: 8vh;
 }
 .log-out-menu-open {
-  position: absolute;
+  position: fixed;
   width: 350px;
   height: 385px;
   padding: 1rem;
@@ -82,11 +82,11 @@
   transition: 0.3s;
   margin: auto;
   left: 0;
-  right: 200px;
+  right: 0px;
   top: 8vh;
 }
 .log-out-menu-closed {
-  position: absolute;
+  position: fixed;
   width: 350px;
   height: 385px;
   padding: 1rem;
@@ -98,7 +98,7 @@
   transition: 0.3s;
   margin: auto;
   left: 0;
-  right: 200px;
+  right: 0px;
   top: 8vh;
 }
 .log-out-buttons {

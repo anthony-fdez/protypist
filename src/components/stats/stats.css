@@ -181,3 +181,14 @@ h4 {
   align-items: center;
   height: 300px;
 }
+.graph-login-text {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.graph-login-text:hover {
+  transition: 0.3s;
+  background-color: rgba(0, 0, 0, 0.6);
+}

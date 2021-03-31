@@ -944,11 +944,141 @@ function Stats() {
     }
   };
 
+  const statisticsNotLoggedIn = () => {
+    const fakeGraphData = {
+      labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      datasets: [
+        {
+          label: "Mistakes",
+          data: [8, 6, 5, 9, 3, 2, 3, 2, 1, 1],
+          borderWidth: 4,
+          backgroundColor: colorFiles.fontColor,
+        },
+        {
+          label: "WPM",
+          data: [43, 47, 51, 54, 49, 45, 57, 49, 54, 60],
+          borderWidth: 5,
+          backgroundColor: colorFiles.primaryColor,
+        },
+      ],
+    };
+
+    return (
+      <div key="statistics100">
+        <h4 style={{ margin: "3rem", color: colorFiles.fontColor }}>
+          Log in to see your statistics and the leaderboard.
+        </h4>
+
+        <div
+          className={"typing-game-statistics-div-shown"}
+          style={{
+            backgroundColor: colorFiles.secondaryBackgroundColor,
+            color: colorFiles.fontColor,
+          }}
+        >
+          <div className="d-flex">
+            <h4>Stats:</h4>
+            <div className="loading-div-stats">
+              {isLoading && loadingComponent()}
+            </div>
+            <div style={{ position: "absolute", right: "50px" }}>
+              <h4>Total Keystrokes: N/A</h4>
+            </div>
+          </div>
+          <hr style={{ background: colorFiles.hrColor }}></hr>
+          <div className={"all-time-div-stats"}>
+            <div className="stats-box">
+              <h5>Total time:</h5>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
+              <h5 style={{ marginTop: "1rem" }}>N/A</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Races:</h5>
+              <hr style={{ background: colorFiles.hrColor }}></hr>
+              <h5 style={{ marginTop: "1rem" }}>N/A</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Highest:</h5>{" "}
+              <hr style={{ background: colorFiles.hrColor }}></hr>
+              <h5 style={{ marginTop: "1rem" }}>N/A</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Average:</h5>{" "}
+              <hr style={{ background: colorFiles.hrColor }}></hr>
+              <h5 style={{ marginTop: "1rem" }}>N/A</h5>
+            </div>
+            <div className="stats-box">
+              <h5>Recent Avg:</h5>{" "}
+              <hr style={{ background: colorFiles.hrColor }}></hr>
+              <h5 style={{ marginTop: "1rem" }}>N/A</h5>
+            </div>
+          </div>
+          <div className="chart">
+            <div
+              style={{
+                position: "absolute",
+                margin: "auto",
+                top: "60%",
+                right: 0,
+                left: 0,
+                bottom: 0,
+              }}
+            >
+              <h3
+                className="graph-login-text"
+                onClick={() => {
+                  dispatch({
+                    type: "SET_OPEN_LOGIN_MENU",
+                    payload: true,
+                  });
+                }}
+              >
+                Login to see your own chart!
+              </h3>
+            </div>
+            <Line
+              options={{
+                responsive: true,
+                title: { text: "Words Per Minute ", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                      },
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                      },
+
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                },
+              }}
+              data={fakeGraphData}
+            />
+          </div>
+          <hr style={{ background: colorFiles.hrColor }}></hr>
+          {!isLoading && testHistory1000(data1000)}
+        </div>
+      </div>
+    );
+  };
+
   const notLoggedIn = () => {
     return (
-      <div style={{ color: colorFiles.fontColor }} className="log-in-message">
-        <h4>Log in to see your statistics and the leaderboard.</h4>
-      </div>
+      <div style={{ paddingBottom: "5rem" }}>{statisticsNotLoggedIn()}</div>
     );
   };
 
