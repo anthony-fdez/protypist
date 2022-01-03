@@ -11,6 +11,7 @@ import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { Button } from "@material-ui/core";
+import GoogleAds from "../../GoogleAdds/GoogleAdds";
 
 function Common200() {
   const dispatch = useDispatch();
@@ -62,10 +63,8 @@ function Common200() {
   const [inputText, setInputText] = useState();
   const [isUserTyping, setIsUserTyping] = useState(true);
 
-  const [
-    charactersTyped_raceHistory,
-    setCharactersTyped_raceHistory,
-  ] = useState(0);
+  const [charactersTyped_raceHistory, setCharactersTyped_raceHistory] =
+    useState(0);
   const [time_raceHistory, setTime_raceHistory] = useState(0);
   const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
 
@@ -694,6 +693,7 @@ function Common200() {
               Log in to save your results
             </h5>
           )}
+          <GoogleAds />
         </div>
       </div>
     );
