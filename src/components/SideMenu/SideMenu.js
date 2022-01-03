@@ -30,7 +30,7 @@ function SideMenu() {
   const checkButtonStyle = (path) => {
     if (location === path) {
       return colorFiles.primaryColor;
-    } else return colorFiles.secondSecondaryBackgroundColor;
+    } else return colorFiles.secondaryBackgroundColor;
   };
 
   const checkButtonStyleColor = (path) => {
