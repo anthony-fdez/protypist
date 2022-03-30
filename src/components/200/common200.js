@@ -28,6 +28,8 @@ function Common200() {
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colorFiles = require(`../themes/${colors}`);
   const testLanguage = useSelector((state) => state.testLanguageReducer);
+  const isTyping = useSelector((state) => state.isTypingReducer);
+  const isFocusMode = useSelector((state) => state.isFocusModeReducer);
 
   //state
   const [isFinished, setIsFinished] = useState(false);
@@ -692,7 +694,7 @@ function Common200() {
           backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className="TypingTest"
+        className={isTyping ? "TypingTest-On" : "TypingTest-Off"}
       >
         {statsMenu()}
         <div

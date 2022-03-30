@@ -403,11 +403,19 @@
     height: 100vh;
     transition: 0.3s;
   }
-  .TypingTest {
+  .TypingTest-On {
+    padding: 1rem;
+    text-align: center;
+    margin-left: 0px;
+    height: 100vh;
+    transition: 500ms;
+  }
+  .TypingTest-Off {
+    padding: 1rem;
     text-align: center;
     margin-left: 200px;
     height: 100vh;
-    padding: 1rem;
+    transition: 500ms;
   }
   .input-zone {
     position: absolute;

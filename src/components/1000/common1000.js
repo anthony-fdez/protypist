@@ -27,6 +27,8 @@ function Common1000() {
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
+  const isTyping = useSelector((state) => state.isTypingReducer);
+  const isFocusMode = useSelector((state) => state.isFocusModeReducer);
 
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -655,7 +657,7 @@ function Common1000() {
           backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className="TypingTest"
+        className={isTyping ? "TypingTest-On" : "TypingTest-Off"}
       >
         {statsMenu()}
         <div

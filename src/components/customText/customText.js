@@ -17,6 +17,8 @@ const CustomText = () => {
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const isSelectMenuOpenReducer = useSelector((state) => state.selectMenuShown);
   const textReducer = useSelector((state) => state.customText);
+  const isTyping = useSelector((state) => state.isTypingReducer);
+  const isFocusMode = useSelector((state) => state.isFocusModeReducer);
 
   //State
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -265,7 +267,7 @@ const CustomText = () => {
           backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className="TypingTest"
+        className={isTyping ? "TypingTest-On" : "TypingTest-Off"}
       >
         <Header />
         <SelectText />
