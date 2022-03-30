@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./common200.css";
 import "./statsMenu.css";
 import Header from "../header/header";
-import Qwerty from "../inScreenKeyboard/qwerty";
-import Dvorak from "../inScreenKeyboard/dvorak";
-import Colemak from "../inScreenKeyboard/colemak";
+
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { Button } from "@material-ui/core";
+import Keyboard from "../inScreenKeyboard/keyboard";
 
 function Common200() {
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ function Common200() {
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colorFiles = require(`../themes/${colors}`);
   const testLanguage = useSelector((state) => state.testLanguageReducer);
-  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   //state
   const [isFinished, setIsFinished] = useState(false);
@@ -62,10 +60,8 @@ function Common200() {
   const [inputText, setInputText] = useState();
   const [isUserTyping, setIsUserTyping] = useState(true);
 
-  const [
-    charactersTyped_raceHistory,
-    setCharactersTyped_raceHistory,
-  ] = useState(0);
+  const [charactersTyped_raceHistory, setCharactersTyped_raceHistory] =
+    useState(0);
   const [time_raceHistory, setTime_raceHistory] = useState(0);
   const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
 
@@ -499,16 +495,6 @@ function Common200() {
     }
   };
 
-  const keyboardLayoutSelector = () => {
-    if (keyboardLayout === "QWERTY") {
-      return <Qwerty />;
-    } else if (keyboardLayout === "DVORAK") {
-      return <Dvorak />;
-    } else if (keyboardLayout === "COLEMAK") {
-      return <Colemak />;
-    } else return <Qwerty />;
-  };
-
   const resetData = () => {
     setWpm_raceHistory([]);
     setTime_raceHistory(0);
@@ -805,7 +791,7 @@ function Common200() {
         <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
           {spanArray}
         </div>
-        {keyboardOnScreen && keyboardLayoutSelector()}
+        <Keyboard />
         <div className="input-zone">
           <form
             onSubmit={(e) => {

@@ -1,7 +1,7 @@
 import React from "react";
-import "./keyboard.css";
+import "../keyboard.css";
 import axios from "axios";
-import useKeyPress from "../functions/useKeyPress";
+import useKeyPress from "../helpers/useKeyPress";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -172,7 +172,7 @@ function Colemak() {
   const [hoveredBackSpace, setHoveredBackSpace] = useState(false);
 
   const colors = useSelector((state) => state.themeReducer);
-  const colorFiles = require(`../themes/${colors}`);
+  const colorFiles = require(`../../themes/${colors}`);
   const pressedA = useKeyPress("a");
   const pressedCapitalA = useKeyPress("A");
   const pressedB = useKeyPress("b");

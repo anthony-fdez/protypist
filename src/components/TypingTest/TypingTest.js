@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Header from "../header/header";
-import Qwerty from "../inScreenKeyboard/qwerty";
-import Dvorak from "../inScreenKeyboard/dvorak";
-import Colemak from "../inScreenKeyboard/colemak";
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -12,6 +9,9 @@ import { Button } from "@material-ui/core";
 import "../stats/stats.css";
 import "../200/statsMenu.css";
 import { Line } from "react-chartjs-2";
+
+// Components
+import Keyboard from "../inScreenKeyboard/keyboard";
 
 function TypingTest() {
   const dispatch = useDispatch();
@@ -30,7 +30,6 @@ function TypingTest() {
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   //state
   const [text, setText] = useState();
@@ -43,7 +42,6 @@ function TypingTest() {
 
   //-----------------------------------------------
   const [isFinished, setIsFinished] = useState(false);
-
   const [isRunning, setIsRunning] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -66,6 +64,7 @@ function TypingTest() {
   const [highestSpeedDate, setHighestSpeedDate] = useState();
   const [rawWpm, setRawWpm] = useState();
   const [chartData, setChartData] = useState();
+
   // const [isSubmitQuoteMenuOpen, setIsSubmitQuoteOpen] = useState(false);
   const [isErrorWarningShown, setIsErrorWarningShown] = useState(false);
   const [isSuccessWarningShown, setIsSuccssWarningShown] = useState(false);
@@ -92,10 +91,8 @@ function TypingTest() {
     return () => clearTimeout(myTimeout);
   }, [isErrorWarningShown, isSuccessWarningShown]);
 
-  const [
-    charactersTyped_raceHistory,
-    setCharactersTyped_raceHistory,
-  ] = useState(0);
+  const [charactersTyped_raceHistory, setCharactersTyped_raceHistory] =
+    useState(0);
   const [time_raceHistory, setTime_raceHistory] = useState(0);
   const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
   const [mistakes_raceHistory, setMistakes_raceHistory] = useState(0);
@@ -339,6 +336,7 @@ function TypingTest() {
     let charactersPerSecond = charactersTyped / timeSeconds;
     let wordsPerMinute = (charactersPerSecond * 60) / 5;
     wordsPerMinute = Math.round(wordsPerMinute * 100) / 100;
+
     setWPM(wordsPerMinute);
 
     return wordsPerMinute;
@@ -505,12 +503,6 @@ function TypingTest() {
     } else return latestWPM;
   };
 
-  const handleThemInTheFinishedPage = () => {
-    if (finished) {
-      return "about-the-text-shown";
-    } else return "about-the-text-hidden";
-  };
-
   const calculateWithOfProgressBar = () => {
     if (textArrayCharacters !== undefined) {
       let percent = (charactersTyped / textArrayCharacters.length) * 100;
@@ -581,16 +573,6 @@ function TypingTest() {
         <h5>{message}</h5>
       </div>
     );
-  };
-
-  const keyboardLayoutSelector = () => {
-    if (keyboardLayout === "QWERTY") {
-      return <Qwerty />;
-    } else if (keyboardLayout === "DVORAK") {
-      return <Dvorak />;
-    } else if (keyboardLayout === "COLEMAK") {
-      return <Colemak />;
-    } else return <Qwerty />;
   };
 
   const resetData = () => {
@@ -962,7 +944,7 @@ function TypingTest() {
         <div
           className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
         >
-          {keyboardOnScreen && keyboardLayoutSelector()}
+          {keyboardOnScreen && <Keyboard />}
         </div>
         <Button
           variant="contained"

@@ -1,14 +1,14 @@
 import React from "react";
-import "./keyboard.css";
+import "../keyboard.css";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import useKeyPress from "../functions/useKeyPress";
 
-function Dvorak() {
+import useKeyPress from "../helpers/useKeyPress";
+
+function Qwerty() {
   const dispatch = useDispatch();
-
   const ALL_KEYS_PRESSED = useSelector((state) => state.allKeysPressed);
 
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
@@ -68,7 +68,6 @@ function Dvorak() {
   const [pressed_Comma_Count, setPressed_Comma_Count] = useState(
     ALL_KEYS_PRESSED.Comma
   );
-
   const [pressed_BackSpace_Count, setPressed_BackSpace_Count] = useState(
     ALL_KEYS_PRESSED.BackSpace
   );
@@ -129,6 +128,7 @@ function Dvorak() {
         });
     }
   }, [jwt, isLoggedIn]);
+
   const [hoveredA, setHoveredA] = useState(false);
   const [hoveredB, setHoveredB] = useState(false);
   const [hoveredC, setHoveredC] = useState(false);
@@ -172,7 +172,7 @@ function Dvorak() {
   const [hoveredBackSpace, setHoveredBackSpace] = useState(false);
 
   const colors = useSelector((state) => state.themeReducer);
-  const colorFiles = require(`../themes/${colors}`);
+  const colorFiles = require(`../../themes/${colors}`);
   const pressedA = useKeyPress("a");
   const pressedCapitalA = useKeyPress("A");
   const pressedB = useKeyPress("b");
@@ -486,6 +486,7 @@ function Dvorak() {
           console.log(e);
         });
     }
+
     dispatch({
       type: "SET_KEYS_PRESSED",
       payload: {
@@ -552,7 +553,6 @@ function Dvorak() {
                 : "keyboard-key"
             }
           >
-            {" "}
             `~
           </div>
           <div
@@ -590,7 +590,6 @@ function Dvorak() {
             onMouseOver={() => setHovered2(true)}
             onMouseOut={() => setHovered2(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -613,7 +612,6 @@ function Dvorak() {
             onMouseOver={() => setHovered3(true)}
             onMouseOut={() => setHovered3(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -638,7 +636,6 @@ function Dvorak() {
             onMouseOver={() => setHovered4(true)}
             onMouseOut={() => setHovered4(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -663,7 +660,6 @@ function Dvorak() {
             onMouseOver={() => setHovered5(true)}
             onMouseOut={() => setHovered5(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -688,7 +684,6 @@ function Dvorak() {
             onMouseOver={() => setHovered6(true)}
             onMouseOut={() => setHovered6(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -711,7 +706,6 @@ function Dvorak() {
             onMouseOver={() => setHovered7(true)}
             onMouseOut={() => setHovered7(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -734,7 +728,6 @@ function Dvorak() {
             onMouseOver={() => setHovered8(true)}
             onMouseOut={() => setHovered8(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -759,7 +752,6 @@ function Dvorak() {
             onMouseOver={() => setHovered9(true)}
             onMouseOut={() => setHovered9(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -806,7 +798,7 @@ function Dvorak() {
                 : "keyboard-key"
             }
           >
-            {"{ ["}
+            - _
           </div>
           <div
             style={{
@@ -819,7 +811,7 @@ function Dvorak() {
                 : "keyboard-key"
             }
           >
-            {"} ]"}
+            = +
           </div>
           <div
             style={{
@@ -863,12 +855,23 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedDoubleQuote || pressedSingleQuote
+              pressedQ || pressedCapitalQ
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
+            onMouseOver={() => setHoveredQ(true)}
+            onMouseOut={() => setHoveredQ(false)}
           >
-            " '
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredQ ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.q}x
+            </div>
+            Q
           </div>
           <div
             style={{
@@ -876,23 +879,23 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedLesserThan || pressedComma
+              pressedW || pressedCapitalW
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
-            onMouseOver={() => setHoveredComma(true)}
-            onMouseOut={() => setHoveredComma(false)}
+            onMouseOver={() => setHoveredW(true)}
+            onMouseOut={() => setHoveredW(false)}
           >
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
-              className={hoveredComma ? "popup" : "hidden-popup"}
+              className={hoveredW ? "popup" : "hidden-popup"}
             >
-              {ALL_KEYS_PRESSED.Comma}x
+              {ALL_KEYS_PRESSED.w}x
             </div>
-            {"< ,"}
+            W
           </div>
           <div
             style={{
@@ -900,147 +903,23 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedBiggerThan || pressedDot
+              pressedE || pressedCapitalE
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
-            onMouseOver={() => setHoveredDot(true)}
-            onMouseOut={() => setHoveredDot(false)}
+            onMouseOver={() => setHoveredE(true)}
+            onMouseOut={() => setHoveredE(false)}
           >
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
-              className={hoveredDot ? "popup" : "hidden-popup"}
+              className={hoveredE ? "popup" : "hidden-popup"}
             >
-              {ALL_KEYS_PRESSED.Dot}x
+              {ALL_KEYS_PRESSED.e}x
             </div>
-            {"> ."}
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedP || pressedCapitalP
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredP(true)}
-            onMouseOut={() => setHoveredP(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredP ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.p}x
-            </div>
-            P
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedY || pressedCapitalY
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredY(true)}
-            onMouseOut={() => setHoveredY(false)}
-          >
-            {" "}
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredY ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.y}x
-            </div>
-            Y
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedF || pressedCapitalF
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredF(true)}
-            onMouseOut={() => setHoveredF(false)}
-          >
-            {" "}
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredF ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.f}x
-            </div>
-            F
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedG || pressedCapitalG
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredG(true)}
-            onMouseOut={() => setHoveredG(false)}
-          >
-            {" "}
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredG ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.g}x
-            </div>
-            G
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedC || pressedCapitalC
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredC(true)}
-            onMouseOut={() => setHoveredC(false)}
-          >
-            {" "}
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredC ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.c}x
-            </div>
-            C
+            E
           </div>
           <div
             style={{
@@ -1072,23 +951,23 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedL || pressedCapitalL
+              pressedT || pressedCapitalT
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
-            onMouseOver={() => setHoveredL(true)}
-            onMouseOut={() => setHoveredL(false)}
+            onMouseOver={() => setHoveredT(true)}
+            onMouseOut={() => setHoveredT(false)}
           >
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
-              className={hoveredL ? "popup" : "hidden-popup"}
+              className={hoveredT ? "popup" : "hidden-popup"}
             >
-              {ALL_KEYS_PRESSED.l}x
+              {ALL_KEYS_PRESSED.t}x
             </div>
-            L
+            T
           </div>
           <div
             style={{
@@ -1096,12 +975,132 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedQuestion || pressedForwardSlash
+              pressedY || pressedCapitalY
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredY(true)}
+            onMouseOut={() => setHoveredY(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredY ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.y}x
+            </div>
+            Y
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedU || pressedCapitalU
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredU(true)}
+            onMouseOut={() => setHoveredU(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredU ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.u}x
+            </div>
+            U
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedI || pressedCapitalI
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredI(true)}
+            onMouseOut={() => setHoveredI(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredI ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.i}x
+            </div>
+            I
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedO || pressedCapitalO
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredO(true)}
+            onMouseOut={() => setHoveredO(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredO ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.o}x
+            </div>
+            O
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedP || pressedCapitalP
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredP(true)}
+            onMouseOut={() => setHoveredP(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredP ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.p}x
+            </div>
+            P
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedLeftCurlyBrace || pressedLeftSquareBracket
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
           >
-            {"? /"}
+            [{" {"}
           </div>
           <div
             style={{
@@ -1109,23 +1108,19 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedPlus || pressedEqual
+              pressedRigthCurlyBrace || pressedRigthSquareBracket
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
           >
-            {"+ ="}
+            ]{" }"}
           </div>
           <div
             style={{
               backgroundColor: colorFiles.secondSecondaryBackgroundColor,
               color: colorFiles.fontColor,
             }}
-            className={
-              pressedPlus || pressedEqual
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
+            className={pressedQ ? "keyboard-key-pressed" : "keyboard-key"}
           >
             \ |
           </div>
@@ -1170,96 +1165,23 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedO || pressedCapitalO
+              pressedS || pressedCapitalS
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
             }
-            onMouseOver={() => setHoveredO(true)}
-            onMouseOut={() => setHoveredO(false)}
+            onMouseOver={() => setHoveredS(true)}
+            onMouseOut={() => setHoveredS(false)}
           >
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
-              className={hoveredO ? "popup" : "hidden-popup"}
+              className={hoveredS ? "popup" : "hidden-popup"}
             >
-              {ALL_KEYS_PRESSED.o}x
+              {ALL_KEYS_PRESSED.s}x
             </div>
-            O
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedE || pressedCapitalE
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredE(true)}
-            onMouseOut={() => setHoveredE(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredE ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.e}x
-            </div>
-            E
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedU || pressedCapitalU
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredU(true)}
-            onMouseOut={() => setHoveredU(false)}
-          >
-            {" "}
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredU ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.u}x
-            </div>
-            U
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedI || pressedCapitalI
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredI(true)}
-            onMouseOut={() => setHoveredI(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredI ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.i}x
-            </div>
-            I
+            S
           </div>
           <div
             style={{
@@ -1291,6 +1213,54 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
+              pressedF || pressedCapitalF
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredF(true)}
+            onMouseOut={() => setHoveredF(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredF ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.f}x
+            </div>
+            F
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedG || pressedCapitalG
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredG(true)}
+            onMouseOut={() => setHoveredG(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredG ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.g}x
+            </div>
+            G
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
               pressedH || pressedCapitalH
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
@@ -1308,161 +1278,6 @@ function Dvorak() {
               {ALL_KEYS_PRESSED.h}x
             </div>
             H
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedT || pressedCapitalT
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredT(true)}
-            onMouseOut={() => setHoveredT(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredT ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.t}x
-            </div>
-            T
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedN || pressedCapitalN
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredN(true)}
-            onMouseOut={() => setHoveredN(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredN ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.n}x
-            </div>
-            N
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedS || pressedCapitalS
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredS(true)}
-            onMouseOut={() => setHoveredS(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredS ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.s}x
-            </div>
-            S
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedUnderScore || pressedMinus
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-          >
-            _-
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className="keyboard-enter"
-          >
-            ENTER
-          </div>
-        </div>
-        <div className="second-row">
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedShift ? "keyboard-shift-pressed" : "keyboard-shift"
-            }
-            onMouseOver={() => setHoveredShift(true)}
-            onMouseOut={() => setHoveredShift(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredShift ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.Shift}x
-            </div>
-            SHIFT
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedColon || pressedSemiColon
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-          >
-            : ;
-          </div>
-          <div
-            style={{
-              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
-              color: colorFiles.fontColor,
-            }}
-            className={
-              pressedQ || pressedCapitalQ
-                ? "keyboard-key-pressed"
-                : "keyboard-key"
-            }
-            onMouseOver={() => setHoveredQ(true)}
-            onMouseOut={() => setHoveredQ(false)}
-          >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredQ ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.q}x
-            </div>
-            Q
           </div>
           <div
             style={{
@@ -1518,6 +1333,113 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
+              pressedL || pressedCapitalL
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredL(true)}
+            onMouseOut={() => setHoveredL(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredL ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.l}x
+            </div>
+            L
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedColon || pressedSemiColon
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+          >
+            ; :
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedSingleQuote || pressedDoubleQuote
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+          >
+            ' "
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className="keyboard-enter"
+          >
+            ENTER
+          </div>
+        </div>
+        <div className="second-row">
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedShift ? "keyboard-shift-pressed" : "keyboard-shift"
+            }
+            onMouseOver={() => setHoveredShift(true)}
+            onMouseOut={() => setHoveredShift(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredShift ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.Shift}x
+            </div>
+            SHIFT
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedZ || pressedCapitalZ
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredZ(true)}
+            onMouseOut={() => setHoveredZ(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredZ ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.z}x
+            </div>
+            Z
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
               pressedX || pressedCapitalX
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
@@ -1535,6 +1457,54 @@ function Dvorak() {
               {ALL_KEYS_PRESSED.x}x
             </div>
             X
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedC || pressedCapitalC
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredC(true)}
+            onMouseOut={() => setHoveredC(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredC ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.c}x
+            </div>
+            C
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
+              pressedV || pressedCapitalV
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredV(true)}
+            onMouseOut={() => setHoveredV(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredV ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.v}x
+            </div>
+            V
           </div>
           <div
             style={{
@@ -1566,6 +1536,30 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
+              pressedN || pressedCapitalN
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
+            }
+            onMouseOver={() => setHoveredN(true)}
+            onMouseOut={() => setHoveredN(false)}
+          >
+            <div
+              style={{
+                backgroundColor: colorFiles.secondaryBackgroundColor,
+                color: colorFiles.fontColor,
+              }}
+              className={hoveredN ? "popup" : "hidden-popup"}
+            >
+              {ALL_KEYS_PRESSED.n}x
+            </div>
+            N
+          </div>
+          <div
+            style={{
+              backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            className={
               pressedM || pressedCapitalM
                 ? "keyboard-key-pressed"
                 : "keyboard-key"
@@ -1590,21 +1584,23 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedW || pressedW ? "keyboard-key-pressed" : "keyboard-key"
+              pressedComma || pressedLesserThan
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
             }
-            onMouseOver={() => setHoveredW(true)}
-            onMouseOut={() => setHoveredW(false)}
+            onMouseOver={() => setHoveredComma(true)}
+            onMouseOut={() => setHoveredComma(false)}
           >
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
-              className={hoveredW ? "popup" : "hidden-popup"}
+              className={hoveredComma ? "popup" : "hidden-popup"}
             >
-              {ALL_KEYS_PRESSED.w}x
+              {ALL_KEYS_PRESSED.Comma}x
             </div>
-            W
+            ,{" <"}
           </div>
           <div
             style={{
@@ -1612,21 +1608,23 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedV || pressedV ? "keyboard-key-pressed" : "keyboard-key"
+              pressedDot || pressedBiggerThan
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
             }
-            onMouseOver={() => setHoveredV(true)}
-            onMouseOut={() => setHoveredV(false)}
+            onMouseOver={() => setHoveredDot(true)}
+            onMouseOut={() => setHoveredDot(false)}
           >
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
                 color: colorFiles.fontColor,
               }}
-              className={hoveredV ? "popup" : "hidden-popup"}
+              className={hoveredDot ? "popup" : "hidden-popup"}
             >
-              {ALL_KEYS_PRESSED.v}x
+              {ALL_KEYS_PRESSED.Dot}x
             </div>
-            V
+            .{" >"}
           </div>
           <div
             style={{
@@ -1634,21 +1632,12 @@ function Dvorak() {
               color: colorFiles.fontColor,
             }}
             className={
-              pressedZ || pressedZ ? "keyboard-key-pressed" : "keyboard-key"
+              pressedForwardSlash || pressedQuestion
+                ? "keyboard-key-pressed"
+                : "keyboard-key"
             }
-            onMouseOver={() => setHoveredZ(true)}
-            onMouseOut={() => setHoveredZ(false)}
           >
-            <div
-              style={{
-                backgroundColor: colorFiles.secondaryBackgroundColor,
-                color: colorFiles.fontColor,
-              }}
-              className={hoveredZ ? "popup" : "hidden-popup"}
-            >
-              {ALL_KEYS_PRESSED.z}x
-            </div>
-            Z
+            / ?
           </div>
           <div
             style={{
@@ -1690,7 +1679,6 @@ function Dvorak() {
             onMouseOver={() => setHoveredSpace(true)}
             onMouseOut={() => setHoveredSpace(false)}
           >
-            {" "}
             <div
               style={{
                 backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -1726,4 +1714,4 @@ function Dvorak() {
   );
 }
 
-export default Dvorak;
+export default Qwerty;

@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./customText.css";
-import Qwerty from "../inScreenKeyboard/qwerty";
 import displayTheArray from "../functions/displayTheArray";
 import Header from "../header/header";
 import SelectText from "./selectText";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
+import Keyboard from "../inScreenKeyboard/keyboard";
 
 const CustomText = () => {
   const dispatch = useDispatch();
 
-  const keyboardOnScreen = useSelector(
-    (state) => state.keyboardOnScreenReducer
-  );
   const colors = useSelector((state) => state.themeReducer);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -330,7 +327,7 @@ const CustomText = () => {
           the test won't stop unless you have less than 10 mistakes
         </p>
         <div className={"text-to-type"}>{spanArray}</div>
-        {keyboardOnScreen && <Qwerty />}
+        <Keyboard />
         <div className="input-zone">
           <input
             maxLength={textArrayCharacters && textArrayCharacters.length}

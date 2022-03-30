@@ -2,27 +2,25 @@ import React, { useState } from "react";
 
 import "./10second.css";
 import Header from "../header/header";
-import Qwerty from "../inScreenKeyboard/qwerty";
-import Dvorak from "../inScreenKeyboard/dvorak";
-import Colemak from "../inScreenKeyboard/colemak";
 import { Button } from "@material-ui/core";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
 import Input from "./input";
+import Keyboard from "../inScreenKeyboard/keyboard";
 
 function Typing10Second() {
   const dispatch = useDispatch();
-  const keyboardOnScreen = useSelector(
-    (state) => state.keyboardOnScreenReducer
-  );
+
   const difficultyReducer = useSelector(
     (state) => state.tenSecondsDifficultyReducer
   );
+  const keyboardOnScreen = useSelector(
+    (state) => state.keyboardOnScreenReducer
+  );
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
-  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
 
   const [isMenuInScreen, setIsMenuInScreen] = useState(false);
   const [dificulty, setDificulty] = useState(difficultyReducer);
@@ -32,16 +30,6 @@ function Typing10Second() {
     to: { opacity: 1 },
     config: { duration: 300 },
   });
-
-  const keyboardLayoutSelector = () => {
-    if (keyboardLayout === "QWERTY") {
-      return <Qwerty />;
-    } else if (keyboardLayout === "DVORAK") {
-      return <Dvorak />;
-    } else if (keyboardLayout === "COLEMAK") {
-      return <Colemak />;
-    } else return <Qwerty />;
-  };
 
   return (
     <animated.div style={animation} className={"Typing10Second-page"}>
@@ -73,7 +61,7 @@ function Typing10Second() {
           }
         >
           <div className="check-for-small-display">
-            {keyboardOnScreen && keyboardLayoutSelector()}
+            <Keyboard />
           </div>
         </div>
 

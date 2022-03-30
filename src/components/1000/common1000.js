@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./common1000.css";
 import Header from "../header/header";
-import Qwerty from "../inScreenKeyboard/qwerty";
-import Dvorak from "../inScreenKeyboard/dvorak";
-import Colemak from "../inScreenKeyboard/colemak";
+
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
@@ -12,15 +10,16 @@ import "../200/statsMenu.css";
 import { Line } from "react-chartjs-2";
 import { Button } from "@material-ui/core";
 
+// Components
+import Keyboard from "../inScreenKeyboard/keyboard";
+
 function Common1000() {
   const dispatch = useDispatch();
 
   const length = useSelector((state) => state.lengthReducerAdvanced);
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM1000 = useSelector((state) => state.latestWPMReducer1000);
-  const keyboardOnScreen = useSelector(
-    (state) => state.keyboardOnScreenReducer
-  );
+
   const latestErrors = useSelector((state) => state.latestErrorsReducer1000);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colors = useSelector((state) => state.themeReducer);
@@ -62,10 +61,8 @@ function Common1000() {
   const [inputText, setInputText] = useState();
   const [isUserTyping, setIsUserTyping] = useState(true);
 
-  const [
-    charactersTyped_raceHistory,
-    setCharactersTyped_raceHistory,
-  ] = useState(0);
+  const [charactersTyped_raceHistory, setCharactersTyped_raceHistory] =
+    useState(0);
   const [time_raceHistory, setTime_raceHistory] = useState(0);
   const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
   const [mistakes_raceHistory, setMistakes_raceHistory] = useState(0);
@@ -461,16 +458,6 @@ function Common1000() {
     }
   };
 
-  const keyboardLayoutSelector = () => {
-    if (keyboardLayout === "QWERTY") {
-      return <Qwerty />;
-    } else if (keyboardLayout === "DVORAK") {
-      return <Dvorak />;
-    } else if (keyboardLayout === "COLEMAK") {
-      return <Colemak />;
-    } else return <Qwerty />;
-  };
-
   const resetData = () => {
     setWpm_raceHistory([]);
     setTime_raceHistory(0);
@@ -768,7 +755,7 @@ function Common1000() {
         <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
           {spanArray}
         </div>
-        {keyboardOnScreen && keyboardLayoutSelector()}
+        <Keyboard />
         <div className="input-zone">
           <form
             onSubmit={(e) => {

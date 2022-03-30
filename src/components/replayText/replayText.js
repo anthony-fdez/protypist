@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./replayText.css";
 import { useSelector, useDispatch } from "react-redux";
-import Qwerty from "../inScreenKeyboard/qwerty";
-import Dvorak from "../inScreenKeyboard/dvorak";
-import Colemak from "../inScreenKeyboard/colemak";
+
 import quotes from "../data/quotes.json";
 import displayTheArray from "../functions/displayTheArray";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import { Line } from "react-chartjs-2";
+import Keyboard from "../inScreenKeyboard/keyboard";
 
 const ReplayText = () => {
   const dispatch = useDispatch();
 
-  const keyboardOnScreen = useSelector(
-    (state) => state.keyboardOnScreenReducer
-  );
   const realTimeWPM = useSelector((state) => state.realTimeWPMReducer);
   const latestWPM = useSelector((state) => state.latestWPMReducerTypingGame);
   const latestErrors = useSelector(
@@ -61,10 +57,8 @@ const ReplayText = () => {
   const [highestWpm, setHighestWpm] = useState(0);
   const [lowestWpm, setLowestWpm] = useState(0);
   const [inputText, setInputText] = useState();
-  const [
-    charactersTyped_raceHistory,
-    setCharactersTyped_raceHistory,
-  ] = useState(0);
+  const [charactersTyped_raceHistory, setCharactersTyped_raceHistory] =
+    useState(0);
   const [time_raceHistory, setTime_raceHistory] = useState(0);
   const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
 
@@ -476,16 +470,6 @@ const ReplayText = () => {
     if (isFinished) {
       return "about-the-text-shown-replay";
     } else return "about-the-text-hidden-replay";
-  };
-
-  const keyboardLayoutSelector = () => {
-    if (keyboardLayout === "QWERTY") {
-      return <Qwerty />;
-    } else if (keyboardLayout === "DVORAK") {
-      return <Dvorak />;
-    } else if (keyboardLayout === "COLEMAK") {
-      return <Colemak />;
-    } else return <Qwerty />;
   };
 
   const resetData = () => {
@@ -979,7 +963,7 @@ const ReplayText = () => {
           {spanArray}
         </div>
         <div className={"keyboard-div-shown-reply"}>
-          {keyboardOnScreen && keyboardLayoutSelector()}
+          <Keyboard />
         </div>
         <div
           style={{
