@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import quotes from "../data/quotes.json";
-import { Button } from "@material-ui/core";
+import { Button, TextareaAutosize } from "@material-ui/core";
 import "../stats/stats.css";
 import "../200/statsMenu.css";
 import { Line } from "react-chartjs-2";
@@ -407,49 +407,28 @@ function TypingTest() {
       setIsRunning(true);
     }
 
-    let inputArray = e.split(" ");
-    for (let i = 0; i < inputArray.length; i++) {
-      if (inputArray[i].search("//f") !== -1) {
-        e = "";
-        setSpanArray(blankSpanArray);
-        setInfoAboutCharacter(blankInfoArray);
-        setFinished(true);
-        setIsFinished(true);
-        setSeconds(0);
-        setSecondsStats(0);
-        setMinutes(0);
-        setTimeSeconds(0);
-        setCharactersTyped(0);
-        setIsRunning(false);
-        setMistakes(0);
-        setRealMistakes(0);
-        setProgress(1);
-        calculateAccuracy();
-      }
-    }
-
     setCharactersTyped(e.length);
-    if (textArrayCharacters !== undefined) {
-      if (
-        infoAboutCharacter[e.length] === false ||
-        infoAboutCharacter[e.length] === true
-      ) {
-        let array = [...infoAboutCharacter];
-        let arrayItem = array[e.length - 1];
-        arrayItem = null;
-        array[e.length] = arrayItem;
+
+    if (textArrayCharacters) {
+      console.log(e.length);
+      const array = infoAboutCharacter;
+
+      infoAboutCharacter.forEach((item, index) => {
+        if (index < e.length) return null;
+
+        array[index] = null;
+      });
+
+      if (infoAboutCharacter[e.length] !== null) {
+        array[e.length] = null;
         setInfoAboutCharacter(array);
       } else if (e[e.length - 1] === textArrayCharacters[e.length - 1]) {
-        let array = [...infoAboutCharacter];
-        let arrayItem = array[e.length - 1];
-        arrayItem = true;
-        array[e.length - 1] = arrayItem;
+        array[e.length - 1] = true;
+
         setInfoAboutCharacter(array);
       } else if (e[e.length - 1] !== textArrayCharacters[e.length - 1]) {
-        let array = [...infoAboutCharacter];
-        let arrayItem = array[e.length - 1];
-        arrayItem = false;
-        array[e.length - 1] = arrayItem;
+        array[e.length - 1] = false;
+
         setInfoAboutCharacter(array);
       }
     }

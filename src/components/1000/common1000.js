@@ -386,27 +386,26 @@ function Common1000() {
     }
 
     setCharactersTyped(e.length);
-    if (textArrayCharacters !== undefined) {
-      if (
-        infoAboutCharacter[e.length] === false ||
-        infoAboutCharacter[e.length] === true
-      ) {
-        let array = [...infoAboutCharacter];
-        let arrayItem = array[e.length - 1];
-        arrayItem = null;
-        array[e.length] = arrayItem;
+    if (textArrayCharacters) {
+      console.log(e.length);
+      const array = infoAboutCharacter;
+
+      infoAboutCharacter.forEach((item, index) => {
+        if (index < e.length) return null;
+
+        array[index] = null;
+      });
+
+      if (infoAboutCharacter[e.length] !== null) {
+        array[e.length] = null;
         setInfoAboutCharacter(array);
       } else if (e[e.length - 1] === textArrayCharacters[e.length - 1]) {
-        let array = [...infoAboutCharacter];
-        let arrayItem = array[e.length - 1];
-        arrayItem = true;
-        array[e.length - 1] = arrayItem;
+        array[e.length - 1] = true;
+
         setInfoAboutCharacter(array);
       } else if (e[e.length - 1] !== textArrayCharacters[e.length - 1]) {
-        let array = [...infoAboutCharacter];
-        let arrayItem = array[e.length - 1];
-        arrayItem = false;
-        array[e.length - 1] = arrayItem;
+        array[e.length - 1] = false;
+
         setInfoAboutCharacter(array);
       }
     }
