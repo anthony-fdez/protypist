@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 export const useIsTyping = () => {
   const dispatch = useDispatch();
 
-  //   const isTyping = useSelector((state) => state.isTypingReducer);
+  const isTestRunning = useSelector((state) => state.isTestRunningReducer);
+
   const [isTyping, setIsTyping] = useState(false);
   const [keyPressed, setKeyPressed] = useState(false);
 
   function downHandler() {
+    setIsTyping(true);
     setKeyPressed(true);
   }
   const upHandler = () => {
@@ -16,8 +18,6 @@ export const useIsTyping = () => {
   };
 
   useEffect(() => {
-    setIsTyping(true);
-
     const timeout = setTimeout(() => {
       setIsTyping(false);
     }, 5000);
@@ -28,6 +28,8 @@ export const useIsTyping = () => {
   }, [keyPressed]);
 
   useEffect(() => {
+    // if (!isTestRunning) return;
+
     dispatch({
       type: "SET_IS_TYPING",
       payload: isTyping,
@@ -35,6 +37,13 @@ export const useIsTyping = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTyping]);
+
+  useEffect(() => {
+    dispatch({
+      type: "SET_IS_TYPING",
+      payload: false,
+    });
+  }, []);
 
   useEffect(() => {
     window.addEventListener("keydown", downHandler);
@@ -45,6 +54,4 @@ export const useIsTyping = () => {
       window.removeEventListener("keyup", upHandler);
     };
   }, [keyPressed]);
-
-  return keyPressed;
 };

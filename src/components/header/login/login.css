@@ -1,0 +1,99 @@
+.login-menu-open {
+  position: fixed;
+  width: 350px;
+  height: 500px;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 50;
+  transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 0px;
+  top: 8vh;
+}
+.login-menu-closed {
+  position: fixed;
+  width: 350px;
+  height: 500px;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 21;
+  transform: scale(0.9);
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 0px;
+  top: 8vh;
+}
+.signUp-menu-open {
+  position: fixed;
+  width: 350px;
+  height: 490px;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 51;
+  transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 0px;
+  top: 8vh;
+}
+.signUp-menu-closed {
+  position: fixed;
+  width: 350px;
+  height: 500px;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 21;
+  transform: scale(0.9);
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 0px;
+  top: 8vh;
+}
+.log-in-header {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.signUp-header {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-labels {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.login-input {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  transition: 0.3s;
+}
+.login-input::placeholder {
+  color: rgb(150, 150, 150);
+}
+.login-input:focus {
+  transition: 0.3s;
+  filter: brightness(90%);
+}
+.log-in-button-menu {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  transition: 0.3s;
+  cursor: pointer;
+}

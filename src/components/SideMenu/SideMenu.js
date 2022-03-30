@@ -12,10 +12,15 @@ import { Button } from "@material-ui/core";
 
 function SideMenu() {
   const dispatch = useDispatch();
+
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const fontFamily = useSelector((state) => state.fontFamilyReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+
+  const isTyping = useSelector((state) => state.isTypingReducer);
+  const isFocusMode = useSelector((state) => state.isFocusModeReducer);
+
   const [isMultiplayerMenuOpen, setIsMultiplayerMenuOpen] = useState(false);
 
   let location = useLocation();
@@ -68,7 +73,7 @@ function SideMenu() {
         backgroundColor: colorFiles.secondaryBackgroundColor,
         fontFamily: fontFamily,
       }}
-      className={"SideMenu"}
+      className={isTyping ? "side-menu-hidden" : "side-menu"}
     >
       <div
         onClick={() => setIsMultiplayerMenuOpen(false)}

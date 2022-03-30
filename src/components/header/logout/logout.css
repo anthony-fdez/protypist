@@ -1,0 +1,42 @@
+.log-out-menu-open {
+  position: fixed;
+  width: 350px;
+  height: 385px;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 51;
+  transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 0px;
+  top: 8vh;
+}
+.log-out-menu-closed {
+  position: fixed;
+  width: 350px;
+  height: 385px;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 21;
+  transform: scale(0.9);
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
+  margin: auto;
+  left: 0;
+  right: 0px;
+  top: 8vh;
+}
+.log-out-all-button-menu {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.log-out-all-button-menu:hover {
+  filter: brightness(90%);
+  transform: translateY(-2px);
+}

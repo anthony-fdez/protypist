@@ -205,6 +205,23 @@ const isTypingReducer = (state = false, action) => {
       return state;
   }
 };
+const isTestRunningReducer = (state = false, action) => {
+  switch (action.type) {
+    case "SET_IS_TEST_RUNNING":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const isFocusModeReducer = (state = false, action) => {
+  switch (action.type) {
+    case "SET_IS_FOCUS_MODE":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 const userIdReducer = (state = null, action) => {
   switch (action.type) {
@@ -335,14 +352,6 @@ const setUserNameReducer = (state = "Guest", action) => {
   }
 };
 
-const countryReducer = (state = "US", action) => {
-  switch (action.type) {
-    case "SET_COUNTRY":
-      return action.payload;
-    default:
-      return state;
-  }
-};
 const allKeysPressed = (
   state = {
     a: 0,
@@ -435,8 +444,9 @@ const allReducers = combineReducers({
   logInMenuOpenReducer,
   tenSecondsDifficultyReducer,
   setUserNameReducer,
-  countryReducer,
   isTypingReducer,
+  isTestRunningReducer,
+  isFocusModeReducer,
 });
 
 export default allReducers;

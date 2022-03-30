@@ -3,6 +3,9 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import "./components/TypingTest/TypingTest.css";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useSelector } from "react-redux";
 import { useIsTyping } from "./functions/hooks/useIsTyping";
 
@@ -59,9 +62,21 @@ function App() {
         backgroundColor: colorFiles.backgroundColor,
         fontFamily: fontFamily,
         fontSize: fontSize,
+        transition: "300ms",
       }}
     >
       {useIsTyping()}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div>
         <Suspense fallback={loadingFallbackComponent()}>
           <Switch>
