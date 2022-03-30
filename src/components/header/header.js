@@ -254,7 +254,7 @@ function Header(props) {
             : "skill-level-menu-hidden"
         }
         style={{
-          backgroundColor: colorFiles.secondSecondaryBackgroundColor,
+          backgroundColor: colorFiles.secondaryBackgroundColor,
           color: colorFiles.fontColor,
         }}
       >
@@ -276,7 +276,7 @@ function Header(props) {
     <div>
       <div
         style={{
-          backgroundColor: colorFiles.secondaryBackgroundColor,
+          backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
         className={isTyping && isFocusMode ? "Header-hidden" : "Header"}

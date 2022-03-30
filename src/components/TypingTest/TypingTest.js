@@ -13,6 +13,7 @@ import { Line } from "react-chartjs-2";
 // Components
 import Keyboard from "../inScreenKeyboard/keyboard";
 import { preventUsingArrows } from "../../functions/preventUsingArrows";
+import Modal from "../../helperComponents/modal/modal";
 
 function TypingTest() {
   const dispatch = useDispatch();
@@ -648,166 +649,173 @@ function TypingTest() {
     }
   }, [isFinished]);
 
+  const handleCloseFinishedModal = () => {
+    setFinished(false);
+  };
+
   const statsMenu = () => {
     return (
-      <div
-        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
-        className={isFinished ? "stats-menu-shown" : "stats-menu-hidden"}
-      >
-        <h2>Results</h2>
-        <i
-          onClick={() => resetData()}
-          style={{ position: "absolute", top: "20px", right: "30px" }}
-          className="close-icon-login fas fa-times fa-2x"
-        ></i>
-        <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+      <Modal isOpen={isFinished} handleClose={handleCloseFinishedModal}>
         <div
-          style={{
-            padding: "0rem 2rem 2rem 2rem",
-            height: "60%",
-            width: "100%",
-            position: "relative",
-          }}
+          style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+          className={isFinished ? "stats-menu-shown" : "stats-menu-hidden"}
         >
-          <Line
-            position={"absolute"}
-            width={100}
-            height={100}
-            options={{
-              maintainAspectRatio: false,
-              title: { text: "Words per minute over time", display: true },
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10,
-                      beginAtZero: true,
-                    },
-                    gridLines: {
-                      display: true,
-                    },
-                  },
-                ],
-                xAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 15,
-                    },
-
-                    gridLines: {
-                      display: true,
-                    },
-                  },
-                ],
-              },
-            }}
-            data={chartData}
-          />
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h4 style={{ display: "flex", alignItems: "center" }}>
-              Source: {quoteSource}
-            </h4>
-            <div>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setWpm_raceHistory([]);
-                  setTime_raceHistory(0);
-                  setCharactersTyped_raceHistory(0);
-                  setSpanArray(blankSpanArray);
-                  setInfoAboutCharacter(blankInfoArray);
-                  setFinished(false);
-                  setIsFinished(false);
-                  setSeconds(0);
-                  setSecondsStats(0);
-                  setMinutes(0);
-                  setTimeSeconds(0);
-                  setCharactersTyped(0);
-                  setIsRunning(false);
-                  setMistakes(0);
-                  setRealMistakes(0);
-                  setProgress(1);
-                  calculateAccuracy();
-                  setInputText("");
-                }}
-                className="mr-3"
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: "white",
-                  border: "none",
-                }}
-              >
-                <i className="fas fa-reply mr-2"></i>
-                Type Again
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setWpm_raceHistory([]);
-                  setTime_raceHistory(0);
-                  setCharactersTyped_raceHistory(0);
-                  setSpanArray(blankSpanArray);
-                  setInfoAboutCharacter(blankInfoArray);
-                  setFinished(false);
-                  setNewGame(true);
-                  setRealMistakes(0);
-                  calculateAccuracy();
-                  setIsFinished(false);
-                  setInputText("");
-                }}
-                style={{
-                  backgroundColor: colorFiles.primaryColor,
-                  color: "white",
-                  border: "none",
-                }}
-              >
-                <i className="fas fa-arrow-right mr-2"></i>
-                New Text
-              </Button>
-            </div>
-          </div>
-          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+          <h2>Results</h2>
+          <br></br>
+          <i
+            onClick={() => resetData()}
+            style={{ position: "absolute", top: "20px", right: "30px" }}
+            className="close-icon-login fas fa-times fa-2x"
+          ></i>
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "1rem",
+              padding: "0rem 2rem 2rem 2rem",
+              height: "60%",
+              width: "100%",
+              position: "relative",
             }}
           >
-            <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
-            <h5>WPM: {wpm}</h5>
-            <h5>|</h5>
-            <h5>Time: {Math.round(seconds * 100) / 100}s</h5>
-            <h5>Highest: {highestWpm}</h5>
-            <h5>Lowest: {lowestWpm}</h5>
-            <h5>|</h5>
-            <h5>Mistakes: {latestErrors}</h5>
-            <h5>Accuracy: {accuracy}%</h5>
-          </div>
-          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
-          {!isLoggedIn && (
-            <h5
+            <Line
+              position={"absolute"}
+              width={100}
+              height={100}
+              options={{
+                maintainAspectRatio: false,
+                title: { text: "Words per minute over time", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                      },
+
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                },
+              }}
+              data={chartData}
+            />
+            <hr></hr>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <h4 style={{ display: "flex", alignItems: "center" }}>
+                Source: {quoteSource}
+              </h4>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    setWpm_raceHistory([]);
+                    setTime_raceHistory(0);
+                    setCharactersTyped_raceHistory(0);
+                    setSpanArray(blankSpanArray);
+                    setInfoAboutCharacter(blankInfoArray);
+                    setFinished(false);
+                    setIsFinished(false);
+                    setSeconds(0);
+                    setSecondsStats(0);
+                    setMinutes(0);
+                    setTimeSeconds(0);
+                    setCharactersTyped(0);
+                    setIsRunning(false);
+                    setMistakes(0);
+                    setRealMistakes(0);
+                    setProgress(1);
+                    calculateAccuracy();
+                    setInputText("");
+                  }}
+                  className="mr-3"
+                  style={{
+                    backgroundColor: colorFiles.primaryColor,
+                    color: "white",
+                    border: "none",
+                  }}
+                >
+                  <i className="fas fa-reply mr-2"></i>
+                  Type Again
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    setWpm_raceHistory([]);
+                    setTime_raceHistory(0);
+                    setCharactersTyped_raceHistory(0);
+                    setSpanArray(blankSpanArray);
+                    setInfoAboutCharacter(blankInfoArray);
+                    setFinished(false);
+                    setNewGame(true);
+                    setRealMistakes(0);
+                    calculateAccuracy();
+                    setIsFinished(false);
+                    setInputText("");
+                  }}
+                  style={{
+                    backgroundColor: colorFiles.primaryColor,
+                    color: "white",
+                    border: "none",
+                  }}
+                >
+                  <i className="fas fa-arrow-right mr-2"></i>
+                  New Text
+                </Button>
+              </div>
+            </div>
+            <br></br>
+            <div
               style={{
                 display: "flex",
-                justifyContent: "center",
-                backgroundColor: colorFiles.primaryColor,
-                color: colorFiles.backgroundColor,
-              }}
-              className="log-in-to-save-results"
-              onClick={() => {
-                dispatch({
-                  type: "SET_OPEN_LOGIN_MENU",
-                  payload: true,
-                });
+                justifyContent: "space-between",
+                padding: "1rem",
               }}
             >
-              Log in to save your results
-            </h5>
-          )}
+              <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
+              <h5>WPM: {wpm}</h5>
+              <h5>|</h5>
+              <h5>Time: {Math.round(seconds * 100) / 100}s</h5>
+              <h5>Highest: {highestWpm}</h5>
+              <h5>Lowest: {lowestWpm}</h5>
+              <h5>|</h5>
+              <h5>Mistakes: {latestErrors}</h5>
+              <h5>Accuracy: {accuracy}%</h5>
+            </div>
+
+            {!isLoggedIn && (
+              <h5
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.backgroundColor,
+                }}
+                className="log-in-to-save-results"
+                onClick={() => {
+                  dispatch({
+                    type: "SET_OPEN_LOGIN_MENU",
+                    payload: true,
+                  });
+                }}
+              >
+                Log in to save your results
+              </h5>
+            )}
+          </div>
         </div>
-      </div>
+      </Modal>
     );
   };
 

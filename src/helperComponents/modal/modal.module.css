@@ -1,0 +1,47 @@
+.modal_open,
+.modal_closed {
+  position: fixed;
+  background-color: white;
+  width: calc(100vw);
+  left: 0;
+  bottom: 0;
+  height: calc(95vh - 40px);
+  z-index: 100;
+  padding: 20px;
+  transition: transform 300ms;
+  will-change: transform;
+  overflow-y: scroll;
+  padding-top: 0;
+}
+
+.modal_closed {
+  -webkit-transform: translateY(95vh);
+  transform: translateY(95vh);
+
+  transition: transform 300ms ease-in;
+  will-change: transform;
+}
+
+.dark_bg_on {
+  z-index: 90;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  transition: 400ms;
+  opacity: 1;
+}
+.dark_bg_off {
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  transition: 400ms;
+  opacity: 1;
+}

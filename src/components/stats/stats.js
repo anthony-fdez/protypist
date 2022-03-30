@@ -8,7 +8,7 @@ import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import ReplayText from "../replayText/replayText";
-import { Button } from "@material-ui/core";
+import { Button, Tab, Tabs } from "@material-ui/core";
 
 function Stats() {
   const dispatch = useDispatch();
@@ -25,6 +25,8 @@ function Stats() {
   );
 
   const [totalKeysStrokes, setTotalKeyStrokes] = useState(0);
+
+  const [selectedScreen, setSelectedScreen] = useState("quotes");
 
   //state TypingGame
   const [wpmAverage10races, setWpmAverage10races] = useState(0);
@@ -57,23 +59,22 @@ function Stats() {
   const [chartData1000, setChartData1000] = useState({});
   const [data1000, setData1000] = useState();
 
-  const [
-    isTypingGameStatisticsShown,
-    setIsTypingGameStatisticsShown,
-  ] = useState(true);
-  const [isTyping200StatisticsShown, setIsTyping200StatisticsShown] = useState(
-    false
-  );
-  const [
-    isTyping1000StatisticsShown,
-    setIsTyping1000StatisticsShown,
-  ] = useState(false);
+  const [isTypingGameStatisticsShown, setIsTypingGameStatisticsShown] =
+    useState(true);
+  const [isTyping200StatisticsShown, setIsTyping200StatisticsShown] =
+    useState(false);
+  const [isTyping1000StatisticsShown, setIsTyping1000StatisticsShown] =
+    useState(false);
 
   const animation = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
     config: { duration: 300 },
   });
+
+  const handleScreenChange = (event, newValue) => {
+    setSelectedScreen(newValue);
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -340,7 +341,7 @@ function Stats() {
             </div>
           </div>
 
-          <hr style={{ background: colorFiles.hrColor }}></hr>
+          <br></br>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
@@ -439,7 +440,8 @@ function Stats() {
               <h4>Total Keystrokes: {totalKeysStrokes}</h4>
             </div>
           </div>
-          <hr style={{ background: colorFiles.hrColor }}></hr>
+
+          <br></br>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
@@ -556,7 +558,8 @@ function Stats() {
               <h4>Total Keystrokes: {totalKeysStrokes}</h4>
             </div>
           </div>
-          <hr style={{ background: colorFiles.hrColor }}></hr>
+
+          <br></br>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
@@ -994,7 +997,8 @@ function Stats() {
               <h4>Total Keystrokes: N/A</h4>
             </div>
           </div>
-          <hr style={{ background: colorFiles.hrColor }}></hr>
+
+          <br></br>
           <div className={"all-time-div-stats"}>
             <div className="stats-box">
               <h5>Total time:</h5>
@@ -1034,6 +1038,7 @@ function Stats() {
               }}
             >
               <h3
+                style={{ color: "white" }}
                 className="graph-login-text"
                 onClick={() => {
                   dispatch({
@@ -1114,10 +1119,10 @@ function Stats() {
               : "dark-background-replay-off"
           }
         ></div>
+
         <div
           style={{
             backgroundColor: colorFiles.backgroundColor,
-            borderBottom: "1px solid " + colorFiles.hrColor,
           }}
           className="statistics-select-buttons"
         >
@@ -1139,11 +1144,12 @@ function Stats() {
             style={
               isTypingGameStatisticsShown
                 ? {
-                    backgroundColor: colorFiles.primaryColor,
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
                     transition: "0.2s",
                     marginRight: "1rem",
                     padding: "10px",
                     color: "white",
+                    borderBottom: `2px solid ${colorFiles.primaryColor}`,
                   }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -1178,11 +1184,12 @@ function Stats() {
             style={
               isTyping200StatisticsShown
                 ? {
-                    backgroundColor: colorFiles.primaryColor,
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
                     transition: "0.2s",
                     marginRight: "1rem",
                     padding: "10px",
                     color: "white",
+                    borderBottom: `2px solid ${colorFiles.primaryColor}`,
                   }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
@@ -1217,10 +1224,12 @@ function Stats() {
             style={
               isTyping1000StatisticsShown
                 ? {
-                    backgroundColor: colorFiles.primaryColor,
+                    backgroundColor: colorFiles.secondaryBackgroundColor,
                     transition: "0.2s",
+                    marginRight: "1rem",
                     padding: "10px",
                     color: "white",
+                    borderBottom: `2px solid ${colorFiles.primaryColor}`,
                   }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,

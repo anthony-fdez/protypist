@@ -190,9 +190,7 @@ function SideMenu() {
             <h5>Custom</h5>
           </div>
         </Link>
-        <hr
-          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
-        ></hr>
+        <br></br>
         <p
           style={{
             color: colorFiles.fontColor,

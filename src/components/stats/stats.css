@@ -76,11 +76,9 @@ h1 {
 .statistics-select-buttons {
   display: flex;
   justify-content: center;
-  position: sticky;
   top: 0px;
   z-index: 10;
   padding: 20px;
-  border-bottom: 1px solid white;
 }
 
 .typing-game-button-active,
