@@ -35,7 +35,7 @@ function SideMenu() {
   const checkButtonStyle = (path) => {
     if (location === path) {
       return colorFiles.primaryColor;
-    } else return colorFiles.secondSecondaryBackgroundColor;
+    }
   };
 
   const checkButtonStyleColor = (path) => {
@@ -73,7 +73,7 @@ function SideMenu() {
         backgroundColor: colorFiles.secondaryBackgroundColor,
         fontFamily: fontFamily,
       }}
-      className={isTyping ? "side-menu-hidden" : "side-menu"}
+      className={isTyping && isFocusMode ? "side-menu-hidden" : "side-menu"}
     >
       <div
         onClick={() => setIsMultiplayerMenuOpen(false)}

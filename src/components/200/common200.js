@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./common200.css";
 import "./statsMenu.css";
 import Header from "../header/header";
@@ -10,9 +10,12 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { Button } from "@material-ui/core";
 import Keyboard from "../inScreenKeyboard/keyboard";
+import { preventUsingArrows } from "../../functions/preventUsingArrows";
 
 function Common200() {
   const dispatch = useDispatch();
+
+  const inputRef = useRef();
 
   //redux reducers
   const length = useSelector((state) => state.lengthReducerNormal);
@@ -114,6 +117,22 @@ function Common200() {
       setMistakes(errors);
     }
   }, [charactersTyped]);
+
+  useEffect(() => {
+    if (isRunning) {
+      dispatch({
+        type: "SET_IS_TEST_RUNNING",
+        payload: isRunning,
+      });
+    } else {
+      dispatch({
+        type: "SET_IS_TEST_RUNNING",
+        payload: false,
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRunning]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -693,7 +712,7 @@ function Common200() {
           backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className={isTyping ? "TypingTest-On" : "TypingTest-Off"}
+        className={isTyping && isFocusMode ? "TypingTest-On" : "TypingTest-Off"}
       >
         {statsMenu()}
         <div
@@ -789,7 +808,12 @@ function Common200() {
           <strong>Slow Down...</strong>
           the test won't stop unless you have less than 10 mistakes
         </p>
-        <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
+        <div
+          onClick={() => {
+            inputRef.current.focus();
+          }}
+          className={isUserTyping ? "text-to-type" : "text-to-type-dark"}
+        >
           {spanArray}
         </div>
         <Keyboard />
@@ -801,6 +825,7 @@ function Common200() {
             className="input-zone-form"
           >
             <input
+              ref={inputRef}
               maxLength={textArrayCharacters && textArrayCharacters.length}
               autoFocus
               onFocus={() => {
@@ -808,6 +833,9 @@ function Common200() {
               }}
               onBlur={() => {
                 setIsUserTyping(false);
+              }}
+              onKeyDown={(e) => {
+                preventUsingArrows(e);
               }}
               onChange={(e) => {
                 setInputText(e.target.value);
@@ -819,7 +847,7 @@ function Common200() {
               }}
               value={inputText}
               placeholder="The test will begin when you start typing!"
-              className={isFinished ? "input-box-hidden" : "input-box-shown"}
+              className="input-box"
               style={{
                 color: colorFiles.fontColor,
                 borderBottom: `2px solid ${colorFiles.primaryColor}`,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "../header/header";
 import displayTheArray from "../functions/displayTheArray";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,9 +12,12 @@ import { Line } from "react-chartjs-2";
 
 // Components
 import Keyboard from "../inScreenKeyboard/keyboard";
+import { preventUsingArrows } from "../../functions/preventUsingArrows";
 
 function TypingTest() {
   const dispatch = useDispatch();
+
+  const inputRef = useRef();
 
   //redux reducers
   const keyboardOnScreen = useSelector(
@@ -448,6 +451,22 @@ function TypingTest() {
 
   useEffect(() => {
     if (isRunning) {
+      dispatch({
+        type: "SET_IS_TEST_RUNNING",
+        payload: isRunning,
+      });
+    } else {
+      dispatch({
+        type: "SET_IS_TEST_RUNNING",
+        payload: false,
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (isRunning) {
       let interval = setInterval(() => {
         setSeconds((seconds) => seconds + 0.1);
       }, 100);
@@ -868,6 +887,7 @@ function TypingTest() {
     setProgress(1);
     calculateAccuracy();
     setInputText("");
+    setIsRunning(false);
   };
 
   return (
@@ -884,7 +904,7 @@ function TypingTest() {
           backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className={isTyping ? "TypingTest-On" : "TypingTest-Off"}
+        className={isTyping && isFocusMode ? "TypingTest-On" : "TypingTest-Off"}
       >
         {statsMenu()}
         <div
@@ -920,12 +940,19 @@ function TypingTest() {
           <strong>Slow Down...</strong>
           the test won't stop unless you have less than 10 mistakes
         </p>
-        <div className={isUserTyping ? "text-to-type" : "text-to-type-dark"}>
+        <div
+          onClick={() => {
+            inputRef.current.focus();
+          }}
+          className={isUserTyping ? "text-to-type" : "text-to-type-dark"}
+        >
           {spanArray}
         </div>
         <div
           className={
-            finished || isTyping ? "keyboard-div-hidden" : "keyboard-div-shown"
+            finished || (isTyping && isFocusMode)
+              ? "keyboard-div-hidden"
+              : "keyboard-div-shown"
           }
         >
           {keyboardOnScreen && <Keyboard />}
@@ -943,6 +970,7 @@ function TypingTest() {
                   border: "none",
                   opacity: 0,
                   transition: "0.3s",
+                  pointerEvents: "none",
                 }
               : {
                   backgroundColor: colorFiles.primaryColor,
@@ -963,6 +991,7 @@ function TypingTest() {
             className="input-zone-form"
           >
             <input
+              ref={inputRef}
               maxLength={textArrayCharacters && textArrayCharacters.length}
               autoFocus
               onFocus={() => {
@@ -970,6 +999,9 @@ function TypingTest() {
               }}
               onBlur={() => {
                 setIsUserTyping(false);
+              }}
+              onKeyDown={(e) => {
+                preventUsingArrows(e);
               }}
               onChange={(e) => {
                 setInputText(e.target.value);
@@ -981,7 +1013,7 @@ function TypingTest() {
               }}
               value={inputText}
               placeholder="The test will begin when you start typing!"
-              className={finished ? "input-box-hidden" : "input-box-shown"}
+              className="input-box"
               style={{
                 color: colorFiles.fontColor,
                 borderBottom: `2px solid ${colorFiles.primaryColor}`,

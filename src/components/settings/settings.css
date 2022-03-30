@@ -33,11 +33,9 @@ h2 {
   align-items: center;
   overflow: hidden;
   transition: 0.3s;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 .settings-card-words:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
 }
 .settings-card-themes-closed {
   border-radius: 5px;
@@ -52,7 +50,6 @@ h2 {
   cursor: pointer;
   height: 8rem;
   position: relative;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 .settings-card-themes-open {
   border-radius: 5px;
@@ -67,7 +64,6 @@ h2 {
   cursor: pointer;
   height: 18rem;
   position: relative;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 .theme-card-info {
   position: absolute;
@@ -76,7 +72,6 @@ h2 {
 }
 .settings-card:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
 }
 .text-themes {
   position: absolute;
@@ -180,7 +175,6 @@ h2 {
   }
   .settings-card,
   .settings-card-words {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -193,14 +187,12 @@ h2 {
   }
   .settings-card-words:hover {
     transform: translateY(-3px);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
   }
   .settings-card {
     cursor: pointer;
   }
   .settings-card:hover {
     transform: translateY(-3px);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
   }
   .settings-card {
     border-radius: 5px;
@@ -269,7 +261,6 @@ h2 {
   text-decoration: none;
   border-radius: 5px;
   transition: 0.3s;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.342);
 }
 .gitHub-link {
   font-size: 20px;

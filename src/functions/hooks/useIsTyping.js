@@ -28,15 +28,20 @@ export const useIsTyping = () => {
   }, [keyPressed]);
 
   useEffect(() => {
-    // if (!isTestRunning) return;
-
-    dispatch({
-      type: "SET_IS_TYPING",
-      payload: isTyping,
-    });
+    if (isTestRunning) {
+      dispatch({
+        type: "SET_IS_TYPING",
+        payload: isTyping,
+      });
+    } else {
+      dispatch({
+        type: "SET_IS_TYPING",
+        payload: false,
+      });
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isTyping]);
+  }, [isTyping, isTestRunning]);
 
   useEffect(() => {
     dispatch({

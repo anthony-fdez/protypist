@@ -28,7 +28,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: left;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 .fake-loading-spinner {
   position: absolute;

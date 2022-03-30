@@ -29,7 +29,7 @@
     align-items: center;
     align-content: center;
   }
-  .input-box-shown {
+  .input-box {
     width: 750px;
     bottom: 380px;
     opacity: 1;
@@ -39,22 +39,8 @@
     outline: none;
     padding: 0.5rem;
     border: none;
-  }
-  .input-box-hidden {
-    width: 870px;
-    bottom: 300px;
     pointer-events: none;
-    transition: 0.3s;
     opacity: 0;
-    z-index: 0;
-    transition: 0.3s;
-    background: none;
-    outline: none;
-    padding: 0.5rem;
-    border: none;
-  }
-  .input-box-shown:focus {
-    padding: 0.7rem;
   }
 
   .text-to-type {
@@ -77,6 +63,7 @@
     transition: 0.3s;
     opacity: 0.2;
     border-radius: 5px;
+    cursor: pointer;
   }
 
   .none {
@@ -156,7 +143,6 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.404);
     z-index: 10;
   }
 
@@ -268,7 +254,6 @@
     z-index: 2;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.199);
   }
 
   .about-text-header {
@@ -428,7 +413,7 @@
     align-items: center;
     align-content: center;
   }
-  .input-box-shown {
+  .input-box {
     width: 555px;
     bottom: 180px;
     opacity: 1;
@@ -438,23 +423,10 @@
     outline: none;
     padding: 0.5rem;
     border: none;
-  }
-  .input-box-hidden {
-    width: 555px;
-    bottom: 180px;
     pointer-events: none;
-    transition: 0.3s;
     opacity: 0;
-    z-index: 0;
-    transition: 0.3s;
-    background: none;
-    outline: none;
-    padding: 0.5rem;
-    border: none;
   }
-  .input-box-shown:focus {
-    padding: 0.7rem;
-  }
+
   .text-to-type {
     margin-top: 1rem;
     display: flex;
@@ -474,6 +446,7 @@
     transition: 0.3s;
     opacity: 0.3;
     padding: 1rem;
+    cursor: pointer;
   }
 
   .none {
@@ -725,7 +698,6 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.404);
     z-index: 10;
   }
 
@@ -823,7 +795,6 @@
 }
 .close-icon:hover {
   background-color: red;
-  box-shadow: 0px 0px 0px 10px rgb(255, 0, 0);
   transition: 0.1s;
 }
 .loading-div {
@@ -906,13 +877,11 @@
   padding: 0.5rem;
   border-radius: 5px;
   margin: auto;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.295);
   margin-top: 2rem;
   cursor: pointer;
   transition: 0.1s;
 }
 .log-in-to-save-results:hover {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.495);
   transition: 0.1s;
   transform: translateY(-3px);
 }

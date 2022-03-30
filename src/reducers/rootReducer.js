@@ -214,7 +214,7 @@ const isTestRunningReducer = (state = false, action) => {
   }
 };
 
-const isFocusModeReducer = (state = false, action) => {
+const isFocusModeReducer = (state = true, action) => {
   switch (action.type) {
     case "SET_IS_FOCUS_MODE":
       return action.payload;

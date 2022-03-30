@@ -259,7 +259,6 @@ function Header(props) {
         }}
       >
         <h4>Skill Level</h4>
-        <hr style={{ marginTop: "2rem" }} className="white-hr mt-2"></hr>
         <h5 className="mt-2">00 - 20 -{">"} Beginer</h5>
         <h5 className="mt-2">21 - 40 -{">"} Average</h5>
         <h5 className="mt-2">41 - 60 -{">"} Intermidiate</h5>
@@ -280,7 +279,7 @@ function Header(props) {
           backgroundColor: colorFiles.secondaryBackgroundColor,
           color: colorFiles.fontColor,
         }}
-        className={isTyping ? "Header-hidden" : "Header"}
+        className={isTyping && isFocusMode ? "Header-hidden" : "Header"}
       >
         <LogInMenu />
         <Logout handleClose={handleCloseLogoutMenu} isOpen={isLogOutMenuOpen} />

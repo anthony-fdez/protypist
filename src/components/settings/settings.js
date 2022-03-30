@@ -22,6 +22,7 @@ function Settings() {
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
+  const isFocusMode = useSelector((state) => state.isFocusModeReducer);
 
   const dispatch = useDispatch();
 
@@ -68,6 +69,29 @@ function Settings() {
 
         <div className="container mt-5">
           <h3>Typing Settings</h3>
+          <div
+            className={"settings-card-words"}
+            style={{
+              backgroundColor: colorFiles.secondaryBackgroundColor,
+              color: colorFiles.fontColor,
+            }}
+            onClick={() => {
+              dispatch({
+                type: "SET_IS_FOCUS_MODE",
+                payload: !isFocusMode,
+              });
+            }}
+          >
+            <div style={{ textAlign: "left" }}>
+              <h2>Focus Mode</h2>
+              <p>
+                Get rid of all the ui elements while you type to avoid
+                distractions
+              </p>
+            </div>
+            <div></div>
+            <h1 className="text">{isFocusMode ? "ON" : "OFF"}</h1>
+          </div>
           <div
             className={"settings-card-words"}
             style={{

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./customText.css";
 import displayTheArray from "../functions/displayTheArray";
 import Header from "../header/header";
@@ -7,9 +7,12 @@ import SelectText from "./selectText";
 import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import Keyboard from "../inScreenKeyboard/keyboard";
+import { preventUsingArrows } from "../../functions/preventUsingArrows";
 
 const CustomText = () => {
   const dispatch = useDispatch();
+
+  const inputRef = useRef();
 
   const colors = useSelector((state) => state.themeReducer);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
@@ -119,6 +122,22 @@ const CustomText = () => {
       }
     }
   }, [charactersTyped]);
+
+  useEffect(() => {
+    if (isRunning) {
+      dispatch({
+        type: "SET_IS_TEST_RUNNING",
+        payload: isRunning,
+      });
+    } else {
+      dispatch({
+        type: "SET_IS_TEST_RUNNING",
+        payload: false,
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRunning]);
 
   const calculateWordsPerMinute = () => {
     let charactersPerSecond = charactersTyped / timeSeconds;
@@ -267,7 +286,7 @@ const CustomText = () => {
           backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className={isTyping ? "TypingTest-On" : "TypingTest-Off"}
+        className={isTyping && isFocusMode ? "TypingTest-On" : "TypingTest-Off"}
       >
         <Header />
         <SelectText />
@@ -328,17 +347,28 @@ const CustomText = () => {
           <strong>Slow Down...</strong>
           the test won't stop unless you have less than 10 mistakes
         </p>
-        <div className={"text-to-type"}>{spanArray}</div>
+        <div
+          onClick={() => {
+            inputRef.current.focus();
+          }}
+          className={"text-to-type"}
+        >
+          {spanArray}
+        </div>
         <Keyboard />
         <div className="input-zone">
           <input
+            ref={inputRef}
             maxLength={textArrayCharacters && textArrayCharacters.length}
             autoFocus
             onChange={(e) => {
               getAndCheckTheInput(e);
             }}
+            onKeyDown={(e) => {
+              preventUsingArrows(e);
+            }}
             placeholder="The test will begin when you start typing!"
-            className="input-box-shown"
+            className="input-box"
             style={{
               color: colorFiles.fontColor,
               borderBottom: `2px solid ${colorFiles.primaryColor}`,

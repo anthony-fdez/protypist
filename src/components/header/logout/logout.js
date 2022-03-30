@@ -98,9 +98,6 @@ const Logout = ({ isOpen, handleClose }) => {
             className="close-icon-login fas fa-times fa-2x"
           ></i>
         </div>
-        <hr
-          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
-        ></hr>
         <h5 className="text-left mt-3 ml-3">Are you sure?</h5>
         <div className="d-flex justify-content-between">
           <Button
@@ -125,9 +122,7 @@ const Logout = ({ isOpen, handleClose }) => {
             Yes
           </Button>
         </div>
-        <hr
-          style={{ marginTop: "10px", backgroundColor: colorFiles.hrColor }}
-        ></hr>
+
         <h5 className="text-left mt-3 ml-3">Log out in all devices</h5>
         <input
           autoComplete="off"

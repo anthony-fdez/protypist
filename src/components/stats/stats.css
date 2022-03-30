@@ -41,7 +41,6 @@ h1 {
   right: 0;
   top: 0;
   transition: 0.3s;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 
 .typing-game-statistics-div-hidden,
