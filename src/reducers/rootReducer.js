@@ -197,6 +197,15 @@ const JWTreducer = (state = null, action) => {
   }
 };
 
+const isTypingReducer = (state = false, action) => {
+  switch (action.type) {
+    case "SET_IS_TYPING":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const userIdReducer = (state = null, action) => {
   switch (action.type) {
     case "SET_USER_ID":
@@ -389,44 +398,45 @@ const allKeysPressed = (
 };
 
 const allReducers = combineReducers({
-  lengthReducerAdvanced: lengthReducerAdvanced,
-  themeReducer: themeReducer,
-  currentThemeReducer: currentThemeReducer,
-  lengthReducerNormal: lengthReducerNormal,
-  realTimeWPMReducer: realTimeWPMReducer,
-  latestWPMReducer200: latestWPMReducer200,
-  latestWPMReducer1000: latestWPMReducer1000,
-  keyboardOnScreenReducer: keyboardOnScreenReducer,
-  latestWPMReducerTypingGame: latestWPMReducerTypingGame,
-  previousWPMReducerTypingGame: previousWPMReducerTypingGame,
-  previousWPMReducer1000: previousWPMReducer1000,
-  previousWPMReducer200: previousWPMReducer200,
-  latestErrorsReducerTypingGame: latestErrorsReducerTypingGame,
-  previousErrorsReducerTypingGame: previousErrorsReducerTypingGame,
-  latestErrorsReducer200: latestErrorsReducer200,
-  previousErrorsReducer200: previousErrorsReducer200,
-  latestErrorsReducer1000: latestErrorsReducer1000,
-  previousErrorsReducer1000: previousErrorsReducer1000,
-  openSideMenuReducer: openSideMenuReducer,
-  isLoggedInReducer: isLoggedInReducer,
-  JWTreducer: JWTreducer,
-  openLadderBoardMenu: openLadderBoardMenu,
-  userIdReducer: userIdReducer,
-  instaDeathReducer: instaDeathReducer,
-  fontFamilyReducer: fontFamilyReducer,
-  testLanguageReducer: testLanguageReducer,
-  customText: customText,
-  selectMenuShown: selectMenuShown,
-  selectKeyboardLayout: selectKeyboardLayout,
-  fontSizeReducer: fontSizeReducer,
-  allKeysPressed: allKeysPressed,
-  privateAccountReducer: privateAccountReducer,
-  replayComponentShown: replayComponentShown,
-  replayDataReducer: replayDataReducer,
-  logInMenuOpenReducer: logInMenuOpenReducer,
-  tenSecondsDifficultyReducer: tenSecondsDifficultyReducer,
-  setUserNameReducer: setUserNameReducer,
-  countryReducer: countryReducer,
+  lengthReducerAdvanced,
+  themeReducer,
+  currentThemeReducer,
+  lengthReducerNormal,
+  realTimeWPMReducer,
+  latestWPMReducer200,
+  latestWPMReducer1000,
+  keyboardOnScreenReducer,
+  latestWPMReducerTypingGame,
+  previousWPMReducerTypingGame,
+  previousWPMReducer1000,
+  previousWPMReducer200,
+  latestErrorsReducerTypingGame,
+  previousErrorsReducerTypingGame,
+  latestErrorsReducer200,
+  previousErrorsReducer200,
+  latestErrorsReducer1000,
+  previousErrorsReducer1000,
+  openSideMenuReducer,
+  isLoggedInReducer,
+  JWTreducer,
+  openLadderBoardMenu,
+  userIdReducer,
+  instaDeathReducer,
+  fontFamilyReducer,
+  testLanguageReducer,
+  customText,
+  selectMenuShown,
+  selectKeyboardLayout,
+  fontSizeReducer,
+  allKeysPressed,
+  privateAccountReducer,
+  replayComponentShown,
+  replayDataReducer,
+  logInMenuOpenReducer,
+  tenSecondsDifficultyReducer,
+  setUserNameReducer,
+  countryReducer,
+  isTypingReducer,
 });
 
 export default allReducers;

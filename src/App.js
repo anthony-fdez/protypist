@@ -4,6 +4,7 @@ import "./App.css";
 import "./components/TypingTest/TypingTest.css";
 
 import { useSelector } from "react-redux";
+import { useIsTyping } from "./functions/hooks/useIsTyping";
 
 const Typing10second = lazy(() => import("./components/10second/10second"));
 const TypingTest = lazy(() => import("./components/TypingTest/TypingTest"));
@@ -58,9 +59,9 @@ function App() {
         backgroundColor: colorFiles.backgroundColor,
         fontFamily: fontFamily,
         fontSize: fontSize,
-        transition: "0.3s",
       }}
     >
+      {useIsTyping()}
       <div>
         <Suspense fallback={loadingFallbackComponent()}>
           <Switch>
