@@ -62,7 +62,6 @@ h1 {
 }
 
 .stats-box {
-  border: 1px solid gray;
   border-radius: 5px;
   padding: 2rem;
   width: 20%;
@@ -167,7 +166,6 @@ h4 {
   margin: 0;
 }
 .vl {
-  border-left: 2px solid rgb(116, 116, 116);
   height: 50px;
   margin-left: 1rem;
   margin-right: 1rem;

@@ -829,6 +829,7 @@ function Stats() {
       return (
         <div>
           <h3>Tests History</h3>
+          <br></br>
           <div
             style={{
               padding: 0,
@@ -840,7 +841,7 @@ function Stats() {
           >
             You can click on a test below to replay it!
           </div>
-          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          <br></br>
           {dataTypingGame !== undefined && dataTypingGame.length !== 0 && (
             <div style={{ position: "relative", width: "80%", margin: "auto" }}>
               <div className="test-history-item">

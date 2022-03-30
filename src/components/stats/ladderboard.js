@@ -25,17 +25,12 @@ function Ladderboard(props) {
   const [seeAllHistoryQuote, setSeeAllHistoryQuote] = useState(false);
   const [seeAllHistory200, setSeeAllHistory200] = useState(false);
   const [seeAllHistory1000, setSeeAllHistory1000] = useState(false);
-  const [
-    isTypingGameStatisticsShown,
-    setIsTypingGameStatisticsShown,
-  ] = useState(true);
-  const [isTyping200StatisticsShown, setIsTyping200StatisticsShown] = useState(
-    false
-  );
-  const [
-    isTyping1000StatisticsShown,
-    setIsTyping1000StatisticsShown,
-  ] = useState(false);
+  const [isTypingGameStatisticsShown, setIsTypingGameStatisticsShown] =
+    useState(true);
+  const [isTyping200StatisticsShown, setIsTyping200StatisticsShown] =
+    useState(false);
+  const [isTyping1000StatisticsShown, setIsTyping1000StatisticsShown] =
+    useState(false);
 
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
@@ -295,7 +290,7 @@ function Ladderboard(props) {
       return (
         <div>
           <h3>Tests History</h3>
-          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          <br></br>
           {DATA.length !== 0 && (
             <div style={{ position: "relative", width: "80%", margin: "auto" }}>
               <div className="test-history-item">
@@ -394,7 +389,7 @@ function Ladderboard(props) {
       return (
         <div>
           <h3>Tests History</h3>
-          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          <br></br>
           <div style={{ position: "relative", width: "80%", margin: "auto" }}>
             <div className="test-history-item">
               <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
@@ -483,7 +478,7 @@ function Ladderboard(props) {
       return (
         <div>
           <h3>Tests History</h3>
-          <hr style={{ background: colorFiles.hrColor, width: "80%" }}></hr>
+          <br></br>
           {DATA.length !== 0 && (
             <div style={{ position: "relative", width: "80%", margin: "auto" }}>
               <div className="test-history-item">
@@ -592,7 +587,8 @@ function Ladderboard(props) {
                 className="close-icon-login fas fa-times fa-2x"
               ></i>
             </div>
-            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            <br></br>
+            <br></br>
           </div>
 
           <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
@@ -641,7 +637,7 @@ function Ladderboard(props) {
                 className="close-icon-login fas fa-times fa-2x"
               ></i>
             </div>
-            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            <br></br>
           </div>
 
           <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
@@ -673,11 +669,11 @@ function Ladderboard(props) {
                   <h5 style={{ marginTop: "1rem" }}>0</h5>
                 </div>
               </div>
-              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+              <br></br>
               <div>
                 <h4>Total Keystrokes: 123134</h4>
               </div>
-              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+              <br></br>
               {selectGameModeToShowComponent()}
               <div className="chart">
                 <Line
@@ -763,9 +759,7 @@ function Ladderboard(props) {
                   className="close-icon-login fas fa-times fa-2x"
                 ></i>
               </div>
-              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
             </div>
-
             <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
               <div style={{ textAlign: "center" }}>
                 <div className={"all-time-div-stats"}>
@@ -805,12 +799,11 @@ function Ladderboard(props) {
                     </h5>
                   </div>
                 </div>
-                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <br></br>
                 <div>
                   <h4>Total Keystrokes: {otherUserData.total_key_strokes}</h4>
                 </div>
-                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
-
+                <br></br>
                 {selectGameModeToShowComponent()}
                 <div className="chart">
                   <Line
@@ -848,7 +841,7 @@ function Ladderboard(props) {
                 </div>
               </div>
             </div>
-            <hr style={{ background: colorFiles.hrColor }}></hr>
+            <br></br>
             {testHistoryQuote()}
             <div style={{ padding: "1rem" }}></div>
           </div>
@@ -900,7 +893,6 @@ function Ladderboard(props) {
                   className="close-icon-login fas fa-times fa-2x"
                 ></i>
               </div>
-              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
             </div>
             <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
               <div style={{ textAlign: "center" }}>
@@ -944,11 +936,12 @@ function Ladderboard(props) {
                     </h5>
                   </div>
                 </div>
-                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <br></br>
+
                 <div>
                   <h4>Total Keystrokes: {otherUserData.total_key_strokes}</h4>
                 </div>
-                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <br></br>
                 {selectGameModeToShowComponent()}
                 <div className="chart">
                   <Line
@@ -986,7 +979,7 @@ function Ladderboard(props) {
                 </div>
               </div>
             </div>
-            <hr style={{ background: colorFiles.hrColor }}></hr>
+            <br></br>
             {testHistory200()}
             <div style={{ padding: "1rem" }}></div>
           </div>
@@ -1038,7 +1031,6 @@ function Ladderboard(props) {
                   className="close-icon-login fas fa-times fa-2x"
                 ></i>
               </div>
-              <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
             </div>
 
             <div style={{ padding: "0rem 1rem 1rem 1rem" }}>
@@ -1083,11 +1075,11 @@ function Ladderboard(props) {
                     </h5>
                   </div>
                 </div>
-                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <br></br>
                 <div>
                   <h4>Total Keystrokes: {otherUserData.total_key_strokes}</h4>
                 </div>
-                <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+                <br></br>
                 {selectGameModeToShowComponent()}
                 <div className="chart">
                   <Line
@@ -1125,7 +1117,7 @@ function Ladderboard(props) {
                 </div>
               </div>
             </div>
-            <hr style={{ background: colorFiles.hrColor }}></hr>
+            <br></br>
             {testHistory1000()}
             <div style={{ padding: "1rem" }}></div>
           </div>
@@ -1192,7 +1184,7 @@ function Ladderboard(props) {
           )}
         </div>
 
-        <hr style={{ background: colorFiles.hrColor }}></hr>
+        <br></br>
         <div className="select-sort-method">
           <h4 className="mr-5">Sort by:</h4>
           <Button
@@ -1284,7 +1276,7 @@ function Ladderboard(props) {
             Time
           </Button>
         </div>
-        <hr style={{ background: colorFiles.hrColor }}></hr>
+        <br></br>
 
         <i
           onClick={() => {

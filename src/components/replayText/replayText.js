@@ -712,7 +712,7 @@ const ReplayText = () => {
               }}
               data={chartData}
             />
-            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            <br></br>
             <div
               style={{
                 display: "flex",
@@ -730,7 +730,7 @@ const ReplayText = () => {
               <h5>Mistakes: {latestErrors}</h5>
               <h5>Accuracy: {accuracy}%</h5>
             </div>
-            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            <br></br>
             {!isLoggedIn && (
               <h5
                 style={{
@@ -754,9 +754,7 @@ const ReplayText = () => {
 
           <div style={{ marginTop: "100px" }}>
             <h4 style={{ textAlign: "center" }}>Fastest Race</h4>
-            <hr
-              style={{ width: "80%", backgroundColor: colorFiles.hrColor }}
-            ></hr>
+            <br></br>
             <div style={{ position: "relative", width: "80%", margin: "auto" }}>
               <div className="test-history-item">
                 <h5 style={{ position: "absolute", left: "0vw" }}>Test #</h5>
