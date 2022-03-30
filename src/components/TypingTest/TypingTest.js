@@ -25,11 +25,14 @@ function TypingTest() {
   const latestErrors = useSelector(
     (state) => state.latestErrorsReducerTypingGame
   );
+
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
   const instaDeath = useSelector((state) => state.instaDeathReducer);
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
+  const isTyping = useSelector((state) => state.isTypingReducer);
+  const isFocusMode = useSelector((state) => state.isFocusModeReducer);
 
   //state
   const [text, setText] = useState();
@@ -902,7 +905,7 @@ function TypingTest() {
           backgroundColor: colorFiles.backgroundColor,
           color: colorFiles.fontColor,
         }}
-        className="TypingTest"
+        className={isTyping ? "TypingTest-On" : "TypingTest-Off"}
       >
         {statsMenu()}
         <div
@@ -942,7 +945,9 @@ function TypingTest() {
           {spanArray}
         </div>
         <div
-          className={finished ? "keyboard-div-hidden" : "keyboard-div-shown"}
+          className={
+            finished || isTyping ? "keyboard-div-hidden" : "keyboard-div-shown"
+          }
         >
           {keyboardOnScreen && <Keyboard />}
         </div>

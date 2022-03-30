@@ -27,8 +27,6 @@ function Header(props) {
   const colors = useSelector((state) => state.themeReducer);
   const colorFiles = require(`../themes/${colors}`);
 
-  //==================================================================
-
   const [isSkillLevelMenuShown, setIsSkillMenuShown] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLogOutMenuOpen, setIsLogOutMenuOpen] = useState(false);
@@ -36,6 +34,9 @@ function Header(props) {
   //user Info
   const [userName, setUserName] = useState("Guest");
   const [wpmAverage, setWpmAverage] = useState();
+
+  const isTyping = useSelector((state) => state.isTypingReducer);
+  const isFocusMode = useSelector((state) => state.isFocusModeReducer);
 
   useEffect(() => {
     if (jwt === null) {
@@ -279,7 +280,7 @@ function Header(props) {
           backgroundColor: colorFiles.secondaryBackgroundColor,
           color: colorFiles.fontColor,
         }}
-        className={"Header"}
+        className={isTyping ? "Header-hidden" : "Header"}
       >
         <LogInMenu />
         <Logout handleClose={handleCloseLogoutMenu} isOpen={isLogOutMenuOpen} />
