@@ -100,7 +100,7 @@ function SideMenu() {
               backgroundColor: checkButtonStyle("/"),
               color: checkButtonStyleColor("/"),
             }}
-            className={checkQuotesClass("/")}
+            className={checkTypingGameClass("/")}
           >
             <div className="typing-test-top-button">
               <i
@@ -110,7 +110,7 @@ function SideMenu() {
               <h5>Quotes</h5>
             </div>
 
-            <div
+            {/* <div
               onClick={() => setIsMultiplayerMenuOpen(true)}
               className="typing-test-bottom-button"
               style={{
@@ -119,7 +119,7 @@ function SideMenu() {
               }}
             >
               <h5>Multiplayer</h5>
-            </div>
+            </div> */}
           </div>
         </Link>
         <Link className="left-menu-link" to="/10seconds">
