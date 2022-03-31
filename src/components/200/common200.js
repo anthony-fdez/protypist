@@ -12,6 +12,7 @@ import { Button } from "@material-ui/core";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import { preventUsingArrows } from "../../functions/preventUsingArrows";
 import Modal from "../../helperComponents/modal/modal";
+import SEO from "../../helperComponents/seo/seo";
 
 function Common200() {
   const dispatch = useDispatch();
@@ -713,6 +714,15 @@ function Common200() {
 
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
+      <SEO
+        title={"ProTypist | Top 200"}
+        description={
+          "Get better at typing mastering the top 200 most common words in the language of your choosing"
+        }
+        subject={"ProTypist top 200 most common words"}
+        screen={"200"}
+        keywords="top, 200, common, english"
+      />
       <div
         style={{
           backgroundColor: colorFiles.backgroundColor,

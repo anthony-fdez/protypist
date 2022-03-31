@@ -9,6 +9,7 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import ReplayText from "../replayText/replayText";
 import { Button, Tab, Tabs } from "@material-ui/core";
+import SEO from "../../helperComponents/seo/seo";
 
 function Stats() {
   const dispatch = useDispatch();
@@ -1094,7 +1095,15 @@ function Stats() {
   return (
     <animated.div style={animation} className={"stats-page"}>
       {isLoggedIn && <Ladderboard isShown={isLadderBoardMenuOpen} />}
-
+      <SEO
+        title={"ProTypist | Stats"}
+        description={
+          "See the gains you musscle memory is gaining by looking at your detailed statistics and graphs"
+        }
+        subject={"ProTypist Profile Stats"}
+        screen={"custom"}
+        keywords="top, quotes, common, english, stats, analytics, leaderboard, graph"
+      />
       <div
         style={{ backgroundColor: colorFiles.backgroundColor }}
         className={"Stats"}

@@ -9,7 +9,7 @@ import { useSpring, animated } from "react-spring";
 
 import Input from "./input";
 import Keyboard from "../inScreenKeyboard/keyboard";
-import Seo from "../../helperComponents/seo/seo";
+import SEO from "../../helperComponents/seo/seo";
 
 function Typing10Second() {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function Typing10Second() {
 
   return (
     <animated.div style={animation} className={"Typing10Second-page"}>
-      <Seo
+      <SEO
         title={"ProTypist | 10 Seconds Challenge"}
         description={
           "Test your speed against a 10 second timer that will increase a second for every word you type right. Let's see how well you can do"

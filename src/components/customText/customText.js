@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import { preventUsingArrows } from "../../functions/preventUsingArrows";
+import SEO from "../../helperComponents/seo/seo";
 
 const CustomText = () => {
   const dispatch = useDispatch();
@@ -284,6 +285,15 @@ const CustomText = () => {
 
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
+      <SEO
+        title={"ProTypist | Custom Text"}
+        description={
+          "Try how fast you can type your favorite quotes from a book, or a song, or litterally anywhere, type anything!"
+        }
+        subject={"ProTypist Custom Test"}
+        screen={"custom"}
+        keywords="top, quotes, common, english, custom, personalized"
+      />
       <div
         style={{
           backgroundColor: colorFiles.backgroundColor,

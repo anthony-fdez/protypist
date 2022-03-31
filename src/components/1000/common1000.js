@@ -14,6 +14,7 @@ import { Button } from "@material-ui/core";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import { preventUsingArrows } from "../../functions/preventUsingArrows";
 import Modal from "../../helperComponents/modal/modal";
+import SEO from "../../helperComponents/seo/seo";
 
 function Common1000() {
   const dispatch = useDispatch();
@@ -676,6 +677,15 @@ function Common1000() {
 
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
+      <SEO
+        title={"ProTypist | Top 1000"}
+        description={
+          "Get better at typing mastering the top 1000 most common words in the english language"
+        }
+        subject={"ProTypist top 1000 most common words"}
+        screen={"200"}
+        keywords="top, 1000, common, english"
+      />
       <div
         style={{
           backgroundColor: colorFiles.backgroundColor,

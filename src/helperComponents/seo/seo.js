@@ -12,7 +12,10 @@ const SEO = ({ title, description, subject, screen, keywords }) => {
       <meta name="referrer" content="no-referrer" />
       <meta name="robots" content="index,follow" />
       <meta name="googlebot" content="index,follow" />
-      <meta name="keywords" content={keywords} />
+      <meta
+        name="keywords"
+        content={`${keywords}, typing, protypist, typer, typinttest, test, skill, challenge, competition, wpm, words`}
+      />
 
       <title>{title}</title>
       <link rel="canonical" href={`https://protypist.app/${screen}`} />

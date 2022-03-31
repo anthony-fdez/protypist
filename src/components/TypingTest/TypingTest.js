@@ -14,6 +14,7 @@ import { Line } from "react-chartjs-2";
 import Keyboard from "../inScreenKeyboard/keyboard";
 import { preventUsingArrows } from "../../functions/preventUsingArrows";
 import Modal from "../../helperComponents/modal/modal";
+import SEO from "../../helperComponents/seo/seo";
 
 function TypingTest() {
   const dispatch = useDispatch();
@@ -899,6 +900,15 @@ function TypingTest() {
 
   return (
     <animated.div style={animation} className={"TypingTest-page"}>
+      <SEO
+        title={"ProTypist | Quotes"}
+        description={
+          "Practice your typing skills writing over 10,000 famous and interesting quotes"
+        }
+        subject={"ProTypist Quotes Challenge"}
+        screen={""}
+        keywords="top, quotes, common, english"
+      />
       <div
         onClick={() =>
           dispatch({
