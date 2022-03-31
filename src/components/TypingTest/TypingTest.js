@@ -414,7 +414,6 @@ function TypingTest() {
     setCharactersTyped(e.length);
 
     if (textArrayCharacters) {
-      console.log(e.length);
       const array = infoAboutCharacter;
 
       infoAboutCharacter.forEach((item, index) => {
