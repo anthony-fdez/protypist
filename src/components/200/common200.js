@@ -9,8 +9,12 @@ import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { Button } from "@material-ui/core";
+<<<<<<< HEAD
 import Keyboard from "../inScreenKeyboard/keyboard";
 import { preventUsingArrows } from "../../functions/preventUsingArrows";
+=======
+import GoogleAds from "../../GoogleAdds/GoogleAdds";
+>>>>>>> 1ea038b15c76a2713e42a756874041ace2fb913a
 
 function Common200() {
   const dispatch = useDispatch();
@@ -700,6 +704,7 @@ function Common200() {
               Log in to save your results
             </h5>
           )}
+          <GoogleAds />
         </div>
       </div>
     );
