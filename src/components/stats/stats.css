@@ -41,6 +41,7 @@ h1 {
   right: 0;
   top: 0;
   transition: 0.3s;
+  max-width: 1200px;
 }
 
 .typing-game-statistics-div-hidden,
@@ -59,6 +60,7 @@ h1 {
   transition: 0.3s;
   pointer-events: none;
   transform: translateY(50px);
+  max-width: 1200px;
 }
 
 .stats-box {

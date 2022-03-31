@@ -14,6 +14,9 @@
 .ladderboard-header {
   display: flex;
   align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding-left: 10px;
 }
 .Ladderboard-hidden {
   margin: auto;
@@ -32,8 +35,10 @@
 }
 
 .ladderboard-table {
+  margin: auto;
   padding: 2rem;
   margin-bottom: 2rem;
+  max-width: 1200px;
 }
 .ladderboard-row {
   display: flex;
@@ -54,6 +59,8 @@
 
 .ladderboard-info {
   position: relative;
+  max-width: 1200px;
+  margin: auto;
   margin-top: 2rem;
 }
 .ladderboard-number-item {
@@ -130,6 +137,8 @@
   display: flex;
   align-items: center;
   padding: 1rem;
+  max-width: 1200px;
+  margin: auto;
 }
 .loading-div-ladderboard {
   padding: 0;

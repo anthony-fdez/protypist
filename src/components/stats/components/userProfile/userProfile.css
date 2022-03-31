@@ -1,0 +1,9 @@
+.user-profile-error {
+  position: absolute;
+  inset: 0px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
