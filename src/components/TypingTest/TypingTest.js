@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import quotes from "../data/quotes.json";
-import { Button, TextareaAutosize } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import "../stats/stats.css";
 import "../200/statsMenu.css";
 import { Line } from "react-chartjs-2";

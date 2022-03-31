@@ -26,8 +26,6 @@ function Stats() {
 
   const [totalKeysStrokes, setTotalKeyStrokes] = useState(0);
 
-  const [selectedScreen, setSelectedScreen] = useState("quotes");
-
   //state TypingGame
   const [wpmAverage10races, setWpmAverage10races] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
@@ -71,10 +69,6 @@ function Stats() {
     to: { opacity: 1 },
     config: { duration: 300 },
   });
-
-  const handleScreenChange = (event, newValue) => {
-    setSelectedScreen(newValue);
-  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -1146,16 +1140,16 @@ function Stats() {
               isTypingGameStatisticsShown
                 ? {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
-                    transition: "0.2s",
+                    transition: "200ms",
                     marginRight: "1rem",
                     padding: "10px",
-                    color: "white",
+                    color: colorFiles.fontColor,
                     borderBottom: `2px solid ${colorFiles.primaryColor}`,
                   }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
                     color: colorFiles.fontColor,
-                    transition: "0.2s",
+                    transition: "200ms",
                     marginRight: "1rem",
                     padding: "10px",
                   }
@@ -1186,16 +1180,16 @@ function Stats() {
               isTyping200StatisticsShown
                 ? {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
-                    transition: "0.2s",
+                    transition: "200ms",
                     marginRight: "1rem",
                     padding: "10px",
-                    color: "white",
+                    color: colorFiles.fontColor,
                     borderBottom: `2px solid ${colorFiles.primaryColor}`,
                   }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
                     color: colorFiles.fontColor,
-                    transition: "0.2s",
+                    transition: "200ms",
                     marginRight: "1rem",
                     padding: "10px",
                   }
@@ -1226,16 +1220,16 @@ function Stats() {
               isTyping1000StatisticsShown
                 ? {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
-                    transition: "0.2s",
+                    transition: "200ms",
                     marginRight: "1rem",
                     padding: "10px",
-                    color: "white",
+                    color: colorFiles.fontColor,
                     borderBottom: `2px solid ${colorFiles.primaryColor}`,
                   }
                 : {
                     backgroundColor: colorFiles.secondaryBackgroundColor,
                     color: colorFiles.fontColor,
-                    transition: "0.2s",
+                    transition: "200ms",
                     padding: "10px",
                   }
             }

@@ -35,11 +35,7 @@ function SideMenu() {
   const checkButtonStyle = (path) => {
     if (location === path) {
       return colorFiles.primaryColor;
-<<<<<<< HEAD
     }
-=======
-    } else return colorFiles.secondaryBackgroundColor;
->>>>>>> 1ea038b15c76a2713e42a756874041ace2fb913a
   };
 
   const checkButtonStyleColor = (path) => {

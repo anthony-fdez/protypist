@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 
 import axios from "axios";
 
@@ -284,26 +284,7 @@ function Header(props) {
         <LogInMenu />
         <Logout handleClose={handleCloseLogoutMenu} isOpen={isLogOutMenuOpen} />
         <h2 className="user-name">
-          {!isLoading ? (
-            userName
-          ) : (
-            <div className="fake-loading-spinner">
-              <div className="sk-circle">
-                <div className="sk-circle1 sk-child"></div>
-                <div className="sk-circle2 sk-child"></div>
-                <div className="sk-circle3 sk-child"></div>
-                <div className="sk-circle4 sk-child"></div>
-                <div className="sk-circle5 sk-child"></div>
-                <div className="sk-circle6 sk-child"></div>
-                <div className="sk-circle7 sk-child"></div>
-                <div className="sk-circle8 sk-child"></div>
-                <div className="sk-circle9 sk-child"></div>
-                <div className="sk-circle10 sk-child"></div>
-                <div className="sk-circle11 sk-child"></div>
-                <div className="sk-circle12 sk-child"></div>
-              </div>
-            </div>
-          )}
+          {!isLoading ? userName : <CircularProgress />}
         </h2>
 
         <h2>{props.text}</h2>

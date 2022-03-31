@@ -13,6 +13,7 @@ import { Button } from "@material-ui/core";
 // Components
 import Keyboard from "../inScreenKeyboard/keyboard";
 import { preventUsingArrows } from "../../functions/preventUsingArrows";
+import Modal from "../../helperComponents/modal/modal";
 
 function Common1000() {
   const dispatch = useDispatch();
@@ -29,10 +30,11 @@ function Common1000() {
   const colorFiles = require(`../themes/${colors}`);
   const isLoggedIn = useSelector((state) => state.isLoggedInReducer);
   const jwt = useSelector((state) => state.JWTreducer);
-  const keyboardLayout = useSelector((state) => state.selectKeyboardLayout);
   const isTyping = useSelector((state) => state.isTypingReducer);
   const isFocusMode = useSelector((state) => state.isFocusModeReducer);
-
+  const keyboardOnScreen = useSelector(
+    (state) => state.keyboardOnScreenReducer
+  );
   //state
   const [textArrayCharacters, setTextArrayCharacters] = useState();
   const [infoAboutCharacter, setInfoAboutCharacter] = useState();
@@ -70,7 +72,6 @@ function Common1000() {
     useState(0);
   const [time_raceHistory, setTime_raceHistory] = useState(0);
   const [wpm_raceHistory, setWpm_raceHistory] = useState([]);
-  const [mistakes_raceHistory, setMistakes_raceHistory] = useState(0);
 
   useEffect(() => {
     if (isRunning) {
@@ -568,103 +569,109 @@ function Common1000() {
     }
   }, [isFinished]);
 
+  const handleCloseFinishedModal = () => {
+    setIsFinished(false);
+  };
+
   const statsMenu = () => {
     return (
-      <div
-        style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
-        className={isFinished ? "stats-menu-shown" : "stats-menu-hidden"}
-      >
-        <h2>Results</h2>
-        <i
-          onClick={() => resetData()}
-          style={{ position: "absolute", top: "20px", right: "30px" }}
-          className="close-icon-login fas fa-times fa-2x"
-        ></i>
-        <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+      <Modal isOpen={isFinished} handleClose={handleCloseFinishedModal}>
         <div
-          style={{
-            padding: "0rem 2rem 2rem 2rem",
-            height: "60%",
-            width: "100%",
-            position: "relative",
-          }}
+          style={{ backgroundColor: colorFiles.secondaryBackgroundColor }}
+          className={isFinished ? "stats-menu-shown" : "stats-menu-hidden"}
         >
-          <Line
-            position={"absolute"}
-            width={100}
-            height={100}
-            options={{
-              maintainAspectRatio: false,
-              title: { text: "Words per minute over time", display: true },
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10,
-                      beginAtZero: true,
-                    },
-                    gridLines: {
-                      display: true,
-                    },
-                  },
-                ],
-                xAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 15,
-                    },
-
-                    gridLines: {
-                      display: true,
-                    },
-                  },
-                ],
-              },
-            }}
-            data={chartData}
-          />
+          <h2>Results</h2>
+          <i
+            onClick={() => resetData()}
+            style={{ position: "absolute", top: "20px", right: "30px" }}
+            className="close-icon-login fas fa-times fa-2x"
+          ></i>
           <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "1rem",
+              padding: "0rem 2rem 2rem 2rem",
+              height: "60%",
+              width: "100%",
+              position: "relative",
             }}
           >
-            <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
-            <h5>WPM: {wpm}</h5>
-            <h5>|</h5>
-            <h5>Time: {Math.round(seconds * 100) / 100}s</h5>
-            <h5>Highest: {highestWpm}</h5>
-            <h5>Lowest: {lowestWpm}</h5>
-            <h5>|</h5>
-            <h5>Mistakes: {latestErrors}</h5>
-            <h5>Accuracy: {accuracy}%</h5>
-          </div>
-          <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
-          {!isLoggedIn && (
-            <h5
+            <Line
+              position={"absolute"}
+              width={100}
+              height={100}
+              options={{
+                maintainAspectRatio: false,
+                title: { text: "Words per minute over time", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                      },
+
+                      gridLines: {
+                        display: true,
+                      },
+                    },
+                  ],
+                },
+              }}
+              data={chartData}
+            />
+            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            <div
               style={{
                 display: "flex",
-                justifyContent: "center",
-                backgroundColor: colorFiles.primaryColor,
-                color: colorFiles.backgroundColor,
-              }}
-              className="log-in-to-save-results"
-              onClick={() => {
-                dispatch({
-                  type: "SET_OPEN_LOGIN_MENU",
-                  payload: true,
-                });
+                justifyContent: "space-between",
+                padding: "1rem",
               }}
             >
-              Log in to save your results
-            </h5>
-          )}
+              <h5>Raw WPM: {Math.round(rawWpm * 100) / 100}</h5>
+              <h5>WPM: {wpm}</h5>
+              <h5>|</h5>
+              <h5>Time: {Math.round(seconds * 100) / 100}s</h5>
+              <h5>Highest: {highestWpm}</h5>
+              <h5>Lowest: {lowestWpm}</h5>
+              <h5>|</h5>
+              <h5>Mistakes: {latestErrors}</h5>
+              <h5>Accuracy: {accuracy}%</h5>
+            </div>
+            <hr style={{ backgroundColor: colorFiles.hrColor }}></hr>
+            {!isLoggedIn && (
+              <h5
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  backgroundColor: colorFiles.primaryColor,
+                  color: colorFiles.backgroundColor,
+                }}
+                className="log-in-to-save-results"
+                onClick={() => {
+                  dispatch({
+                    type: "SET_OPEN_LOGIN_MENU",
+                    payload: true,
+                  });
+                }}
+              >
+                Log in to save your results
+              </h5>
+            )}
+          </div>
         </div>
-      </div>
+      </Modal>
     );
   };
 
@@ -780,7 +787,15 @@ function Common1000() {
         >
           {spanArray}
         </div>
-        <Keyboard />
+        <div
+          className={
+            isFinished || (isTyping && isFocusMode)
+              ? "keyboard-div-hidden"
+              : "keyboard-div-shown"
+          }
+        >
+          {keyboardOnScreen && <Keyboard />}
+        </div>
         <div className="input-zone">
           <form
             onSubmit={(e) => {

@@ -78,6 +78,8 @@ h1 {
   top: 0px;
   z-index: 10;
   padding: 20px;
+  height: fit-content;
+  min-height: 95px;
 }
 
 .typing-game-button-active,
@@ -93,8 +95,7 @@ h1 {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: 0.1s;
-  transform: scale(1.1);
+  transition: 200ms;
   color: white;
 }
 .typing-game-inactive,

@@ -22,6 +22,9 @@ const CustomText = () => {
   const textReducer = useSelector((state) => state.customText);
   const isTyping = useSelector((state) => state.isTypingReducer);
   const isFocusMode = useSelector((state) => state.isFocusModeReducer);
+  const keyboardOnScreen = useSelector(
+    (state) => state.keyboardOnScreenReducer
+  );
 
   //State
   const [textArrayCharacters, setTextArrayCharacters] = useState();
@@ -355,7 +358,15 @@ const CustomText = () => {
         >
           {spanArray}
         </div>
-        <Keyboard />
+        <div
+          className={
+            isTyping && isFocusMode
+              ? "keyboard-div-hidden"
+              : "keyboard-div-shown"
+          }
+        >
+          {keyboardOnScreen && <Keyboard />}
+        </div>
         <div className="input-zone">
           <input
             ref={inputRef}
