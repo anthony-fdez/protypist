@@ -15,6 +15,7 @@ import {
   getTotalRaces,
   getTotalTime,
 } from "../../functions/getTotals";
+import Qwerty from "../../../inScreenKeyboard/layouts/qwerty";
 
 const UserProfile = ({ otherUserData, isOpen, handleClose }) => {
   const colors = useSelector((state) => state.themeReducer);
@@ -383,6 +384,7 @@ const UserProfile = ({ otherUserData, isOpen, handleClose }) => {
           </div>
         </div>
         <br></br>
+
         {selectCorrectTestHistory()}
         <div style={{ padding: "1rem" }}></div>
       </div>
