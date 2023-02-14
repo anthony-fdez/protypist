@@ -76,7 +76,7 @@ function Stats() {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/me", {
+        .get("https://protypist.onrender.com/users/me", {
           headers: headers,
         })
         .then((response) => {
@@ -89,7 +89,7 @@ function Stats() {
           console.log(e.response);
         });
       axios
-        .get("https://protypist.herokuapp.com/users/getTotalKeyStrokes", {
+        .get("https://protypist.onrender.com/users/getTotalKeyStrokes", {
           headers: headers,
         })
         .then((response) => {
@@ -248,7 +248,7 @@ function Stats() {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
       axios
-        .get("https://protypist.herokuapp.com/users/statistics", {
+        .get("https://protypist.onrender.com/users/statistics", {
           headers: headers,
         })
         .then((response) => {
@@ -269,7 +269,7 @@ function Stats() {
     if (isLoggedIn) {
       const headers = { Authorization: jwt };
       axios
-        .get("https://protypist.herokuapp.com/users/statistics200", {
+        .get("https://protypist.onrender.com/users/statistics200", {
           headers: headers,
         })
         .then((response) => {
@@ -290,7 +290,7 @@ function Stats() {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/statistics1000", {
+        .get("https://protypist.onrender.com/users/statistics1000", {
           headers: headers,
         })
         .then((response) => {
@@ -877,7 +877,7 @@ function Stats() {
 
                         axios
                           .post(
-                            "https://protypist.herokuapp.com/text/findById",
+                            "https://protypist.onrender.com/text/findById",
                             DATA,
                             { headers: headers }
                           )

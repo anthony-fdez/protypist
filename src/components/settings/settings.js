@@ -267,7 +267,7 @@ function Settings() {
 
                   axios
                     .post(
-                      "https://protypist.herokuapp.com/users/me/private",
+                      "https://protypist.onrender.com/users/me/private",
                       data,
                       {
                         headers: headers,

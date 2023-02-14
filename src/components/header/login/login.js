@@ -38,7 +38,7 @@ const LogInMenu = () => {
     if (passwordLogIn === "" || emailLogIn === "") {
       toast.error("You need to provide an Email and a Password");
     } else {
-      Axios.post("https://protypist.herokuapp.com/users/login", user)
+      Axios.post("https://protypist.onrender.com/users/login", user)
         .then((response) => {
           if (response.status === 200) {
             dispatch({
@@ -88,7 +88,7 @@ const LogInMenu = () => {
     } else if (passwordSignUp === "") {
       toast.error("You need to provide a password, that's pretty important.");
     } else {
-      Axios.post("https://protypist.herokuapp.com/users", user)
+      Axios.post("https://protypist.onrender.com/users", user)
         .then((response) => {
           if (response.status === 201) {
             dispatch({

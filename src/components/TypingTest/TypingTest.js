@@ -152,7 +152,7 @@ function TypingTest() {
       };
 
       axios
-        .post("https://protypist.herokuapp.com/users/statistics", data, {
+        .post("https://protypist.onrender.com/users/statistics", data, {
           headers: headers,
         })
         .then(() => {})
@@ -180,7 +180,7 @@ function TypingTest() {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/statistics", {
+        .get("https://protypist.onrender.com/users/statistics", {
           headers: headers,
         })
         .then((response) => {
@@ -205,7 +205,7 @@ function TypingTest() {
       };
 
       axios
-        .post("https://protypist.herokuapp.com/users/getRaceScores", data, {
+        .post("https://protypist.onrender.com/users/getRaceScores", data, {
           headers: headers,
         })
         .then((res) => {

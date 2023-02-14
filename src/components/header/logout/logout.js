@@ -21,7 +21,7 @@ const Logout = ({ isOpen, handleClose }) => {
     const headers = { Authorization: jwt };
     const bodyParameters = { key: "value" };
 
-    Axios.post("https://protypist.herokuapp.com/users/logout", bodyParameters, {
+    Axios.post("https://protypist.onrender.com/users/logout", bodyParameters, {
       headers: headers,
     })
       .then(() => {
@@ -58,7 +58,7 @@ const Logout = ({ isOpen, handleClose }) => {
     const headers = { Authorization: jwt };
     const data = { password: passwordLogOut };
 
-    Axios.post("https://protypist.herokuapp.com/users/logoutall", data, {
+    Axios.post("https://protypist.onrender.com/users/logoutall", data, {
       headers: headers,
     })
       .then(() => {

@@ -98,7 +98,7 @@ function Common200() {
       };
 
       axios
-        .post("https://protypist.herokuapp.com/users/statistics200", data, {
+        .post("https://protypist.onrender.com/users/statistics200", data, {
           headers: headers,
         })
         .then(() => {})
@@ -141,7 +141,7 @@ function Common200() {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/statistics200", {
+        .get("https://protypist.onrender.com/users/statistics200", {
           headers: headers,
         })
         .then((response) => {

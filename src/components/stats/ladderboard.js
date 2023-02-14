@@ -31,7 +31,7 @@ function Ladderboard(props) {
       const headers = { Authorization: jwt };
       setIsLoading(true);
       axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/highest", {
+        .get("https://protypist.onrender.com/users/ladderboard/highest", {
           headers: headers,
         })
         .then((response) => {
@@ -49,7 +49,7 @@ function Ladderboard(props) {
       const headers = { Authorization: jwt };
       setIsLoading(true);
       axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/wpm", {
+        .get("https://protypist.onrender.com/users/ladderboard/wpm", {
           headers: headers,
         })
         .then((response) => {
@@ -68,7 +68,7 @@ function Ladderboard(props) {
       setIsLoading(true);
 
       axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/highest", {
+        .get("https://protypist.onrender.com/users/ladderboard/highest", {
           headers: headers,
         })
         .then((response) => {
@@ -87,7 +87,7 @@ function Ladderboard(props) {
       setIsLoading(true);
 
       axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/races", {
+        .get("https://protypist.onrender.com/users/ladderboard/races", {
           headers: headers,
         })
         .then((response) => {
@@ -106,7 +106,7 @@ function Ladderboard(props) {
       setIsLoading(true);
 
       axios
-        .get("https://protypist.herokuapp.com/users/ladderboard/time", {
+        .get("https://protypist.onrender.com/users/ladderboard/time", {
           headers: headers,
         })
         .then((response) => {
@@ -126,7 +126,7 @@ function Ladderboard(props) {
     };
 
     axios
-      .post("https://protypist.herokuapp.com/users/getOtherUserData", data, {
+      .post("https://protypist.onrender.com/users/getOtherUserData", data, {
         headers: headers,
       })
       .then((response) => {
