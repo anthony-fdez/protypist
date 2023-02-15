@@ -77,7 +77,7 @@ function Colemak() {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/getKeysTyped", {
+        .get("https://protypist.onrender.com/users/getKeysTyped", {
           headers: headers,
         })
         .then((response) => {
@@ -478,7 +478,7 @@ function Colemak() {
       };
 
       axios
-        .post("https://protypist.herokuapp.com/users/keysTyped", data, {
+        .post("https://protypist.onrender.com/users/keysTyped", data, {
           headers: headers,
         })
         .then((response) => {})

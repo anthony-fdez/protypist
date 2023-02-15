@@ -56,7 +56,7 @@ function Header(props) {
     const bodyParameters = { key: "value" };
 
     axios
-      .post("https://protypist.herokuapp.com/checkIfLoggedIn", bodyParameters, {
+      .post("https://protypist.onrender.com/checkIfLoggedIn", bodyParameters, {
         headers: headers,
       })
       .then((response) => {
@@ -82,7 +82,7 @@ function Header(props) {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/me", {
+        .get("https://protypist.onrender.com/users/me", {
           headers: headers,
         })
         .then((response) => {
@@ -115,7 +115,7 @@ function Header(props) {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/overallStatistics", {
+        .get("https://protypist.onrender.com/users/overallStatistics", {
           headers: headers,
         })
         .then((response) => {
@@ -136,7 +136,7 @@ function Header(props) {
       const headers = { Authorization: jwt };
 
       axios
-        .get("https://protypist.herokuapp.com/users/getKeysTyped", {
+        .get("https://protypist.onrender.com/users/getKeysTyped", {
           headers: headers,
         })
         .then((response) => {

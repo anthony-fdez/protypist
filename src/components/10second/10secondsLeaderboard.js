@@ -24,12 +24,9 @@ const TenSecondsLeaderboard = (props) => {
       };
 
       if (difficulty === "EASY") {
-        Axios.get(
-          "https://protypist.herokuapp.com/10seconds/leaderboard/easy",
-          {
-            headers: headers,
-          }
-        )
+        Axios.get("https://protypist.onrender.com/10seconds/leaderboard/easy", {
+          headers: headers,
+        })
           .then((response) => {
             setLeaderboardData(response.data.leaderboard_easy);
           })
@@ -38,7 +35,7 @@ const TenSecondsLeaderboard = (props) => {
           });
       } else if (difficulty === "NORMAL") {
         Axios.get(
-          "https://protypist.herokuapp.com/10seconds/leaderboard/normal",
+          "https://protypist.onrender.com/10seconds/leaderboard/normal",
           {
             headers: headers,
           }
@@ -50,12 +47,9 @@ const TenSecondsLeaderboard = (props) => {
             console.log(e);
           });
       } else if (difficulty === "HARD") {
-        Axios.get(
-          "https://protypist.herokuapp.com/10seconds/leaderboard/hard",
-          {
-            headers: headers,
-          }
-        )
+        Axios.get("https://protypist.onrender.com/10seconds/leaderboard/hard", {
+          headers: headers,
+        })
           .then((response) => {
             setLeaderboardData(response.data.leaderboard_hard);
           })
@@ -63,12 +57,9 @@ const TenSecondsLeaderboard = (props) => {
             console.log(e);
           });
       } else if (difficulty === "EPIC") {
-        Axios.get(
-          "https://protypist.herokuapp.com/10seconds/leaderboard/epic",
-          {
-            headers: headers,
-          }
-        )
+        Axios.get("https://protypist.onrender.com/10seconds/leaderboard/epic", {
+          headers: headers,
+        })
           .then((response) => {
             setLeaderboardData(response.data.leaderboard_epic);
           })

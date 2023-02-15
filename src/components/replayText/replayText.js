@@ -144,7 +144,7 @@ const ReplayText = () => {
       };
 
       axios
-        .post("https://protypist.herokuapp.com/users/statistics", data, {
+        .post("https://protypist.onrender.com/users/statistics", data, {
           headers: headers,
         })
         .then(() => {})
@@ -162,7 +162,7 @@ const ReplayText = () => {
       };
 
       axios
-        .post("https://protypist.herokuapp.com/text/findById", DATA, {
+        .post("https://protypist.onrender.com/text/findById", DATA, {
           headers: headers,
         })
         .then((response) => {

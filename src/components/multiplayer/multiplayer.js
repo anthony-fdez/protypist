@@ -8,7 +8,7 @@ import socketClient from "socket.io-client";
 import { IconMessages, IconSend } from "@tabler/icons";
 import { Button } from "@material-ui/core";
 
-const server = "https://protypist.herokuapp.com";
+const server = "https://protypist.onrender.com";
 // const server = "http://localhost:5000";
 const socket = socketClient(server);
 
